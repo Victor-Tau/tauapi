@@ -64,6 +64,12 @@ export default defineConfig(({ envMode }) => {
       entry: {
         index: './src/main.tsx',
       },
+      define: {
+        // Lets the running bundle compare itself with /_meta/ui-version.json.
+        'import.meta.env.TAUAPI_RELEASE_ID': JSON.stringify(
+          isProd ? releaseId : ''
+        ),
+      },
     },
     resolve: {
       alias: {

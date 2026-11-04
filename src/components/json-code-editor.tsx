@@ -321,7 +321,7 @@ export function JsonCodeEditor({
       <div
         className={cn(
           'bg-background relative overflow-hidden pl-2',
-          'has-[textarea:disabled]:bg-input/30 has-[textarea:disabled]:opacity-70',
+          'has-[textarea:disabled]:bg-muted has-[textarea:disabled]:opacity-70',
           heightClassName
         )}
       >

@@ -383,12 +383,14 @@ const RADIUS_OPTIONS: {
   // CSS border-radius value used to render the visual preview corner.
   preview: string
 }[] = [
-  { value: 'default', label: 'Auto', preview: '1rem' },
+  // Minimalist Flat: labels/previews match the bounded values in
+  // theme-presets.css ([data-theme-radius]); Auto is the 6px flat default.
+  { value: 'default', label: 'Auto', preview: '6px' },
   { value: 'none', label: '0', preview: '0' },
-  { value: 'sm', label: '0.3', preview: '0.3rem' },
-  { value: 'md', label: '0.5', preview: '0.5rem' },
-  { value: 'lg', label: '0.75', preview: '0.75rem' },
-  { value: 'xl', label: '1.0', preview: '1rem' },
+  { value: 'sm', label: '4px', preview: '4px' },
+  { value: 'md', label: '6px', preview: '6px' },
+  { value: 'lg', label: '7px', preview: '7px' },
+  { value: 'xl', label: '8px', preview: '8px' },
 ]
 
 function RadiusConfig() {

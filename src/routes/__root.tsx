@@ -29,6 +29,7 @@ import { useEffect } from 'react'
 
 import { NavigationProgress } from '@/components/navigation-progress'
 import { Toaster } from '@/components/ui/sonner'
+import { useReleaseUpdateNotice } from '@/hooks/use-release-update-notice'
 import { ThemeCustomizationProvider } from '@/context/theme-customization-provider'
 import { saveAffiliateCode } from '@/features/auth/lib/storage'
 import { GeneralError } from '@/features/errors/general-error'
@@ -91,6 +92,8 @@ function RootComponent() {
       }),
     [navigate, queryClient]
   )
+
+  useReleaseUpdateNotice()
 
   return (
     <ThemeCustomizationProvider>
