@@ -195,7 +195,7 @@
  {
   "id": "otp",
   "url": "/otp",
-  "name": "OTP",
+  "name": "OTP (no pending challenge -> sign-in)",
   "role": "anon",
   "marker": null,
   "shots": [
@@ -207,12 +207,13 @@
   "feature_flag": "",
   "param_source": "",
   "external": "",
-  "expect_path": null
+  "expect_path": null,
+  "early": 400
  },
  {
   "id": "oauth-cb",
   "url": "/oauth/github?code=invalid&state=invalid",
-  "name": "OAuth callback (failure state)",
+  "name": "OAuth callback (waiting/failure state)",
   "role": "anon",
   "marker": null,
   "shots": [
@@ -224,7 +225,8 @@
   "feature_flag": "",
   "param_source": "",
   "external": "OAuth provider",
-  "expect_path": null
+  "expect_path": "/oauth/github",
+  "early": 600
  },
  {
   "id": "err-401",

@@ -102,3 +102,21 @@ container_id() { compose ps -q "$1" 2>/dev/null || true; }
 
 # json_get FILE KEY  -> top-level string value
 json_get() { jq -r --arg k "$2" '.[$k] // empty' "$1"; }
+
+# Annotated release tag in a source repo, created as the repo owner (the
+# deploy scripts run as root). Idempotent: an existing tag on the same commit
+# is accepted; a tag pointing elsewhere is reported, never moved.
+tag_release() { # repo tag commit message
+  local repo=$1 tag=$2 commit=$3 msg=$4 owner existing
+  [[ -d $repo/.git ]] || return 0
+  owner=$(stat -c %U "$repo")
+  git -C "$repo" cat-file -e "$commit^{commit}" 2>/dev/null || { log "tag $tag: commit $commit not in $repo"; return 0; }
+  existing=$(sudo -u "$owner" git -C "$repo" rev-parse -q --verify "refs/tags/$tag^{commit}" 2>/dev/null || true)
+  if [[ -n $existing ]]; then
+    [[ $existing == "$commit" ]] || log "WARNING: tag $tag already points to ${existing:0:12}, not moving it"
+    return 0
+  fi
+  sudo -u "$owner" git -C "$repo" tag -a "$tag" "$commit" -m "$msg"
+  sudo -u "$owner" git -C "$repo" push -q origin "refs/tags/$tag" 2>/dev/null || true
+  log "tagged $repo $tag -> ${commit:0:12}"
+}

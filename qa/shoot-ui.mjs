@@ -71,8 +71,16 @@ for (const row of inventory) {
     page.on('pageerror', (e) => errors.push(String(e.message).slice(0, 160)))
     let status = 'ok'
     try {
-      await page.goto(`${origin}${row.url}`, { waitUntil: 'networkidle', timeout: 30000 })
-      await page.waitForTimeout(700)
+      if (row.early) {
+        // Transient states (OAuth callback waiting/failure, OTP without a
+        // pending challenge) redirect after a short delay: capture the first
+        // rendered state, then record where the page finally lands.
+        await page.goto(`${origin}${row.url}`, { waitUntil: 'domcontentloaded', timeout: 30000 })
+        await page.waitForTimeout(row.early)
+      } else {
+        await page.goto(`${origin}${row.url}`, { waitUntil: 'networkidle', timeout: 30000 })
+        await page.waitForTimeout(700)
+      }
     } catch (e) {
       status = `nav-error: ${String(e.message).slice(0, 80)}`
     }
@@ -89,12 +97,18 @@ for (const row of inventory) {
       .catch(() => -1)
     const file = path.join(outDir, `${row.id}__${shot}.png`)
     await page.screenshot({ path: file, fullPage: false, animations: 'disabled' })
+    let settledPath = null
+    if (row.early) {
+      await page.waitForTimeout(4000)
+      settledPath = new URL(page.url()).pathname
+    }
     const expectedPath = row.expect_path ?? row.url.split('?')[0]
     results.push({
       id: row.id,
       shot,
       url: row.url,
       final_path: finalUrl.pathname,
+      settled_path: settledPath,
       path_ok: finalUrl.pathname === expectedPath,
       marker: row.marker,
       marker_visible: markerVisible,

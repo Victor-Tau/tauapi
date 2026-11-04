@@ -39,10 +39,13 @@ SHOTS_REP = ["light-desktop", "dark-desktop", "light-mobile", "dark-mobile", "li
 rows = []
 
 
-def add(rid, url, name, role, marker, shots=SHOTS_FULL, interactions="", flag="", param="", ext="", expect=None):
-    rows.append({"id": rid, "url": url, "name": name, "role": role, "marker": marker, "shots": shots,
-                 "interactions": interactions, "feature_flag": flag, "param_source": param,
-                 "external": ext, "expect_path": expect})
+def add(rid, url, name, role, marker, shots=SHOTS_FULL, interactions="", flag="", param="", ext="", expect=None, early=None):
+    row = {"id": rid, "url": url, "name": name, "role": role, "marker": marker, "shots": shots,
+           "interactions": interactions, "feature_flag": flag, "param_source": param,
+           "external": ext, "expect_path": expect}
+    if early:
+        row["early"] = early
+    rows.append(row)
 
 
 # Public
@@ -58,8 +61,8 @@ add("sign-in", "/sign-in", "Sign in", "anon", "Sign in", SHOTS_REP, "form valida
 add("sign-up", "/sign-up", "Sign up (registration disabled in prod)", "anon", None, flag="RegisterEnabled")
 add("forgot-password", "/forgot-password", "Forgot password", "anon", None, ext="SMTP")
 add("reset", "/user/reset?email=qa%40example.com&token=invalid", "Password reset confirm", "anon", None, expect="/user/reset", ext="SMTP")
-add("otp", "/otp", "OTP", "anon", None)
-add("oauth-cb", "/oauth/github?code=invalid&state=invalid", "OAuth callback (failure state)", "anon", None, expect=None, ext="OAuth provider")
+add("otp", "/otp", "OTP (no pending challenge -> sign-in)", "anon", None, early=400)
+add("oauth-cb", "/oauth/github?code=invalid&state=invalid", "OAuth callback (waiting/failure state)", "anon", None, expect="/oauth/github", ext="OAuth provider", early=600)
 # Errors
 for code in ("401", "403", "404", "500", "503"):
     add(f"err-{code}", f"/{code}", f"Error {code}", "anon", code)

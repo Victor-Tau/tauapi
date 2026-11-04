@@ -10,8 +10,8 @@ sign-in,/sign-in,/sign-in,Sign in,anon,,,"form validation, password toggle",,,,,
 sign-up,/sign-up,/sign-up,Sign up (registration disabled in prod),anon,RegisterEnabled,,,,,,,,
 forgot-password,/forgot-password,/forgot-password,Forgot password,anon,,,,,,,,,SMTP
 reset,/user/reset,/user/reset?email=qa%40example.com&token=invalid,Password reset confirm,anon,,,,,,,,,SMTP
-otp,/otp,/otp,OTP,anon,,,,,,,,,
-oauth-cb,/oauth/$provider,/oauth/github?code=invalid&state=invalid,OAuth callback (failure state),anon,,,,,,,,,OAuth provider
+otp,/otp,/otp,OTP (no pending challenge -> sign-in),anon,,,,,,,,,
+oauth-cb,/oauth/$provider,/oauth/github?code=invalid&state=invalid,OAuth callback (waiting/failure state),anon,,,,,,,,,OAuth provider
 err-401,/401,/401,Error 401,anon,,,,,,,,,
 err-403,/403,/403,Error 403,anon,,,,,,,,,
 err-404,/404,/404,Error 404,anon,,,,,,,,,
