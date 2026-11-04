@@ -57,31 +57,31 @@ EOF
 jq . "$OPS_ROOT/DEPLOYMENT_STATE.json" >/dev/null || die "DEPLOYMENT_STATE.json invalid" 4
 
 {
-  echo "# Evidence summary ($TAUAPI_ENV) — $(date -u +%FT%TZ)"
+  echo "# 证据摘要（$TAUAPI_ENV） — $(date -u +%FT%TZ)"
   echo
-  echo "## Running services"
+  echo "## 运行中的服务"
   echo '```'
   for s in backend-master backend-slave postgres redis; do printf '%-15s %s\n' "$s" "$(svc_line $s)"; done
   echo '```'
-  echo "## Listening sockets (public exposure check)"
+  echo "## 监听端口（公网暴露检查）"
   echo '```'
   ss -Htln | awk '{print $4}' | sort -u
   echo '```'
-  echo "## Versions"
+  echo "## 版本"
   echo "- frontend release: $FE_REL ($(jq -r .frontend_commit "$FE_MAN" | cut -c1-12))"
   echo "- backend: $BACKEND_MASTER_IMAGE / $BACKEND_SLAVE_IMAGE"
   echo "- PostgreSQL $PG_VER, Redis $RD_VER, Nginx $NGX_VER"
   echo "- certificate notAfter: $CERT_END"
-  echo "## Release log"
+  echo "## 发布日志"
   echo '```'
   cat "$STATE_DIR/frontend-releases.log" "$STATE_DIR/backend-releases.log" 2>/dev/null || true
   echo '```'
-  echo "## Backups / restore checks"
+  echo "## 备份 / 恢复检查"
   echo '```'
   ls -1t "$BACKUP_ROOT/db" 2>/dev/null | grep -E '\.dump$' | head -5 || true
   cat "$STATE_DIR/restore-checks.log" 2>/dev/null || true
   echo '```'
-  echo "## Timers"
+  echo "## 定时器"
   echo '```'
   systemctl list-timers --no-pager certbot.timer tauapi-backup.timer | head -4 || true
   echo '```'
