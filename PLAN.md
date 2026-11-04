@@ -1,4 +1,4 @@
-# PLAN — newapi-victor
+# PLAN — tauapi
 
 Source of truth: GOAL.md (v1.0, 2026-11-04). Phases and gates follow GOAL §18.
 
@@ -15,4 +15,4 @@ Source of truth: GOAL.md (v1.0, 2026-11-04). Phases and gates follow GOAL §18.
 | P8 Release | deploy/rollback frontend + backend rolling, SSE/WS drain, old chunk | P5,P7 | evidence/release-drills.md |
 | P9 Ops | backup/restore-check, logrotate, timers, HANDOFF.md | P8 | GOAL §19 checklist |
 
-Serial-only operations (deploy lock /run/lock/newapi-deploy.lock): DB migration, nginx switch, current symlink, rollback.
+Serial-only operations (deploy lock /run/lock/tauapi-deploy.lock): DB migration, nginx switch, current symlink, rollback.

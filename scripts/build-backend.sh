@@ -3,13 +3,13 @@
 # The build context is `git archive <rev>` of the backend repository only, so
 # uncommitted files, web/ sources and other repositories can never leak in.
 #
-# Usage: build-backend.sh [--repo /opt/newapi/backend] [--rev main] [--tag <tag>]
+# Usage: build-backend.sh [--repo /opt/tauapi/tauapi-be] [--rev main] [--tag <tag>]
 # Output: prints KEY=VALUE lines (BACKEND_COMMIT, IMAGE_TAG, IMAGE_ID) and writes
-#         /srv/newapi/artifacts/backend/<tag>.json
+#         /srv/tauapi/artifacts/backend/<tag>.json
 # Exit codes: 0 ok, 2 usage, 3 dirty/invalid revision, 4 build failure.
 set -euo pipefail
 
-REPO=/opt/newapi/backend
+REPO=/opt/tauapi/tauapi-be
 REV=main
 TAG=""
 while [[ $# -gt 0 ]]; do
@@ -28,10 +28,10 @@ COMMIT=$(git -C "$REPO" rev-parse --verify "$REV^{commit}") || exit 3
 SHORT=${COMMIT:0:12}
 VERSION=$(git -C "$REPO" show "$COMMIT:VERSION" 2>/dev/null | tr -d '[:space:]')
 [[ -n "$VERSION" ]] || VERSION="0.0.0"
-[[ -n "$TAG" ]] || TAG="newapi-victor/backend:${SHORT}"
+[[ -n "$TAG" ]] || TAG="tauapi-be:${SHORT}"
 UPSTREAM=$(git -C "$REPO" show "$COMMIT:UPSTREAM.json" | python3 -I -c 'import json,sys;print(json.load(sys.stdin)["upstream_commit"])')
 
-WORK=$(mktemp -d /tmp/newapi-backend-build.XXXXXX)
+WORK=$(mktemp -d /tmp/tauapi-be-build.XXXXXX)
 trap 'rm -rf "$WORK"' EXIT
 git -C "$REPO" archive --format=tar "$COMMIT" | tar -x -C "$WORK"
 # Version shown by the app: upstream VERSION file plus our backend commit.
@@ -43,9 +43,9 @@ fi
 echo "building $TAG from $COMMIT" >&2
 if ! "${DOCKER[@]}" build --pull=false \
     --label "org.opencontainers.image.revision=$COMMIT" \
-    --label "org.opencontainers.image.source=local:/opt/newapi/backend" \
-    --label "newapi.upstream.commit=$UPSTREAM" \
-    --label "newapi.component=backend" \
+    --label "org.opencontainers.image.source=local:/opt/tauapi/tauapi-be" \
+    --label "tauapi.upstream.commit=$UPSTREAM" \
+    --label "tauapi.component=backend" \
     -t "$TAG" "$WORK" >&2; then
   exit 4
 fi
@@ -56,7 +56,7 @@ if "${DOCKER[@]}" run --rm --entrypoint /bin/sh "$TAG" -c 'find / -xdev \( -name
   echo "backend image contains frontend artefacts" >&2; exit 4
 fi
 
-OUT=/srv/newapi/artifacts/backend
+OUT=/srv/tauapi/artifacts/backend
 mkdir -p "$OUT"
 cat > "$OUT/${SHORT}.json" <<JSON
 {

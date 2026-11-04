@@ -8,7 +8,7 @@ Runs on the server as root, talking to Nginx over the loopback HTTPS channel
 Steps (GOAL §13.3):
   1. GET /api/setup and read status + root_init separately.
   2. Create the root user only when none exists, with a password that was
-     first saved atomically to /etc/newapi/initial-admin.json (0600). Reruns
+     first saved atomically to /etc/tauapi/initial-admin.json (0600). Reruns
      reuse that file and never generate a second password.
   3. SelfUseModeEnabled=true, DemoSiteEnabled=false.
   4. Log in, set ServerAddress=https://api.victor-tau.xyz, RegisterEnabled=false.
@@ -30,7 +30,7 @@ import time
 
 DOMAIN = "api.victor-tau.xyz"
 ORIGIN = f"https://{DOMAIN}"
-CRED_PATH = "/etc/newapi/initial-admin.json"
+CRED_PATH = "/etc/tauapi/initial-admin.json"
 USERNAME = "admin"
 
 
@@ -45,7 +45,7 @@ class LoopbackHTTPS(http.client.HTTPSConnection):
 def request(method, path, body=None, headers=None):
     ctx = ssl.create_default_context()
     conn = LoopbackHTTPS(DOMAIN, 443, timeout=30, context=ctx)
-    hdrs = {"Accept": "application/json", "User-Agent": "newapi-bootstrap-admin/1"}
+    hdrs = {"Accept": "application/json", "User-Agent": "tauapi-bootstrap-admin/1"}
     if body is not None:
         hdrs["Content-Type"] = "application/json"
         body = json.dumps(body).encode()

@@ -57,7 +57,7 @@ RD_PW=$(sed -n 's/^REDIS_PASSWORD=//p' "$SECRET_ROOT/redis.env")
 # backend.env is derived (not random) and can be re-rendered safely.
 {
   echo "# Rendered by bootstrap-stack.sh; derived from postgres.env, redis.env, app-secrets.env"
-  echo "SQL_DSN=postgresql://newapi:${PG_PW}@postgres:5432/newapi?sslmode=disable"
+  echo "SQL_DSN=postgresql://tauapi:${PG_PW}@postgres:5432/tauapi?sslmode=disable"
   echo "REDIS_CONN_STRING=redis://:${RD_PW}@redis:6379/0"
   cat "$SECRET_ROOT/app-secrets.env"
   cat <<'EOF'

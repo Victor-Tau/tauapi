@@ -16,4 +16,4 @@ Current phase: P3/P4 (backend API-only verification, frontend independent build)
 - none
 
 ## Recovery entry
-Read this file, then check `git -C /opt/newapi/{frontend,backend,ops} log -3`, `sudo docker ps`, `readlink /srv/newapi/current/frontend`, `/etc/nginx/sites-enabled/`.
+Read this file, then check `git -C /opt/tauapi/{frontend,backend,ops} log -3`, `sudo docker ps`, `readlink /srv/tauapi/current/frontend`, `/etc/nginx/sites-enabled/`.

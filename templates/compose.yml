@@ -1,15 +1,15 @@
-# newapi-victor production stack (rendered to /srv/newapi/stack/compose.yml).
-# Project name is fixed (-p newapi) so volumes never depend on the working dir.
-# Image references come from /srv/newapi/stack/images.env (pinned digests /
+# tauapi production stack (rendered to /srv/tauapi/stack/compose.yml).
+# Project name is fixed (-p tauapi) so volumes never depend on the working dir.
+# Image references come from /srv/tauapi/stack/images.env (pinned digests /
 # commit-tagged local backend images); secrets come from root-only env files
-# under /etc/newapi. PostgreSQL and Redis publish no host ports.
-name: newapi
+# under /etc/tauapi. PostgreSQL and Redis publish no host ports.
+name: tauapi
 
 x-backend: &backend
   restart: unless-stopped
   command: ["--log-dir", "/data/logs"]
   env_file:
-    - /etc/newapi/backend.env
+    - /etc/tauapi/backend.env
   stop_grace_period: 150s
   healthcheck:
     test: ["CMD-SHELL", "wget -q -T 3 -O /dev/null http://127.0.0.1:3000/api/status || exit 1"]
@@ -32,10 +32,10 @@ services:
     image: ${POSTGRES_IMAGE:?POSTGRES_IMAGE missing}
     restart: unless-stopped
     env_file:
-      - /etc/newapi/postgres.env
+      - /etc/tauapi/postgres.env
     environment:
-      POSTGRES_USER: newapi
-      POSTGRES_DB: newapi
+      POSTGRES_USER: tauapi
+      POSTGRES_DB: tauapi
       TZ: Asia/Singapore
     volumes:
       - pgdata:/var/lib/postgresql/data
@@ -45,7 +45,7 @@ services:
     mem_limit: 768m
     stop_grace_period: 60s
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U newapi -d newapi -h 127.0.0.1"]
+      test: ["CMD-SHELL", "pg_isready -U tauapi -d tauapi -h 127.0.0.1"]
       interval: 5s
       timeout: 5s
       retries: 20
@@ -61,7 +61,7 @@ services:
     restart: unless-stopped
     user: "999:999"
     env_file:
-      - /etc/newapi/redis.env
+      - /etc/tauapi/redis.env
     # The password is written to a container-local config file so it never
     # appears in a process argument list.
     entrypoint: ["sh", "-c"]
@@ -88,7 +88,7 @@ services:
     image: ${BACKEND_MASTER_IMAGE:?BACKEND_MASTER_IMAGE missing}
     environment:
       NODE_TYPE: master
-      NODE_NAME: newapi-master
+      NODE_NAME: tauapi-master
     ports:
       - "127.0.0.1:3001:3000"
     volumes:
@@ -104,7 +104,7 @@ services:
     image: ${BACKEND_SLAVE_IMAGE:?BACKEND_SLAVE_IMAGE missing}
     environment:
       NODE_TYPE: slave
-      NODE_NAME: newapi-slave
+      NODE_NAME: tauapi-slave
     ports:
       - "127.0.0.1:3002:3000"
     volumes:

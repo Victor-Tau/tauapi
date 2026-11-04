@@ -12,4 +12,4 @@
 - IPv6: no global IPv6 on host and no AAAA record → IPv6 not applicable
 - Public reachability: http://api.victor-tau.xyz → 200 (default nginx) then 503 maintenance; ACME probe 200
 - Egress: github.com, proxy.golang.org, registry.npmjs.org, go.dev, registry-1.docker.io, acme-v02.api.letsencrypt.org, bun.sh all reachable
-- Existing data: /opt empty except newapi, /srv empty, no DB/Redis installed → fresh host, nothing to isolate
+- Existing data: /opt empty before this project, /srv empty, no DB/Redis installed → fresh host, nothing to isolate

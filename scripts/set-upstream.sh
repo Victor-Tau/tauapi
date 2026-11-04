@@ -17,13 +17,13 @@ target=$NGINX_DIR/upstream-backend.conf
 [[ -f $target ]] && cp -p "$target" "$target.prev"
 cat > "$target.tmp" <<CONF
 # Managed by set-upstream.sh (active set: $1)
-upstream newapi_backend {
+upstream tauapi_backend {
 $servers
     keepalive 16;
 }
 CONF
 mv -f "$target.tmp" "$target"
-if [[ -f $NGINX_SITE ]] && [[ -L /etc/nginx/sites-enabled/newapi.conf ]]; then
+if [[ -f $NGINX_SITE ]] && [[ -L /etc/nginx/sites-enabled/tauapi.conf ]]; then
   if ! nginx_reload_checked; then
     [[ -f $target.prev ]] && mv -f "$target.prev" "$target"
     die "nginx -t failed; upstream restored" 7

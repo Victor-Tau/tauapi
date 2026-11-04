@@ -22,7 +22,7 @@
   },
   "frontend_assets": {
     "versioned_prefix": "/_ui/<release-id>/",
-    "versioned_root": "/srv/newapi/public",
+    "versioned_root": "/srv/tauapi/public",
     "versioned_cache": "public, max-age=31536000, immutable",
     "missing_asset": "404 (never index.html)",
     "root_public_files": ["/favicon.ico", "/logo.png", "/pay-apple.png", "/pay-card.png", "/pay-google.png", "/waffo-logo-dark.svg", "/waffo-logo-light.svg"],

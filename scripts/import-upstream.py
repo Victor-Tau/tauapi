@@ -2,8 +2,8 @@
 """Import a pinned upstream Git tree into the vendor/upstream branch of a split repo.
 
 Usage:
-  import-upstream.py --upstream /var/cache/newapi/upstream --sha <full-sha> \
-      --kind frontend|backend --repo /opt/newapi/frontend [--init-main]
+  import-upstream.py --upstream /var/cache/tauapi/upstream --sha <full-sha> \
+      --kind frontend|backend --repo /opt/tauapi/tauapi-fe [--init-main]
 
 Behaviour:
   * Reads ONLY from the Git object database (git archive), never from a work tree.
@@ -27,10 +27,10 @@ import tempfile
 
 UPSTREAM_URL = "https://github.com/QuantumNous/new-api.git"
 IDENTITY = {
-    "GIT_AUTHOR_NAME": "New API Maintainer",
-    "GIT_AUTHOR_EMAIL": "newapi-maintainer@localhost",
-    "GIT_COMMITTER_NAME": "New API Maintainer",
-    "GIT_COMMITTER_EMAIL": "newapi-maintainer@localhost",
+    "GIT_AUTHOR_NAME": "TauAPI Maintainer",
+    "GIT_AUTHOR_EMAIL": "tauapi-maintainer@localhost",
+    "GIT_COMMITTER_NAME": "TauAPI Maintainer",
+    "GIT_COMMITTER_EMAIL": "tauapi-maintainer@localhost",
 }
 
 # (upstream path, destination path). A trailing "/" means a directory prefix.
@@ -102,7 +102,7 @@ def main():
         git(a.repo, "config", "user.name", IDENTITY["GIT_AUTHOR_NAME"])
         git(a.repo, "config", "user.email", IDENTITY["GIT_AUTHOR_EMAIL"])
 
-    with tempfile.TemporaryDirectory(prefix="newapi-import-") as tmp:
+    with tempfile.TemporaryDirectory(prefix="tauapi-import-") as tmp:
         raw = os.path.join(tmp, "raw")
         snap = os.path.join(tmp, "snap")
         os.makedirs(raw)
