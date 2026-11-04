@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "public_origin": "https://api.victor-tau.xyz",
+  "strategy": "Explicit frontend pages and assets; everything else goes to the API-only backend (which returns plugin responses or JSON 404).",
+  "source": {
+    "frontend_routes": "frontend src/routes + src/routeTree.gen.ts (fullPath) + section registries",
+    "legacy_routes": "frontend src/lib/legacy-route.ts",
+    "backend_routes": "backend router/*.go + plugins/tasks/*/ route declarations"
+  },
+  "backend_exceptions_first": [
+    {"match": "prefix", "path": "/dashboard/billing/", "reason": "OpenAI-compatible billing endpoints (router/dashboard.go) must win over the /dashboard SPA page"},
+    {"match": "regex", "path": "^/[^/]+/mj/", "reason": "Midjourney mode routes /:mode/mj/... (router/relay-router.go)"}
+  ],
+  "frontend_pages": {
+    "exact": ["/", "/401", "/403", "/404", "/500", "/503", "/chat2link", "/forgot-password", "/oauth", "/otp", "/privacy-policy", "/register", "/reset", "/sign-in", "/sign-up", "/user-agreement", "/user/reset", "/login", "/forbidden"],
+    "prefix": ["/about", "/channels", "/chat", "/dashboard", "/errors", "/keys", "/models", "/oauth", "/playground", "/pricing", "/profile", "/rankings", "/redemption-codes", "/security", "/setup", "/subscriptions", "/system-info", "/system-settings", "/task-plugins", "/usage-logs", "/users", "/wallet", "/console"],
+    "notes": {
+      "/oauth/<provider>": "frontend OAuth callback page; backend OAuth endpoints live under /api/oauth/",
+      "/login, /forbidden, /console/*": "legacy entry points migrated client-side by resolveLegacyRoute",
+      "/user/reset": "frontend password reset page; only this exact path under /user is frontend"
+    }
+  },
+  "frontend_assets": {
+    "versioned_prefix": "/_ui/<release-id>/",
+    "versioned_root": "/srv/newapi/public",
+    "versioned_cache": "public, max-age=31536000, immutable",
+    "missing_asset": "404 (never index.html)",
+    "root_public_files": ["/favicon.ico", "/logo.png", "/pay-apple.png", "/pay-card.png", "/pay-google.png", "/waffo-logo-dark.svg", "/waffo-logo-light.svg"],
+    "root_public_cache": "no-cache (revalidate)",
+    "version_endpoint": "/_meta/ui-version.json (no-cache, no secrets)",
+    "entry_html_cache": "no-cache, no-store, must-revalidate"
+  },
+  "backend_prefixes_documented": ["/api/", "/api/oauth/", "/v1/", "/v1beta/", "/pg/", "/mj/", "/<mode>/mj/", "/dashboard/billing/", "/v2/", "/ent/v2/", "/tasks", "/suno/", "/ali/", "/hailuo/", "/v1beta1/", "/text-to-video/", "/image-to-video/", "/omni-video/"],
+  "reserved_namespaces": ["/_ui/", "/_meta/", "/.well-known/acme-challenge/"],
+  "reserved_rule": "Plugins must not declare routes under reserved namespaces or registered frontend page prefixes; generate-nginx.py fails if a backend plugin route collides with a frontend page.",
+  "default": "backend (API-only: plugin dispatcher then JSON 404)"
+}

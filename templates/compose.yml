@@ -1,0 +1,136 @@
+# newapi-victor production stack (rendered to /srv/newapi/stack/compose.yml).
+# Project name is fixed (-p newapi) so volumes never depend on the working dir.
+# Image references come from /srv/newapi/stack/images.env (pinned digests /
+# commit-tagged local backend images); secrets come from root-only env files
+# under /etc/newapi. PostgreSQL and Redis publish no host ports.
+name: newapi
+
+x-backend: &backend
+  restart: unless-stopped
+  command: ["--log-dir", "/data/logs"]
+  env_file:
+    - /etc/newapi/backend.env
+  stop_grace_period: 150s
+  healthcheck:
+    test: ["CMD-SHELL", "wget -q -T 3 -O /dev/null http://127.0.0.1:3000/api/status || exit 1"]
+    interval: 10s
+    timeout: 5s
+    retries: 6
+    start_period: 60s
+  networks:
+    - data
+    - edge
+  mem_limit: 900m
+  logging:
+    driver: json-file
+    options:
+      max-size: "20m"
+      max-file: "5"
+
+services:
+  postgres:
+    image: ${POSTGRES_IMAGE:?POSTGRES_IMAGE missing}
+    restart: unless-stopped
+    env_file:
+      - /etc/newapi/postgres.env
+    environment:
+      POSTGRES_USER: newapi
+      POSTGRES_DB: newapi
+      TZ: Asia/Singapore
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - data
+    shm_size: 128m
+    mem_limit: 768m
+    stop_grace_period: 60s
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U newapi -d newapi -h 127.0.0.1"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 20s
+    logging:
+      driver: json-file
+      options:
+        max-size: "20m"
+        max-file: "5"
+
+  redis:
+    image: ${REDIS_IMAGE:?REDIS_IMAGE missing}
+    restart: unless-stopped
+    user: "999:999"
+    env_file:
+      - /etc/newapi/redis.env
+    # The password is written to a container-local config file so it never
+    # appears in a process argument list.
+    entrypoint: ["sh", "-c"]
+    command:
+      - umask 077; printf 'requirepass %s\nappendonly yes\nsave 300 10\ndir /data\n' "$$REDIS_PASSWORD" > /tmp/redis.conf; exec redis-server /tmp/redis.conf
+    volumes:
+      - redisdata:/data
+    networks:
+      - data
+    mem_limit: 256m
+    healthcheck:
+      test: ["CMD-SHELL", "REDISCLI_AUTH=\"$$REDIS_PASSWORD\" redis-cli ping | grep -q PONG"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    logging:
+      driver: json-file
+      options:
+        max-size: "20m"
+        max-file: "5"
+
+  backend-master:
+    <<: *backend
+    image: ${BACKEND_MASTER_IMAGE:?BACKEND_MASTER_IMAGE missing}
+    environment:
+      NODE_TYPE: master
+      NODE_NAME: newapi-master
+    ports:
+      - "127.0.0.1:3001:3000"
+    volumes:
+      - master_data:/data
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  backend-slave:
+    <<: *backend
+    image: ${BACKEND_SLAVE_IMAGE:?BACKEND_SLAVE_IMAGE missing}
+    environment:
+      NODE_TYPE: slave
+      NODE_NAME: newapi-slave
+    ports:
+      - "127.0.0.1:3002:3000"
+    volumes:
+      - slave_data:/data
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      backend-master:
+        condition: service_healthy
+
+networks:
+  data:
+    internal: true
+    ipam:
+      config:
+        - subnet: 172.30.71.0/24
+  edge:
+    ipam:
+      config:
+        - subnet: 172.30.70.0/24
+          gateway: 172.30.70.1
+
+volumes:
+  pgdata:
+  redisdata:
+  master_data:
+  slave_data:
