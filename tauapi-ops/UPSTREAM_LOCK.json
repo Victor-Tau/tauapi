@@ -1,0 +1,24 @@
+{
+  "upstream_repository": "https://github.com/QuantumNous/new-api.git",
+  "upstream_commit": "ba5f7367797566175a6cd97a748d430af3602a01",
+  "upstream_tree": "5383b796d23ab5c3cf6f92331486d394613894e6",
+  "upstream_commit_date": "2026-11-03T19:33:42+08:00",
+  "upstream_version_file": "",
+  "verified_by": "git fetch origin <sha> from GitHub into /var/cache/tauapi/upstream; cat-file -e commit",
+  "import_layout": {
+    "frontend": "web/ -> repo root; LICENSE/NOTICE/THIRD-PARTY-LICENSES.md/VERSION; AGENTS.md -> UPSTREAM_ROOT_AGENTS.md; CLAUDE.md; .gitattributes; .agents/; pkg/billingexpr/testdata/frontend_simulation.json -> testdata/contracts/",
+    "backend": "everything except web/ and electron/"
+  },
+  "frontend_vendor_commit": "df6ba0ddfb562fe7d2f1a5a875d12ae8c5ed722f",
+  "backend_vendor_commit": "9eeef9aaff008df1cc7abd337d827202cea1317a",
+  "toolchain": {
+    "go": "1.26.10 (go.mod; official tarball sha256-verified, ~/.local/toolchains/go)",
+    "go_builder_image": "golang:1.26.10-alpine@sha256:9ce231b28998b32e116927c61aa5c406183061d4f3f2d61b292c88e7f6bdf7ca",
+    "runtime_image": "debian:bookworm-slim@sha256:f06537653ac770703bc45b4b113475bd402f451e85223f0f2837acbf89ab020a",
+    "bun": "1.4.4 (package.json packageManager; release zip sha256-verified)",
+    "bun_image": "oven/bun:1.4.4@sha256:1d22548f177f4ff38e0c15baa3c2c46c6c2060ba2d1bc573bb4720b407548f1d",
+    "node_version_file": "24.10.0",
+    "relaykit_go": "1.25.1",
+    "tokenkit_go": "1.26"
+  }
+}

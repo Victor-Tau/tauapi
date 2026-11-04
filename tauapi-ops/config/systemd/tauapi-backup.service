@@ -1,0 +1,11 @@
+[Unit]
+Description=TauAPI daily database backup and git bundles
+After=docker.service
+Requires=docker.service
+
+[Service]
+Type=oneshot
+Environment=TAUAPI_ENV=prod
+ExecStart=/opt/tauapi/tauapi-ops/scripts/backup.sh --reason scheduled
+Nice=10
+IOSchedulingClass=idle

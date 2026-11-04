@@ -1,0 +1,16 @@
+{
+  "home": "light+dark desktop opened: neutral page, solid bordered code panel, single blue accent, no gradient/glow, New API branding intact",
+  "pricing": "light desktop opened: flat filter panel and model cards, hairline borders, status strip semantic colours kept",
+  "sign-in": "dark mobile opened: flat form, visible input borders, primary button contrast ok",
+  "keys": "light mobile opened: empty state flat, filters stacked, 44px controls; create dialog (dark) opened via interaction pass",
+  "playground": "dark mobile opened: flat starter prompts, solid input panel, no shadows",
+  "dashboard-overview": "light desktop opened: flat stat cards, sparklines without gradient fills, performance panel bordered",
+  "dashboard-models": "light desktop opened (interaction pass): charts render on canvas, flat tabs/cards",
+  "channels": "dark desktop opened: flat channel card, bordered toolbar; create drawer (light) opened: provider grid flat",
+  "users": "light mobile opened: card-list fallback for table, status text + colour",
+  "usage-logs-common": "dark desktop opened: table rows 48px, error row tinted with destructive token, stats chips flat",
+  "security": "light desktop opened: sessions list, passkey/2FA cards flat, primary actions clear",
+  "system-settings-billing-model-pricing": "light mobile opened: page renders (marker title scrolled under tabs), table and actions usable",
+  "system-settings-operations-behavior": "dark desktop opened: settings nav + switches flat, save action visible",
+  "setup": "wizard steps 1-4 opened (light/dark desktop, light mobile) against a real uninitialised throwaway backend; completes and lands on /"
+}

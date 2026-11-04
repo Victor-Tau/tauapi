@@ -1,0 +1,150 @@
+# tauapi production stack (rendered to /srv/tauapi/stack/compose.yml).
+# Project name is fixed (-p tauapi) so volumes never depend on the working dir.
+# Image references come from /srv/tauapi/stack/images.env (pinned digests /
+# commit-tagged local backend images); secrets come from root-only env files
+# under /etc/tauapi. PostgreSQL and Redis publish no host ports.
+
+x-backend: &backend
+  restart: unless-stopped
+  command: ["--log-dir", "/data/logs"]
+  env_file:
+    - ${SECRET_DIR:?}/backend.env
+  stop_grace_period: 150s
+  healthcheck:
+    test: ["CMD-SHELL", "wget -q -T 3 -O /dev/null http://127.0.0.1:3000/api/status || exit 1"]
+    interval: 10s
+    timeout: 5s
+    retries: 6
+    start_period: 60s
+  networks:
+    - data
+    - edge
+  mem_limit: 900m
+  logging:
+    driver: json-file
+    options:
+      max-size: "20m"
+      max-file: "5"
+
+services:
+  postgres:
+    image: ${POSTGRES_IMAGE:?POSTGRES_IMAGE missing}
+    restart: unless-stopped
+    env_file:
+      - ${SECRET_DIR:?}/postgres.env
+    environment:
+      POSTGRES_USER: tauapi
+      POSTGRES_DB: tauapi
+      TZ: Asia/Singapore
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - data
+    shm_size: 128m
+    mem_limit: 768m
+    stop_grace_period: 60s
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U tauapi -d tauapi -h 127.0.0.1"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 20s
+    logging:
+      driver: json-file
+      options:
+        max-size: "20m"
+        max-file: "5"
+
+  redis:
+    image: ${REDIS_IMAGE:?REDIS_IMAGE missing}
+    restart: unless-stopped
+    user: "999:999"
+    env_file:
+      - ${SECRET_DIR:?}/redis.env
+    # The password is written to a container-local config file so it never
+    # appears in a process argument list.
+    entrypoint: ["sh", "-c"]
+    command:
+      - umask 077; printf 'requirepass %s\nappendonly yes\nsave 300 10\ndir /data\n' "$$REDIS_PASSWORD" > /tmp/redis.conf; exec redis-server /tmp/redis.conf
+    volumes:
+      - redisdata:/data
+    networks:
+      - data
+    mem_limit: 256m
+    healthcheck:
+      test: ["CMD-SHELL", "REDISCLI_AUTH=\"$$REDIS_PASSWORD\" redis-cli ping | grep -q PONG"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    logging:
+      driver: json-file
+      options:
+        max-size: "20m"
+        max-file: "5"
+
+  backend-master:
+    <<: *backend
+    image: ${BACKEND_MASTER_IMAGE:?BACKEND_MASTER_IMAGE missing}
+    environment:
+      NODE_TYPE: master
+      NODE_NAME: ${NODE_PREFIX:-tauapi}-master
+    ports:
+      - "127.0.0.1:${MASTER_PORT:?}:3000"
+    volumes:
+      - master_data:/data
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  backend-slave:
+    <<: *backend
+    image: ${BACKEND_SLAVE_IMAGE:?BACKEND_SLAVE_IMAGE missing}
+    environment:
+      NODE_TYPE: slave
+      NODE_NAME: ${NODE_PREFIX:-tauapi}-slave
+    ports:
+      - "127.0.0.1:${SLAVE_PORT:?}:3000"
+    volumes:
+      - slave_data:/data
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      backend-master:
+        condition: service_healthy
+
+  # QA only (profile "qa"): controllable mock upstream for relay/SSE/WS
+  # verification. Never started in production; reachable only on the internal
+  # data network, no host ports.
+  mock-upstream:
+    profiles: ["qa"]
+    image: ${MOCK_IMAGE:-python:3.12-alpine}
+    restart: unless-stopped
+    command: ["python", "-I", "/mock/mock-upstream.py"]
+    volumes:
+      - ${OPS_ROOT:?}/qa/mock-upstream.py:/mock/mock-upstream.py:ro
+    networks:
+      data:
+        aliases: [mock-upstream]
+    mem_limit: 64m
+
+networks:
+  data:
+    internal: true
+    ipam:
+      config:
+        - subnet: ${DATA_SUBNET:?}
+  edge:
+    ipam:
+      config:
+        - subnet: ${EDGE_SUBNET:?}
+          gateway: ${EDGE_GATEWAY:?}
+
+volumes:
+  pgdata:
+  redisdata:
+  master_data:
+  slave_data:

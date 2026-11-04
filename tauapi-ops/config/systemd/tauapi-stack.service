@@ -1,0 +1,16 @@
+[Unit]
+Description=TauAPI production stack (compose project tauapi)
+After=docker.service network-online.target
+Requires=docker.service
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+# Containers use restart=unless-stopped; this unit only makes sure the stack is
+# started at boot with the pinned images in /srv/tauapi/stack/images.env.
+ExecStart=/usr/bin/docker compose -p tauapi -f /srv/tauapi/stack/compose.yml --env-file /srv/tauapi/stack/images.env up -d --no-recreate postgres redis backend-master backend-slave
+TimeoutStartSec=300
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,47 @@
+{
+  "environment": "prod",
+  "public_origin": "https://api.victor-tau.xyz",
+  "site_mode": "live",
+  "active_upstream": "both",
+  "frontend": {
+    "current_release": "fe-r3-0dab41b",
+    "frontend_commit": "0dab41b8b090aadffb2a0eee7c07289ecd63c9f7",
+    "upstream_commit": "ba5f7367797566175a6cd97a748d430af3602a01",
+    "asset_prefix": "/_ui/fe-r3-0dab41b/",
+    "artifact_sha256": "269fb7fcc3573b814e94b05057c16b1d17767dabba20bf9790db8770067b1d7c",
+    "published_releases": [
+  "fe-r1-aade206",
+  "fe-r2-3097ff7",
+  "fe-r3-0dab41b"
+]
+  },
+  "backend": {
+    "master": {"bind": "127.0.0.1:3001", "image": "tauapi-be:a4231663776e", "image_id": "sha256:d5d09addfebb6395923d3443ea3a26430fc2e33891dfd177007bf8b650df8639",
+               "commit": "a4231663776e4613a4d6552a785c0bf762594935"},
+    "slave":  {"bind": "127.0.0.1:3002", "image": "tauapi-be:a4231663776e", "image_id": "sha256:d5d09addfebb6395923d3443ea3a26430fc2e33891dfd177007bf8b650df8639",
+               "commit": "a4231663776e4613a4d6552a785c0bf762594935"},
+    "last_release": {
+  "image": "tauapi-be:a4231663776e",
+  "image_id": "sha256:d5d09addfebb6395923d3443ea3a26430fc2e33891dfd177007bf8b650df8639",
+  "backend_commit": "a4231663776e4613a4d6552a785c0bf762594935",
+  "previous_image": "tauapi-be:53c0e999057f",
+  "action": "deploy",
+  "frontend_current_unchanged": true,
+  "at": "2026-11-04T10:23:25Z"
+}
+  },
+  "data": {
+    "postgres_image": "postgres:16-bookworm@sha256:e8a07d2c7579b038938cdba6c539e580e5001caf9ea203d397b5cc83e76bd938", "postgres_version": "16.15 (Debian 16.15-1.pgdg12+2)",
+    "redis_image": "redis:7.4-bookworm@sha256:b6b6e3dc0c0952737748e55d5d885272840c7e42ba41ab1d5489f693419882f5", "redis_version": "7.4.12",
+    "volumes": [
+  "tauapi_master_data",
+  "tauapi_pgdata",
+  "tauapi_redisdata",
+  "tauapi_slave_data"
+],
+    "schema_compatibility": "Initial split and UI work add no schema changes; master runs upstream AutoMigrate on start. Backend rollback between be-r1/be-r2 is symmetric (same schema)."
+  },
+  "nginx_version": "1.24.0 (Ubuntu)",
+  "certificate_not_after": "Feb  2 06:22:25 2027 GMT",
+  "generated_at": "2026-11-04T12:36:12Z"
+}

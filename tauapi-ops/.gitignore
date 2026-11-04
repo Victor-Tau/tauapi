@@ -1,0 +1,8 @@
+# Dynamic/raw evidence stays local; summaries are committed.
+evidence/raw/
+evidence/screens/**/*.png
+state/*.lock
+*.log
+.env
+*.pem
+*.key
