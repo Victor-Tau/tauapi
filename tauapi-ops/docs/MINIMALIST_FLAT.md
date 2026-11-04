@@ -31,4 +31,4 @@ Per-feature rules:
 6. Reuse existing components (AGENTS.md §3.3). No new UI system, no global `* !important`.
 7. After edits: `bun run typecheck` must pass; `bunx oxlint -c .oxlintrc.json <changed files>`
    must not add new errors versus `git stash`-free baseline (upstream already has 152 errors;
-   compare per-file counts with `git show vendor/upstream:<path>`).
+   compare per-file counts with `git show vendor/upstream-fe:<path>` (path relative to tauapi-fe/)).

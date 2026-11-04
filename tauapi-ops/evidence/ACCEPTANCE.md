@@ -5,8 +5,8 @@ Legend: ✅ verified (evidence linked) · ⚠️ done with stated limitation · 
 ## A. Repositories and builds
 | Item | Status | Evidence |
 | --- | --- | --- |
-| frontend/backend in different dirs, different git-common-dir | ✅ | `/opt/tauapi/tauapi-fe/.git`, `/opt/tauapi/tauapi-be/.git`, `/opt/tauapi/tauapi-ops/.git` |
-| parent dir not a repo | ✅ | `/opt/tauapi/.git` does not exist |
+| frontend/backend in different dirs, different git-common-dir | ⚠️ superseded | verified as separate repos during delivery; on 2026-11-04 merged into one monorepo `/opt/tauapi` at the user's request (DECISIONS 19). Build/release independence kept via `git archive main:<subdir>` |
+| parent dir not a repo | ⚠️ superseded | `/opt/tauapi` is now the monorepo (user request) |
 | source commits, custom commits, release tags, verified bundles | ✅ | `vendor/upstream` + `main`, tags `upstream/ba5f73677975`, `release/fe-r1/r2/r3`, `release/be-53c0e999057f`, `release/be-a4231663776e`; bundles `/var/backups/tauapi/git/*.bundle` verified |
 | clean trees, no secrets/DB/cache in git | ✅ | `git status` clean in all three; secret-pattern scan only matches generator code; `evidence/raw` git-ignored |
 | frontend builds without Go/sibling repo | ✅ | `scripts/verify-independent-builds.sh fe`: clone alone, PATH without Go → install/typecheck/test (2465 pass)/build OK, 0 cross-repo refs, 0 backend files in dist |

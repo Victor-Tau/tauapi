@@ -9,7 +9,7 @@ Current phase: **complete** (P0–P9). Handoff: `HANDOFF.md`; acceptance: `evide
 - public smoke 42/42; auth flow OK; backups daily (local only)
 
 ## Done
-- P0 preflight · P1 pinned upstream + toolchains · P2 three independent repos, vendor/upstream, tags, bare remotes, bundles
+- P0 preflight · P1 pinned upstream + toolchains · P2 repos (merged 2026-11-04 into one monorepo `/opt/tauapi`, remote `/var/lib/tauapi/git/tauapi.git`; split repos archived as bundles)
 - P3 API-only backend (clean clone in Go container, no Node/Bun: build OK, 47+9+1 test pkgs OK)
 - P4 standalone frontend (clean clone, no Go: 2465 tests, build OK), /_ui/<release>/ assets, release notice
 - P5 Minimalist Flat (173+ files), 77-row UI inventory, 230/231 captures, overlays 17/17, contrast 16/16, keyboard, zh@200%, setup wizard
@@ -21,5 +21,5 @@ Current phase: **complete** (P0–P9). Handoff: `HANDOFF.md`; acceptance: `evide
 - off-site backup target · outbound UDP 123 for NTP · optional removal of `newapi_*` volumes · external integrations (provider keys, SMTP, OAuth, payment)
 
 ## Recovery entry
-Read this file and HANDOFF.md, then `git -C /opt/tauapi/{tauapi-fe,tauapi-be,tauapi-ops} log -3`, `sudo docker ps`,
+Read this file and HANDOFF.md, then `git -C /opt/tauapi log --oneline -5`, `sudo docker ps`,
 `readlink /srv/tauapi/current/frontend`, `sudo cat /srv/tauapi/state/*`, `ls /etc/nginx/sites-enabled/`.

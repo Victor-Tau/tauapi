@@ -1,6 +1,6 @@
 # Repository split (tauapi)
 
-This repository is the **API-only backend** of New API (QuantumNous/new-api),
+This directory (`tauapi-be/` of the TauAPI monorepo) is the **API-only backend** of New API (QuantumNous/new-api),
 imported from a pinned upstream commit recorded in `UPSTREAM.json`.
 
 - Imported: everything from upstream except `web/` (now the separate frontend
@@ -14,9 +14,9 @@ imported from a pinned upstream commit recorded in `UPSTREAM.json`.
   analytics, if ever enabled, belong to the frontend build.
 - Plugin lint/format moved from the frontend `package.json` to
   `make lint-plugins`, `make format-plugins`, `make format-plugins-check`.
-- Branches: `vendor/upstream` holds raw imports only (linear, one commit per
-  upstream SHA); `main` carries the customisations and merges new imports via
-  `upgrade/<short-sha>` branches. See the ops repository `scripts/sync-upstream.sh`.
+- Branches (TauAPI monorepo, this tree lives under `tauapi-be/`): `vendor/upstream-be` holds raw imports only (linear, one commit per
+  upstream SHA); `main` carries the customisations and merges new imports into `tauapi-be/` via
+  `upgrade/<short-sha>` branches (`tauapi-ops/scripts/sync-upstream.sh`).
 
 Upstream README build instructions that mention `web/` refer to the combined
 upstream repository and do not apply here.

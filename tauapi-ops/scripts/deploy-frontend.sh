@@ -91,7 +91,7 @@ AFTER_BACKEND=$(backend_fingerprint)
 [[ $BEFORE_BACKEND == "$AFTER_BACKEND" ]] || log "WARNING: backend fingerprint changed during frontend deploy"
 grep -qx "$ID" "$FE_HISTORY" 2>/dev/null || echo "$ID" >> "$FE_HISTORY"
 record_release deploy "$ID" "$PREV"
-tag_release /opt/tauapi/tauapi-fe "release/$ID" "$(jq -r .frontend_commit "$REL/release-manifest.json")" \
+tag_release /opt/tauapi "release/$ID" "$(jq -r .frontend_commit "$REL/release-manifest.json")" \
   "Frontend release $ID (first deployed to $TAUAPI_ENV $(date -u +%FT%TZ))"
 printf 'backend unchanged: %s\n' "$([[ $BEFORE_BACKEND == "$AFTER_BACKEND" ]] && echo yes || echo NO)"
 echo "$BEFORE_BACKEND"

@@ -1,0 +1,7 @@
+# TauAPI monorepo root. Each part keeps its own .gitignore (tauapi-fe/, tauapi-be/, tauapi-ops/).
+.env
+*.pem
+*.key
+.DS_Store
+.idea/
+.vscode/

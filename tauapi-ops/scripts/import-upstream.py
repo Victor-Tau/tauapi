@@ -1,9 +1,13 @@
 #!/usr/bin/env python3
 """Import a pinned upstream Git tree into the vendor/upstream branch of a split repo.
 
-Usage:
+Usage (TauAPI monorepo):
   import-upstream.py --upstream /var/cache/tauapi/upstream --sha <full-sha> \
-      --kind frontend|backend --repo /opt/tauapi/tauapi-fe [--init-main]
+      --kind frontend|backend --repo /opt/tauapi --ref vendor/upstream-fe
+
+The import branch keeps the split layout at its root (as the original
+tauapi-fe / tauapi-be repositories had); main carries it under tauapi-fe/ or
+tauapi-be/ and takes new imports with `git merge -X subtree=<dir>/`.
 
 Behaviour:
   * Reads ONLY from the Git object database (git archive), never from a work tree.
@@ -85,6 +89,7 @@ def main():
     ap.add_argument("--kind", choices=["frontend", "backend"], required=True)
     ap.add_argument("--repo", required=True)
     ap.add_argument("--init-main", action="store_true")
+    ap.add_argument("--ref", default="vendor/upstream", help="import branch name")
     a = ap.parse_args()
 
     if len(a.sha) != 40:
@@ -96,7 +101,7 @@ def main():
     tree = git(a.upstream, "rev-parse", a.sha + "^{tree}")
     version = git(a.upstream, "show", f"{a.sha}:VERSION", check=False)
 
-    if not os.path.isdir(os.path.join(a.repo, ".git")):
+    if subprocess.run(["git", "-C", a.repo, "rev-parse", "--git-dir"], capture_output=True).returncode:
         os.makedirs(a.repo, exist_ok=True)
         git(a.repo, "init", "-q", "--initial-branch=main")
         git(a.repo, "config", "user.name", IDENTITY["GIT_AUTHOR_NAME"])
@@ -151,7 +156,7 @@ def main():
                         else [["*", "*"]] + [[p, None] for p in BACKEND_EXCLUDE_PREFIXES]),
             "mapped_file_count": len(mapped),
             "contract_fixtures": fixtures,
-            "import_tool": "ops/scripts/import-upstream.py",
+            "import_tool": "tauapi-ops/scripts/import-upstream.py",
         }
         with open(os.path.join(snap, "UPSTREAM.json"), "w") as fo:
             json.dump(meta, fo, indent=2, sort_keys=True)
@@ -162,10 +167,10 @@ def main():
         git(a.repo, "add", "-A", "-f", ".", env=env)
         new_tree = git(a.repo, "write-tree", env=env)
 
-    ref = "refs/heads/vendor/upstream"
+    ref = "refs/heads/" + a.ref
     parent = git(a.repo, "rev-parse", "-q", "--verify", ref, check=False)
     if parent and git(a.repo, "rev-parse", parent + "^{tree}") == new_tree:
-        print(f"unchanged {a.kind} vendor/upstream={parent}")
+        print(f"unchanged {a.kind} {a.ref}={parent}")
         return 0
     msg = (f"Import upstream {a.sha[:12]} ({a.kind} split)\n\n"
            f"Upstream: {UPSTREAM_URL}\nUpstream-Commit: {a.sha}\nUpstream-Tree: {tree}\n"
@@ -175,14 +180,14 @@ def main():
         args[2:2] = ["-p", parent]
     commit = git(a.repo, *args)
     git(a.repo, "update-ref", ref, commit, parent or "0" * 40)
-    tag = f"upstream/{a.sha[:12]}"
+    tag = f"upstream/{'fe' if a.kind == 'frontend' else 'be'}-{a.sha[:12]}"
     if not git(a.repo, "tag", "-l", tag):
         git(a.repo, "tag", "-a", tag, commit, "-m", f"Upstream import {a.sha}")
     if a.init_main and not git(a.repo, "rev-parse", "-q", "--verify", "refs/heads/main", check=False):
         git(a.repo, "update-ref", "refs/heads/main", commit)
         git(a.repo, "symbolic-ref", "HEAD", "refs/heads/main")
         git(a.repo, "reset", "-q", "--hard", "main")
-    print(f"imported {a.kind} vendor/upstream={commit} files={len(mapped)}")
+    print(f"imported {a.kind} {a.ref}={commit} files={len(mapped)}")
     return 0
 
 

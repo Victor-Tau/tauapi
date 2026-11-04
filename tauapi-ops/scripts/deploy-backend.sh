@@ -135,6 +135,6 @@ cat > "$STATE_FILE" <<EOF
 EOF
 rm -f "$STATE_DIR/backend-release-paused.json"
 printf '%s %s %s prev=%s\n' "$(date -u +%FT%TZ)" "$(jq -r .action "$STATE_FILE")" "$IMAGE" "$PREV" >> "$STATE_DIR/backend-releases.log"
-[[ -n $NEW_REV ]] && tag_release /opt/tauapi/tauapi-be "release/be-${NEW_REV:0:12}" "$NEW_REV" \
+[[ -n $NEW_REV ]] && tag_release /opt/tauapi "release/be-${NEW_REV:0:12}" "$NEW_REV" \
   "Backend release $IMAGE ($NEW_ID) deployed to $TAUAPI_ENV $(date -u +%FT%TZ)"
 log "backend release complete: master+slave on $IMAGE; frontend unchanged: $([[ $FE_BEFORE == "$FE_AFTER" ]] && echo yes || echo NO)"

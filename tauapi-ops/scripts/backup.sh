@@ -34,8 +34,8 @@ printf '{"file":"%s","reason":"%s","pg_server_version":"%s","bytes":%s,"at":"%s"
   "$(basename "$DUMP")" "$REASON" "$PGVER" "$(stat -c %s "$DUMP")" "$STAMP" > "$DUMP.json"
 log "db backup $(basename "$DUMP") ($(du -h "$DUMP" | cut -f1), pg $PGVER, reason=$REASON)"
 
-# Git bundles (all refs) for the three repositories.
-for repo in tauapi-fe tauapi-be tauapi-ops; do
+# Git bundle (all refs) of the TauAPI monorepo.
+for repo in tauapi; do
   src=/var/lib/tauapi/git/$repo.git
   [[ -d $src ]] || continue
   b=$GIT_DIR_B/$repo-$STAMP.bundle
@@ -64,7 +64,7 @@ prune() { # dir pattern
 }
 if [[ $PRUNE == 1 ]]; then
   prune "$DB_DIR" 'tauapi-*.dump'
-  for repo in tauapi-fe tauapi-be tauapi-ops; do prune "$GIT_DIR_B" "$repo-*.bundle"; done
+  prune "$GIT_DIR_B" "tauapi-2*.bundle"
   prune "$META_DIR" 'meta-*.tar.gz'
 fi
 avail=$(df --output=avail -k "$BACKUP_ROOT" | tail -1)

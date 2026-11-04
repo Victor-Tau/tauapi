@@ -9,17 +9,22 @@ Upstream: QuantumNous/new-api `ba5f7367797566175a6cd97a748d430af3602a01` (verifi
 - Public smoke `scripts/smoke.sh --public`: **42/42 passed** (pages, API, plugins, assets, cache headers, hidden files, HTTP→HTTPS, TLS, login/refresh/logout).
 - Running: frontend `fe-r3-0dab41b`; backend master + slave `tauapi-be:a4231663776e`; PostgreSQL 16.15; Redis 7.4.12; Nginx 1.24.0.
 
-## 2. Repositories
+## 2. Repository (single TauAPI monorepo)
 
-| Repo | Path | Branches | main | Tags | Local remote |
-| --- | --- | --- | --- | --- | --- |
-| tauapi-fe | /opt/tauapi/tauapi-fe | `vendor/upstream` (df6ba0d), `main` | `0dab41b` | `upstream/ba5f73677975`, `release/fe-r1-aade206`, `release/fe-r2-3097ff7`, `release/fe-r3-0dab41b` | /var/lib/tauapi/git/tauapi-fe.git |
-| tauapi-be | /opt/tauapi/tauapi-be | `vendor/upstream` (9eeef9a), `main` | `a423166` | `upstream/ba5f73677975`, `release/be-53c0e999057f`, `release/be-a4231663776e` | /var/lib/tauapi/git/tauapi-be.git |
-| tauapi-ops | /opt/tauapi/tauapi-ops | `main` | (see `git log`) | – | /var/lib/tauapi/git/tauapi-ops.git |
+| Item | Value |
+| --- | --- |
+| Repository | `/opt/tauapi` (one Git repo; subdirectories `tauapi-fe/`, `tauapi-be/`, `tauapi-ops/`, plus `README.md`, `map.md`) |
+| Remote | `origin` → `/var/lib/tauapi/git/tauapi.git` (bare, branch `main`) |
+| Branches | `main` (all customisations); `vendor/upstream-fe`, `vendor/upstream-be` (raw upstream imports in split layout) |
+| Tags | `upstream/fe-ba5f73677975`, `upstream/be-ba5f73677975`, `release/fe-r1-aade206`, `release/fe-r2-3097ff7`, `release/fe-r3-0dab41b`, `release/be-53c0e999057f`, `release/be-a4231663776e` |
+| History | the three former repos were merged as subtrees with full history (`git log -- tauapi-fe/` etc. still works; `git log --follow` across the move is not needed because each part keeps its own path prefix from the merge commit on) |
+| Archive of the split era | `/var/lib/tauapi/git/archive-split-20261104/tauapi-{fe,be,ops}.bundle` (verified); the old bare remotes `tauapi-{fe,be,ops}.git` are kept unused |
 
-- Read-only upstream cache: `/var/cache/tauapi/upstream`. Commit identity in all three repos: `TauAPI Maintainer <tauapi-maintainer@localhost>` (repo-local, no global git config changed).
-- No external remote was configured and nothing was pushed to GitHub or upstream. To add one later: `git -C /opt/tauapi/tauapi-fe remote add github <url> && git push github main vendor/upstream --tags` (same for be; ops: main + tags).
-- Git bundles are written by each backup to `/var/backups/tauapi/git/`.
+- Frontend and backend remain **separate build/release units**: `build-frontend.sh` / `build-backend.sh` export only `main:tauapi-fe` / `main:tauapi-be` with `git archive`, so neither build sees the other directory. Release IDs carry the monorepo commit.
+- Distribute with `git clone /var/lib/tauapi/git/tauapi.git` or `git -C /opt/tauapi bundle create tauapi.bundle --all`.
+- Read-only upstream cache: `/var/cache/tauapi/upstream`. Commit identity: `TauAPI Maintainer <tauapi-maintainer@localhost>` (repo-local).
+- No external remote is configured; nothing was pushed to GitHub or upstream. To add one: `git -C /opt/tauapi remote add github <url> && git push github main vendor/upstream-fe vendor/upstream-be --tags`.
+- Each backup writes `/var/backups/tauapi/git/tauapi-<time>.bundle`.
 
 ## 3. Release artefacts
 
@@ -98,7 +103,7 @@ Exit code 10 from `deploy-backend.sh` means the instance still holds long-lived 
 
 ## 8. Upstream sync
 
-- Run `scripts/sync-upstream.sh <sha|tag>`. It imports onto `vendor/upstream` (a re-run is a no-op), creates `upgrade/<short-sha>` from main and merges into it. It never rewrites main and never deploys anything.
+- Run `scripts/sync-upstream.sh <sha|tag>`. It imports onto `vendor/upstream-fe` / `vendor/upstream-be` (a re-run is a no-op), creates `upgrade/<short-sha>` from main and subtree-merges them into `tauapi-fe/` and `tauapi-be/`. It never rewrites main and never deploys anything.
 - Gates before merging to main:
   - backend: `go build .`, `go test ./...`, plus relaykit and tokenkit;
   - frontend: install, typecheck, test, build;

@@ -108,7 +108,7 @@ json_get() { jq -r --arg k "$2" '.[$k] // empty' "$1"; }
 # is accepted; a tag pointing elsewhere is reported, never moved.
 tag_release() { # repo tag commit message
   local repo=$1 tag=$2 commit=$3 msg=$4 owner existing
-  [[ -d $repo/.git ]] || return 0
+  git -C "$repo" rev-parse --git-dir >/dev/null 2>&1 || return 0
   owner=$(stat -c %U "$repo")
   git -C "$repo" cat-file -e "$commit^{commit}" 2>/dev/null || { log "tag $tag: commit $commit not in $repo"; return 0; }
   existing=$(sudo -u "$owner" git -C "$repo" rev-parse -q --verify "refs/tags/$tag^{commit}" 2>/dev/null || true)

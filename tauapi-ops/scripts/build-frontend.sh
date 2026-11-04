@@ -1,18 +1,19 @@
 #!/usr/bin/env bash
 # Build a versioned static frontend artefact from a committed tauapi-fe revision.
 #
-# The source is `git archive <rev>` into a temp dir (no sibling repositories,
-# no uncommitted files). Dependencies are installed with the locked Bun
+# The source is `git archive <rev>:tauapi-fe` of the TauAPI monorepo into an
+# empty temp dir (frontend subtree only: no backend/ops files, no uncommitted files). Dependencies are installed with the locked Bun
 # version and --frozen-lockfile; typecheck and tests run before the build.
 #
-# Usage: build-frontend.sh [--repo /opt/tauapi/tauapi-fe] [--rev main]
+# Usage: build-frontend.sh [--repo /opt/tauapi] [--subdir tauapi-fe] [--rev main]
 #                          [--release-id ID] [--skip-checks] [--compat-backend RANGE]
 # Output: /srv/tauapi/artifacts/frontend/<release-id>.tar.gz (+ .sha256, manifest)
 # Exit codes: 0 ok, 2 usage, 3 invalid revision / id exists, 4 check or build failure.
 set -euo pipefail
 umask 022
 
-REPO=/opt/tauapi/tauapi-fe
+REPO=/opt/tauapi
+SUBDIR=tauapi-fe
 REV=main
 RELEASE_ID=""
 SKIP_CHECKS=0
@@ -22,6 +23,7 @@ BUN_BIN=${BUN_BIN:-$HOME/.local/toolchains/bun-linux-x64/bun}
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --repo) REPO="$2"; shift 2 ;;
+    --subdir) SUBDIR="$2"; shift 2 ;;
     --rev) REV="$2"; shift 2 ;;
     --release-id) RELEASE_ID="$2"; shift 2 ;;
     --skip-checks) SKIP_CHECKS=1; shift ;;
@@ -38,16 +40,16 @@ SHORT=${COMMIT:0:12}
 [[ $RELEASE_ID =~ ^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$ ]] || { echo "invalid release id" >&2; exit 2; }
 mkdir -p "$OUT"
 if [[ -e $OUT/$RELEASE_ID.tar.gz ]]; then echo "release id $RELEASE_ID already built" >&2; exit 3; fi
-PM=$(git -C "$REPO" show "$COMMIT:package.json" | python3 -I -c 'import json,sys;print(json.load(sys.stdin).get("packageManager",""))')
+PM=$(git -C "$REPO" show "$COMMIT:$SUBDIR/package.json" | python3 -I -c 'import json,sys;print(json.load(sys.stdin).get("packageManager",""))')
 [[ $PM == "bun@$BUN_VERSION" ]] || { echo "toolchain mismatch: package.json $PM vs bun $BUN_VERSION" >&2; exit 4; }
-UPSTREAM=$(git -C "$REPO" show "$COMMIT:UPSTREAM.json" | python3 -I -c 'import json,sys;print(json.load(sys.stdin)["upstream_commit"])')
-APP_VERSION="$(git -C "$REPO" show "$COMMIT:VERSION" | tr -d '[:space:]')"
+UPSTREAM=$(git -C "$REPO" show "$COMMIT:$SUBDIR/UPSTREAM.json" | python3 -I -c 'import json,sys;print(json.load(sys.stdin)["upstream_commit"])')
+APP_VERSION="$(git -C "$REPO" show "$COMMIT:$SUBDIR/VERSION" | tr -d '[:space:]')"
 [[ -n $APP_VERSION ]] || APP_VERSION=0.0.0
 APP_VERSION="${APP_VERSION}+fe.${SHORT}"
 
 WORK=$(mktemp -d /tmp/tauapi-fe-build.XXXXXX)
 trap 'rm -rf "$WORK"' EXIT
-git -C "$REPO" archive --format=tar "$COMMIT" | tar -x -C "$WORK/"
+git -C "$REPO" archive --format=tar "$COMMIT:$SUBDIR" | tar -x -C "$WORK/"
 cd "$WORK"
 echo "== install (frozen lockfile, bun $BUN_VERSION)" >&2
 "$BUN_BIN" install --frozen-lockfile >&2 || exit 4

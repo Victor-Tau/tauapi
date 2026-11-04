@@ -1,20 +1,22 @@
 #!/usr/bin/env bash
 # Build the API-only backend image from a committed backend revision.
-# The build context is `git archive <rev>` of the backend repository only, so
-# uncommitted files, web/ sources and other repositories can never leak in.
+# The build context is `git archive <rev>:tauapi-be` of the TauAPI monorepo, so
+# only the committed backend subtree is used: no frontend, ops or uncommitted files.
 #
-# Usage: build-backend.sh [--repo /opt/tauapi/tauapi-be] [--rev main] [--tag <tag>]
+# Usage: build-backend.sh [--repo /opt/tauapi] [--subdir tauapi-be] [--rev main] [--tag <tag>]
 # Output: prints KEY=VALUE lines (BACKEND_COMMIT, IMAGE_TAG, IMAGE_ID) and writes
 #         /srv/tauapi/artifacts/backend/<tag>.json
 # Exit codes: 0 ok, 2 usage, 3 dirty/invalid revision, 4 build failure.
 set -euo pipefail
 
-REPO=/opt/tauapi/tauapi-be
+REPO=/opt/tauapi
+SUBDIR=tauapi-be
 REV=main
 TAG=""
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --repo) REPO="$2"; shift 2 ;;
+    --subdir) SUBDIR="$2"; shift 2 ;;
     --rev) REV="$2"; shift 2 ;;
     --tag) TAG="$2"; shift 2 ;;
     *) echo "unknown argument: $1" >&2; exit 2 ;;
@@ -26,14 +28,14 @@ if ! docker info >/dev/null 2>&1; then DOCKER=(sudo -A docker); fi
 
 COMMIT=$(git -C "$REPO" rev-parse --verify "$REV^{commit}") || exit 3
 SHORT=${COMMIT:0:12}
-VERSION=$(git -C "$REPO" show "$COMMIT:VERSION" 2>/dev/null | tr -d '[:space:]')
+VERSION=$(git -C "$REPO" show "$COMMIT:$SUBDIR/VERSION" 2>/dev/null | tr -d '[:space:]')
 [[ -n "$VERSION" ]] || VERSION="0.0.0"
 [[ -n "$TAG" ]] || TAG="tauapi-be:${SHORT}"
-UPSTREAM=$(git -C "$REPO" show "$COMMIT:UPSTREAM.json" | python3 -I -c 'import json,sys;print(json.load(sys.stdin)["upstream_commit"])')
+UPSTREAM=$(git -C "$REPO" show "$COMMIT:$SUBDIR/UPSTREAM.json" | python3 -I -c 'import json,sys;print(json.load(sys.stdin)["upstream_commit"])')
 
 WORK=$(mktemp -d /tmp/tauapi-be-build.XXXXXX)
 trap 'rm -rf "$WORK"' EXIT
-git -C "$REPO" archive --format=tar "$COMMIT" | tar -x -C "$WORK"
+git -C "$REPO" archive --format=tar "$COMMIT:$SUBDIR" | tar -x -C "$WORK"
 # Version shown by the app: upstream VERSION file plus our backend commit.
 printf '%s+be.%s\n' "${VERSION:-dev}" "$SHORT" > "$WORK/VERSION"
 if [[ -e "$WORK/web" || -e "$WORK/electron" ]]; then
@@ -43,7 +45,7 @@ fi
 echo "building $TAG from $COMMIT" >&2
 if ! "${DOCKER[@]}" build --pull=false \
     --label "org.opencontainers.image.revision=$COMMIT" \
-    --label "org.opencontainers.image.source=local:/opt/tauapi/tauapi-be" \
+    --label "org.opencontainers.image.source=local:/opt/tauapi (tauapi-be/)" \
     --label "tauapi.upstream.commit=$UPSTREAM" \
     --label "tauapi.component=backend" \
     -t "$TAG" "$WORK" >&2; then
