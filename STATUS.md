@@ -2,30 +2,24 @@
 
 Updated: 2026-11-04 (UTC)
 
-Current phase: P5 (UI verification) / P8 (release drills)
+Current phase: **complete** (P0–P9). Handoff: `HANDOFF.md`; acceptance: `evidence/ACCEPTANCE.md`.
+
+## Live
+- https://api.victor-tau.xyz (public), frontend `fe-r3-0dab41b`, backend master+slave `tauapi-be:a4231663776e`
+- public smoke 42/42; auth flow OK; backups daily (local only)
 
 ## Done
-- P0 preflight (evidence/P0-preflight.md)
-- P1 pinned upstream ba5f7367 verified; Go 1.26.10 / Bun 1.4.4 checksum-verified
-- P2 repos tauapi-fe / tauapi-be / tauapi-ops with vendor/upstream, main, upstream/<sha> tags, bare remotes in /var/lib/tauapi/git
-- P3 backend API-only (no go:embed, JSON 404 fallback after plugin dispatcher); root 47 pkgs + relaykit + tokenkit tests pass; image tauapi-be:53c0e999057f
-- P4 frontend standalone (fixture snapshot, plugin scripts moved, /_ui/<id>/ prefix); typecheck/test/build pass; lint = upstream baseline (152 errors, identical list)
-- P6 prod stack (pg16.15, redis7.4.12 pinned digests; master 127.0.0.1:3001, slave :3002); secrets /etc/tauapi (0600)
-- P7 LE cert (exp 2027-02-02), renew dry-run OK, admin initialised over loopback, site opened (live); public auth smoke passed
-- P8 partial: frontend deploy fe-r1 (prod+QA), SSE/WS through Nginx verified in QA with mock upstream
-- P9 partial: backup + isolated restore-check passed; backup timer, stack boot unit, nginx logrotate, certbot timer
+- P0 preflight · P1 pinned upstream + toolchains · P2 three independent repos, vendor/upstream, tags, bare remotes, bundles
+- P3 API-only backend (clean clone in Go container, no Node/Bun: build OK, 47+9+1 test pkgs OK)
+- P4 standalone frontend (clean clone, no Go: 2465 tests, build OK), /_ui/<release>/ assets, release notice
+- P5 Minimalist Flat (173+ files), 77-row UI inventory, 230/231 captures, overlays 17/17, contrast 16/16, keyboard, zh@200%, setup wizard
+- P6 pg16/redis7.4 pinned, master/slave on loopback, secrets 0600 · P7 LE cert + dry-run, loopback admin init, opened
+- P8 frontend deploy/rollback/old-tab/notice; backend rolling deploy/rollback (QA with SSE/WS, prod probe 0 failures), WS boundary pause
+- P9 backup + isolated restore, timers, logrotate, boot unit, evidence, HANDOFF
 
-## In progress
-- Minimalist Flat source changes (173 files) under test; then commit, build fe-r2, screenshots (QA), deploy
-
-## Next
-- Backend rolling release + rollback drill (QA then prod), SSE/WS drain evidence
-- Frontend rollback drill, old-tab lazy chunk test
-- HANDOFF.md, DEPLOYMENT_STATE.json, evidence summaries, bundles
-
-## Blockers
-- none
+## Open items (non-blocking, need user action)
+- off-site backup target · outbound UDP 123 for NTP · optional removal of `newapi_*` volumes · external integrations (provider keys, SMTP, OAuth, payment)
 
 ## Recovery entry
-Read this file, then `git -C /opt/tauapi/{tauapi-fe,tauapi-be,tauapi-ops} log -3`, `sudo docker ps`,
-`readlink /srv/tauapi/current/frontend`, `cat /srv/tauapi/state/*`, `ls /etc/nginx/sites-enabled/`.
+Read this file and HANDOFF.md, then `git -C /opt/tauapi/{tauapi-fe,tauapi-be,tauapi-ops} log -3`, `sudo docker ps`,
+`readlink /srv/tauapi/current/frontend`, `sudo cat /srv/tauapi/state/*`, `ls /etc/nginx/sites-enabled/`.

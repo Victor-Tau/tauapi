@@ -44,5 +44,6 @@ for u in https://github.com https://proxy.golang.org https://registry.npmjs.org 
 done
 
 echo "== software"
-for b in docker nginx certbot git jq rsync python3; do command -v $b >/dev/null && ok "$b $($b --version 2>&1 | head -1 | cut -c1-60)" || warn "$b missing"; done
+for b in docker certbot git jq rsync python3; do command -v $b >/dev/null && ok "$b $($b --version 2>&1 | head -1 | cut -c1-60)" || warn "$b missing"; done
+command -v nginx >/dev/null && ok "nginx $(nginx -v 2>&1 | cut -d/ -f2)" || warn "nginx missing"
 exit $fail
