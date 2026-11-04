@@ -1,4 +1,4 @@
-# Repository split (newapi-victor)
+# Repository split (tauapi)
 
 This repository is the **API-only backend** of New API (QuantumNous/new-api),
 imported from a pinned upstream commit recorded in `UPSTREAM.json`.
