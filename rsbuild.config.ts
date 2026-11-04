@@ -17,11 +17,11 @@ export default defineConfig(({ envMode }) => {
 
   const isProd = envMode === 'production'
   // Versioned, immutable asset URLs for independent frontend releases.
-  // NEWAPI_RELEASE_ID is set by the release build (ops/scripts/build-frontend.sh);
+  // TAUAPI_RELEASE_ID is set by the release build (ops/scripts/build-frontend.sh);
   // without it the build keeps the default root prefix for local previews.
-  const releaseId = process.env.NEWAPI_RELEASE_ID || ''
+  const releaseId = process.env.TAUAPI_RELEASE_ID || ''
   if (releaseId && !/^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$/.test(releaseId)) {
-    throw new Error(`Invalid NEWAPI_RELEASE_ID: ${releaseId}`)
+    throw new Error(`Invalid TAUAPI_RELEASE_ID: ${releaseId}`)
   }
   const assetPrefix = isProd && releaseId ? `/_ui/${releaseId}/` : '/'
   const devProxy = Object.fromEntries(

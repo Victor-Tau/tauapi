@@ -1,6 +1,6 @@
 # 前端开发规范
 
-> **仓库拆分说明（newapi-victor）**
+> **仓库拆分说明（tauapi）**
 >
 > 本仓库是从上游 `QuantumNous/new-api` 固定提交拆出的独立前端仓库（来源见 `UPSTREAM.json`）：
 >
@@ -9,7 +9,7 @@
 > - 项目技能与规则保留在 `.agents/`（含 `.agents/skills/shadcn-ui/` 及其 vendor 引用）。
 > - 计费表达式契约样例 `pkg/billingexpr/testdata/frontend_simulation.json` 的快照位于 `testdata/contracts/frontend_simulation.json`，原始路径、上游 commit 与 SHA-256 记录在 `UPSTREAM.json`。不得修改快照数值；升级时与后端仓库原始 fixture 对比。
 > - 后端 JavaScript 任务插件的 lint/format 已移到后端仓库（`make lint-plugins` 等）；本仓库不得引用 `../plugins`、`../backend` 等兄弟目录。
-> - 生产构建由运维仓库 `scripts/build-frontend.sh` 设置 `NEWAPI_RELEASE_ID`，资源前缀为 `/_ui/<release-id>/`；业务请求继续使用相对 URL 同源调用。
+> - 生产构建由运维仓库 `scripts/build-frontend.sh` 设置 `TAUAPI_RELEASE_ID`，资源前缀为 `/_ui/<release-id>/`；业务请求继续使用相对 URL 同源调用。
 
 
 本文档定义前端项目的开发规范与最佳实践，供开发与 AI 助手共同遵循。具体依赖与脚本以 `package.json` 为准。
