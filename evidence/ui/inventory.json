@@ -1,0 +1,1323 @@
+[
+ {
+  "id": "home",
+  "url": "/",
+  "name": "Home",
+  "role": "anon",
+  "marker": null,
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile",
+   "dark-mobile",
+   "light-tablet"
+  ],
+  "interactions": "nav, CTA, theme switch",
+  "feature_flag": "",
+  "param_source": "",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "pricing",
+  "url": "/pricing",
+  "name": "Model pricing",
+  "role": "anon",
+  "marker": "Pricing",
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile",
+   "dark-mobile",
+   "light-tablet"
+  ],
+  "interactions": "search, filters, view toggle",
+  "feature_flag": "",
+  "param_source": "",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "pricing-detail",
+  "url": "/pricing/mock-fast",
+  "name": "Model pricing detail",
+  "role": "anon",
+  "marker": "mock-fast",
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "model id",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "rankings",
+  "url": "/rankings",
+  "name": "Rankings",
+  "role": "anon",
+  "marker": null,
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "period tabs, charts",
+  "feature_flag": "",
+  "param_source": "",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "about",
+  "url": "/about",
+  "name": "About",
+  "role": "anon",
+  "marker": null,
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "privacy",
+  "url": "/privacy-policy",
+  "name": "Privacy policy",
+  "role": "anon",
+  "marker": null,
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "terms",
+  "url": "/user-agreement",
+  "name": "User agreement",
+  "role": "anon",
+  "marker": null,
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "sign-in",
+  "url": "/sign-in",
+  "name": "Sign in",
+  "role": "anon",
+  "marker": "Sign in",
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile",
+   "dark-mobile",
+   "light-tablet"
+  ],
+  "interactions": "form validation, password toggle",
+  "feature_flag": "",
+  "param_source": "",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "sign-up",
+  "url": "/sign-up",
+  "name": "Sign up (registration disabled in prod)",
+  "role": "anon",
+  "marker": null,
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "RegisterEnabled",
+  "param_source": "",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "forgot-password",
+  "url": "/forgot-password",
+  "name": "Forgot password",
+  "role": "anon",
+  "marker": null,
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "",
+  "external": "SMTP",
+  "expect_path": null
+ },
+ {
+  "id": "reset",
+  "url": "/user/reset?email=qa%40example.com&token=invalid",
+  "name": "Password reset confirm",
+  "role": "anon",
+  "marker": null,
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "",
+  "external": "SMTP",
+  "expect_path": "/user/reset"
+ },
+ {
+  "id": "otp",
+  "url": "/otp",
+  "name": "OTP",
+  "role": "anon",
+  "marker": null,
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "oauth-cb",
+  "url": "/oauth/github?code=invalid&state=invalid",
+  "name": "OAuth callback (failure state)",
+  "role": "anon",
+  "marker": null,
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "",
+  "external": "OAuth provider",
+  "expect_path": null
+ },
+ {
+  "id": "err-401",
+  "url": "/401",
+  "name": "Error 401",
+  "role": "anon",
+  "marker": "401",
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "err-403",
+  "url": "/403",
+  "name": "Error 403",
+  "role": "anon",
+  "marker": "403",
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "err-404",
+  "url": "/404",
+  "name": "Error 404",
+  "role": "anon",
+  "marker": "404",
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "err-500",
+  "url": "/500",
+  "name": "Error 500",
+  "role": "anon",
+  "marker": "500",
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "err-503",
+  "url": "/503",
+  "name": "Error 503",
+  "role": "anon",
+  "marker": "503",
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "keys",
+  "url": "/keys",
+  "name": "API Keys",
+  "role": "user",
+  "marker": null,
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile",
+   "dark-mobile",
+   "light-tablet"
+  ],
+  "interactions": "create/edit dialogs, copy, batch",
+  "feature_flag": "",
+  "param_source": "",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "playground",
+  "url": "/playground",
+  "name": "Playground",
+  "role": "admin",
+  "marker": null,
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile",
+   "dark-mobile",
+   "light-tablet"
+  ],
+  "interactions": "model select, send, stop, attachments",
+  "feature_flag": "",
+  "param_source": "",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "wallet",
+  "url": "/wallet",
+  "name": "Wallet",
+  "role": "user",
+  "marker": null,
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "recharge form, redeem code",
+  "feature_flag": "",
+  "param_source": "",
+  "external": "payment gateway",
+  "expect_path": null
+ },
+ {
+  "id": "profile",
+  "url": "/profile",
+  "name": "Profile",
+  "role": "user",
+  "marker": null,
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "edit profile, check-in",
+  "feature_flag": "",
+  "param_source": "",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "security",
+  "url": "/security",
+  "name": "Account security",
+  "role": "user",
+  "marker": null,
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "password, 2FA, passkey, sessions, access tokens",
+  "feature_flag": "",
+  "param_source": "",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "channels",
+  "url": "/channels",
+  "name": "Channels",
+  "role": "admin",
+  "marker": "qa-mock",
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile",
+   "dark-mobile",
+   "light-tablet"
+  ],
+  "interactions": "filters, create drawer, test, priority, batch",
+  "feature_flag": "",
+  "param_source": "",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "redemption",
+  "url": "/redemption-codes",
+  "name": "Redemption codes",
+  "role": "admin",
+  "marker": null,
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "subscriptions",
+  "url": "/subscriptions",
+  "name": "Subscriptions",
+  "role": "admin",
+  "marker": null,
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "users",
+  "url": "/users",
+  "name": "Users",
+  "role": "admin",
+  "marker": "qauser",
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "create, edit, ban, batch",
+  "feature_flag": "",
+  "param_source": "",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "system-info",
+  "url": "/system-info",
+  "name": "System info",
+  "role": "root",
+  "marker": null,
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "task-plugins",
+  "url": "/task-plugins",
+  "name": "Task plugins",
+  "role": "root",
+  "marker": null,
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "audit",
+  "url": "/usage-logs/audit",
+  "name": "Audit logs",
+  "role": "admin",
+  "marker": null,
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "dashboard-overview",
+  "url": "/dashboard/overview",
+  "name": "/dashboard \u203a Overview",
+  "role": "admin",
+  "marker": "Overview",
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "features/dashboard/section-registry.tsx id=overview",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "dashboard-flow",
+  "url": "/dashboard/flow",
+  "name": "/dashboard \u203a Flow",
+  "role": "admin",
+  "marker": "Flow",
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "features/dashboard/section-registry.tsx id=flow",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "models-metadata",
+  "url": "/models/metadata",
+  "name": "/models \u203a Models",
+  "role": "admin",
+  "marker": "Models",
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "features/models/section-registry.tsx id=metadata",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "models-deployments",
+  "url": "/models/deployments",
+  "name": "/models \u203a Deployments",
+  "role": "admin",
+  "marker": "Deployments",
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "features/models/section-registry.tsx id=deployments",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "usage-logs-common",
+  "url": "/usage-logs/common",
+  "name": "/usage-logs \u203a Common Logs",
+  "role": "admin",
+  "marker": "Common Logs",
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "features/usage-logs/section-registry.tsx id=common",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "usage-logs-task",
+  "url": "/usage-logs/task",
+  "name": "/usage-logs \u203a Task Logs",
+  "role": "admin",
+  "marker": "Task Logs",
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "features/usage-logs/section-registry.tsx id=task",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "system-settings-auth-basic-auth",
+  "url": "/system-settings/auth/basic-auth",
+  "name": "/system-settings/auth \u203a Basic Authentication",
+  "role": "root",
+  "marker": "Basic Authentication",
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "features/system-settings/auth/section-registry.tsx id=basic-auth",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "system-settings-auth-oauth",
+  "url": "/system-settings/auth/oauth",
+  "name": "/system-settings/auth \u203a OAuth Integrations",
+  "role": "root",
+  "marker": "OAuth Integrations",
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "features/system-settings/auth/section-registry.tsx id=oauth",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "system-settings-auth-passkey",
+  "url": "/system-settings/auth/passkey",
+  "name": "/system-settings/auth \u203a Passkey Authentication",
+  "role": "root",
+  "marker": "Passkey Authentication",
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "features/system-settings/auth/section-registry.tsx id=passkey",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "system-settings-auth-bot-protection",
+  "url": "/system-settings/auth/bot-protection",
+  "name": "/system-settings/auth \u203a Bot Protection",
+  "role": "root",
+  "marker": "Bot Protection",
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "features/system-settings/auth/section-registry.tsx id=bot-protection",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "system-settings-auth-custom-oauth",
+  "url": "/system-settings/auth/custom-oauth",
+  "name": "/system-settings/auth \u203a Custom OAuth",
+  "role": "root",
+  "marker": "Custom OAuth",
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "features/system-settings/auth/section-registry.tsx id=custom-oauth",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "system-settings-billing-quota",
+  "url": "/system-settings/billing/quota",
+  "name": "/system-settings/billing \u203a Quota Settings",
+  "role": "root",
+  "marker": "Quota Settings",
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "features/system-settings/billing/section-registry.tsx id=quota",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "system-settings-billing-currency",
+  "url": "/system-settings/billing/currency",
+  "name": "/system-settings/billing \u203a Currency & Display",
+  "role": "root",
+  "marker": "Currency & Display",
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "features/system-settings/billing/section-registry.tsx id=currency",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "system-settings-billing-model-pricing",
+  "url": "/system-settings/billing/model-pricing",
+  "name": "/system-settings/billing \u203a Model Pricing",
+  "role": "root",
+  "marker": "Model Pricing",
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "features/system-settings/billing/section-registry.tsx id=model-pricing",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "system-settings-billing-group-pricing",
+  "url": "/system-settings/billing/group-pricing",
+  "name": "/system-settings/billing \u203a Group Pricing",
+  "role": "root",
+  "marker": "Group Pricing",
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "features/system-settings/billing/section-registry.tsx id=group-pricing",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "system-settings-billing-payment",
+  "url": "/system-settings/billing/payment",
+  "name": "/system-settings/billing \u203a Payment Gateway",
+  "role": "root",
+  "marker": "Payment Gateway",
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "features/system-settings/billing/section-registry.tsx id=payment",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "system-settings-billing-checkin",
+  "url": "/system-settings/billing/checkin",
+  "name": "/system-settings/billing \u203a Check-in Rewards",
+  "role": "root",
+  "marker": "Check-in Rewards",
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "features/system-settings/billing/section-registry.tsx id=checkin",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "system-settings-content-dashboard",
+  "url": "/system-settings/content/dashboard",
+  "name": "/system-settings/content \u203a Data Dashboard",
+  "role": "root",
+  "marker": "Data Dashboard",
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "features/system-settings/content/section-registry.tsx id=dashboard",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "system-settings-content-announcements",
+  "url": "/system-settings/content/announcements",
+  "name": "/system-settings/content \u203a Announcements",
+  "role": "root",
+  "marker": "Announcements",
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "features/system-settings/content/section-registry.tsx id=announcements",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "system-settings-content-api-info",
+  "url": "/system-settings/content/api-info",
+  "name": "/system-settings/content \u203a API Addresses",
+  "role": "root",
+  "marker": "API Addresses",
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "features/system-settings/content/section-registry.tsx id=api-info",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "system-settings-content-faq",
+  "url": "/system-settings/content/faq",
+  "name": "/system-settings/content \u203a FAQ",
+  "role": "root",
+  "marker": "FAQ",
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "features/system-settings/content/section-registry.tsx id=faq",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "system-settings-content-uptime-kuma",
+  "url": "/system-settings/content/uptime-kuma",
+  "name": "/system-settings/content \u203a Uptime Kuma",
+  "role": "root",
+  "marker": "Uptime Kuma",
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "features/system-settings/content/section-registry.tsx id=uptime-kuma",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "system-settings-content-chat",
+  "url": "/system-settings/content/chat",
+  "name": "/system-settings/content \u203a Chat Presets",
+  "role": "root",
+  "marker": "Chat Presets",
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "features/system-settings/content/section-registry.tsx id=chat",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "system-settings-content-drawing",
+  "url": "/system-settings/content/drawing",
+  "name": "/system-settings/content \u203a Drawing",
+  "role": "root",
+  "marker": "Drawing",
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "features/system-settings/content/section-registry.tsx id=drawing",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "system-settings-models-global",
+  "url": "/system-settings/models/global",
+  "name": "/system-settings/models \u203a Global Model Configuration",
+  "role": "root",
+  "marker": "Global Model Configuration",
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "features/system-settings/models/section-registry.tsx id=global",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "system-settings-models-gemini",
+  "url": "/system-settings/models/gemini",
+  "name": "/system-settings/models \u203a Gemini",
+  "role": "root",
+  "marker": "Gemini",
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "features/system-settings/models/section-registry.tsx id=gemini",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "system-settings-models-claude",
+  "url": "/system-settings/models/claude",
+  "name": "/system-settings/models \u203a Claude",
+  "role": "root",
+  "marker": "Claude",
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "features/system-settings/models/section-registry.tsx id=claude",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "system-settings-models-grok",
+  "url": "/system-settings/models/grok",
+  "name": "/system-settings/models \u203a Grok",
+  "role": "root",
+  "marker": "Grok",
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "features/system-settings/models/section-registry.tsx id=grok",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "system-settings-models-model-deployment",
+  "url": "/system-settings/models/model-deployment",
+  "name": "/system-settings/models \u203a Model Deployment",
+  "role": "root",
+  "marker": "Model Deployment",
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "features/system-settings/models/section-registry.tsx id=model-deployment",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "system-settings-operations-behavior",
+  "url": "/system-settings/operations/behavior",
+  "name": "/system-settings/operations \u203a System Behavior",
+  "role": "root",
+  "marker": "System Behavior",
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "features/system-settings/operations/section-registry.tsx id=behavior",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "system-settings-operations-alerts",
+  "url": "/system-settings/operations/alerts",
+  "name": "/system-settings/operations \u203a Model performance metrics",
+  "role": "root",
+  "marker": "Model performance metrics",
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "features/system-settings/operations/section-registry.tsx id=alerts",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "system-settings-operations-email",
+  "url": "/system-settings/operations/email",
+  "name": "/system-settings/operations \u203a Email & Notifications",
+  "role": "root",
+  "marker": "Email & Notifications",
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "features/system-settings/operations/section-registry.tsx id=email",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "system-settings-operations-worker",
+  "url": "/system-settings/operations/worker",
+  "name": "/system-settings/operations \u203a Worker Proxy",
+  "role": "root",
+  "marker": "Worker Proxy",
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "features/system-settings/operations/section-registry.tsx id=worker",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "system-settings-operations-logs",
+  "url": "/system-settings/operations/logs",
+  "name": "/system-settings/operations \u203a Log Maintenance",
+  "role": "root",
+  "marker": "Log Maintenance",
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "features/system-settings/operations/section-registry.tsx id=logs",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "system-settings-operations-performance",
+  "url": "/system-settings/operations/performance",
+  "name": "/system-settings/operations \u203a Performance",
+  "role": "root",
+  "marker": "Performance",
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "features/system-settings/operations/section-registry.tsx id=performance",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "system-settings-operations-update-checker",
+  "url": "/system-settings/operations/update-checker",
+  "name": "/system-settings/operations \u203a System maintenance",
+  "role": "root",
+  "marker": "System maintenance",
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "features/system-settings/operations/section-registry.tsx id=update-checker",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "system-settings-request-policies-filtering",
+  "url": "/system-settings/request-policies/filtering",
+  "name": "/system-settings/request-policies \u203a Request checks",
+  "role": "root",
+  "marker": "Request checks",
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "features/system-settings/request-policies/section-registry.tsx id=filtering",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "system-settings-request-policies-routing",
+  "url": "/system-settings/request-policies/routing",
+  "name": "/system-settings/request-policies \u203a Sessions and retries",
+  "role": "root",
+  "marker": "Sessions and retries",
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "features/system-settings/request-policies/section-registry.tsx id=routing",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "system-settings-security-rate-limit",
+  "url": "/system-settings/security/rate-limit",
+  "name": "/system-settings/security \u203a Rate Limiting",
+  "role": "root",
+  "marker": "Rate Limiting",
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "features/system-settings/security/section-registry.tsx id=rate-limit",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "system-settings-security-ssrf",
+  "url": "/system-settings/security/ssrf",
+  "name": "/system-settings/security \u203a SSRF Protection",
+  "role": "root",
+  "marker": "SSRF Protection",
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "features/system-settings/security/section-registry.tsx id=ssrf",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "system-settings-security-token-limits",
+  "url": "/system-settings/security/token-limits",
+  "name": "/system-settings/security \u203a Token Limits",
+  "role": "root",
+  "marker": "Token Limits",
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "features/system-settings/security/section-registry.tsx id=token-limits",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "system-settings-site-system-info",
+  "url": "/system-settings/site/system-info",
+  "name": "/system-settings/site \u203a System Information",
+  "role": "root",
+  "marker": "System Information",
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "features/system-settings/site/section-registry.tsx id=system-info",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "system-settings-site-notice",
+  "url": "/system-settings/site/notice",
+  "name": "/system-settings/site \u203a System Notice",
+  "role": "root",
+  "marker": "System Notice",
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "features/system-settings/site/section-registry.tsx id=notice",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "system-settings-site-header-navigation",
+  "url": "/system-settings/site/header-navigation",
+  "name": "/system-settings/site \u203a Header navigation",
+  "role": "root",
+  "marker": "Header navigation",
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "features/system-settings/site/section-registry.tsx id=header-navigation",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "system-settings-site-sidebar-modules",
+  "url": "/system-settings/site/sidebar-modules",
+  "name": "/system-settings/site \u203a Sidebar modules",
+  "role": "root",
+  "marker": "Sidebar modules",
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "features/system-settings/site/section-registry.tsx id=sidebar-modules",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "user-dashboard",
+  "url": "/dashboard/overview",
+  "name": "Dashboard overview (common user)",
+  "role": "user",
+  "marker": "Overview",
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "",
+  "external": "",
+  "expect_path": null
+ },
+ {
+  "id": "user-logs",
+  "url": "/usage-logs/common",
+  "name": "Usage logs (common user)",
+  "role": "user",
+  "marker": "Common Logs",
+  "shots": [
+   "light-desktop",
+   "dark-desktop",
+   "light-mobile"
+  ],
+  "interactions": "",
+  "feature_flag": "",
+  "param_source": "",
+  "external": "",
+  "expect_path": null
+ }
+]

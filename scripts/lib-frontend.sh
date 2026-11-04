@@ -45,7 +45,7 @@ current_release() {
 # Smoke checks through the real Nginx + TLS on loopback.
 # Args: release_id. Returns non-zero on the first failure.
 verify_frontend_live() {
-  local id=$1 base="https://$TAUAPI_DOMAIN" r=(--resolve "$TAUAPI_DOMAIN:443:127.0.0.1" -s --max-time 15)
+  local id=$1 base="$TAUAPI_ORIGIN" r=("${CURL_RESOLVE[@]}" -s --max-time 15)
   local body ct code js css
   for path in / /sign-in /dashboard /dashboard/overview /system-settings/site/system-info /oauth/github /user/reset /pricing; do
     body=$(curl "${r[@]}" -w '\n%{http_code} %{content_type}' "$base$path") || return 1

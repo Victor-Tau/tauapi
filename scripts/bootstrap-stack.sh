@@ -60,11 +60,11 @@ RD_PW=$(sed -n 's/^REDIS_PASSWORD=//p' "$SECRET_ROOT/redis.env")
   echo "SQL_DSN=postgresql://tauapi:${PG_PW}@postgres:5432/tauapi?sslmode=disable"
   echo "REDIS_CONN_STRING=redis://:${RD_PW}@redis:6379/0"
   cat "$SECRET_ROOT/app-secrets.env"
-  cat <<'EOF'
+  cat <<EOF
 SESSION_COOKIE_SECURE=true
-SESSION_COOKIE_TRUSTED_URL=https://api.victor-tau.xyz
+SESSION_COOKIE_TRUSTED_URL=$TAUAPI_ORIGIN
 SHUTDOWN_TIMEOUT_SECONDS=120
-TRUSTED_PROXIES=172.30.70.1/32
+TRUSTED_PROXIES=$EDGE_GATEWAY/32
 TZ=Asia/Singapore
 FRONTEND_BASE_URL=
 SQL_MAX_OPEN_CONNS=25
@@ -98,6 +98,15 @@ POSTGRES_IMAGE=$POSTGRES_IMAGE_PIN
 REDIS_IMAGE=$REDIS_IMAGE_PIN
 BACKEND_MASTER_IMAGE=$BACKEND_MASTER_IMAGE
 BACKEND_SLAVE_IMAGE=$BACKEND_SLAVE_IMAGE
+MOCK_IMAGE=python:3.12-alpine@sha256:e6dae589c1c05976188fd3bd019afd091445fc533ed2ea29001beddc7368a9c8
+SECRET_DIR=$SECRET_ROOT
+MASTER_PORT=$MASTER_PORT
+SLAVE_PORT=$SLAVE_PORT
+EDGE_SUBNET=$EDGE_SUBNET
+EDGE_GATEWAY=$EDGE_GATEWAY
+DATA_SUBNET=$DATA_SUBNET
+NODE_PREFIX=$COMPOSE_PROJECT
+OPS_ROOT=$OPS_ROOT
 EOF
 mv -f "$IMAGES_ENV.tmp" "$IMAGES_ENV"
 compose config -q || die "compose config invalid" 3
@@ -105,7 +114,7 @@ compose config -q || die "compose config invalid" 3
 # --- nginx shared includes (never the public mode switch unless asked) -----
 install -d -m 0755 "$NGINX_DIR"
 python3 -I "$OPS_ROOT/scripts/generate-nginx.py" --contract "$OPS_ROOT/ROUTE_CONTRACT.json" \
-  --mode maintenance --out /dev/null --proxy-include-out "$NGINX_DIR/proxy-backend.conf"
+  --mode maintenance --env "$TAUAPI_ENV" --out /dev/null --proxy-include-out "$NGINX_DIR/proxy-backend.conf"
 if [[ ! -f $NGINX_DIR/upstream-backend.conf ]]; then
   "$OPS_ROOT/scripts/set-upstream.sh" both
 fi
@@ -115,6 +124,7 @@ fi
 
 # --- start in dependency order --------------------------------------------
 compose up -d postgres redis
+if [[ $TAUAPI_ENV == qa ]]; then compose up -d mock-upstream; fi
 for svc in postgres redis; do
   for _ in $(seq 1 60); do
     [[ $(docker inspect -f '{{.State.Health.Status}}' "$(container_id $svc)") == healthy ]] && break

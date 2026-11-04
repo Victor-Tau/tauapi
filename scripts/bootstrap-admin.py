@@ -29,8 +29,10 @@ import tempfile
 import time
 
 DOMAIN = "api.victor-tau.xyz"
-ORIGIN = f"https://{DOMAIN}"
-CRED_PATH = "/etc/tauapi/initial-admin.json"
+ENV = os.environ.get("TAUAPI_ENV", "prod")
+PORT = 443 if ENV == "prod" else 8443
+ORIGIN = f"https://{DOMAIN}" if PORT == 443 else f"https://{DOMAIN}:{PORT}"
+CRED_PATH = "/etc/tauapi/initial-admin.json" if ENV == "prod" else "/etc/tauapi-qa/initial-admin.json"
 USERNAME = "admin"
 
 
@@ -38,13 +40,13 @@ class LoopbackHTTPS(http.client.HTTPSConnection):
     """HTTPS to 127.0.0.1:443 while validating the certificate for DOMAIN."""
 
     def connect(self):
-        sock = socket.create_connection(("127.0.0.1", 443), self.timeout)
+        sock = socket.create_connection(("127.0.0.1", PORT), self.timeout)
         self.sock = self._context.wrap_socket(sock, server_hostname=DOMAIN)
 
 
 def request(method, path, body=None, headers=None):
     ctx = ssl.create_default_context()
-    conn = LoopbackHTTPS(DOMAIN, 443, timeout=30, context=ctx)
+    conn = LoopbackHTTPS(DOMAIN, PORT, timeout=30, context=ctx)
     hdrs = {"Accept": "application/json", "User-Agent": "tauapi-bootstrap-admin/1"}
     if body is not None:
         hdrs["Content-Type"] = "application/json"
@@ -162,16 +164,23 @@ def main():
             fail(f"PUT /api/option/ {key} -> HTTP {status} message={data.get('message') if isinstance(data, dict) else None}")
         log(f"option {key} set")
 
-    status, data, _ = request("GET", "/api/status")
-    if not ok(status, data):
-        fail(f"GET /api/status -> HTTP {status}")
-    st = data["data"]
-    checks = {
-        "server_address": st.get("server_address") == ORIGIN,
-        "register_enabled_false": st.get("register_enabled") is False,
-        "self_use_mode_enabled": st.get("self_use_mode_enabled") is True,
-        "demo_site_disabled": st.get("demo_site_enabled") in (False, None),
-    }
+    # Both instances serve /api/status; the slave picks up option changes on
+    # its SYNC_FREQUENCY (60s) cycle, so poll until every check holds.
+    deadline = time.time() + 150
+    while True:
+        status, data, _ = request("GET", "/api/status")
+        if not ok(status, data):
+            fail(f"GET /api/status -> HTTP {status}")
+        st = data["data"]
+        checks = {
+            "server_address": st.get("server_address") == ORIGIN,
+            "register_enabled_false": st.get("register_enabled") is False,
+            "self_use_mode_enabled": st.get("self_use_mode_enabled") is True,
+            "demo_site_disabled": st.get("demo_site_enabled") in (False, None),
+        }
+        if all(checks.values()) or time.time() > deadline:
+            break
+        time.sleep(5)
     for name, passed in checks.items():
         log(f"verify {name}: {'ok' if passed else 'FAILED'}")
     if not all(checks.values()):

@@ -70,7 +70,7 @@ fi
 
 # 4) route contract: regenerate entry rules only if they changed (compatible superset)
 MODE=$(cat "$STATE_DIR/site-mode" 2>/dev/null || echo maintenance)
-NEW=$(mktemp); python3 -I "$OPS_ROOT/scripts/generate-nginx.py" --contract "$OPS_ROOT/ROUTE_CONTRACT.json" --mode "$MODE" --out "$NEW"
+NEW=$(mktemp); python3 -I "$OPS_ROOT/scripts/generate-nginx.py" --contract "$OPS_ROOT/ROUTE_CONTRACT.json" --mode "$MODE" --env "$TAUAPI_ENV" --out "$NEW" --http-common-out /dev/null
 if ! cmp -s "$NEW" "$NGINX_SITE"; then
   log "route contract changed: applying entry rules before switching"
   "$OPS_ROOT/scripts/set-site-mode.sh" "$MODE" || die "nginx update failed" 7

@@ -13,25 +13,28 @@ Prints a redacted JSON summary only. Exit 0 if every check passed, 1 otherwise.
 """
 import http.client
 import json
+import os
 import socket
 import ssl
 import sys
 
 DOMAIN = "api.victor-tau.xyz"
-ORIGIN = f"https://{DOMAIN}"
-CRED = "/etc/tauapi/initial-admin.json"
+ENV = os.environ.get("TAUAPI_ENV", "prod")
+PORT = 443 if ENV == "prod" else 8443
+ORIGIN = f"https://{DOMAIN}" if PORT == 443 else f"https://{DOMAIN}:{PORT}"
+CRED = "/etc/tauapi/initial-admin.json" if ENV == "prod" else "/etc/tauapi-qa/initial-admin.json"
 PUBLIC = "--public" in sys.argv
 
 
 class Conn(http.client.HTTPSConnection):
     def connect(self):
         host = DOMAIN if PUBLIC else "127.0.0.1"
-        sock = socket.create_connection((host, 443), self.timeout)
+        sock = socket.create_connection((host, PORT), self.timeout)
         self.sock = self._context.wrap_socket(sock, server_hostname=DOMAIN)
 
 
 def call(method, path, body=None, headers=None):
-    c = Conn(DOMAIN, 443, timeout=30, context=ssl.create_default_context())
+    c = Conn(DOMAIN, PORT, timeout=30, context=ssl.create_default_context())
     h = {"Accept": "application/json", "User-Agent": "tauapi-smoke-auth/1"}
     if body is not None:
         h["Content-Type"] = "application/json"

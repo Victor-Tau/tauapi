@@ -3,26 +3,50 @@
 set -euo pipefail
 umask 027
 
+TAUAPI_ENV=${TAUAPI_ENV:-prod}
 TAUAPI_DOMAIN=api.victor-tau.xyz
-TAUAPI_ORIGIN=https://api.victor-tau.xyz
 OPS_ROOT=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
-SECRET_ROOT=/etc/tauapi
-RUNTIME_ROOT=/srv/tauapi
+case "$TAUAPI_ENV" in
+  prod)
+    TAUAPI_HTTPS_PORT=443
+    SUFFIX=""
+    MASTER_PORT=3001; SLAVE_PORT=3002
+    EDGE_SUBNET=172.30.70.0/24; EDGE_GATEWAY=172.30.70.1; DATA_SUBNET=172.30.71.0/24
+    ;;
+  qa)
+    # Isolated QA: own DB/Redis/volumes/secrets/ports, loopback-only HTTPS :8443
+    # with the real certificate. Never shares state with production.
+    TAUAPI_HTTPS_PORT=8443
+    SUFFIX="-qa"
+    MASTER_PORT=3101; SLAVE_PORT=3102
+    EDGE_SUBNET=172.30.72.0/24; EDGE_GATEWAY=172.30.72.1; DATA_SUBNET=172.30.73.0/24
+    ;;
+  *) echo "unknown TAUAPI_ENV=$TAUAPI_ENV" >&2; exit 2 ;;
+esac
+if [[ $TAUAPI_HTTPS_PORT == 443 ]]; then
+  TAUAPI_ORIGIN=https://$TAUAPI_DOMAIN
+else
+  TAUAPI_ORIGIN=https://$TAUAPI_DOMAIN:$TAUAPI_HTTPS_PORT
+fi
+SECRET_ROOT=/etc/tauapi$SUFFIX
+RUNTIME_ROOT=/srv/tauapi$SUFFIX
 STACK_DIR=$RUNTIME_ROOT/stack
 STATE_DIR=$RUNTIME_ROOT/state
-ARTIFACT_ROOT=$RUNTIME_ROOT/artifacts
+ARTIFACT_ROOT=/srv/tauapi/artifacts        # artefacts are shared, immutable inputs
 FRONTEND_RELEASES=$RUNTIME_ROOT/releases/frontend
 FRONTEND_CURRENT=$RUNTIME_ROOT/current/frontend
 PUBLIC_ROOT=$RUNTIME_ROOT/public
-BACKUP_ROOT=/var/backups/tauapi
-NGINX_DIR=/etc/nginx/tauapi
-NGINX_SITE=/etc/nginx/sites-available/tauapi.conf
-DEPLOY_LOCK=/run/lock/tauapi-deploy.lock
-COMPOSE_PROJECT=tauapi
+BACKUP_ROOT=/var/backups/tauapi$SUFFIX
+NGINX_DIR=/etc/nginx/tauapi$SUFFIX
+NGINX_SITE=/etc/nginx/sites-available/tauapi$SUFFIX.conf
+DEPLOY_LOCK=/run/lock/tauapi$SUFFIX-deploy.lock
+COMPOSE_PROJECT=tauapi$SUFFIX
 COMPOSE_FILE=$STACK_DIR/compose.yml
 IMAGES_ENV=$STACK_DIR/images.env
-MASTER_ADDR=127.0.0.1:3001
-SLAVE_ADDR=127.0.0.1:3002
+MASTER_ADDR=127.0.0.1:$MASTER_PORT
+SLAVE_ADDR=127.0.0.1:$SLAVE_PORT
+CURL_RESOLVE=(--resolve "$TAUAPI_DOMAIN:$TAUAPI_HTTPS_PORT:127.0.0.1")
+export TAUAPI_ENV
 
 log() { printf '[%s] %s\n' "$(date -u +%H:%M:%S)" "$*" >&2; }
 die() { local code=${2:-1}; log "ERROR: $1"; exit "$code"; }
@@ -32,7 +56,9 @@ require_root() {
 }
 
 compose() {
-  docker compose -p "$COMPOSE_PROJECT" -f "$COMPOSE_FILE" --env-file "$IMAGES_ENV" "$@"
+  local profile=()
+  [[ $TAUAPI_ENV == qa ]] && profile=(--profile qa)
+  docker compose -p "$COMPOSE_PROJECT" -f "$COMPOSE_FILE" --env-file "$IMAGES_ENV" "${profile[@]}" "$@"
 }
 
 # Global deploy lock. Top-level release/rollback/state-changing scripts call
