@@ -135,9 +135,7 @@ server {{
 
     client_max_body_size 100m;
     server_tokens off;
-    add_header X-Content-Type-Options nosniff always;
-    add_header Referrer-Policy strict-origin-when-cross-origin always;
-    add_header Strict-Transport-Security "max-age=31536000" always;
+    include /etc/nginx/tauapi/security-headers.conf;
 
     error_page 503 /__maintenance.html;
     location = /__maintenance.html {{
@@ -145,6 +143,7 @@ server {{
         root /srv/tauapi/maintenance;
         try_files /index.html =404;
         add_header Cache-Control "no-store" always;
+        include /etc/nginx/tauapi/security-headers.conf;
     }}
 {gate}
     location ^~ /.well-known/acme-challenge/ {{
@@ -168,9 +167,10 @@ server {{
     location ^~ /_ui/ {{
         root /srv/tauapi/public;
         try_files $uri =404;
-        add_header Cache-Control "public, max-age=31536000, immutable" always;
-        add_header X-Content-Type-Options nosniff always;
-        gzip_static on;
+        # No `always`: only successful responses are cacheable; a missing
+        # asset 404 must never be cached as immutable.
+        add_header Cache-Control "public, max-age=31536000, immutable";
+        include /etc/nginx/tauapi/security-headers.conf;
     }}
 
     # ---- Frontend version metadata ----
@@ -178,6 +178,7 @@ server {{
         alias /srv/tauapi/current/frontend/ui-version.json;
         default_type application/json;
         add_header Cache-Control "no-cache, no-store, must-revalidate" always;
+        include /etc/nginx/tauapi/security-headers.conf;
     }}
     location ^~ /_meta/ {{ return 404; }}
 
@@ -186,6 +187,7 @@ server {{
         root /srv/tauapi/current/frontend;
         try_files $uri =404;
         add_header Cache-Control "no-cache" always;
+        include /etc/nginx/tauapi/security-headers.conf;
     }}
 
     # ---- SPA entry: registered pages only ----
@@ -193,11 +195,13 @@ server {{
         root /srv/tauapi/current/frontend;
         try_files /index.html =404;
         add_header Cache-Control "no-cache, no-store, must-revalidate" always;
+        include /etc/nginx/tauapi/security-headers.conf;
     }}
     location ~ {page_re} {{
         root /srv/tauapi/current/frontend;
         try_files /index.html =404;
         add_header Cache-Control "no-cache, no-store, must-revalidate" always;
+        include /etc/nginx/tauapi/security-headers.conf;
     }}
 
     # ---- Everything else: API-only backend (API, relay, plugins, JSON 404) ----
@@ -207,6 +211,13 @@ server {{
 }}
 """
 
+
+SECURITY_HEADERS = """# Shared security headers (generated). Included at server level and in every
+# location that sets its own add_header (Nginx does not inherit them there).
+add_header X-Content-Type-Options nosniff always;
+add_header Referrer-Policy strict-origin-when-cross-origin always;
+add_header Strict-Transport-Security "max-age=31536000" always;
+"""
 
 PROXY_INCLUDE = """# Shared backend proxy semantics (generated).
 proxy_pass http://tauapi_backend;
@@ -251,6 +262,9 @@ def main():
     if a.proxy_include_out:
         with open(a.proxy_include_out, "w") as fh:
             fh.write(PROXY_INCLUDE)
+        sec = os.path.join(os.path.dirname(a.proxy_include_out), "security-headers.conf")
+        with open(sec, "w") as fh:
+            fh.write(SECURITY_HEADERS)
     return 0
 
 
