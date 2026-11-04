@@ -136,7 +136,7 @@ Token 编辑器优先使用原有阶梯表单；旧表单无法承载时使用�
 
 ## 回归验证
 
-- Go 与浏览器读取 `pkg/billingexpr/testdata/frontend_simulation.json` 同一组契约样例。
+- Go 与浏览器读取同一组契约样例：后端仓库 `pkg/billingexpr/testdata/frontend_simulation.json`，前端仓库保存其快照 `testdata/contracts/frontend_simulation.json`（来源 commit 与 SHA-256 见 `UPSTREAM.json`）。
 - 音频转换样例通过 `conversion` 绑定后端生成输入，通过 `displayTiers` 同时验证分支与价格展示；转换模板变更必须同步更新契约。有限的等价 AST 变体（括号、`max` 参数顺序、价格乘法左右顺序、音频 OR 顺序）保持相同展示。
 - 时间测试固定绝对时间，覆盖高峰边界、周末、午夜跨月及夏令时。
 - 原有价格、分组、任务、日志、编辑器、同步测试的业务预期保持不变。

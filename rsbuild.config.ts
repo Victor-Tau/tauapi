@@ -16,6 +16,14 @@ export default defineConfig(({ envMode }) => {
     'http://localhost:3000'
 
   const isProd = envMode === 'production'
+  // Versioned, immutable asset URLs for independent frontend releases.
+  // NEWAPI_RELEASE_ID is set by the release build (ops/scripts/build-frontend.sh);
+  // without it the build keeps the default root prefix for local previews.
+  const releaseId = process.env.NEWAPI_RELEASE_ID || ''
+  if (releaseId && !/^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$/.test(releaseId)) {
+    throw new Error(`Invalid NEWAPI_RELEASE_ID: ${releaseId}`)
+  }
+  const assetPrefix = isProd && releaseId ? `/_ui/${releaseId}/` : '/'
   const devProxy = Object.fromEntries(
     (['/api', '/v1', '/mj', '/pg'] as const).map((key) => [
       key,
@@ -78,6 +86,7 @@ export default defineConfig(({ envMode }) => {
       distPath: {
         root: 'dist',
       },
+      assetPrefix,
       // Rely on Rsbuild default legalComments ("linked" → per-chunk *.LICENSE.txt) in all modes.
       // Do not set "none" in production: that strips minifier-preserved third-party notices and
       // extracted license files, which some distributions require for open-source compliance.
