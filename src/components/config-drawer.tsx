@@ -178,7 +178,7 @@ function RadioGroupItem(props: {
       <div
         className={cn(
           'ring-border relative rounded-md ring-[1px]',
-          'group-data-checked:ring-primary group-data-checked:shadow-2xl',
+          'group-data-checked:ring-primary',
           'group-focus-visible:ring-2'
         )}
         role='img'
@@ -270,7 +270,7 @@ function PresetConfig() {
             <div
               className={cn(
                 'ring-border relative h-12 rounded-md ring-[1px] transition',
-                'group-data-checked:ring-primary group-data-checked:shadow-md',
+                'group-data-checked:ring-primary',
                 'group-focus-visible:ring-2',
                 'group-hover:ring-primary/60'
               )}
@@ -279,10 +279,8 @@ function PresetConfig() {
                 aria-hidden='true'
                 className='absolute inset-0 rounded-md'
                 style={{
-                  background:
-                    preset.value === 'default'
-                      ? 'linear-gradient(135deg, oklch(0.68 0.2 25) 0%, oklch(0.8 0.17 85) 25%, oklch(0.72 0.18 155) 50%, oklch(0.66 0.19 245) 75%, oklch(0.68 0.2 315) 100%)'
-                      : `linear-gradient(135deg, ${preset.swatches[0]} 0%, ${preset.swatches[1] ?? preset.swatches[0]} 100%)`,
+                  // Minimalist Flat: two solid halves instead of a blended gradient.
+                  background: `linear-gradient(90deg, ${preset.swatches[0]} 0 50%, ${preset.swatches[1] ?? preset.swatches[0]} 50% 100%)`,
                 }}
               />
               <CircleCheck
@@ -351,7 +349,7 @@ function FontConfig() {
             <div
               className={cn(
                 'ring-border relative h-12 rounded-md ring-[1px] transition',
-                'group-data-checked:ring-primary group-data-checked:shadow-md',
+                'group-data-checked:ring-primary',
                 'group-focus-visible:ring-2',
                 'group-hover:ring-primary/60'
               )}
@@ -421,7 +419,7 @@ function RadiusConfig() {
             <div
               className={cn(
                 'ring-border relative h-12 rounded-md ring-[1px] transition',
-                'group-data-checked:ring-primary group-data-checked:shadow-md',
+                'group-data-checked:ring-primary',
                 'group-focus-visible:ring-2',
                 'group-hover:ring-primary/60'
               )}
@@ -508,7 +506,7 @@ function ScaleConfig() {
             <div
               className={cn(
                 'ring-border relative h-12 rounded-md ring-[1px] transition',
-                'group-data-checked:ring-primary group-data-checked:shadow-md',
+                'group-data-checked:ring-primary',
                 'group-focus-visible:ring-2',
                 'group-hover:ring-primary/60'
               )}
@@ -649,7 +647,7 @@ function ContentLayoutConfig() {
             <div
               className={cn(
                 'ring-border relative h-12 rounded-md ring-[1px] transition',
-                'group-data-checked:ring-primary group-data-checked:shadow-md',
+                'group-data-checked:ring-primary',
                 'group-focus-visible:ring-2',
                 'group-hover:ring-primary/60'
               )}

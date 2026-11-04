@@ -434,7 +434,7 @@ export const CodeBlockFrame = ({
 }: CodeBlockFrameProps) => (
   <div
     className={cn(
-      'group/code-block bg-muted/20 text-foreground my-3 w-full max-w-full overflow-hidden rounded-lg border shadow-xs',
+      'group/code-block bg-muted/20 text-foreground my-3 w-full max-w-full overflow-hidden rounded-lg border',
       className
     )}
     {...props}

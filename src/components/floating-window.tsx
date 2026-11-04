@@ -374,7 +374,7 @@ export function FloatingWindow(props: FloatingWindowProps) {
         {...dragHandleProps}
         style={style}
         className={cn(
-          'bg-background border-border z-50 flex cursor-move touch-none items-center gap-2 rounded-full border py-1 pr-1 pl-3 shadow-lg select-none',
+          'bg-background border-border z-50 flex cursor-move touch-none items-center gap-2 rounded-full border py-1 pr-1 pl-3 select-none',
           props.className
         )}
       >
@@ -420,7 +420,7 @@ export function FloatingWindow(props: FloatingWindowProps) {
         maxHeight: `calc(100vh - ${VIEWPORT_MARGIN * 2}px)`,
       }}
       className={cn(
-        'bg-background border-border z-50 flex flex-col overflow-hidden rounded-xl border shadow-xl',
+        'bg-background border-border z-50 flex flex-col overflow-hidden rounded-lg border',
         props.className
       )}
     >

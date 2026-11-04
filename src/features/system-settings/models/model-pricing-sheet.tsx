@@ -979,7 +979,7 @@ export const ModelPricingEditorPanel = forwardRef<
                     </TabsList>
 
                     {pricingMode !== 'tiered_expr' && (
-                      <Alert className='border-amber-500/40 bg-amber-500/10 p-4 text-amber-900 dark:text-amber-100'>
+                      <Alert className='border-warning/40 bg-warning/10 *:[svg]:text-warning p-4'>
                         <AlertTriangle aria-hidden='true' className='size-5' />
                         <AlertDescription className='space-y-3 text-sm text-inherit'>
                           <p className='font-medium'>
@@ -1227,7 +1227,7 @@ export const ModelPricingEditorPanel = forwardRef<
             </div>
           </div>
           {showActions && (
-            <div className='bg-background/95 supports-[backdrop-filter]:bg-background/80 shrink-0 border-t p-3 backdrop-blur'>
+            <div className='bg-background shrink-0 border-t p-3'>
               <div className='flex flex-col-reverse gap-2 sm:flex-row sm:justify-end'>
                 {onSave && (
                   <Button

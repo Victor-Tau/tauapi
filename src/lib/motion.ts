@@ -20,110 +20,77 @@ import type { Transition, Variants } from 'motion/react'
 
 const EASE_OUT_CUBIC = [0.33, 1, 0.68, 1] as const
 
+// Minimalist Flat: motion is limited to short opacity fades (no blur, slide,
+// scale or springs). Export names and shapes are unchanged for callers;
+// components still honour prefers-reduced-motion via useReducedMotion.
 const DURATION = {
   instant: 0,
-  fast: 0.15,
-  normal: 0.25,
-  slow: 0.35,
+  fast: 0.12,
+  normal: 0.15,
+  slow: 0.2,
 } as const
 
 export const MOTION_TRANSITION: Record<string, Transition> = {
   default: { duration: DURATION.normal, ease: EASE_OUT_CUBIC },
   fast: { duration: DURATION.fast, ease: EASE_OUT_CUBIC },
   slow: { duration: DURATION.slow, ease: EASE_OUT_CUBIC },
-  spring: { type: 'spring', damping: 20, stiffness: 300 },
+  spring: { duration: DURATION.normal, ease: EASE_OUT_CUBIC },
   none: { duration: DURATION.instant },
 }
 
+const FADE = {
+  initial: { opacity: 0 },
+  animate: { opacity: 1 },
+  exit: { opacity: 0 },
+} as const
+
 export const MOTION_VARIANTS = {
-  pageEnter: {
-    initial: { opacity: 0, y: 8, filter: 'blur(4px)' },
-    animate: {
-      opacity: 1,
-      y: 0,
-      // Exact zero blur can blank the page on some Android renderers.
-      // Preserve the blur animation, then release the filter after it finishes.
-      filter: 'blur(0.01px)',
-      transitionEnd: { filter: 'none' },
-    },
-    exit: { opacity: 0, y: -4, filter: 'blur(2px)' },
-  },
-  fadeIn: {
-    initial: { opacity: 0 },
-    animate: { opacity: 1 },
-    exit: { opacity: 0 },
-  },
-  scaleIn: {
-    initial: { opacity: 0, scale: 0.96 },
-    animate: { opacity: 1, scale: 1 },
-    exit: { opacity: 0, scale: 0.96 },
-  },
-  slideUp: {
-    initial: { opacity: 0, y: 16 },
-    animate: { opacity: 1, y: 0 },
-    exit: { opacity: 0, y: 16 },
-  },
-  slideDown: {
-    initial: { opacity: 0, y: -16 },
-    animate: { opacity: 1, y: 0 },
-    exit: { opacity: 0, y: -16 },
-  },
-  tableRow: {
-    initial: { opacity: 0, y: 4 },
-    animate: { opacity: 1, y: 0 },
-  },
-  cardItem: {
-    initial: { opacity: 0, y: 12, scale: 0.98 },
-    animate: { opacity: 1, y: 0, scale: 1 },
-  },
-  sidebarSlide: {
-    initial: { opacity: 0, x: -8 },
-    animate: { opacity: 1, x: 0 },
-    exit: { opacity: 0, x: -8 },
-  },
+  pageEnter: FADE,
+  fadeIn: FADE,
+  scaleIn: FADE,
+  slideUp: FADE,
+  slideDown: FADE,
+  tableRow: { initial: FADE.initial, animate: FADE.animate },
+  cardItem: { initial: FADE.initial, animate: FADE.animate },
+  sidebarSlide: FADE,
 } as const
 
 export const STAGGER_VARIANTS: Variants = {
   initial: {},
-  animate: { transition: { staggerChildren: 0.04 } },
+  animate: {},
 }
 
 export const STAGGER_ITEM_VARIANTS: Variants = {
-  initial: { opacity: 0, y: 8 },
-  animate: { opacity: 1, y: 0, transition: MOTION_TRANSITION.default },
+  initial: { opacity: 0 },
+  animate: { opacity: 1, transition: MOTION_TRANSITION.default },
 }
 
 export const TABLE_STAGGER_VARIANTS: Variants = {
   initial: {},
-  animate: { transition: { staggerChildren: 0.03 } },
+  animate: {},
 }
 
 export const TABLE_ROW_VARIANTS: Variants = {
-  initial: { opacity: 0, y: 4 },
-  animate: { opacity: 1, y: 0, transition: MOTION_TRANSITION.fast },
+  initial: { opacity: 0 },
+  animate: { opacity: 1, transition: MOTION_TRANSITION.fast },
 }
 
 export const CARD_STAGGER_VARIANTS: Variants = {
   initial: {},
-  animate: { transition: { staggerChildren: 0.05 } },
+  animate: {},
 }
 
 export const CARD_ITEM_VARIANTS: Variants = {
-  initial: { opacity: 0, y: 12, scale: 0.98 },
-  animate: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: MOTION_TRANSITION.default,
-  },
+  initial: { opacity: 0 },
+  animate: { opacity: 1, transition: MOTION_TRANSITION.default },
 }
 
 export const SIDEBAR_STAGGER_VARIANTS: Variants = {
   initial: {},
-  animate: { transition: { staggerChildren: 0.03, delayChildren: 0.05 } },
+  animate: {},
 }
 
 export const SIDEBAR_ITEM_VARIANTS: Variants = {
-  initial: { opacity: 0, x: -8 },
-  animate: { opacity: 1, x: 0, transition: MOTION_TRANSITION.fast },
+  initial: { opacity: 0 },
+  animate: { opacity: 1, transition: MOTION_TRANSITION.fast },
 }

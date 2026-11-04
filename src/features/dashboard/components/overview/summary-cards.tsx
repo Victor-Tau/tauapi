@@ -253,12 +253,12 @@ export function SummaryCards() {
   })
 
   return (
-    <div className='bg-card overflow-hidden rounded-2xl border shadow-xs'>
+    <div className='bg-card overflow-hidden rounded-lg border'>
       <div className='grid xl:grid-cols-[minmax(0,1fr)_19rem]'>
         <div className='flex flex-col gap-2.5 p-3 sm:gap-3 sm:p-5'>
           <div className='flex flex-wrap items-start justify-between gap-3'>
             <div className='flex flex-col gap-1'>
-              <h3 className='text-sm font-semibold sm:text-base'>
+              <h3 className='text-base font-semibold sm:text-lg'>
                 {t('Usage at a glance')}
               </h3>
               <p className='text-muted-foreground text-xs sm:text-sm'>
@@ -270,7 +270,7 @@ export function SummaryCards() {
             {items.map((it) => (
               <StaggerItem
                 key={it.key}
-                className='bg-background/60 rounded-lg border px-2 py-1.5 sm:rounded-xl sm:p-3'
+                className='bg-background rounded-md border px-2 py-1.5 sm:rounded-lg sm:p-3'
               >
                 <StatCard
                   title={it.title}
@@ -288,7 +288,7 @@ export function SummaryCards() {
           </StaggerContainer>
         </div>
 
-        <div className='flex flex-col justify-between gap-3 border-t bg-[linear-gradient(135deg,color-mix(in_oklch,var(--overview-accent-2)_12%,var(--background))_0%,color-mix(in_oklch,oklch(0.82_0.04_155)_8%,var(--background))_48%,color-mix(in_oklch,var(--overview-accent-1)_7%,var(--background))_100%)] p-3 sm:gap-4 sm:p-5 xl:border-t-0 xl:border-l'>
+        <div className='flex flex-col justify-between gap-3 bg-muted/50 border-t p-3 sm:gap-4 sm:p-5 xl:border-t-0 xl:border-l'>
           <div className='flex flex-col gap-2 sm:gap-3'>
             <div className='flex items-center justify-between'>
               <span className='text-muted-foreground text-xs font-medium'>
@@ -310,7 +310,7 @@ export function SummaryCards() {
             </div>
 
             <div className='grid grid-cols-2 gap-2'>
-              <div className='bg-background/60 rounded-lg px-2.5 py-2'>
+              <div className='bg-background rounded-md border px-2.5 py-2'>
                 <div className='text-muted-foreground flex items-center gap-1 text-[11px] leading-none font-medium'>
                   <Flame className='size-3 shrink-0' aria-hidden='true' />
                   <span className='truncate'>{t('Last 24h usage')}</span>
@@ -319,7 +319,7 @@ export function SummaryCards() {
                   {formatQuota(recentUsage)}
                 </div>
               </div>
-              <div className='bg-background/60 rounded-lg px-2.5 py-2'>
+              <div className='bg-background rounded-md border px-2.5 py-2'>
                 <div className='text-muted-foreground flex items-center gap-1 text-[11px] leading-none font-medium'>
                   {runwayDays !== null && runwayDays < 3 ? (
                     <TrendingDown

@@ -56,7 +56,7 @@ export function SystemTasksPanel() {
   const hasActiveTasks = activeTasks.length > 0
 
   return (
-    <section className='bg-card overflow-hidden rounded-lg border shadow-xs'>
+    <section className='bg-card overflow-hidden rounded-lg border'>
       <div className='flex flex-col gap-3 border-b px-4 py-3 sm:flex-row sm:items-center sm:justify-between sm:px-5'>
         <div className='min-w-0'>
           <div className='flex items-center gap-2'>
@@ -81,7 +81,7 @@ export function SystemTasksPanel() {
             <span
               className={cn(
                 'size-1.5 rounded-full',
-                hasActiveTasks ? 'bg-emerald-500' : 'bg-muted-foreground/40'
+                hasActiveTasks ? 'bg-success' : 'bg-muted-foreground/40'
               )}
               aria-hidden='true'
             />

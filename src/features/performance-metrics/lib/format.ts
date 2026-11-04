@@ -61,13 +61,15 @@ export function getSuccessRateLevel(rate: number): SuccessRateLevel {
 }
 
 const SUCCESS_RATE_TEXT_CLASS: Record<SuccessRateLevel, string> = {
-  excellent: 'text-emerald-600 dark:text-emerald-400',
-  good: 'text-emerald-500 dark:text-emerald-300',
-  warning: 'text-amber-600 dark:text-amber-400',
-  critical: 'text-red-600 dark:text-red-400',
+  excellent: 'text-success',
+  good: 'text-success',
+  warning: 'text-warning',
+  critical: 'text-destructive',
   unknown: 'text-muted-foreground',
 }
 
+// Status-strip colours are a semantic status scale (paired with an
+// accessible "Success rate" label and tooltip values), kept as upstream.
 const SUCCESS_RATE_DOT_CLASS: Record<SuccessRateLevel, string> = {
   excellent: 'bg-emerald-500',
   good: 'bg-emerald-400',

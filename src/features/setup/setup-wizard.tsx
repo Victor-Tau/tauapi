@@ -296,7 +296,7 @@ export function SetupWizard() {
               <img
                 src={logo}
                 alt={t('System logo')}
-                className='h-12 w-12 rounded-full object-cover shadow-sm'
+                className='h-12 w-12 rounded-full object-cover'
               />
             )}
           </div>
@@ -314,7 +314,7 @@ export function SetupWizard() {
           </p>
         </div>
 
-        <Card className='shadow-lg'>
+        <Card>
           <CardHeader className='space-y-2'>
             <CardTitle className='text-xl font-semibold'>
               {t('System setup wizard')}

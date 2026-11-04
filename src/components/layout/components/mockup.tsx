@@ -22,11 +22,11 @@ import React from 'react'
 import { cn } from '@/lib/utils'
 
 const mockupVariants = cva(
-  'flex relative z-10 overflow-hidden shadow-2xl border border-border/70 dark:border-border/5 dark:border-t-border/15',
+  'flex relative z-10 overflow-hidden border border-border',
   {
     variants: {
       type: {
-        mobile: 'rounded-4xl max-w-[350px]',
+        mobile: 'rounded-lg max-w-[350px]',
         responsive: 'rounded-md',
       },
     },
@@ -52,7 +52,7 @@ export function Mockup({ className, type, ...props }: MockupProps) {
 }
 
 const frameVariants = cva(
-  'bg-border/50 flex relative z-10 overflow-hidden rounded-2xl dark:bg-border/10',
+  'bg-muted flex relative z-10 overflow-hidden rounded-lg border border-border',
   {
     variants: {
       size: {

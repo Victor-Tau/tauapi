@@ -650,7 +650,7 @@ export const ModelGroupSelector: React.FC<ModelGroupSelectorProps> = ({
       aria-expanded={open}
       className={cn(
         'h-8 max-w-[15rem] justify-start gap-2 border px-2.5 font-medium shadow-none',
-        'bg-background/80 hover:bg-accent/70 text-foreground',
+        'bg-background hover:bg-accent text-foreground',
         'focus:!ring-0 focus:!outline-none',
         className
       )}
@@ -825,7 +825,7 @@ export const ModelGroupSelector: React.FC<ModelGroupSelectorProps> = ({
       <PopoverContent
         align='end'
         className={cn(
-          'bg-popover z-50 w-[34rem] max-w-[calc(100vw-2rem)] rounded-xl border p-0 shadow-lg',
+          'bg-popover z-50 w-[34rem] max-w-[calc(100vw-2rem)] rounded-lg border p-0',
           modelGroupSelectorLayoutClasses.desktopPanel
         )}
         collisionPadding={8}

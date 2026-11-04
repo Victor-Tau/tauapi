@@ -25,7 +25,7 @@ import { cn } from '@/lib/utils'
 export type GroupRatio = number | string | null | undefined
 
 export const AUTO_GROUP_FRAME_CLASS_NAME =
-  'border-primary/40 relative overflow-visible border shadow-sm shadow-primary/10'
+  'border-primary/40 relative overflow-visible border'
 
 type AutoGroupFlowBorderProps = {
   shouldReduceMotion: boolean
@@ -41,7 +41,10 @@ export function AutoGroupFlowBorder(props: AutoGroupFlowBorderProps) {
       data-auto-group-flow-border='true'
       className={cn(
         'auto-group-flow-border pointer-events-none absolute -inset-px',
-        props.appearance === 'subtle' && 'auto-group-flow-border-subtle'
+        props.appearance === 'subtle' && 'auto-group-flow-border-subtle',
+        // Minimalist Flat: the shared CSS draws a travelling conic highlight;
+        // flatten it to a static 1px primary ring (same mask, no motion).
+        'bg-primary! bg-none! p-px! animate-none!'
       )}
     />
   )
