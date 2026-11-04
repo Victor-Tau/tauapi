@@ -280,11 +280,11 @@
   "expect_path": null
  },
  {
-  "id": "err-500",
-  "url": "/500",
-  "name": "Error 500",
+  "id": "err-503",
+  "url": "/503",
+  "name": "Error 503",
   "role": "anon",
-  "marker": "500",
+  "marker": "503",
   "shots": [
    "light-desktop",
    "dark-desktop",
@@ -297,11 +297,11 @@
   "expect_path": null
  },
  {
-  "id": "err-503",
-  "url": "/503",
-  "name": "Error 503",
+  "id": "err-500",
+  "url": "/500",
+  "name": "Error 500 (general error)",
   "role": "anon",
-  "marker": "503",
+  "marker": "Something went wrong",
   "shots": [
    "light-desktop",
    "dark-desktop",

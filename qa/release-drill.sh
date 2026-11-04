@@ -10,8 +10,16 @@
 # Usage: sudo release-drill.sh <image|rollback> [--sse 20] [--ws 20] [--drain 90] [--out DIR]
 set -uo pipefail
 source "$(dirname "$0")/../scripts/lib.sh"
+# lib.sh enables errexit; the drill must survive a non-zero deploy (e.g. the
+# intended exit 10 "drain incomplete") and always clean up its loops.
+set +e
 require_root
 IMAGE=${1:?image}; shift
+cleanup_drill() {
+  rm -f "${OUT:-/nonexistent}/.deploying"
+  for p in ${PROBE:-} ${SAMPLER:-}; do kill "$p" 2>/dev/null; done
+}
+trap cleanup_drill EXIT
 SSE=20; WS=20; DRAIN=90; OUT=""
 while [[ $# -gt 0 ]]; do
   case "$1" in

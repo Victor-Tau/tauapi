@@ -23,15 +23,16 @@ rows = list(csv.DictReader(open(inv_path)))
 def verdict(r):
     if r is None:
         return "not captured"
-    ok_path = r["path_ok"] or (r.get("settled_path") is not None)
     if r["status"] != "ok":
         return "nav error"
-    if not ok_path:
-        return f"redirected to {r['final_path']}"
+    if not r["path_ok"]:
+        return f"redirected to {r['final_path']} before capture"
     if r.get("marker_visible") is False:
         return "rendered; marker off-screen"
     if r.get("overflow_x", 0) > 0:
         return f"overflow-x {r['overflow_x']}px"
+    if r.get("settled_path"):
+        return f"pass (transient state; then -> {r['settled_path']})"
     return "pass"
 
 
@@ -46,7 +47,7 @@ for row in rows:
         row[col] = v
         if r:
             files.append(f"{r['_dir']}/{r['file']}")
-        if v == "pass":
+        if v.startswith("pass"):
             summary["pass"] += 1
         else:
             summary["issues"].append(f"{rid} {shot}: {v}")

@@ -64,8 +64,10 @@ add("reset", "/user/reset?email=qa%40example.com&token=invalid", "Password reset
 add("otp", "/otp", "OTP (no pending challenge -> sign-in)", "anon", None, early=400)
 add("oauth-cb", "/oauth/github?code=invalid&state=invalid", "OAuth callback (waiting/failure state)", "anon", None, expect="/oauth/github", ext="OAuth provider", early=600)
 # Errors
-for code in ("401", "403", "404", "500", "503"):
+for code in ("401", "403", "404", "503"):
     add(f"err-{code}", f"/{code}", f"Error {code}", "anon", code)
+# Upstream /500 renders GeneralError without a status number.
+add("err-500", "/500", "Error 500 (general error)", "anon", "Something went wrong")
 # Console
 add("keys", "/keys", "API Keys", "user", "qa-token" if False else None, SHOTS_REP, "create/edit dialogs, copy, batch")
 add("playground", "/playground", "Playground", "admin", None, SHOTS_REP, "model select, send, stop, attachments")
