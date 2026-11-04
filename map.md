@@ -70,8 +70,8 @@ flowchart TD
 | `vendor/upstream-fe` | 上游 `web/` 原始导入（拆分布局，位于分支根） |
 | `vendor/upstream-be` | 上游后端原始导入（拆分布局，位于分支根） |
 | `upstream/fe-ba5f73677975`、`upstream/be-ba5f73677975` | 两份原始导入提交 |
-| `release/fe-r1-aade206`、`release/fe-r2-3097ff7`、`release/fe-r3-0dab41b` | 已发布前端版本（指向原前端历史中的提交） |
-| `release/be-53c0e999057f`、`release/be-a4231663776e` | 已发布后端镜像对应提交 |
+| `release/fe-r1-aade206`、`release/fe-r2-3097ff7`、`release/fe-r3-0dab41b`、`release/fe-r4-db3916f` | 已发布前端版本（指向原前端历史中的提交） |
+| `release/be-53c0e999057f`、`release/be-a4231663776e`、`release/be-db3916f928c8` | 已发布后端镜像对应提交 |
 | `upgrade/<short-sha>` | `sync-upstream.sh` 生成的上游升级分支（临时） |
 
 ```mermaid

@@ -7,7 +7,7 @@
 
 - **https://api.victor-tau.xyz** 已上线（公开模式）。前端与 API 共用同一个源（origin）。
 - 公网冒烟测试 `scripts/smoke.sh --public`：**42/42 通过**（页面、API、插件、静态资源、缓存头、隐藏文件、HTTP→HTTPS、TLS、登录/刷新/登出）。
-- 正在运行：前端 `fe-r3-0dab41b`；后端 master + slave `tauapi-be:a4231663776e`；PostgreSQL 16.15；Redis 7.4.12；Nginx 1.24.0。
+- 正在运行：前端 `fe-r4-db3916f`（`1.0.0+fe.db3916f928c8`）；后端 master + slave `tauapi-be:db3916f928c8`（`1.0.0+be.db3916f928c8`）；PostgreSQL 16.15；Redis 7.4.12；Nginx 1.24.0。
 
 ## 2. 代码仓库（单一 TauAPI monorepo）
 
@@ -16,7 +16,7 @@
 | 仓库 | `/opt/tauapi`（一个 Git 仓库；子目录 `tauapi-fe/`、`tauapi-be/`、`tauapi-ops/`，以及 `README.md`、`map.md`） |
 | 远端 | `origin` → `/var/lib/tauapi/git/tauapi.git`（裸仓库，分支 `main`） |
 | 分支 | `main`（所有定制内容）；`vendor/upstream-fe`、`vendor/upstream-be`（按拆分布局导入的原始上游代码） |
-| 标签 | `upstream/fe-ba5f73677975`、`upstream/be-ba5f73677975`、`release/fe-r1-aade206`、`release/fe-r2-3097ff7`、`release/fe-r3-0dab41b`、`release/be-53c0e999057f`、`release/be-a4231663776e` |
+| 标签 | `upstream/fe-ba5f73677975`、`upstream/be-ba5f73677975`、`release/fe-r1-aade206`、`release/fe-r2-3097ff7`、`release/fe-r3-0dab41b`、`release/fe-r4-db3916f`、`release/be-53c0e999057f`、`release/be-a4231663776e`、`release/be-db3916f928c8` |
 | 历史 | 保留了原先三个仓库的所有提交（subtree 合并：`41da14a` fe、`dec55a4` be、`3cad3d6` ops）。在这些合并之前，文件位于旧仓库根目录，因此 `git log -- tauapi-fe/<file>` 会在合并处中断；查看更早的历史请使用该合并的第二个父提交并配合旧路径，例如 `git log 41da14a^2 -- src/styles/theme.css`（fe）、`git log dec55a4^2 -- router/main.go`（be） |
 | 拆分时期的归档 | `/var/lib/tauapi/git/archive-split-20261104/tauapi-{fe,be,ops}.bundle`（已验证）；旧的裸远端 `tauapi-{fe,be,ops}.git` 保留但不再使用 |
 
@@ -30,15 +30,17 @@
 
 | 单元 | 发布 | 标识 |
 | --- | --- | --- |
-| 前端（当前） | fe-r3-0dab41b | 提交 0dab41b8b090…，tar.gz sha256 `269fb7fcc3573b814e94b05057c16b1d17767dabba20bf9790db8770067b1d7c`，静态资源 `/_ui/fe-r3-0dab41b/` |
-| 前端（回滚目标） | fe-r2-3097ff7 | sha256 `fa75539cb1082b4417560e11c0c11099a93b2299a0d7b512db385e9830990058` |
+| 前端（当前） | fe-r4-db3916f | 提交 db3916f928c8…，tar.gz sha256 `fb23d3dcf702cee82ac6a7aefb136939a00b8ca29cee561138c11ca847489274`，静态资源 `/_ui/fe-r4-db3916f/`，版本 `1.0.0+fe.db3916f928c8` |
+| 前端（回滚目标） | fe-r3-0dab41b | 提交 0dab41b8b090…，sha256 `269fb7fcc3573b814e94b05057c16b1d17767dabba20bf9790db8770067b1d7c` |
+| 前端（更早） | fe-r2-3097ff7 | sha256 `fa75539cb1082b4417560e11c0c11099a93b2299a0d7b512db385e9830990058` |
 | 前端（Flat 之前） | fe-r1-aade206 | sha256 `33529454fd418d45ec9967fe10cd6f0fbce583e4b3d78f75d00603477d0ee9a3` |
-| 后端（当前） | tauapi-be:a4231663776e | 镜像 `sha256:d5d09addfebb6395923d3443ea3a26430fc2e33891dfd177007bf8b650df8639`，版本 `0.0.0+be.a4231663776e` |
-| 后端（回滚目标） | tauapi-be:53c0e999057f | 镜像 `sha256:74cfee86d4c0d363c9d75108344c61b0f375e73c53acad2aa0a7eb9a51aff531` |
+| 后端（当前） | tauapi-be:db3916f928c8 | 镜像 `sha256:c1ac2e161a8cb433a84b6b523b1fde1832dc697488f31e5a34e7aaff98835b96`，版本 `1.0.0+be.db3916f928c8` |
+| 后端（回滚目标） | tauapi-be:a4231663776e | 镜像 `sha256:d5d09addfebb6395923d3443ea3a26430fc2e33891dfd177007bf8b650df8639`，版本 `0.0.0+be.a4231663776e` |
+| 后端（更早） | tauapi-be:53c0e999057f | 镜像 `sha256:74cfee86d4c0d363c9d75108344c61b0f375e73c53acad2aa0a7eb9a51aff531` |
 | PostgreSQL | postgres:16-bookworm@sha256:e8a07d2c…bd938 | 16.15 |
 | Redis | redis:7.4-bookworm@sha256:b6b6e3dc…882f5 | 7.4.12 |
 
-后端镜像为本地构建（无镜像仓库），因此没有仓库摘要（digest）；它们通过镜像 ID 加 `org.opencontainers.image.revision` 标签来标识。构建器和运行时基础镜像在 Dockerfile 中均按 digest 固定。上表中的已部署版本构建时 `VERSION` 为空，因此显示为 `0.0.0+be.<commit>` / `0.0.0+fe.<commit>`。从 2026-11-04 起 `tauapi-fe/VERSION`、`tauapi-be/VERSION` 记录 TauAPI 自己的语义化版本（当前 `1.0.0`），下次构建后显示为 `1.0.0+fe.<commit>` / `1.0.0+be.<commit>`。
+后端镜像为本地构建（无镜像仓库），因此没有仓库摘要（digest）；它们通过镜像 ID 加 `org.opencontainers.image.revision` 标签来标识。构建器和运行时基础镜像在 Dockerfile 中均按 digest 固定。`db3916f` 之前的版本构建时 `VERSION` 为空，因此显示为 `0.0.0+be.<commit>` / `0.0.0+fe.<commit>`。从 2026-11-04 起 `tauapi-fe/VERSION`、`tauapi-be/VERSION` 记录 TauAPI 自己的语义化版本（当前 `1.0.0`），显示为 `1.0.0+fe.<commit>` / `1.0.0+be.<commit>`。
 
 ## 4. Minimalist Flat
 
@@ -81,8 +83,9 @@ Internet ─▶ Nginx :80 (ACME + 301) / :443 (TLS, /etc/nginx/sites-available/t
 
 ```bash
 # Frontend
-scripts/build-frontend.sh --rev main --release-id fe-r4-<short>     # as tau; typecheck+test unless --skip-checks
-sudo scripts/deploy-frontend.sh fe-r4-<short>                        # validate, publish /_ui, atomic switch, verify, auto-restore on failure, tag
+PATH=$HOME/.local/toolchains/bun-linux-x64:$PATH \
+  scripts/build-frontend.sh --rev main --release-id fe-r5-<short>     # as tau; typecheck+test unless --skip-checks; bun 必须在 PATH 中
+sudo scripts/deploy-frontend.sh fe-r5-<short>                        # validate, publish /_ui, atomic switch, verify, auto-restore on failure, tag
 sudo scripts/rollback-frontend.sh [<release-id>]                     # no rebuild; default = previous release
 sudo scripts/prune-frontend.sh [--apply]                             # keeps newest 5 + <30 days + current + rollback target
 

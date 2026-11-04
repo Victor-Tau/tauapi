@@ -5,7 +5,7 @@ Updated: 2026-11-04 (UTC)
 Current phase: **complete** (P0–P9). Handoff: `HANDOFF.md`; acceptance: `evidence/ACCEPTANCE.md`.
 
 ## Live
-- https://api.victor-tau.xyz (public), frontend `fe-r3-0dab41b`, backend master+slave `tauapi-be:a4231663776e`
+- https://api.victor-tau.xyz (public), frontend `fe-r4-db3916f`, backend master+slave `tauapi-be:db3916f928c8` (both `1.0.0+…db3916f928c8`; rollback targets fe-r3-0dab41b / tauapi-be:a4231663776e)
 - public smoke 42/42; auth flow OK; backups daily (local only)
 
 ## Done
@@ -18,7 +18,8 @@ Current phase: **complete** (P0–P9). Handoff: `HANDOFF.md`; acceptance: `evide
 - P9 backup + isolated restore, timers, logrotate, boot unit, evidence, HANDOFF
 
 ## Pending (2026-11-04)
-- update check now targets `Victor-Tau/tauapi` releases by default, repository configurable in System maintenance (`SystemUpdateRepository`); VERSION=1.0.0 committed but not yet built/deployed (live still reports `0.0.0+…`). Needs: repo made public, rebuild+deploy fe/be, tag `v1.0.0` + GitHub Release. See DECISIONS #20, HANDOFF §8.1.
+- own release channel deployed (DECISIONS #20, HANDOFF §8.1); `Victor-Tau/tauapi` is public but has **no Releases yet** → admin sees "no newer version". Next: push tag `v1.0.0` to `github` and publish a Release (no credentials for the `github` remote on this host).
+- `build-frontend.sh` needs bun on PATH (typecheck calls `bun`); not yet fixed in the script.
 
 ## Open items (non-blocking, need user action)
 - off-site backup target · outbound UDP 123 for NTP · optional removal of `newapi_*` volumes · external integrations (provider keys, SMTP, OAuth, payment)

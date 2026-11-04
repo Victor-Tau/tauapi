@@ -4,30 +4,31 @@
   "site_mode": "live",
   "active_upstream": "both",
   "frontend": {
-    "current_release": "fe-r3-0dab41b",
-    "frontend_commit": "0dab41b8b090aadffb2a0eee7c07289ecd63c9f7",
+    "current_release": "fe-r4-db3916f",
+    "frontend_commit": "db3916f928c8780fbfc699a79ae45ca6456afe43",
     "upstream_commit": "ba5f7367797566175a6cd97a748d430af3602a01",
-    "asset_prefix": "/_ui/fe-r3-0dab41b/",
-    "artifact_sha256": "269fb7fcc3573b814e94b05057c16b1d17767dabba20bf9790db8770067b1d7c",
+    "asset_prefix": "/_ui/fe-r4-db3916f/",
+    "artifact_sha256": "fb23d3dcf702cee82ac6a7aefb136939a00b8ca29cee561138c11ca847489274",
     "published_releases": [
   "fe-r1-aade206",
   "fe-r2-3097ff7",
-  "fe-r3-0dab41b"
+  "fe-r3-0dab41b",
+  "fe-r4-db3916f"
 ]
   },
   "backend": {
-    "master": {"bind": "127.0.0.1:3001", "image": "tauapi-be:a4231663776e", "image_id": "sha256:d5d09addfebb6395923d3443ea3a26430fc2e33891dfd177007bf8b650df8639",
-               "commit": "a4231663776e4613a4d6552a785c0bf762594935"},
-    "slave":  {"bind": "127.0.0.1:3002", "image": "tauapi-be:a4231663776e", "image_id": "sha256:d5d09addfebb6395923d3443ea3a26430fc2e33891dfd177007bf8b650df8639",
-               "commit": "a4231663776e4613a4d6552a785c0bf762594935"},
+    "master": {"bind": "127.0.0.1:3001", "image": "tauapi-be:db3916f928c8", "image_id": "sha256:c1ac2e161a8cb433a84b6b523b1fde1832dc697488f31e5a34e7aaff98835b96",
+               "commit": "db3916f928c8780fbfc699a79ae45ca6456afe43"},
+    "slave":  {"bind": "127.0.0.1:3002", "image": "tauapi-be:db3916f928c8", "image_id": "sha256:c1ac2e161a8cb433a84b6b523b1fde1832dc697488f31e5a34e7aaff98835b96",
+               "commit": "db3916f928c8780fbfc699a79ae45ca6456afe43"},
     "last_release": {
-  "image": "tauapi-be:a4231663776e",
-  "image_id": "sha256:d5d09addfebb6395923d3443ea3a26430fc2e33891dfd177007bf8b650df8639",
-  "backend_commit": "a4231663776e4613a4d6552a785c0bf762594935",
-  "previous_image": "tauapi-be:53c0e999057f",
+  "image": "tauapi-be:db3916f928c8",
+  "image_id": "sha256:c1ac2e161a8cb433a84b6b523b1fde1832dc697488f31e5a34e7aaff98835b96",
+  "backend_commit": "db3916f928c8780fbfc699a79ae45ca6456afe43",
+  "previous_image": "tauapi-be:a4231663776e",
   "action": "deploy",
   "frontend_current_unchanged": true,
-  "at": "2026-11-04T10:23:25Z"
+  "at": "2026-11-04T17:16:19Z"
 }
   },
   "data": {
@@ -43,5 +44,5 @@
   },
   "nginx_version": "1.24.0 (Ubuntu)",
   "certificate_not_after": "Feb  2 06:22:25 2027 GMT",
-  "generated_at": "2026-11-04T12:36:12Z"
+  "generated_at": "2026-11-04T17:17:02Z"
 }
