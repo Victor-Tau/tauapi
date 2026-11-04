@@ -30,6 +30,7 @@
 | --- | --- |
 | [`map.md`](map.md) | 系统地图：架构、端点、文件树 |
 | [`tauapi-ops/HANDOFF.md`](tauapi-ops/HANDOFF.md) | 运维交接 |
+| [`tauapi-ops/docs/DEPLOYMENT.md`](tauapi-ops/docs/DEPLOYMENT.md) | 新服务器部署手册（面向 AI） |
 | [`AGENTS.md`](AGENTS.md) | AI 维护约定与文档语言规则 |
 | [`tauapi-fe/AGENTS.md`](tauapi-fe/AGENTS.md) | 前端规则（先读 `tauapi-fe/UPSTREAM_ROOT_AGENTS.md`） |
 | [`tauapi-be/AGENTS.md`](tauapi-be/AGENTS.md) | 后端规则 |
