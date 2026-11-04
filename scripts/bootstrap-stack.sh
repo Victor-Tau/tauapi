@@ -139,6 +139,13 @@ wait_status_ok "http://$MASTER_ADDR/api/status" 180 || die "backend-master not r
 log "backend-master ready on $MASTER_ADDR"
 
 if [[ $WITH_SLAVE == 1 ]]; then
+  # Upstream computes the setup state once at process start (constant.Setup).
+  # A slave started before admin initialisation keeps reporting
+  # status=false and makes the SPA bounce between / and /setup, so it may
+  # only start once the database is initialised.
+  if ! curl -fsS --max-time 5 "http://$MASTER_ADDR/api/setup" | jq -e '.data.status == true' >/dev/null; then
+    die "database not initialised yet: run bootstrap-admin.py, restart backend-master, then rerun with --with-slave" 3
+  fi
   compose up -d --no-deps backend-slave
   wait_status_ok "http://$SLAVE_ADDR/api/status" 180 || die "backend-slave not ready" 6
   log "backend-slave ready on $SLAVE_ADDR"

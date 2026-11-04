@@ -82,7 +82,8 @@ verify_instance() { # addr expected_image_id
   [[ $addr == "$MASTER_ADDR" ]] && svc=backend-master || svc=backend-slave
   cid=$(container_id "$svc")
   [[ $(docker inspect -f '{{.Image}}' "$cid") == "$want" ]] || { log "$svc runs unexpected image"; return 1; }
-  # real DB access through the app (setup state is read from the database)
+  # real DB access through the app (setup state is read from the database at
+  # start; a false value here means the instance must not receive traffic)
   curl -fsS --max-time 10 "http://$addr/api/setup" | jq -e '.data.status == true' >/dev/null || return 1
   curl -fsS --max-time 10 "http://$addr/api/status" | jq -e '.data.server_address == "'"$TAUAPI_ORIGIN"'"' >/dev/null || return 1
   # unknown API path must stay a JSON 404
