@@ -1,0 +1,13 @@
+/var/log/nginx/tauapi*.log {
+    daily
+    rotate 14
+    missingok
+    notifempty
+    compress
+    delaycompress
+    create 0640 www-data adm
+    sharedscripts
+    postrotate
+        if [ -f /var/run/nginx.pid ]; then kill -USR1 "$(cat /var/run/nginx.pid)"; fi
+    endscript
+}
