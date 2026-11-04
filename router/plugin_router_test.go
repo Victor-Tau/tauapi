@@ -185,7 +185,6 @@ func TestPluginSSEFlushesWithoutFallbackBuffering(t *testing.T) {
 		(&pluginRouteDispatcher{registry: registry}).dispatch,
 		middleware.RouteTag("web"),
 		gzip.Gzip(gzip.DefaultCompression),
-		middleware.Cache(),
 		func(c *gin.Context) { c.String(http.StatusOK, "fallback") },
 	)
 
@@ -228,7 +227,7 @@ func TestPluginRouteCanCutOffItsClientStream(t *testing.T) {
 	assert.ErrorIs(t, err, io.ErrUnexpectedEOF)
 }
 
-func TestWebCacheHeadersDoNotLeakOntoPluginRoutes(t *testing.T) {
+func TestFallbackNoStoreHeadersDoNotLeakOntoPluginRoutes(t *testing.T) {
 	plugin := compileRouterPlugin(t, "cache-owner", "1.0.0", `[
 		{method: "GET", path: "/vendor/status/:task_id", type: "query", render: "native"}
 	]`)
@@ -237,19 +236,16 @@ func TestWebCacheHeadersDoNotLeakOntoPluginRoutes(t *testing.T) {
 			c.JSON(http.StatusOK, gin.H{"status": "queued"})
 		},
 	))
-	outer.NoRoute(
-		(&pluginRouteDispatcher{registry: registry}).dispatch,
-		middleware.Cache(),
-		func(c *gin.Context) { c.String(http.StatusOK, "fallback") },
-	)
+	SetFallbackRouter(outer, (&pluginRouteDispatcher{registry: registry}).dispatch)
 
 	pluginResponse := performPluginRequest(outer, http.MethodGet, "/vendor/status/task-1")
+	assert.Equal(t, http.StatusOK, pluginResponse.Code)
+	assert.JSONEq(t, `{"status":"queued"}`, pluginResponse.Body.String())
 	assert.Empty(t, pluginResponse.Header().Get("Cache-Control"))
-	assert.Empty(t, pluginResponse.Header().Get("Cache-Version"))
 
 	fallbackResponse := performPluginRequest(outer, http.MethodGet, "/unknown")
-	assert.Equal(t, "max-age=604800", fallbackResponse.Header().Get("Cache-Control"))
-	assert.NotEmpty(t, fallbackResponse.Header().Get("Cache-Version"))
+	assert.Equal(t, http.StatusNotFound, fallbackResponse.Code)
+	assert.Contains(t, fallbackResponse.Header().Get("Cache-Control"), "no-store")
 }
 
 func TestPluginInnerContextImportsRequestMetadataAndTrustedProxyConfig(t *testing.T) {
@@ -1110,22 +1106,21 @@ func performPluginRequest(handler http.Handler, method, path string) *httptest.R
 	return recorder
 }
 
-func TestWebFallbackDoesNotCacheMissingAPIOrAssets(t *testing.T) {
+func TestAPIOnlyFallbackReturnsUncachedJSON404(t *testing.T) {
 	outer := gin.New()
-	SetWebRouter(outer, WebAssets{IndexPage: []byte("dashboard")}, func(c *gin.Context) { c.Next() })
-	for _, path := range []string{"/api/user/token/status", "/api/audit/self?p=1", "/v1/missing", "/assets/missing.js"} {
+	SetFallbackRouter(outer, func(c *gin.Context) { c.Next() })
+	// Former SPA pages and assets are no longer served by the backend: every
+	// unmatched path, including "/", is an uncached JSON 404 and never HTML.
+	for _, path := range []string{"/", "/security", "/dashboard", "/api/user/token/status", "/api/audit/self?p=1", "/v1/missing", "/assets/missing.js", "/_ui/r1/static/js/missing.js"} {
 		t.Run(path, func(t *testing.T) {
 			response := performPluginRequest(outer, http.MethodGet, path)
 			assert.Equal(t, http.StatusNotFound, response.Code)
+			assert.Contains(t, response.Header().Get("Content-Type"), "application/json")
 			assert.Contains(t, response.Body.String(), "Invalid URL")
 			assert.Contains(t, response.Header().Get("Cache-Control"), "no-store")
 			assert.NotContains(t, response.Header().Get("Cache-Control"), "604800")
 		})
 	}
-	page := performPluginRequest(outer, http.MethodGet, "/security")
-	assert.Equal(t, http.StatusOK, page.Code)
-	assert.Equal(t, "dashboard", page.Body.String())
-	assert.Equal(t, "no-cache", page.Header().Get("Cache-Control"))
 }
 
 func TestSecurityRoutesDisableCachingBeforeAuthentication(t *testing.T) {

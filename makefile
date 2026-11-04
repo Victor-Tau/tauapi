@@ -1,27 +1,27 @@
-WEB_DIR = ./web
-API_DIR = .
-DEV_WEB_PORT ?= 5173
+# API-only backend. The dashboard frontend is a separate repository with its
+# own build and release; nothing here builds or embeds web assets.
 DEV_COMPOSE_FILE = docker-compose.dev.yml
 DEV_POSTGRES_SERVICE = postgres
 DEV_API_SERVICE = new-api
 DEV_POSTGRES_DB = new-api
 DEV_POSTGRES_USER = root
 DEV_SQLITE_PATH ?= one-api.db
+# JavaScript task plugin tooling (moved from the former web/package.json).
+OXLINT_VERSION ?= 1.74.0
+OXFMT_VERSION ?= 0.72.0
+PLUGIN_TOOL ?= bunx
 
-.PHONY: all build-web build-all-web start-api dev dev-api dev-api-rebuild dev-web reset-setup test
+.PHONY: all build start-api dev-api dev-api-rebuild reset-setup test lint-plugins format-plugins format-plugins-check
 
-all: build-all-web start-api
+all: build
 
-build-web:
-	@echo "Building web frontend..."
-	@cd $(WEB_DIR) && bun install --frozen-lockfile
-	@cd $(WEB_DIR) && DISABLE_ESLINT_PLUGIN='true' VITE_REACT_APP_VERSION=$$(cat ../VERSION) bun run build
-
-build-all-web: build-web
+build:
+	@echo "Building API-only backend..."
+	@GOWORK=off go build -ldflags "-s -w -X 'github.com/QuantumNous/new-api/common.Version=$$(cat VERSION)'" -o new-api .
 
 start-api:
 	@echo "Starting api dev server..."
-	@cd $(API_DIR) && go run main.go &
+	@GOWORK=off go run . &
 
 dev-api:
 	@echo "Starting api services (docker)..."
@@ -31,24 +31,22 @@ dev-api-rebuild:
 	@echo "Rebuilding and starting api service (docker)..."
 	@docker compose -f $(DEV_COMPOSE_FILE) up -d --build $(DEV_API_SERVICE)
 
-dev-web:
-	@echo "Starting web frontend dev server..."
-	@echo "Web frontend: http://localhost:$(DEV_WEB_PORT)"
-	@cd $(WEB_DIR) && bun install
-	@cd $(WEB_DIR) && bun run dev -- --host 0.0.0.0 --port $(DEV_WEB_PORT)
-
-dev: dev-api dev-web
-
-# The main package embeds the ignored web/dist output and is covered after build-web.
 test:
 	@echo "Testing root Go module..."
-	@root_module=$$(GOWORK=off go list -m); \
-		root_packages=$$(GOWORK=off go list -e ./... | grep -vxF "$$root_module"); \
-		GOWORK=off go test $$root_packages
+	@GOWORK=off go test ./...
 	@echo "Testing relaykit Go module..."
 	@cd relaykit && GOWORK=off go test ./...
 	@echo "Testing tokenkit Go module..."
 	@cd tokenkit && GOWORK=off go test ./...
+
+lint-plugins:
+	@cd plugins && $(PLUGIN_TOOL) oxlint@$(OXLINT_VERSION) -c .oxlintrc.json .
+
+format-plugins:
+	@cd plugins && $(PLUGIN_TOOL) oxfmt@$(OXFMT_VERSION) -c .oxfmtrc.json --write .
+
+format-plugins-check:
+	@cd plugins && $(PLUGIN_TOOL) oxfmt@$(OXFMT_VERSION) -c .oxfmtrc.json --check .
 
 reset-setup:
 	@echo "Resetting local setup wizard state..."

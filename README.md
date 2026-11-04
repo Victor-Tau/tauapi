@@ -252,25 +252,17 @@ Pin an image version from [Releases](https://github.com/QuantumNous/new-api/rele
 
 The backend uses Go and Gin. The web console uses React 19, TypeScript, Rsbuild, TanStack, and Tailwind CSS 4. Use Bun for frontend dependencies and scripts; see [go.mod](./go.mod) for the Go language baseline and [Dockerfile](./Dockerfile) for the container build toolchain.
 
-Build the frontend before starting the backend, which embeds `web/dist`:
+This repository is the API-only backend split from upstream (see [REPOSITORY_SPLIT.md](./REPOSITORY_SPLIT.md)). It builds without any frontend sources or Bun/Node:
 
 ```bash
-# Repository root
-cd web
-bun install --frozen-lockfile
-bun run build
-cd ..
+go build .
+go test ./...
 go run .
 ```
 
-In a second terminal, start the frontend development server:
+The web console lives in the separate frontend repository; run its development server there (`bun run dev`).
 
-```bash
-cd web
-bun run dev -- --port 5173
-```
-
-Open [http://localhost:5173](http://localhost:5173); the development server proxies API requests to the backend on port 3000. For a containerized development backend, see [docker-compose.dev.yml](./docker-compose.dev.yml) and the `make dev` target in [makefile](./makefile).
+The frontend development server proxies API requests to the backend on port 3000. For a containerized development backend, see [docker-compose.dev.yml](./docker-compose.dev.yml) and the `make dev-api` target in [makefile](./makefile).
 
 | Location | Responsibility |
 | --- | --- |

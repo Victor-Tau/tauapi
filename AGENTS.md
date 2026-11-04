@@ -2,6 +2,13 @@
 
 DO NOT send optional commentary
 
+## Repository split note
+
+This checkout is the API-only backend split from upstream (see `REPOSITORY_SPLIT.md`).
+`web/` and `electron/` are not part of this repository; the frontend is an
+independent repository that keeps `web/AGENTS.md` as its `AGENTS.md`. The rules
+below are kept verbatim; frontend rules apply in that repository.
+
 ## Overview
 
 This is an AI API gateway/proxy built with Go. It aggregates 40+ upstream AI providers (OpenAI, Claude, Gemini, Azure, AWS Bedrock, etc.) behind a unified API, with user management, billing, rate limiting, and an admin dashboard.
