@@ -78,6 +78,14 @@ GIN_MODE=release
 ENABLE_PPROF=false
 DEFAULT_LANGUAGE=en
 EOF
+  if [[ $TAUAPI_ENV == qa ]]; then
+    # QA only: automated browser review performs hundreds of full page loads
+    # (each bootstraps /api/user/auth/refresh) and repeated logins from
+    # 127.0.0.1. Production keeps the upstream defaults (20 per 20 min).
+    echo "CRITICAL_RATE_LIMIT=100000"
+    echo "GLOBAL_WEB_RATE_LIMIT=100000"
+    echo "GLOBAL_API_RATE_LIMIT=100000"
+  fi
 } > "$SECRET_ROOT/.backend.env.tmp"
 chmod 0600 "$SECRET_ROOT/.backend.env.tmp"
 mv -f "$SECRET_ROOT/.backend.env.tmp" "$SECRET_ROOT/backend.env"

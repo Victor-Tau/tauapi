@@ -9,8 +9,9 @@ import path from 'node:path'
 
 const [pwDir, invPath, outDir, origin, filter] = process.argv.slice(2)
 const { chromium } = await import(path.join(pwDir, 'index.mjs'))
+const filters = (filter || '').split(',').filter(Boolean)
 const inventory = JSON.parse(fs.readFileSync(invPath, 'utf8')).filter(
-  (r) => !filter || r.id.includes(filter)
+  (r) => filters.length === 0 || filters.some((f) => r.id.startsWith(f))
 )
 fs.mkdirSync(outDir, { recursive: true })
 
@@ -50,8 +51,12 @@ async function ctxFor(role, theme, vp) {
       localStorage.setItem('i18nextLng', 'en')
     } catch {}
   }, theme)
-  if (role === 'admin') await login(context, process.env.QA_ADMIN_USER, process.env.QA_ADMIN_PASS)
-  if (role === 'user') await login(context, process.env.QA_USER, process.env.QA_USER_PASS)
+  try {
+    if (role === 'admin' || role === 'root') await login(context, process.env.QA_ADMIN_USER, process.env.QA_ADMIN_PASS)
+    if (role === 'user') await login(context, process.env.QA_USER, process.env.QA_USER_PASS)
+  } catch (e) {
+    console.error(`login failed for ${role}: ${String(e.message).slice(0, 120)}`)
+  }
   contexts[key] = context
   return context
 }

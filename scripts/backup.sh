@@ -39,7 +39,7 @@ for repo in tauapi-fe tauapi-be tauapi-ops; do
   src=/var/lib/tauapi/git/$repo.git
   [[ -d $src ]] || continue
   b=$GIT_DIR_B/$repo-$STAMP.bundle
-  git -C "$src" bundle create "$b" --all >/dev/null 2>&1 && git bundle verify "$b" >/dev/null 2>&1 \
+  git -C "$src" bundle create "$b" --all >/dev/null 2>&1 && git -C "$src" bundle verify "$b" >/dev/null 2>&1 \
     || { rm -f "$b"; log "WARNING: bundle for $repo failed"; continue; }
 done
 # Release manifests and non-secret ops state.
