@@ -1,11 +1,5 @@
 # TauAPI
 
-[QuantumNous/new-api](https://github.com/QuantumNous/new-api) 的**前后端分离**二次开发发行版，以单一仓库形式便于分发。
-
-- 固定上游版本：`ba5f7367797566175a6cd97a748d430af3602a01`
-- New API / QuantumNous 的品牌、许可证和署名均已保留（见各部分的 LICENSE / NOTICE）
-- 线上站点：<https://api.victor-tau.xyz>
-
 ## 目录结构
 
 | 目录 | 内容 | 构建命令 | 发布单元 |
