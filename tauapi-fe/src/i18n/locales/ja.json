@@ -7374,6 +7374,10 @@
     "Zhipu GLM": "Zhipu GLM",
     "Zhipu V4": "Zhipu V 4",
     "Zoom": "ズーム",
-    "A new version is available. Refresh when convenient.": "新しいバージョンが利用可能です。都合のよいときに再読み込みしてください。"
+    "A new version is available. Refresh when convenient.": "新しいバージョンが利用可能です。都合のよいときに再読み込みしてください。",
+    "Release source": "リリース元",
+    "Update source repository": "更新元リポジトリ",
+    "Public GitHub repository whose Releases are checked for updates (owner/repo or GitHub URL). Leave empty to use {{repository}}.": "更新確認に使う公開 GitHub リポジトリの Releases（owner/repo または GitHub URL）。空欄の場合は {{repository}} を使用します。",
+    "Enter a GitHub repository as owner/repo or https://github.com/owner/repo": "GitHub リポジトリを owner/repo または https://github.com/owner/repo の形式で入力してください"
   }
 }

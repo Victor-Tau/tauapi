@@ -137,7 +137,7 @@ describe('administrator update entry', () => {
       expect(fetchMock).toHaveBeenCalledTimes(1)
       const [url, options] = fetchMock.mock.calls[0]
       expect(String(url)).toBe(
-        'https://api.github.com/repos/QuantumNous/new-api/releases?per_page=100'
+        'https://api.github.com/repos/Victor-Tau/tauapi/releases?per_page=100'
       )
       expect(options?.credentials).toBe('omit')
       expect(options?.headers).toEqual({
@@ -190,7 +190,7 @@ describe('administrator update entry', () => {
       within(dialog).getByRole('link', { name: 'Go to GitHub' })
     ).toHaveAttribute(
       'href',
-      'https://github.com/QuantumNous/new-api/releases/tag/v1.0.0-rc.36'
+      'https://github.com/Victor-Tau/tauapi/releases/tag/v1.0.0-rc.36'
     )
     await user.keyboard('{Escape}')
     await waitFor(() =>
@@ -337,6 +337,7 @@ describe('administrator update entry', () => {
     const user = userEvent.setup()
     const oldCheck = Date.now() - SYSTEM_UPDATE_INTERVAL - 1
     useSystemUpdateStore.getState().setSnapshot({
+      repository: 'Victor-Tau/tauapi',
       release,
       lastCheckedAt: oldCheck,
       lastAttemptAt: oldCheck,
@@ -631,10 +632,10 @@ describe('update cache and scheduling', () => {
     await waitFor(() => expect(first.result.current.hasUpdate).toBe(true))
     first.unmount()
     client.clear()
-    const saved = localStorage.getItem('system-update:v1')
+    const saved = localStorage.getItem('system-update:v2')
     expect(saved).not.toBeNull()
     useSystemUpdateStore.setState({ snapshot: null })
-    localStorage.setItem('system-update:v1', String(saved))
+    localStorage.setItem('system-update:v2', String(saved))
     await useSystemUpdateStore.persist.rehydrate()
     client = createAppQueryClient()
     client.setQueryData(STATUS_QUERY_KEY, { version: 'v1.0.0-rc.35' })
@@ -643,18 +644,45 @@ describe('update cache and scheduling', () => {
     expect(fetchMock).toHaveBeenCalledTimes(1)
   })
 
+  test('checks the repository configured in system maintenance and ignores snapshots from another source', async () => {
+    useSystemUpdateStore.getState().setSnapshot({
+      repository: 'Victor-Tau/tauapi',
+      release: { ...release, tag_name: 'v9.9.9' },
+      lastCheckedAt: Date.now(),
+      lastAttemptAt: Date.now(),
+      error: null,
+    })
+    client.setQueryData(STATUS_QUERY_KEY, {
+      version: 'v1.0.0-rc.35',
+      system_update_repository: 'acme/fork',
+    })
+    const hook = renderHook(useSystemUpdate, { wrapper: Wrapper })
+    await waitFor(() =>
+      expect(hook.result.current.release?.tag_name).toBe(release.tag_name)
+    )
+    expect(hook.result.current.repository).toBe('acme/fork')
+    expect(fetchMock).toHaveBeenCalledTimes(1)
+    expect(String(fetchMock.mock.calls[0][0])).toBe(
+      'https://api.github.com/repos/acme/fork/releases?per_page=100'
+    )
+    expect(useSystemUpdateStore.getState().snapshot?.repository).toBe(
+      'acme/fork'
+    )
+  })
+
   test.each(['corrupt', 'blocked', 'future'])(
     'keeps checking when persisted storage is %s',
     async (state) => {
       if (state === 'corrupt') {
-        localStorage.setItem('system-update:v1', '{bad json')
+        localStorage.setItem('system-update:v2', '{bad json')
         await useSystemUpdateStore.persist.rehydrate()
       } else if (state === 'future') {
         localStorage.setItem(
-          'system-update:v1',
+          'system-update:v2',
           JSON.stringify({
             state: {
               snapshot: {
+                repository: 'Victor-Tau/tauapi',
                 release,
                 lastCheckedAt: 0,
                 lastAttemptAt: Date.now() + 86_400_000,

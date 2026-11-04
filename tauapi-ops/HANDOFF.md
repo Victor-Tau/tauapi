@@ -38,7 +38,7 @@
 | PostgreSQL | postgres:16-bookworm@sha256:e8a07d2c…bd938 | 16.15 |
 | Redis | redis:7.4-bookworm@sha256:b6b6e3dc…882f5 | 7.4.12 |
 
-后端镜像为本地构建（无镜像仓库），因此没有仓库摘要（digest）；它们通过镜像 ID 加 `org.opencontainers.image.revision` 标签来标识。构建器和运行时基础镜像在 Dockerfile 中均按 digest 固定。在此 SHA 下上游 `VERSION` 为空，因此应用版本显示为 `0.0.0+be.<commit>` / `0.0.0+fe.<commit>`。
+后端镜像为本地构建（无镜像仓库），因此没有仓库摘要（digest）；它们通过镜像 ID 加 `org.opencontainers.image.revision` 标签来标识。构建器和运行时基础镜像在 Dockerfile 中均按 digest 固定。上表中的已部署版本构建时 `VERSION` 为空，因此显示为 `0.0.0+be.<commit>` / `0.0.0+fe.<commit>`。从 2026-11-04 起 `tauapi-fe/VERSION`、`tauapi-be/VERSION` 记录 TauAPI 自己的语义化版本（当前 `1.0.0`），下次构建后显示为 `1.0.0+fe.<commit>` / `1.0.0+be.<commit>`。
 
 ## 4. Minimalist Flat
 
@@ -111,6 +111,22 @@ sudo scripts/set-site-mode.sh maintenance|live                       # maintenan
   - schema、认证和插件审查；
   - 如果 `src/routes` 有变化，则刷新 `ROUTE_CONTRACT.json`。
 - 没有任何定时器会自动拉取上游。
+- 上游合并时如果 `VERSION` 冲突，始终保留我们自己的版本号（上游版本只记录在 `UPSTREAM.json` / `UPSTREAM_LOCK.json`）。
+
+## 8.1 系统更新检查（TauAPI 自己的 Releases）
+
+管理员看到的"系统更新"会在浏览器端请求 `https://api.github.com/repos/<仓库>/releases`（每小时一次），不再查询官方 QuantumNous/new-api。
+
+- 目标仓库可在 **系统设置 → 运维 → 系统维护 →"更新源仓库"** 中手动指定，可以填 `owner/repo` 或 `https://github.com/owner/repo`，保存后立即生效（后端选项 `SystemUpdateRepository`，通过 `/api/status` 的 `system_update_repository` 下发）。
+- 留空时默认使用 `Victor-Tau/tauapi`。
+- 目标仓库必须是**公开的**，否则会显示检查失败。
+
+发布新版本的步骤：
+1. 同时修改 `tauapi-fe/VERSION` 和 `tauapi-be/VERSION`（如 `1.1.0`），提交到 main。
+2. 按第 7 节构建并部署。
+3. 打 tag `v1.1.0`，推送到 `github` remote，在 GitHub 上基于该 tag 发布 Release（不要保持草稿；预发布用 `v1.1.0-rc.1`）。
+
+版本比较规则：tag 必须形如 `v主.次.修订[-alpha|beta|rc|patch[.N]]`，其他 tag（例如 `release/*`、`upstream/*`）会被忽略；比较对象是后端 `/api/status` 返回的版本号。
 
 ## 9. TLS、日志、备份、恢复
 

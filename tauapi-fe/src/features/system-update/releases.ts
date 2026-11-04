@@ -18,6 +18,60 @@ For commercial licensing, please contact support@quantumnous.com
 */
 import { z } from 'zod'
 
+/**
+ * TauAPI publishes its own releases; the upstream New API feed is not used.
+ * Administrators can point the check at another repository in
+ * System settings → Maintenance (option `SystemUpdateRepository`, exposed as
+ * `system_update_repository` by /api/status).
+ */
+export const DEFAULT_SYSTEM_RELEASE_REPOSITORY = 'Victor-Tau/tauapi'
+
+const githubRepositoryPattern =
+  /^[A-Za-z0-9][A-Za-z0-9-]{0,38}\/[A-Za-z0-9._-]{1,100}$/
+
+/** Mirrors backend NormalizeSystemUpdateRepository: owner/repo or a github.com URL. */
+export function normalizeSystemReleaseRepository(
+  value: string | null | undefined
+): string | null {
+  let v = value?.trim() ?? ''
+  if (!v) return ''
+  const lower = v.toLowerCase()
+  for (const prefix of [
+    'https://github.com/',
+    'http://github.com/',
+    'https://www.github.com/',
+    'github.com/',
+    'git@github.com:',
+  ]) {
+    if (lower.startsWith(prefix)) {
+      const parts = v
+        .slice(prefix.length)
+        .replaceAll(/^\/+|\/+$/g, '')
+        .split('/')
+      if (parts.length < 2) return null
+      v = `${parts[0]}/${parts[1]}`
+      break
+    }
+  }
+  v = v.replaceAll(/^\/+|\/+$/g, '').replace(/\.git$/, '')
+  if (!githubRepositoryPattern.test(v)) return null
+  const repo = v.slice(v.indexOf('/') + 1)
+  if (repo === '.' || repo === '..') return null
+  return v
+}
+
+export function resolveSystemReleaseRepository(
+  value: string | null | undefined
+): string {
+  return (
+    normalizeSystemReleaseRepository(value) || DEFAULT_SYSTEM_RELEASE_REPOSITORY
+  )
+}
+
+export function getSystemReleasesApiUrl(repository: string): string {
+  return `https://api.github.com/repos/${repository}/releases?per_page=100`
+}
+
 export const systemReleaseSchema = z.object({
   tag_name: z.string().trim().min(1),
   name: z.string().nullable().optional(),
@@ -110,6 +164,9 @@ export function selectLatestRelease(payload: unknown): SystemRelease | null {
   return latest
 }
 
-export function getSystemReleaseUrl(release: SystemRelease): string {
-  return `https://github.com/QuantumNous/new-api/releases/tag/${encodeURIComponent(release.tag_name)}`
+export function getSystemReleaseUrl(
+  release: SystemRelease,
+  repository: string
+): string {
+  return `https://github.com/${repository}/releases/tag/${encodeURIComponent(release.tag_name)}`
 }

@@ -18,7 +18,14 @@ For commercial licensing, please contact support@quantumnous.com
 */
 import { describe, expect, test } from 'vitest'
 
-import { compareSystemVersions, selectLatestRelease } from '../releases'
+import {
+  compareSystemVersions,
+  DEFAULT_SYSTEM_RELEASE_REPOSITORY,
+  getSystemReleaseUrl,
+  normalizeSystemReleaseRepository,
+  resolveSystemReleaseRepository,
+  selectLatestRelease,
+} from '../releases'
 
 describe('system release ordering', () => {
   test.each([
@@ -69,5 +76,43 @@ describe('system release ordering', () => {
   test('rejects malformed payloads instead of reporting that the system is current', () => {
     expect(() => selectLatestRelease({ message: 'bad response' })).toThrow()
     expect(() => selectLatestRelease([{ tag_name: 42 }])).toThrow()
+  })
+})
+
+describe('system release repository', () => {
+  test.each([
+    ['', ''],
+    ['  Victor-Tau/tauapi ', 'Victor-Tau/tauapi'],
+    ['https://github.com/acme/fork.git', 'acme/fork'],
+    ['https://github.com/acme/fork/releases/tag/v1.0.0', 'acme/fork'],
+    ['git@github.com:acme/fork.git', 'acme/fork'],
+  ])('normalizes %j', (input, expected) => {
+    expect(normalizeSystemReleaseRepository(input)).toBe(expected)
+  })
+
+  test.each([
+    'acme',
+    'a/b/c',
+    'https://gitlab.com/a/b',
+    '-a/b',
+    'a/..',
+    'https://github.com/a',
+  ])('rejects %j', (input) => {
+    expect(normalizeSystemReleaseRepository(input)).toBeNull()
+  })
+
+  test('falls back to the TauAPI repository and builds URLs from the source', () => {
+    expect(resolveSystemReleaseRepository(undefined)).toBe(
+      DEFAULT_SYSTEM_RELEASE_REPOSITORY
+    )
+    expect(resolveSystemReleaseRepository('not a repo')).toBe(
+      DEFAULT_SYSTEM_RELEASE_REPOSITORY
+    )
+    expect(
+      getSystemReleaseUrl(
+        { tag_name: 'v1.0.0', prerelease: false },
+        'acme/fork'
+      )
+    ).toBe('https://github.com/acme/fork/releases/tag/v1.0.0')
   })
 })

@@ -7374,6 +7374,10 @@
     "Zhipu GLM": "Zhipu GLM",
     "Zhipu V4": "Zhipu V4",
     "Zoom": "Zoom",
-    "A new version is available. Refresh when convenient.": "Une nouvelle version est disponible. Actualisez quand cela vous convient."
+    "A new version is available. Refresh when convenient.": "Une nouvelle version est disponible. Actualisez quand cela vous convient.",
+    "Release source": "Source des versions",
+    "Update source repository": "Dépôt source des mises à jour",
+    "Public GitHub repository whose Releases are checked for updates (owner/repo or GitHub URL). Leave empty to use {{repository}}.": "Dépôt GitHub public dont les Releases sont consultées pour les mises à jour (owner/repo ou URL GitHub). Laisser vide pour utiliser {{repository}}.",
+    "Enter a GitHub repository as owner/repo or https://github.com/owner/repo": "Saisissez un dépôt GitHub au format owner/repo ou https://github.com/owner/repo"
   }
 }

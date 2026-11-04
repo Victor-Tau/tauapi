@@ -17,6 +17,9 @@ Current phase: **complete** (P0–P9). Handoff: `HANDOFF.md`; acceptance: `evide
 - P8 frontend deploy/rollback/old-tab/notice; backend rolling deploy/rollback (QA with SSE/WS, prod probe 0 failures), WS boundary pause
 - P9 backup + isolated restore, timers, logrotate, boot unit, evidence, HANDOFF
 
+## Pending (2026-11-04)
+- update check now targets `Victor-Tau/tauapi` releases by default, repository configurable in System maintenance (`SystemUpdateRepository`); VERSION=1.0.0 committed but not yet built/deployed (live still reports `0.0.0+…`). Needs: repo made public, rebuild+deploy fe/be, tag `v1.0.0` + GitHub Release. See DECISIONS #20, HANDOFF §8.1.
+
 ## Open items (non-blocking, need user action)
 - off-site backup target · outbound UDP 123 for NTP · optional removal of `newapi_*` volumes · external integrations (provider keys, SMTP, OAuth, payment)
 

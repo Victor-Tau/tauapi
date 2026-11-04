@@ -28,6 +28,7 @@ import { systemReleaseSchema } from './releases'
 
 const updateSnapshotSchema = z
   .object({
+    repository: z.string().min(1),
     release: systemReleaseSchema.nullable(),
     lastCheckedAt: z.number().finite().nonnegative(),
     lastAttemptAt: z.number().finite().nonnegative(),
@@ -78,7 +79,7 @@ export const useSystemUpdateStore = create<SystemUpdateStore>()(
       setSnapshot: (snapshot) => set({ snapshot }),
     }),
     {
-      name: 'system-update:v1',
+      name: 'system-update:v2',
       storage: createJSONStorage(() => updateStorage),
       partialize: (state) => ({ snapshot: state.snapshot }),
       merge: (persisted, current) => {

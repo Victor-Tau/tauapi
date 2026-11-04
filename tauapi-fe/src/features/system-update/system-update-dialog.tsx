@@ -50,7 +50,9 @@ export function SystemUpdateDialog(props: SystemUpdateDialogProps) {
   const update = props.update
   const release = update.release
   const snapshot = update.snapshot
-  const releaseUrl = release ? getSystemReleaseUrl(release) : null
+  const releaseUrl = release
+    ? getSystemReleaseUrl(release, update.repository)
+    : null
   const isPrerelease =
     release &&
     (release.prerelease ||
@@ -124,6 +126,10 @@ export function SystemUpdateDialog(props: SystemUpdateDialogProps) {
       }
     >
       <dl className='grid min-w-0 gap-3 text-sm sm:grid-cols-2'>
+        <div className='min-w-0 sm:col-span-2'>
+          <dt className='text-muted-foreground'>{t('Release source')}</dt>
+          <dd className='font-medium break-all'>{update.repository}</dd>
+        </div>
         <div className='min-w-0'>
           <dt className='text-muted-foreground'>{t('Current version')}</dt>
           <dd className='font-medium break-all'>

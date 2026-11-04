@@ -7374,6 +7374,10 @@
     "Zhipu GLM": "智譜GLM",
     "Zhipu V4": "智譜 V4",
     "Zoom": "縮放",
-    "A new version is available. Refresh when convenient.": "有新版本可用，請在方便時重新整理頁面。"
+    "A new version is available. Refresh when convenient.": "有新版本可用，請在方便時重新整理頁面。",
+    "Release source": "發佈來源",
+    "Update source repository": "更新來源儲存庫",
+    "Public GitHub repository whose Releases are checked for updates (owner/repo or GitHub URL). Leave empty to use {{repository}}.": "檢查更新時讀取此公開 GitHub 儲存庫的 Releases（填寫 owner/repo 或 GitHub 網址）。留空則使用 {{repository}}。",
+    "Enter a GitHub repository as owner/repo or https://github.com/owner/repo": "請輸入 GitHub 儲存庫，格式為 owner/repo 或 https://github.com/owner/repo"
   }
 }

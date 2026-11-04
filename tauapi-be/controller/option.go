@@ -211,6 +211,14 @@ func UpdateOption(c *gin.Context) {
 			return
 		}
 	}
+	if option.Key == common.SystemUpdateRepositoryOptionKey {
+		repo, err := common.NormalizeSystemUpdateRepository(option.Value.(string))
+		if err != nil {
+			common.ApiErrorT(c, "Enter a GitHub repository as owner/repo or https://github.com/owner/repo")
+			return
+		}
+		option.Value = repo
+	}
 	if option.Key == "TaskPublicAddress" && option.Value.(string) != "" {
 		if err := service.ValidateTaskArtifactBaseURL(option.Value.(string)); err != nil {
 			common.ApiError(c, err)

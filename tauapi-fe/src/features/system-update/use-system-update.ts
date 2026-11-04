@@ -38,7 +38,10 @@ import {
   UpdateCheckError,
   type UpdateCheckErrorCode,
 } from './api'
-import { compareSystemVersions } from './releases'
+import {
+  compareSystemVersions,
+  resolveSystemReleaseRepository,
+} from './releases'
 import {
   subscribeSystemUpdatePreferences,
   useSystemUpdatePreferencesStore,
@@ -65,58 +68,67 @@ export function getUpdateErrorMessage(
   }
 }
 
-export const systemUpdateQueryOptions = queryOptions({
-  queryKey: SYSTEM_UPDATE_QUERY_KEY,
-  queryFn: async ({ signal, client }): Promise<SystemUpdateSnapshot> => {
-    // Refresh the running server version too, so an open tab notices upgrades.
-    void client
-      .fetchQuery({ ...statusQueryOptions, meta: { errorToast: false } })
-      .catch(() => undefined)
-    let snapshot: SystemUpdateSnapshot
-    try {
-      const release = await fetchLatestSystemRelease(signal)
-      signal.throwIfAborted()
-      const now = Date.now()
-      snapshot = {
-        release,
-        lastCheckedAt: now,
-        lastAttemptAt: now,
-        error: null,
+export function systemUpdateQueryOptions(repository: string) {
+  return queryOptions({
+    queryKey: [...SYSTEM_UPDATE_QUERY_KEY, repository] as const,
+    queryFn: async ({ signal, client }): Promise<SystemUpdateSnapshot> => {
+      // Refresh the running server version too, so an open tab notices upgrades.
+      void client
+        .fetchQuery({ ...statusQueryOptions, meta: { errorToast: false } })
+        .catch(() => undefined)
+      let snapshot: SystemUpdateSnapshot
+      try {
+        const release = await fetchLatestSystemRelease(repository, signal)
+        signal.throwIfAborted()
+        const now = Date.now()
+        snapshot = {
+          repository,
+          release,
+          lastCheckedAt: now,
+          lastAttemptAt: now,
+          error: null,
+        }
+      } catch (error) {
+        if (signal.aborted) throw error
+        const previous = readSnapshot(repository)
+        // A failed attempt is also cached, so focus changes and remounts cannot
+        // hammer GitHub while it is unavailable or rate limiting this browser.
+        snapshot = {
+          repository,
+          release: previous?.release ?? null,
+          lastCheckedAt: previous?.lastCheckedAt ?? 0,
+          lastAttemptAt: Date.now(),
+          error: error instanceof UpdateCheckError ? error.code : 'network',
+        }
       }
-    } catch (error) {
-      if (signal.aborted) throw error
-      const previous = useSystemUpdateStore.getState().snapshot
-      // A failed attempt is also cached, so focus changes and remounts cannot
-      // hammer GitHub while it is unavailable or rate limiting this browser.
-      snapshot = {
-        release: previous?.release ?? null,
-        lastCheckedAt: previous?.lastCheckedAt ?? 0,
-        lastAttemptAt: Date.now(),
-        error: error instanceof UpdateCheckError ? error.code : 'network',
-      }
-    }
-    useSystemUpdateStore.getState().setSnapshot(snapshot)
-    return snapshot
-  },
-  initialData: () => useSystemUpdateStore.getState().snapshot ?? undefined,
-  initialDataUpdatedAt: () =>
-    useSystemUpdateStore.getState().snapshot?.lastAttemptAt,
-  staleTime: SYSTEM_UPDATE_INTERVAL,
-  gcTime: 24 * SYSTEM_UPDATE_INTERVAL,
-  retry: false,
-  meta: { errorToast: false },
-  refetchOnWindowFocus: true,
-  refetchOnReconnect: true,
-  refetchIntervalInBackground: false,
-  refetchInterval: (query) => {
-    if (query.state.fetchStatus === 'fetching') return false
-    return Math.max(
-      1_000,
-      SYSTEM_UPDATE_INTERVAL -
-        (Date.now() - (query.state.data?.lastAttemptAt ?? 0))
-    )
-  },
-})
+      useSystemUpdateStore.getState().setSnapshot(snapshot)
+      return snapshot
+    },
+    initialData: () => readSnapshot(repository) ?? undefined,
+    initialDataUpdatedAt: () => readSnapshot(repository)?.lastAttemptAt,
+    staleTime: SYSTEM_UPDATE_INTERVAL,
+    gcTime: 24 * SYSTEM_UPDATE_INTERVAL,
+    retry: false,
+    meta: { errorToast: false },
+    refetchOnWindowFocus: true,
+    refetchOnReconnect: true,
+    refetchIntervalInBackground: false,
+    refetchInterval: (query) => {
+      if (query.state.fetchStatus === 'fetching') return false
+      return Math.max(
+        1_000,
+        SYSTEM_UPDATE_INTERVAL -
+          (Date.now() - (query.state.data?.lastAttemptAt ?? 0))
+      )
+    },
+  })
+}
+
+/** The persisted snapshot only counts for the repository it was fetched from. */
+function readSnapshot(repository: string): SystemUpdateSnapshot | null {
+  const snapshot = useSystemUpdateStore.getState().snapshot
+  return snapshot?.repository === repository ? snapshot : null
+}
 
 function isPageVisible(): boolean {
   return focusManager.isFocused()
@@ -136,9 +148,12 @@ export function useSystemUpdate() {
   const visible = useSyncExternalStore(focusManager.subscribe, isPageVisible)
   const online = useSyncExternalStore(onlineManager.subscribe, isBrowserOnline)
   const { status } = useStatus()
+  const repository = resolveSystemReleaseRepository(
+    status?.system_update_repository as string | undefined
+  )
   const queryClient = useQueryClient()
   const query = useQuery({
-    ...systemUpdateQueryOptions,
+    ...systemUpdateQueryOptions(repository),
     enabled: isAdmin && visible && online,
   })
 
@@ -182,6 +197,7 @@ export function useSystemUpdate() {
   }
 
   return {
+    repository,
     currentVersion,
     release,
     comparison,

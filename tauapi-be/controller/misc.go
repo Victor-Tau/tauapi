@@ -105,6 +105,8 @@ func GetStatus(c *gin.Context) {
 		"faq_enabled":           cs.FAQEnabled,
 
 		// 模块管理配置
+		"system_update_repository": common.EffectiveSystemUpdateRepository(common.OptionMap[common.SystemUpdateRepositoryOptionKey]),
+
 		"HeaderNavModules":    common.OptionMap["HeaderNavModules"],
 		"SidebarModulesAdmin": common.OptionMap["SidebarModulesAdmin"],
 

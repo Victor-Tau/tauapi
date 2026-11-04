@@ -7374,6 +7374,10 @@
     "Zhipu GLM": "Zhipu GLM",
     "Zhipu V4": "Zhipu V4",
     "Zoom": "Zoom",
-    "A new version is available. Refresh when convenient.": "A new version is available. Refresh when convenient."
+    "A new version is available. Refresh when convenient.": "A new version is available. Refresh when convenient.",
+    "Release source": "Release source",
+    "Update source repository": "Update source repository",
+    "Public GitHub repository whose Releases are checked for updates (owner/repo or GitHub URL). Leave empty to use {{repository}}.": "Public GitHub repository whose Releases are checked for updates (owner/repo or GitHub URL). Leave empty to use {{repository}}.",
+    "Enter a GitHub repository as owner/repo or https://github.com/owner/repo": "Enter a GitHub repository as owner/repo or https://github.com/owner/repo"
   }
 }
