@@ -17,7 +17,7 @@ Upstream: QuantumNous/new-api `ba5f7367797566175a6cd97a748d430af3602a01` (verifi
 | Remote | `origin` → `/var/lib/tauapi/git/tauapi.git` (bare, branch `main`) |
 | Branches | `main` (all customisations); `vendor/upstream-fe`, `vendor/upstream-be` (raw upstream imports in split layout) |
 | Tags | `upstream/fe-ba5f73677975`, `upstream/be-ba5f73677975`, `release/fe-r1-aade206`, `release/fe-r2-3097ff7`, `release/fe-r3-0dab41b`, `release/be-53c0e999057f`, `release/be-a4231663776e` |
-| History | the three former repos were merged as subtrees with full history (`git log -- tauapi-fe/` etc. still works; `git log --follow` across the move is not needed because each part keeps its own path prefix from the merge commit on) |
+| History | all commits of the three former repos are kept (subtree merges `41da14a` fe, `dec55a4` be, `3cad3d6` ops). Before those merges files lived at the old repo root, so `git log -- tauapi-fe/<file>` stops at the merge; for older history use the merge's second parent with the old path, e.g. `git log 41da14a^2 -- src/styles/theme.css` (fe), `git log dec55a4^2 -- router/main.go` (be) |
 | Archive of the split era | `/var/lib/tauapi/git/archive-split-20261104/tauapi-{fe,be,ops}.bundle` (verified); the old bare remotes `tauapi-{fe,be,ops}.git` are kept unused |
 
 - Frontend and backend remain **separate build/release units**: `build-frontend.sh` / `build-backend.sh` export only `main:tauapi-fe` / `main:tauapi-be` with `git archive`, so neither build sees the other directory. Release IDs carry the monorepo commit.
