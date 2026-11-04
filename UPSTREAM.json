@@ -1,0 +1,58 @@
+{
+  "contract_fixtures": {
+    "pkg/billingexpr/testdata/frontend_simulation.json": {
+      "backend_path": "pkg/billingexpr/testdata/frontend_simulation.json",
+      "frontend_path": "testdata/contracts/frontend_simulation.json",
+      "sha256": "1569342ecacee420addba7b777c1d87a6594cb72ff0acd667d779ce40b8335e3"
+    }
+  },
+  "import_tool": "ops/scripts/import-upstream.py",
+  "mapped_file_count": 1479,
+  "mapping": [
+    [
+      "web/",
+      ""
+    ],
+    [
+      "LICENSE",
+      "LICENSE"
+    ],
+    [
+      "NOTICE",
+      "NOTICE"
+    ],
+    [
+      "THIRD-PARTY-LICENSES.md",
+      "THIRD-PARTY-LICENSES.md"
+    ],
+    [
+      "VERSION",
+      "VERSION"
+    ],
+    [
+      "AGENTS.md",
+      "UPSTREAM_ROOT_AGENTS.md"
+    ],
+    [
+      "CLAUDE.md",
+      "CLAUDE.md"
+    ],
+    [
+      ".gitattributes",
+      ".gitattributes"
+    ],
+    [
+      ".agents/",
+      ".agents/"
+    ],
+    [
+      "pkg/billingexpr/testdata/frontend_simulation.json",
+      "testdata/contracts/frontend_simulation.json"
+    ]
+  ],
+  "split_kind": "frontend",
+  "upstream_commit": "ba5f7367797566175a6cd97a748d430af3602a01",
+  "upstream_repository": "https://github.com/QuantumNous/new-api.git",
+  "upstream_tree": "5383b796d23ab5c3cf6f92331486d394613894e6",
+  "upstream_version": ""
+}
