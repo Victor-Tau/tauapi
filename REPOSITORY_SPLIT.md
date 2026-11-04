@@ -20,3 +20,9 @@ imported from a pinned upstream commit recorded in `UPSTREAM.json`.
 
 Upstream README build instructions that mention `web/` refer to the combined
 upstream repository and do not apply here.
+
+## Release notes
+
+- `be-r2`: no functional change versus the initial API-only split; rebuilt to
+  exercise the drained master/slave rolling release and rollback procedure
+  (the image version string carries the new backend commit).
