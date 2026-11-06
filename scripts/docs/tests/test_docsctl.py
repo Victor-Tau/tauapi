@@ -199,5 +199,16 @@ class DocumentationChecks(unittest.TestCase):
             (self.root/p).write_text('{}')
         self.assertIn('local billing fixture revision/hash differs',d.fixture_findings(self.root))
 
+    def test_stop_hook_reports_changed_work_without_dispositions(self):
+        import io
+        hook_spec=importlib.util.spec_from_file_location('docs_completion_hook',ROOT/'scripts/docs/hooks/adapter.py')
+        hook=importlib.util.module_from_spec(hook_spec);hook_spec.loader.exec_module(hook)
+        results=[subprocess.CompletedProcess([],0,'{}',''),subprocess.CompletedProcess([],0,'tauapi-be/model/new.go\0',''),subprocess.CompletedProcess([],0,'','')]
+        output=io.StringIO()
+        with mock.patch('sys.stdin',io.StringIO('{"hook_event_name":"Stop"}')), mock.patch('sys.stdout',output), mock.patch.object(hook.subprocess,'run',side_effect=results):
+            self.assertEqual(hook.main(),0)
+        self.assertEqual(json.loads(output.getvalue())['decision'],'block')
+        self.assertIn('task JSON record',json.loads(output.getvalue())['reason'])
+
 from unittest import mock
 if __name__=='__main__':unittest.main()

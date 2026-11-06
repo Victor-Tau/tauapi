@@ -67,7 +67,10 @@
     "claude_root_loading": "passed: installed 2.1.316 root /memory lists imported AGENTS.md; SessionStart observed",
     "claude_component_launches": "blocked: all three show external-import trust prompt; use canonical root launcher",
     "claude_compaction_rules_delegation": "not_run: no model/provider session requested",
-    "lint": "152 pre-existing errors/65 warnings; exact fingerprint baseline comparison passed"
+    "lint": "152 pre-existing errors/65 warnings; exact fingerprint baseline comparison passed",
+    "backend_without_js_revision": "2c6de3bad7b98e4e5f85f0c43ccacda0427ec804",
+    "backend_without_js_evidence": ".docs-reports/backend-without-js.json",
+    "local_checker_tests": "31 boundary/regression tests; final documentation follow-up validated separately"
   },
   "next_action": "Publish/submit the candidate only within later authorization; observe remote docs-required and configure independent governance trust/merge rules. Keep runtime safety fixes separately scoped."
 }

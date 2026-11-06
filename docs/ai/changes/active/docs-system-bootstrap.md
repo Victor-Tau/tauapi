@@ -31,3 +31,7 @@ Remote CI/merge settings remain not_run. GAP-7 independent governance validation
 Follow KNOWN_GAPS for runtime controls; do not mark them fixed by documentation.
 Keep this record active until remote integration is separately completed or explicitly concluded.
 On resume read policy/index, this record and actual Git diff before continuing.
+
+Backend isolation was strengthened and rerun at `2c6de3bad7b98e4e5f85f0c43ccacda0427ec804` with Node/npm/Bun
+absent from PATH: host and independent-module builds/tests passed, 57 test packages, no HTML.
+Final documentation/checker validation includes 31 tests.

@@ -32,7 +32,25 @@ def main():
         print(json.dumps({'decision':'block','reason':'Documentation completion findings: '+ '; '.join(report.get('findings',[])[:5])+'. Fix or report blocked; continuation is bounded.'}));return 0
     if result.returncode:
         print('Documentation check blocked/internal failure; report honestly, rely on CI gate.',file=sys.stderr);return 1
-    print('Documentation structure passed; verify task dispositions and technical evidence before handoff.',file=sys.stderr)
+    try:
+        changed=subprocess.run(['git','diff','--name-only','-z','HEAD'],cwd=root,capture_output=True,text=True,timeout=5)
+        untracked=subprocess.run(['git','ls-files','--others','--exclude-standard','-z'],cwd=root,capture_output=True,text=True,timeout=5)
+        if changed.returncode or untracked.returncode:raise ValueError('Git status unavailable')
+        paths=set((changed.stdout+untracked.stdout).split('\0'))-{''}
+        paths={x for x in paths if not x.startswith('tauapi-docs-design/') and x!='文档管理体系构建指导.md'}
+        records=sorted(x for x in paths if x.startswith('docs/ai/changes/') and x.endswith('.json') and (root/x).is_file())
+        if paths:
+            if len(records)!=1:
+                print(json.dumps({'decision':'block','reason':'Changed work needs one updated task JSON record with explicit contract dispositions. Report a genuine blocker if it cannot be completed.'}));return 0
+            task=json.loads((root/records[0]).read_text())
+            result=subprocess.run([str(python),str(root/'scripts/docs/docsctl.py'),'verify-change','--base',task['base_revision'],'--worktree','--record',records[0],'--format','json'],cwd=root,capture_output=True,text=True,timeout=20)
+            if result.returncode==1:
+                report=json.loads(result.stdout)
+                print(json.dumps({'decision':'block','reason':'Missing task completion dispositions: '+ '; '.join(report.get('findings',[])[:5])}));return 0
+            if result.returncode:raise ValueError('Impact verification unavailable')
+    except (OSError,ValueError,KeyError,subprocess.TimeoutExpired):
+        print('Documentation completion prerequisites unavailable; report blocked and rely on CI.',file=sys.stderr);return 1
+    print('Documentation structure and available completion dispositions passed; technical CI evidence remains required.',file=sys.stderr)
     return 0
 
 if __name__=='__main__':sys.exit(main())
