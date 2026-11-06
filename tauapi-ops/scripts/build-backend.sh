@@ -53,9 +53,9 @@ if ! "${DOCKER[@]}" build --pull=false \
 fi
 IMAGE_ID=$("${DOCKER[@]}" image inspect --format '{{.Id}}' "$TAG")
 
-# The image must not carry frontend output.
-if "${DOCKER[@]}" run --rm --entrypoint /bin/sh "$TAG" -c 'find / -xdev \( -name index.html -o -path "*/web/dist*" \) 2>/dev/null | grep -v "^/usr/share" | head -1' | grep -q .; then
-  echo "backend image contains frontend artefacts" >&2; exit 4
+# The runtime image must not carry application test sources or frontend output.
+if "${DOCKER[@]}" run --rm --entrypoint /bin/sh "$TAG" -c 'find / -xdev \( -name index.html -o -path "*/web/dist*" -o -name "*_test.go" -o -name "*.test.*" -o -name "*.spec.*" -o -name "test_*.py" -o -path "/tests/*" -o -path "/testdata/*" -o -path "/qa/*" \) 2>/dev/null | grep -v "^/usr/share" | head -1' | grep -q .; then
+  echo "backend image contains frontend or test artefacts" >&2; exit 4
 fi
 
 OUT=/srv/tauapi/artifacts/backend

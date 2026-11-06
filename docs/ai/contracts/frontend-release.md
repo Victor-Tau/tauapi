@@ -25,3 +25,5 @@ old-tab chunk load, version notice, deploy/rollback drills in isolated QA.
 
 Review consumers and contract dispositions together; execute selected checks on the actual candidate.
 Verification basis: source inspection at e2af94c1affa0d760cd6dd5fb4c57117949e9e6f; no live deployment check.
+
+FER-4: Retain source regression tests in Git and run checks before building. Package only runtime dist assets. The builder rejects test source/config files and tests, __tests__, testdata, e2e, qa or coverage directories in dist.

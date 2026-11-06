@@ -69,6 +69,11 @@ if find "$DIST" \( -name '*.go' -o -name '.env*' -o -name '*.pem' -o -name '*.ke
   echo "dist contains backend/secret-like files" >&2; exit 4
 fi
 
+# Release artefacts contain runtime assets only; source tests stay in Git.
+if find "$DIST" \( -type d \( -name tests -o -name __tests__ -o -name testdata -o -name e2e -o -name qa -o -name coverage \) -o -type f \( -name '*_test.go' -o -name '*.test.*' -o -name '*.spec.*' -o -name 'test_*.py' -o -name 'vitest.config.*' -o -name 'playwright.config.*' \) \) -print -quit | grep -q .; then
+  echo "dist contains test or QA artefacts" >&2; exit 4
+fi
+
 cat > "$DIST/ui-version.json" <<JSON
 {
   "component": "tauapi-fe",

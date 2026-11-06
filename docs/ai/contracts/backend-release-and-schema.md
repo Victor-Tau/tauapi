@@ -30,3 +30,5 @@ Never perform production changes to validate documentation.
 
 Review consumers and contract dispositions together; execute selected checks on the actual candidate.
 Verification basis: source inspection at e2af94c1affa0d760cd6dd5fb4c57117949e9e6f; no live deployment check.
+
+BER-4: Source regression tests remain in Git. The runtime image copies the Go executable and required licenses, not builder sources. The release builder rejects application test-source paths in the final image. This does not prohibit OS utilities whose names contain test.
