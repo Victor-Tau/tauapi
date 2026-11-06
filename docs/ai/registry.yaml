@@ -32,7 +32,6 @@
       "id": "governance",
       "owned_paths": [
         "docs/**",
-        "scripts/docs/**",
         ".claude/**",
         ".github/**",
         "AGENTS.md",
@@ -41,8 +40,7 @@
         "README.md",
         "map.md",
         ".gitignore",
-        "文档管理体系构建指导.md",
-        "tauapi-docs-design/**"
+        "文档管理体系构建指导.md"
       ],
       "policy": "root-policy",
       "index": "root-index",
@@ -3913,363 +3911,6 @@
           "No new production observation"
         ]
       }
-    },
-    {
-      "id": "design-reference-015658e8ace1",
-      "path": "tauapi-docs-design/ACCEPTANCE.md",
-      "audience": "ai",
-      "type": "index",
-      "status": "historical",
-      "owner_area": "governance",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "bootstrap_reference",
-      "verification": {
-        "revision": "95eb8ab96c4e7c93e576254a272ca1fae92a973b",
-        "timestamp": "2026-11-06",
-        "method": "byte_comparison",
-        "scope": "Supplied design reference compared byte-for-byte with its preserved bootstrap copy; not active maintenance policy.",
-        "gaps": []
-      }
-    },
-    {
-      "id": "design-reference-6ea0b24d8aaf",
-      "path": "tauapi-docs-design/IMPLEMENTATION.md",
-      "audience": "ai",
-      "type": "index",
-      "status": "historical",
-      "owner_area": "governance",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "bootstrap_reference",
-      "verification": {
-        "revision": "95eb8ab96c4e7c93e576254a272ca1fae92a973b",
-        "timestamp": "2026-11-06",
-        "method": "byte_comparison",
-        "scope": "Supplied design reference compared byte-for-byte with its preserved bootstrap copy; not active maintenance policy.",
-        "gaps": []
-      }
-    },
-    {
-      "id": "design-reference-ab08dd634584",
-      "path": "tauapi-docs-design/README.zh-CN.md",
-      "audience": "ai",
-      "type": "index",
-      "status": "historical",
-      "owner_area": "governance",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "bootstrap_reference",
-      "verification": {
-        "revision": "95eb8ab96c4e7c93e576254a272ca1fae92a973b",
-        "timestamp": "2026-11-06",
-        "method": "byte_comparison",
-        "scope": "Supplied design reference compared byte-for-byte with its preserved bootstrap copy; not active maintenance policy.",
-        "gaps": []
-      }
-    },
-    {
-      "id": "design-reference-b1cb8b963757",
-      "path": "tauapi-docs-design/audit/CLAUDE_CODE_MECHANICS.md",
-      "audience": "ai",
-      "type": "index",
-      "status": "historical",
-      "owner_area": "governance",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "bootstrap_reference",
-      "verification": {
-        "revision": "95eb8ab96c4e7c93e576254a272ca1fae92a973b",
-        "timestamp": "2026-11-06",
-        "method": "byte_comparison",
-        "scope": "Supplied design reference compared byte-for-byte with its preserved bootstrap copy; not active maintenance policy.",
-        "gaps": []
-      }
-    },
-    {
-      "id": "design-reference-035e946ea3b7",
-      "path": "tauapi-docs-design/audit/REPOSITORY_AUDIT.md",
-      "audience": "ai",
-      "type": "index",
-      "status": "historical",
-      "owner_area": "governance",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "bootstrap_reference",
-      "verification": {
-        "revision": "95eb8ab96c4e7c93e576254a272ca1fae92a973b",
-        "timestamp": "2026-11-06",
-        "method": "byte_comparison",
-        "scope": "Supplied design reference compared byte-for-byte with its preserved bootstrap copy; not active maintenance policy.",
-        "gaps": []
-      }
-    },
-    {
-      "id": "design-reference-9f52614385db",
-      "path": "tauapi-docs-design/audit/TASK_ROUTING.md",
-      "audience": "ai",
-      "type": "index",
-      "status": "historical",
-      "owner_area": "governance",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "bootstrap_reference",
-      "verification": {
-        "revision": "95eb8ab96c4e7c93e576254a272ca1fae92a973b",
-        "timestamp": "2026-11-06",
-        "method": "byte_comparison",
-        "scope": "Supplied design reference compared byte-for-byte with its preserved bootstrap copy; not active maintenance policy.",
-        "gaps": []
-      }
-    },
-    {
-      "id": "design-reference-50bfa880d8c7",
-      "path": "tauapi-docs-design/examples/billing-rule.md",
-      "audience": "ai",
-      "type": "index",
-      "status": "historical",
-      "owner_area": "governance",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "bootstrap_reference",
-      "verification": {
-        "revision": "95eb8ab96c4e7c93e576254a272ca1fae92a973b",
-        "timestamp": "2026-11-06",
-        "method": "byte_comparison",
-        "scope": "Supplied design reference compared byte-for-byte with its preserved bootstrap copy; not active maintenance policy.",
-        "gaps": []
-      }
-    },
-    {
-      "id": "design-reference-b700cb3446ee",
-      "path": "tauapi-docs-design/examples/component-AGENTS.md",
-      "audience": "ai",
-      "type": "policy",
-      "status": "historical",
-      "owner_area": "governance",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "bootstrap_reference",
-      "verification": {
-        "revision": "95eb8ab96c4e7c93e576254a272ca1fae92a973b",
-        "timestamp": "2026-11-06",
-        "method": "byte_comparison",
-        "scope": "Supplied design reference compared byte-for-byte with its preserved bootstrap copy; not active maintenance policy.",
-        "gaps": []
-      }
-    },
-    {
-      "id": "design-reference-4a859051c13a",
-      "path": "tauapi-docs-design/examples/docs-INDEX.md",
-      "audience": "ai",
-      "type": "index",
-      "status": "historical",
-      "owner_area": "governance",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "bootstrap_reference",
-      "verification": {
-        "revision": "95eb8ab96c4e7c93e576254a272ca1fae92a973b",
-        "timestamp": "2026-11-06",
-        "method": "byte_comparison",
-        "scope": "Supplied design reference compared byte-for-byte with its preserved bootstrap copy; not active maintenance policy.",
-        "gaps": []
-      }
-    },
-    {
-      "id": "design-reference-aac30b744c01",
-      "path": "tauapi-docs-design/examples/root-AGENTS.md",
-      "audience": "ai",
-      "type": "policy",
-      "status": "historical",
-      "owner_area": "governance",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "bootstrap_reference",
-      "verification": {
-        "revision": "95eb8ab96c4e7c93e576254a272ca1fae92a973b",
-        "timestamp": "2026-11-06",
-        "method": "byte_comparison",
-        "scope": "Supplied design reference compared byte-for-byte with its preserved bootstrap copy; not active maintenance policy.",
-        "gaps": []
-      }
-    },
-    {
-      "id": "design-reference-ed512c886801",
-      "path": "tauapi-docs-design/examples/root-CLAUDE.md",
-      "audience": "ai",
-      "type": "index",
-      "status": "historical",
-      "owner_area": "governance",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "bootstrap_reference",
-      "verification": {
-        "revision": "95eb8ab96c4e7c93e576254a272ca1fae92a973b",
-        "timestamp": "2026-11-06",
-        "method": "byte_comparison",
-        "scope": "Supplied design reference compared byte-for-byte with its preserved bootstrap copy; not active maintenance policy.",
-        "gaps": []
-      }
-    },
-    {
-      "id": "design-reference-5ce5ba88f12f",
-      "path": "tauapi-docs-design/templates/change.md",
-      "audience": "ai",
-      "type": "index",
-      "status": "historical",
-      "owner_area": "governance",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "bootstrap_reference",
-      "verification": {
-        "revision": "95eb8ab96c4e7c93e576254a272ca1fae92a973b",
-        "timestamp": "2026-11-06",
-        "method": "byte_comparison",
-        "scope": "Supplied design reference compared byte-for-byte with its preserved bootstrap copy; not active maintenance policy.",
-        "gaps": []
-      }
-    },
-    {
-      "id": "design-reference-c880569c81b7",
-      "path": "tauapi-docs-design/templates/contract.md",
-      "audience": "ai",
-      "type": "index",
-      "status": "historical",
-      "owner_area": "governance",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "bootstrap_reference",
-      "verification": {
-        "revision": "95eb8ab96c4e7c93e576254a272ca1fae92a973b",
-        "timestamp": "2026-11-06",
-        "method": "byte_comparison",
-        "scope": "Supplied design reference compared byte-for-byte with its preserved bootstrap copy; not active maintenance policy.",
-        "gaps": []
-      }
-    },
-    {
-      "id": "design-reference-e972cb61652b",
-      "path": "tauapi-docs-design/templates/decision.md",
-      "audience": "ai",
-      "type": "index",
-      "status": "historical",
-      "owner_area": "governance",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "bootstrap_reference",
-      "verification": {
-        "revision": "95eb8ab96c4e7c93e576254a272ca1fae92a973b",
-        "timestamp": "2026-11-06",
-        "method": "byte_comparison",
-        "scope": "Supplied design reference compared byte-for-byte with its preserved bootstrap copy; not active maintenance policy.",
-        "gaps": []
-      }
-    },
-    {
-      "id": "design-reference-0f43eede9733",
-      "path": "tauapi-docs-design/templates/human-release-note.zh-CN.md",
-      "audience": "human",
-      "type": "human-guide",
-      "status": "historical",
-      "owner_area": "governance",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "bootstrap_reference",
-      "verification": {
-        "revision": "95eb8ab96c4e7c93e576254a272ca1fae92a973b",
-        "timestamp": "2026-11-06",
-        "method": "byte_comparison",
-        "scope": "Supplied design reference compared byte-for-byte with its preserved bootstrap copy; not active maintenance policy.",
-        "gaps": []
-      }
-    },
-    {
-      "id": "design-reference-41959609481c",
-      "path": "tauapi-docs-design/templates/module.md",
-      "audience": "ai",
-      "type": "index",
-      "status": "historical",
-      "owner_area": "governance",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "bootstrap_reference",
-      "verification": {
-        "revision": "95eb8ab96c4e7c93e576254a272ca1fae92a973b",
-        "timestamp": "2026-11-06",
-        "method": "byte_comparison",
-        "scope": "Supplied design reference compared byte-for-byte with its preserved bootstrap copy; not active maintenance policy.",
-        "gaps": []
-      }
-    },
-    {
-      "id": "design-reference-bf08519b03de",
-      "path": "tauapi-docs-design/templates/runbook.md",
-      "audience": "ai",
-      "type": "index",
-      "status": "historical",
-      "owner_area": "governance",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "bootstrap_reference",
-      "verification": {
-        "revision": "95eb8ab96c4e7c93e576254a272ca1fae92a973b",
-        "timestamp": "2026-11-06",
-        "method": "byte_comparison",
-        "scope": "Supplied design reference compared byte-for-byte with its preserved bootstrap copy; not active maintenance policy.",
-        "gaps": []
-      }
     }
   ],
   "domains": [
@@ -4771,7 +4412,7 @@
       "component": "governance",
       "path_patterns": [
         "docs/**",
-        "scripts/docs/**",
+        "docs/tools/**",
         ".claude/**",
         ".github/**",
         "AGENTS.md",
@@ -4780,8 +4421,7 @@
         "README.md",
         "map.md",
         ".gitignore",
-        "文档管理体系构建指导.md",
-        "tauapi-docs-design/**"
+        "文档管理体系构建指导.md"
       ],
       "required_reads": [
         "root-policy",
@@ -5010,7 +4650,7 @@
   "generated": [
     {
       "path": "docs/ai/TASK_INDEX.md",
-      "generator": "scripts/docs/docsctl.py"
+      "generator": "docs/tools/docsctl.py"
     }
   ]
 }

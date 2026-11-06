@@ -46,7 +46,7 @@ jobs:
           if .docs-venv/bin/python -c 'import json,sys; sys.exit(not json.load(open("/tmp/docs-impact.json"))["technical_paths"])'; then
             (cd tauapi-fe && bun install --frozen-lockfile)
           fi
-          .docs-venv/bin/python scripts/docs/docsctl.py run-checks --base "$DOCS_BASE" --head "$DOCS_HEAD" --record auto --evidence-dir .docs-reports
+          .docs-venv/bin/python docs/tools/docsctl.py run-checks --base "$DOCS_BASE" --head "$DOCS_HEAD" --record auto --evidence-dir .docs-reports
       - name: Publish candidate evidence
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4

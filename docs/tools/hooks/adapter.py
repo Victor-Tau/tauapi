@@ -24,7 +24,7 @@ def main():
     if not python.exists():
         print('Documentation hook unavailable: run make docs-setup. CI remains required.',file=sys.stderr);return 1
     try:
-        result=subprocess.run([str(python),str(root/'scripts/docs/docsctl.py'),'check','--format','json'],cwd=root,capture_output=True,text=True,timeout=30)
+        result=subprocess.run([str(python),str(root/'docs/tools/docsctl.py'),'check','--format','json'],cwd=root,capture_output=True,text=True,timeout=30)
         report=json.loads(result.stdout)
     except (OSError,ValueError,subprocess.TimeoutExpired):
         print('Documentation hook checker error; no successful validation.',file=sys.stderr);return 1
@@ -37,13 +37,13 @@ def main():
         untracked=subprocess.run(['git','ls-files','--others','--exclude-standard','-z'],cwd=root,capture_output=True,text=True,timeout=5)
         if changed.returncode or untracked.returncode:raise ValueError('Git status unavailable')
         paths=set((changed.stdout+untracked.stdout).split('\0'))-{''}
-        paths={x for x in paths if not x.startswith('tauapi-docs-design/') and x!='文档管理体系构建指导.md'}
+        paths={x for x in paths if x!='文档管理体系构建指导.md'}
         records=sorted(x for x in paths if x.startswith('docs/ai/changes/') and x.endswith('.json') and (root/x).is_file())
         if paths:
             if len(records)!=1:
                 print(json.dumps({'decision':'block','reason':'Changed work needs one updated task JSON record with explicit contract dispositions. Report a genuine blocker if it cannot be completed.'}));return 0
             task=json.loads((root/records[0]).read_text())
-            result=subprocess.run([str(python),str(root/'scripts/docs/docsctl.py'),'verify-change','--base',task['base_revision'],'--worktree','--record',records[0],'--format','json'],cwd=root,capture_output=True,text=True,timeout=20)
+            result=subprocess.run([str(python),str(root/'docs/tools/docsctl.py'),'verify-change','--base',task['base_revision'],'--worktree','--record',records[0],'--format','json'],cwd=root,capture_output=True,text=True,timeout=20)
             if result.returncode==1:
                 report=json.loads(result.stdout)
                 print(json.dumps({'decision':'block','reason':'Missing task completion dispositions: '+ '; '.join(report.get('findings',[])[:5])}));return 0

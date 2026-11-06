@@ -18,7 +18,7 @@ make docs-impact-worktree DOCS_BASE=<基线版本>
 
 需要实际执行影响选出的检查时，使用 `make docs-verify` 并指定 DOCS_BASE、DOCS_HEAD、DOCS_CHANGE。
 修改实现时同步维护文档；未改变契约时填写具体理由和证据。新增文档先登记，任务索引由工具生成。
-从组件目录启动 Claude 时，使用 `bash ../scripts/docs/claude-root.sh` 回到仓库根目录。
+从组件目录启动 Claude 时，使用 `bash ../docs/tools/claude-root.sh` 回到仓库根目录。
 
 ## 实际验证
 

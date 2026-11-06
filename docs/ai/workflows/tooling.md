@@ -24,7 +24,7 @@ retain critical evidence elsewhere before expiry. Local workflow files do not en
 Setup requires Python with venv/ensurepip, or an available uv (the Make target detects it).
 Tool dependencies are pinned separately from application dependencies. Renames are deliberately
 represented as deletion plus addition so both old and new obligations survive routing.
-The canonical client launcher is `bash scripts/docs/claude-root.sh`; it resolves Git root from
+The canonical client launcher is `bash docs/tools/claude-root.sh`; it resolves Git root from
 any component before starting Claude. Direct component starts may require an ancestor-import
 trust decision; use the root launcher without rewriting user/global trust configuration.
 Official integration references: [memory](https://code.claude.com/docs/en/memory) and

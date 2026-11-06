@@ -2,7 +2,7 @@
 
 Read root policy, then use [the generated task index](TASK_INDEX.md).
 Run `make docs-setup` once, then `make docs-check docs-test` from the Git root.
-Route meaning and paths with `scripts/docs/docsctl.py route --intent <text> --path <path>`.
+Route meaning and paths with `docs/tools/docsctl.py route --intent <text> --path <path>`.
 Use `make docs-impact-worktree DOCS_BASE=<revision>` before finishing.
 
 Authority: contracts declare intent; source/tests describe implementation; dated

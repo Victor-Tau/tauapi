@@ -11,7 +11,7 @@ import tempfile
 import unittest
 
 ROOT=Path(__file__).resolve().parents[3]
-spec=importlib.util.spec_from_file_location('docsctl',ROOT/'scripts/docs/docsctl.py')
+spec=importlib.util.spec_from_file_location('docsctl',ROOT/'docs/tools/docsctl.py')
 d=importlib.util.module_from_spec(spec);spec.loader.exec_module(d)
 
 class DocumentationChecks(unittest.TestCase):
@@ -30,7 +30,7 @@ class DocumentationChecks(unittest.TestCase):
                 p.parent.mkdir(parents=True,exist_ok=True)
                 if (ROOT/source).is_dir():p.mkdir(exist_ok=True)
                 else:p.write_bytes((ROOT/source).read_bytes())
-        for path in ['docs/ai/registry.yaml','docs/ai/registry.schema.json','docs/ai/schemas/change-v1.schema.json','scripts/docs/docsctl.py','tauapi-ops/ROUTE_CONTRACT.json','tauapi-be/pkg/billingexpr/testdata/frontend_simulation.json','tauapi-fe/testdata/contracts/frontend_simulation.json','docs/ai/changes/active/docs-system-bootstrap.json','docs/ai/schemas/migration-v1.schema.json','docs/ai/schemas/check-result-v1.schema.json','docs/ai/migrations/obligation-map.yaml','docs/ai/contracts/billing-fixture.json']:
+        for path in ['docs/ai/registry.yaml','docs/ai/registry.schema.json','docs/ai/schemas/change-v1.schema.json','docs/tools/docsctl.py','tauapi-ops/ROUTE_CONTRACT.json','tauapi-be/pkg/billingexpr/testdata/frontend_simulation.json','tauapi-fe/testdata/contracts/frontend_simulation.json','docs/ai/changes/active/docs-system-bootstrap.json','docs/ai/schemas/migration-v1.schema.json','docs/ai/schemas/check-result-v1.schema.json','docs/ai/migrations/obligation-map.yaml','docs/ai/contracts/billing-fixture.json']:
             p=self.root/path;p.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(ROOT/path,p)
         p=self.root/'docs/ai/migrations/bootstrap-inventory.json';p.parent.mkdir(parents=True,exist_ok=True);p.write_text('{"schema_version":1,"revision":"fixture","items":[]}')
         subprocess.run(['git','init','-q',str(self.root)],check=True)
@@ -153,7 +153,7 @@ class DocumentationChecks(unittest.TestCase):
             jsonschema.validate(registry,d.read_json(ROOT/'docs/ai/registry.schema.json'))
 
     def test_session_hook_and_malformed_input(self):
-        hook=ROOT/'scripts/docs/hooks/adapter.py'
+        hook=ROOT/'docs/tools/hooks/adapter.py'
         good=subprocess.run([os.sys.executable,str(hook)],input=json.dumps({'hook_event_name':'SessionStart'}),text=True,capture_output=True)
         self.assertEqual(good.returncode,0)
         self.assertIn('docs/ai/INDEX.md',json.loads(good.stdout)['hookSpecificOutput']['additionalContext'])
@@ -161,7 +161,7 @@ class DocumentationChecks(unittest.TestCase):
         self.assertNotEqual(bad.returncode,0)
 
     def test_stop_hook_continuation_is_bounded(self):
-        hook=ROOT/'scripts/docs/hooks/adapter.py'
+        hook=ROOT/'docs/tools/hooks/adapter.py'
         result=subprocess.run([os.sys.executable,str(hook)],input=json.dumps({'hook_event_name':'Stop','stop_hook_active':True}),text=True,capture_output=True)
         self.assertEqual(result.returncode,0)
         self.assertFalse(result.stdout)
@@ -176,7 +176,7 @@ class DocumentationChecks(unittest.TestCase):
 
     def test_stop_hook_rejection_error_and_unavailable_prerequisite(self):
         import io
-        hook_spec=importlib.util.spec_from_file_location('docs_hook',ROOT/'scripts/docs/hooks/adapter.py')
+        hook_spec=importlib.util.spec_from_file_location('docs_hook',ROOT/'docs/tools/hooks/adapter.py')
         hook=importlib.util.module_from_spec(hook_spec);hook_spec.loader.exec_module(hook)
         for code,payload,expected in [(1,{'findings':['broken link']},0),(3,{'status':'blocked'},1),(4,{'status':'failed'},1)]:
             output=io.StringIO()
@@ -201,7 +201,7 @@ class DocumentationChecks(unittest.TestCase):
 
     def test_stop_hook_reports_changed_work_without_dispositions(self):
         import io
-        hook_spec=importlib.util.spec_from_file_location('docs_completion_hook',ROOT/'scripts/docs/hooks/adapter.py')
+        hook_spec=importlib.util.spec_from_file_location('docs_completion_hook',ROOT/'docs/tools/hooks/adapter.py')
         hook=importlib.util.module_from_spec(hook_spec);hook_spec.loader.exec_module(hook)
         results=[subprocess.CompletedProcess([],0,'{}',''),subprocess.CompletedProcess([],0,'tauapi-be/model/new.go\0',''),subprocess.CompletedProcess([],0,'','')]
         output=io.StringIO()
@@ -209,6 +209,24 @@ class DocumentationChecks(unittest.TestCase):
             self.assertEqual(hook.main(),0)
         self.assertEqual(json.loads(output.getvalue())['decision'],'block')
         self.assertIn('task JSON record',json.loads(output.getvalue())['reason'])
+
+    def test_deleted_component_keeps_baseline_owner_and_new_component_uses_candidate(self):
+        old=copy.deepcopy(self.r)
+        old['components'].append({'id':'old-reference','owned_paths':['old-reference/**'],'policy':'root-policy','index':'root-index','fallback_domain':'governance'})
+        old['domains'].append({'id':'old-reference-domain','component':'old-reference','path_patterns':['old-reference/**'],'required_reads':['root-policy'],'contracts':['authentication'],'checks':[],'semantic_triggers':[]})
+        path=self.root/'docs/ai/registry.yaml';path.write_text(json.dumps(old))
+        source=self.root/'old-reference/original.md';source.parent.mkdir();source.write_text('# original')
+        d.git(self.root,'add','-A');d.git(self.root,'-c','user.name=Test','-c','user.email=test@example.invalid','commit','-qm','baseline')
+        candidate=copy.deepcopy(self.r)
+        candidate['components'].append({'id':'new-reference','owned_paths':['new-reference/**'],'policy':'root-policy','index':'root-index','fallback_domain':'governance'})
+        candidate['domains'].append({'id':'new-reference-domain','component':'new-reference','path_patterns':['new-reference/**'],'required_reads':['root-policy'],'contracts':[],'checks':[],'semantic_triggers':[]})
+        source.unlink();target=self.root/'new-reference/original.md';target.parent.mkdir();target.write_text('# original')
+        path.write_text(json.dumps(candidate))
+        result=d.impact(self.root,candidate,'HEAD',None,True)
+        self.assertEqual(result['findings'],[])
+        self.assertEqual(result['owners']['old-reference/original.md'],'old-reference')
+        self.assertEqual(result['owners']['new-reference/original.md'],'new-reference')
+        self.assertIn('authentication',result['contracts'])
 
 from unittest import mock
 if __name__=='__main__':unittest.main()
