@@ -22,7 +22,7 @@ def main():
         print('Documentation hook: bounded continuation exhausted; report remaining blockers.',file=sys.stderr);return 0
     python=root/'.docs-venv/bin/python'
     if not python.exists():
-        print('Documentation hook unavailable: run make docs-setup. CI remains required.',file=sys.stderr);return 1
+        print('Documentation hook unavailable: run make docs-setup, then make docs-check docs-test.',file=sys.stderr);return 1
     try:
         result=subprocess.run([str(python),str(root/'docs/tools/docsctl.py'),'check','--format','json'],cwd=root,capture_output=True,text=True,timeout=30)
         report=json.loads(result.stdout)
@@ -31,7 +31,7 @@ def main():
     if result.returncode==1:
         print(json.dumps({'decision':'block','reason':'Documentation completion findings: '+ '; '.join(report.get('findings',[])[:5])+'. Fix or report blocked; continuation is bounded.'}));return 0
     if result.returncode:
-        print('Documentation check blocked/internal failure; report honestly, rely on CI gate.',file=sys.stderr);return 1
+        print('Documentation check blocked/internal failure; report honestly and rerun local checks.',file=sys.stderr);return 1
     try:
         changed=subprocess.run(['git','diff','--name-only','-z','HEAD'],cwd=root,capture_output=True,text=True,timeout=5)
         untracked=subprocess.run(['git','ls-files','--others','--exclude-standard','-z'],cwd=root,capture_output=True,text=True,timeout=5)
@@ -49,8 +49,8 @@ def main():
                 print(json.dumps({'decision':'block','reason':'Missing task completion dispositions: '+ '; '.join(report.get('findings',[])[:5])}));return 0
             if result.returncode:raise ValueError('Impact verification unavailable')
     except (OSError,ValueError,KeyError,subprocess.TimeoutExpired):
-        print('Documentation completion prerequisites unavailable; report blocked and rely on CI.',file=sys.stderr);return 1
-    print('Documentation structure and available completion dispositions passed; technical CI evidence remains required.',file=sys.stderr)
+        print('Documentation completion prerequisites unavailable; report blocked and rerun local checks.',file=sys.stderr);return 1
+    print('Documentation structure and available completion dispositions passed; selected technical checks still need local evidence.',file=sys.stderr)
     return 0
 
 if __name__=='__main__':sys.exit(main())

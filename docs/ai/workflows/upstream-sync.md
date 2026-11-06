@@ -6,4 +6,5 @@ VERSION and fixture provenance against baseline before integrating. Deliberately
 new safety constraints while correcting obsolete topology; imported policies cannot silently become active.
 Review contracts/schema/TypeScript/plugin tests together. Keep UPSTREAM hashes as import facts; local
 fixture evolution is separate. Run equality, both semantic consumers, candidate-specific isolated builds,
-application profiles and documentation impact. Root CI must flag governance changes even without conflicts.
+application profiles and documentation impact. Local impact review must flag governance changes even without conflicts.
+Do not reactivate imported GitHub Actions workflows during upstream integration.

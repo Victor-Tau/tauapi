@@ -10,4 +10,5 @@
 - [文档体系交付说明](docs/zh-CN/documentation-system-handoff.md)：本次结果和限制。
 
 在仓库根目录运行 `make docs-setup`，再运行 `make docs-check docs-test`。
+本项目不使用 GitHub Actions；文档、测试与发布校验按需在本地执行。
 历史验收记录只适用于当时的环境与版本，不代表当前部署状态。

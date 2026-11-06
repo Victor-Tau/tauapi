@@ -42,7 +42,8 @@ A no-impact decision is allowed with a concrete explanation.
 Run meaningful regression checks for the actual candidate. Report `passed`, `failed`,
 `skipped`, `blocked`, and `not_run` distinctly. Required skips are unsuccessful.
 Run `make docs-check docs-test` and final impact analysis before handoff.
-Never treat a nested backend workflow as an active root merge gate.
+GitHub Actions workflows are intentionally removed; execute checks locally.
+Do not restore hosted automation without explicit user authorization.
 Never claim remote enforcement from a checked-in workflow or author-written result.
 
 ## Language and provenance

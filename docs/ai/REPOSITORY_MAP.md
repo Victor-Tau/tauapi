@@ -23,4 +23,5 @@ Production conventions use `/srv/tauapi`, secrets `/etc/tauapi`, local backups
 `/var/backups/tauapi`, Nginx TLS, loopback backend ports 3001/3002 and Docker data networks.
 QA uses separate names/volumes, loopback 8443 and 3101/3102; never infer its running state.
 `tauapi-ops/DEPLOYMENT_STATE.json` is a generated timestamped snapshot.
-Imported nested workflows do not run as root GitHub Actions workflows.
+Root and nested GitHub Actions workflows are intentionally removed. Run verification locally;
+component build and deployment scripts remain independent of hosted automation.

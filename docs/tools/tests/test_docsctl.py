@@ -73,6 +73,12 @@ class DocumentationChecks(unittest.TestCase):
     def test_unowned_source_is_rejected(self):
         self.assertIn('ownership: new-tree/file.go',d.route(self.r,['new-tree/file.go'])['findings'])
 
+    def test_removed_nested_workflow_does_not_require_application_classification(self):
+        workflow='tauapi-be/.github/workflows/ci.yml'
+        self.assertEqual(d.route(self.r,[workflow])['findings'],[])
+        for source in ['tauapi-be/unclassified.go','tauapi-be/.github/workflows/helper.py']:
+            self.assertIn('unclassified_source_path: '+source,d.route(self.r,[source])['findings'])
+
     def test_overlapping_plugin_billing_routing_union(self):
         result=d.route(self.r,['tauapi-be/plugins/tasks/example/index.js'])
         self.assertTrue({'be-plugins','be-billing'} <= set(result['domains']))

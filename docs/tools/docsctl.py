@@ -162,7 +162,8 @@ def impact(root, r, base, head, worktree, intent=''):
 
 def is_document_change(p):
     return (p.endswith('.md') or p.startswith(('docs/', 'docs/tools/', '.claude/')) or
-            p in ['Makefile', '.github/workflows/docs.yml', '.gitignore'])
+            p in ['Makefile', '.gitignore'] or
+            (p.endswith(('.yml', '.yaml')) and '/.github/workflows/' in '/' + p))
 
 def clean_markdown(s):
     return re.sub(r'(?ms)^\s*(`{3,}|~{3,})[^\n]*\n.*?^\s*\1\s*$', '', s)

@@ -11,14 +11,17 @@ external HTTP reachability is not an internal integrity check. Language heuristi
 English prose but quoted identifiers/UI strings need narrow reviewed exceptions.
 Docs-check is read-only. Generate --write owns only TASK_INDEX.md; unchanged input is byte deterministic.
 Revision diff resolves both endpoints; worktree includes untracked files with NUL-safe Git enumeration.
-Missing baseline/prerequisite exits3, validation1, invocation2, internal4; every nonzero fails CI.
+Missing baseline/prerequisite exits3, validation1, invocation2, internal4; every nonzero is unsuccessful.
 Runner dispatch uses literal argv and no shell/eval. Run evidence records command/cwd/tools/time/exit,
 commit or input digest, CI identity, environment, skips and logs. Required DB skips block, never pass.
 Database profiles need real DSNs and released-schema evidence; never assume unit tests prove upgrades.
 Bootstrap inputs are immutable provenance. Unchanged upstream references are explicitly inventoried.
 Run audit on demand; do not install cron/daemons or refresh review dates without actual review.
-External logs/screenshots should be retained at least 90 days in CI and durable summaries kept in Git;
-retain critical evidence elsewhere before expiry. Local workflow files do not enable branch protection.
+Retain external logs/screenshots at least 90 days and keep durable summaries in Git.
+GitHub Actions workflows are intentionally removed; run selected profiles locally.
+Workflow configuration paths are documentation/tooling changes, including deleted nested workflows;
+application source paths still require explicit domain classification.
+Local checks do not enable remote branch protection.
 
 
 Setup requires Python with venv/ensurepip, or an available uv (the Make target detects it).
