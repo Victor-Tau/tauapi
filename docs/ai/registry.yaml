@@ -35,7 +35,6 @@
         ".claude/**",
         ".github/**",
         "AGENTS.md",
-        "CLAUDE.md",
         "Makefile",
         "README.md",
         "map.md",
@@ -53,29 +52,6 @@
       "path": "AGENTS.md",
       "audience": "ai",
       "type": "policy",
-      "status": "active",
-      "owner_area": "governance",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "doc-6ebdb617a810",
-      "path": "CLAUDE.md",
-      "audience": "ai",
-      "type": "index",
       "status": "active",
       "owner_area": "governance",
       "source_paths": [],
@@ -1816,29 +1792,6 @@
       }
     },
     {
-      "id": "doc-fc1253cd13de",
-      "path": "tauapi-be/CLAUDE.md",
-      "audience": "ai",
-      "type": "index",
-      "status": "active",
-      "owner_area": "be",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
       "id": "doc-372302bec648",
       "path": "tauapi-be/README.en.md",
       "audience": "ai",
@@ -2966,29 +2919,6 @@
       }
     },
     {
-      "id": "doc-690c2f886e56",
-      "path": "tauapi-fe/CLAUDE.md",
-      "audience": "ai",
-      "type": "index",
-      "status": "active",
-      "owner_area": "fe",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
       "id": "doc-1b1646b1e5ca",
       "path": "tauapi-fe/THIRD-PARTY-LICENSES.md",
       "audience": "ai",
@@ -3279,29 +3209,6 @@
       "path": "tauapi-ops/AGENTS.md",
       "audience": "ai",
       "type": "policy",
-      "status": "active",
-      "owner_area": "ops",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "doc-96c60ad0898f",
-      "path": "tauapi-ops/CLAUDE.md",
-      "audience": "ai",
-      "type": "index",
       "status": "active",
       "owner_area": "ops",
       "source_paths": [],
@@ -4416,7 +4323,6 @@
         ".claude/**",
         ".github/**",
         "AGENTS.md",
-        "CLAUDE.md",
         "Makefile",
         "README.md",
         "map.md",

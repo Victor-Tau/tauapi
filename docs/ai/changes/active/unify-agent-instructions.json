@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "id": "unify-agent-instructions",
+  "base_revision": "3c3676409d90ba8054a6e3cfe75761c6e986eda8",
+  "work_status": "ready_for_ci",
+  "docs_impact": "affected",
+  "dispositions": {},
+  "validation": {
+    "scope": "Unify root and component agent instructions in AGENTS.md; remove four import-only CLAUDE.md adapters and registry entries. Preserve immutable bootstrap examples and existing hooks/rules.",
+    "docs_integrity": "passed",
+    "checker_tests": "32 passed",
+    "impact_and_dispositions": "passed; governance and component instruction entries only, no affected application contracts",
+    "client_loading": "passed: Claude Code 2.1.316 /memory directly lists root AGENTS.md; each component lists ancestor and local AGENTS.md without import trust prompts",
+    "application_suites": "not_run: only instruction entries, documentation metadata and checker empty-document handling changed",
+    "unrelated_work": "Root untracked documentation guide preserved and excluded from commit"
+  },
+  "next_action": "Merge verified instruction consolidation to main and synchronize GitHub; remote enforcement is not certified by local results."
+}

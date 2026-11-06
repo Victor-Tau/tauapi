@@ -259,7 +259,7 @@ def check(root, r):
             if x not in checks: findings.append('unknown check: '+x)
         if d['status'] != 'active': continue
         text = p.read_text()
-        if len(text.strip()) < 25 and p.name != 'CLAUDE.md': findings.append('empty active document: '+d['path'])
+        if len(text.strip()) < 25: findings.append('empty active document: '+d['path'])
         for link in links(text):
             if re.match(r'^(https?:|mailto:|app:)', link): continue
             path, _, anchor = unquote(link).partition('#')

@@ -24,9 +24,14 @@ retain critical evidence elsewhere before expiry. Local workflow files do not en
 Setup requires Python with venv/ensurepip, or an available uv (the Make target detects it).
 Tool dependencies are pinned separately from application dependencies. Renames are deliberately
 represented as deletion plus addition so both old and new obligations survive routing.
-The canonical client launcher is `bash docs/tools/claude-root.sh`; it resolves Git root from
-any component before starting Claude. Direct component starts may require an ancestor-import
-trust decision; use the root launcher without rewriting user/global trust configuration.
+Root and component `AGENTS.md` files are the shared instruction entries for Codex and Claude Code.
+Claude Code v2.1.277 or later loads them natively by default when no `CLAUDE.md`,
+`.claude/CLAUDE.md` or `CLAUDE.local.md` is present in the working directory or its ancestors.
+Older clients must be upgraded; do not regenerate adapter files. Bootstrap examples are immutable
+references, not active instructions. Existing `.claude/rules/` and hooks retain their own roles.
+The optional launcher is `bash docs/tools/claude-root.sh`; it resolves Git root from
+any component before starting Claude. Direct component starts use ancestor and local `AGENTS.md`
+without adapter imports. Do not rewrite user/global trust or instruction-file settings.
 Official integration references: [memory](https://code.claude.com/docs/en/memory) and
 [hooks](https://code.claude.com/docs/en/hooks). Runtime loading still needs installed-client observation.
 

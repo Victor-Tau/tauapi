@@ -18,7 +18,10 @@ make docs-impact-worktree DOCS_BASE=<基线版本>
 
 需要实际执行影响选出的检查时，使用 `make docs-verify` 并指定 DOCS_BASE、DOCS_HEAD、DOCS_CHANGE。
 修改实现时同步维护文档；未改变契约时填写具体理由和证据。新增文档先登记，任务索引由工具生成。
-从组件目录启动 Claude 时，使用 `bash ../docs/tools/claude-root.sh` 回到仓库根目录。
+Codex 与 Claude Code 共用根目录及各组件的 `AGENTS.md`，不再维护 `CLAUDE.md` 转接文件。
+Claude Code 需使用 2.1.277 或更新版本，默认配置会直接读取 `AGENTS.md`；详见[官方说明](https://code.claude.com/docs/en/memory#agentsmd)。
+可直接从组件目录启动；也可使用 `bash ../docs/tools/claude-root.sh` 回到仓库根目录。
+不可变初始化参考中的旧示例仅用于追溯，不是当前规则入口。
 
 ## 实际验证
 
@@ -39,8 +42,9 @@ make docs-impact-worktree DOCS_BASE=<基线版本>
 | remote_ci_verified | 未运行，任务分支未提交远程 CI |
 | merge_gate_enabled | 未配置或观察远程合并保护 |
 
-Claude 2.1.316 的根目录 `/memory` 已显示导入 AGENTS；三个组件直接启动均出现祖先文件导入信任提示。
-规范启动器已验证可从三个组件定位根目录；未修改用户信任或全局配置。
+2026-11-06 删除转接文件后，Claude Code 2.1.316 的根目录 `/memory` 已直接显示 `AGENTS.md`；
+三个组件直接启动均同时显示根规则与本组件规则，没有出现原先的导入信任提示。
+原有启动器仍可使用；未修改用户信任或全局配置。
 模型参与的压缩恢复、规则按路径加载及委派演练未运行；未发送供应商请求。
 根 CI 有 `docs-required` 汇总状态，但独立可信校验与远程强制合并规则仍需后续接入。
 

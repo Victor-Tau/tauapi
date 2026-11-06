@@ -6,6 +6,9 @@ Preserve unrelated staged, unstaged, and untracked work. Use a task branch.
 
 ## Start and route
 
+`AGENTS.md` is the shared instruction entry for Codex and Claude Code, at the root
+and within each component. Keep rules there instead of adding `CLAUDE.md` adapters.
+
 Read [the active index](docs/ai/INDEX.md), classify task intent and expected paths,
 then read applicable component policies, domain cards, and contracts.
 Follow links selectively; bootstrap inputs and historical evidence are background.

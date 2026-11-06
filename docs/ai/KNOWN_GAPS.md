@@ -11,7 +11,7 @@ Source review at baseline e2af94c1affa0d760cd6dd5fb4c57117949e9e6f; no productio
 | GAP-5 | model migration tests skip absent DSNs | Required real DB profile, fresh/upgrade/two-start/log DB evidence and minimum versions when relevant |
 | GAP-6 | Nested backend CI is not root enforcement | Root candidate workflow plus observed remote run and required branch rule |
 | GAP-7 | A candidate may edit its own checker | Trusted baseline/protected reusable validation; local candidate pass alone is not independent assurance |
-| GAP-8 | Claude adapters/hooks need actual loading observation | Installed-client version plus root/component/resume/rule runtime drills without provider operations |
+| GAP-8 | Claude instructions/hooks need actual loading observation | Installed-client version plus root/component/resume/rule runtime drills without provider operations |
 
 Documentation explains gaps immediately; it does not close runtime gaps 2–5.
 No background semantic-repair service, production deployment or remote policy activation is implied.
@@ -19,10 +19,14 @@ No background semantic-repair service, production deployment or remote policy ac
 
 ## Tool integration limits observed during bootstrap
 
-Claude Code 2.1.316 is installed. A real root session /memory listed CLAUDE.md and
-@-imported AGENTS.md; the SessionStart hook ran. Direct launches from all three component
-directories showed the external-import trust prompt for root AGENTS.md. No trust setting
-was changed. The canonical launcher was tested from all three components and resolves root.
+Bootstrap observation: Claude Code 2.1.316 loaded AGENTS.md through CLAUDE.md imports,
+and direct component launches showed an ancestor-import trust prompt. Those adapters have
+now been removed. On 2026-11-06, fresh interactive sessions with the same installed version
+showed AGENTS.md directly in root /memory; each of the three component sessions listed
+both /opt/tauapi/AGENTS.md and its local AGENTS.md, without an import trust prompt.
+Only the local /memory command was used; no model prompt was submitted. Root/component
+native instruction discovery is observed; the broader GAP-8 drills below remain open.
+The optional root launcher remains available. No trust setting was changed.
 Relevant/irrelevant path-rule activation, model-assisted recovery after compaction and delegated
 runtime sessions remain not_run; no provider prompt or provider request was issued.
 User/global configuration keys were inspected without exposing values; no user/global hook
