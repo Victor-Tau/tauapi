@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "id": "include-design-package",
+  "base_revision": "95eb8ab96c4e7c93e576254a272ca1fae92a973b",
+  "work_status": "ready_for_ci",
+  "docs_impact": "affected",
+  "dispositions": {},
+  "validation": {
+    "design_package": "20 supplied files are byte-identical to preserved bootstrap copies",
+    "scope": "Track the user-supplied root design package as historical reference; runtime behavior and active policies unchanged."
+  },
+  "next_action": "Validate documents and checker tests, commit and merge into main."
+}
