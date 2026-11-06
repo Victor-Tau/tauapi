@@ -1,7 +1,8 @@
 # TauAPI
 
-基于 [QuantumNous/new-api](https://github.com/QuantumNous/new-api) 的单仓库二次开发项目。
-保留 New API / QuantumNous 归属、许可证与声明。前端、纯 API 后端独立构建发布。
+由 [new-api](https://github.com/QuantumNous/new-api) 二次开发。
+
+前端、纯 API 后端独立构建发布。
 
 - [文档首页](docs/zh-CN/README.md)：使用、运维和维护方式。
 - [系统地图](map.md)：目录与运行边界。
