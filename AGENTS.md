@@ -1,18 +1,62 @@
-# AGENTS.md (TauAPI monorepo root)
+# TauAPI maintenance policy
 
-This project is maintained by AI agents. Read this file first, then `map.md`, then `tauapi-ops/STATUS.md`.
+Locate the Git root. This monorepo contains two independent release units,
+`tauapi-fe` and `tauapi-be`, and operations in `tauapi-ops`.
+Preserve unrelated staged, unstaged, and untracked work. Use a task branch.
 
-## Documentation language policy
+## Start and route
 
-- **Human-facing documents are written in Simplified Chinese (简体中文).** These are documents a person reads
-  to understand or operate the system:
-  `README.md`, `map.md`, `tauapi-ops/HANDOFF.md`, `tauapi-ops/evidence/*.md` (acceptance and drill reports).
-- **AI-facing documents are written in English.** These are instructions and working state for agents:
-  every `AGENTS.md`, `tauapi-ops/STATUS.md`, `DECISIONS.md`, `PLAN.md`, `tauapi-ops/docs/*.md`,
-  `tauapi-be/REPOSITORY_SPLIT.md`, `.agents/**`, code comments, commit messages, script output and log text.
-- When you add a new document, decide who reads it and follow the matching language. If both, keep the
-  AI-facing instructions in English and put the human summary in a Chinese document.
-- When you change a fact in one language, update the matching document in the other (e.g. `HANDOFF.md` vs `STATUS.md`).
-- Do not translate upstream-owned files (`LICENSE`, `NOTICE`, upstream READMEs in other languages,
-  `THIRD-PARTY-LICENSES.md`, `UPSTREAM_ROOT_AGENTS.md`) — keep them byte-identical to upstream to keep subtree merges clean.
-- Identifiers, commands, paths, tags and product names are never translated.
+Read [the active index](docs/ai/INDEX.md), classify task intent and expected paths,
+then read applicable component policies, domain cards, and contracts.
+Follow links selectively; bootstrap inputs and historical evidence are background.
+Use [documentation maintenance](docs/ai/workflows/docs-maintenance.md) for every
+implementation or debugging task, including final diff impact and dispositions.
+Semantic triggers supplement path routing; combine every affected domain.
+
+## Authority
+
+Active contracts describe intended behavior. Current source and reproducible tests
+establish implementation. Timestamped environment observations describe deployments.
+Record contradictions and establish intent; never rewrite a contract to excuse a bug.
+Deployment snapshots are observations, not unconditional live state.
+
+## Boundaries
+
+Frontend and backend builders export one component with `git archive <rev>:<component>`.
+Neither build may depend on root governance or sibling sources. The backend remains
+API-only; RelayKit and TokenKit remain independent Go modules.
+Preserve New API / QuantumNous identity, module paths, copyright, licenses, notices,
+upstream READMEs and attribution. Never translate protected upstream originals.
+Authentication, billing, persistence and release constraints survive policy migration.
+Read their canonical policies before working on affected behavior.
+
+## Change and verify
+
+Maintain one compact resumable change record; use the change template.
+Update affected documents with behavior, including Chinese user-facing effects.
+A `reviewed_unchanged` disposition needs a reason and source/evidence pointers.
+A no-impact decision is allowed with a concrete explanation.
+Run meaningful regression checks for the actual candidate. Report `passed`, `failed`,
+`skipped`, `blocked`, and `not_run` distinctly. Required skips are unsuccessful.
+Run `make docs-check docs-test` and final impact analysis before handoff.
+Never treat a nested backend workflow as an active root merge gate.
+Never claim remote enforcement from a checked-in workflow or author-written result.
+
+## Language and provenance
+
+Agent policies, technical contracts, task state, comments, commits and logs are English.
+Human README, map, operations summaries and release notes use Simplified Chinese.
+When a fact affects both audiences, update its human summary and technical authority.
+Identifiers, paths, commands, quoted UI strings and immutable upstream originals are exempt.
+The registry owns routing and document identity; generated navigation is never hand edited.
+
+## Recovery and autonomy
+
+On resume, reread this policy, the index, the active record and actual Git diff.
+Reload contracts when scope changes. Record observable facts, not private reasoning,
+chat transcripts, credentials or unbounded logs.
+If delegation is authorized, specify write ownership, required reads, invariant IDs,
+candidate and expected evidence; validate the integrated diff.
+Continue authorized reversible work without routine confirmation. Escalate only a
+concrete unresolved decision, missing access or authority gap.
+Production deployment, database mutation and external publication need their own scope.

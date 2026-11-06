@@ -1,0 +1,79 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "revision": {
+      "type": "string"
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string"
+          },
+          "audience": {
+            "type": "string"
+          },
+          "provenance": {
+            "type": "string"
+          },
+          "classification": {
+            "type": "string"
+          },
+          "current_authority": {
+            "type": "string"
+          },
+          "destination": {
+            "type": "string"
+          },
+          "retained_invariants": {
+            "type": "string"
+          },
+          "inbound_links": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "migration_action": {
+            "type": "string"
+          },
+          "verification_status": {
+            "type": "string"
+          },
+          "source_revision": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "path",
+          "sha256",
+          "audience",
+          "provenance",
+          "classification",
+          "current_authority",
+          "destination",
+          "retained_invariants",
+          "inbound_links",
+          "migration_action",
+          "verification_status",
+          "source_revision"
+        ]
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "revision",
+    "items"
+  ]
+}

@@ -1,3 +1,6 @@
+> 历史交付记录：以下内容对应 2026-11-04 的部署与验收，不能作为当前主机的实时状态。
+> 当前文档入口见[文档首页](../docs/zh-CN/README.md)；本次重构见[交付说明](../docs/zh-CN/documentation-system-handoff.md)。
+
 # HANDOFF — TauAPI (tauapi-fe / tauapi-be)，部署于 api.victor-tau.xyz
 
 日期：2026-11-04 (UTC)。主机：Ubuntu 24.04.5，4 vCPU，3.8 GiB 内存 + 4 GiB 交换空间，单台服务器。

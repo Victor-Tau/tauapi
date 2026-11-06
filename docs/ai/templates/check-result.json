@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "check_id": "<check-id>",
+  "required": true,
+  "subject": {
+    "commit": null,
+    "source_digest": null,
+    "check_run_id": null
+  },
+  "working_directory": ".",
+  "command": null,
+  "tool_versions": {},
+  "environment_class": "isolated_ci",
+  "started_at": null,
+  "finished_at": null,
+  "exit_code": null,
+  "status": "not_run",
+  "required_skips": [],
+  "findings": [],
+  "evidence_refs": [],
+  "blocker": "Template only; no check has run."
+}

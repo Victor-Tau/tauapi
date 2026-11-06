@@ -1,3 +1,7 @@
+> Historical record: 2026-11-04 deployment/bootstrap scope, retained at baseline e2af94c1affa0d760cd6dd5fb4c57117949e9e6f.
+> Current maintenance entry: [active documentation](../docs/ai/INDEX.md).
+> GOAL.md references and split-repository phases are historical, not current policy.
+
 # DECISIONS
 
 1. **Executor environment**: running directly on the target host as user `tau` with sudo (password-based; supplied by the user, cached for askpass in `~tau/.config/tauapi-sudo/pw` 0600, removed at handoff). `tau` is NOT added to the docker group; docker is invoked through sudo.

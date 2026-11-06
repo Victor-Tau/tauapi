@@ -1,0 +1,1746 @@
+{
+  "schema_version": 1,
+  "tool": "oxlint",
+  "version": "1.74.0",
+  "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+  "observed_at": "2026-11-06",
+  "review_trigger": "Any frontend lint/tooling change; remove fixed diagnostics and reject new ones. Expansion requires a justified governance change.",
+  "diagnostics": [
+    {
+      "rule": "eslint(prefer-template)",
+      "file": "scripts/sync-i18n.mjs",
+      "severity": "warning",
+      "line": 128,
+      "column": 10,
+      "message_sha256": "5f80a04dcb148af4d7a1da01fdbf37da1fab0df0753d3656292c528a42aabf4b"
+    },
+    {
+      "rule": "eslint(prefer-object-has-own)",
+      "file": "scripts/sync-i18n.mjs",
+      "severity": "warning",
+      "line": 159,
+      "column": 11,
+      "message_sha256": "d2428fe31e438d93d018fbb309312cc4b3bd86b450bbfba730cf26ca34a43646"
+    },
+    {
+      "rule": "eslint(prefer-object-has-own)",
+      "file": "scripts/sync-i18n.mjs",
+      "severity": "warning",
+      "line": 182,
+      "column": 12,
+      "message_sha256": "d2428fe31e438d93d018fbb309312cc4b3bd86b450bbfba730cf26ca34a43646"
+    },
+    {
+      "rule": "unicorn(prefer-string-starts-ends-with)",
+      "file": "scripts/sync-i18n.mjs",
+      "severity": "warning",
+      "line": 215,
+      "column": 5,
+      "message_sha256": "aea2edfe526f920904ef0de2462d4eceb1bf40354f05a4c6d25226973d03402d"
+    },
+    {
+      "rule": "unicorn(prefer-string-starts-ends-with)",
+      "file": "scripts/sync-i18n.mjs",
+      "severity": "warning",
+      "line": 217,
+      "column": 5,
+      "message_sha256": "aea2edfe526f920904ef0de2462d4eceb1bf40354f05a4c6d25226973d03402d"
+    },
+    {
+      "rule": "unicorn(prefer-string-starts-ends-with)",
+      "file": "scripts/sync-i18n.mjs",
+      "severity": "warning",
+      "line": 218,
+      "column": 5,
+      "message_sha256": "aea2edfe526f920904ef0de2462d4eceb1bf40354f05a4c6d25226973d03402d"
+    },
+    {
+      "rule": "eslint(curly)",
+      "file": "scripts/sync-i18n.mjs",
+      "severity": "error",
+      "line": 235,
+      "column": 5,
+      "message_sha256": "307e8c63677de2a5ea2a80bef26410be4417f1d78fd7bd8a289a599f649c1a63"
+    },
+    {
+      "rule": "typescript(no-import-type-side-effects)",
+      "file": "src/assets/brand-icons/icon-discord.tsx",
+      "severity": "error",
+      "line": 19,
+      "column": 1,
+      "message_sha256": "22f21ae0f7ff30d0ba549605cf079551ef89a62254c8151a5451068526a5fc12"
+    },
+    {
+      "rule": "typescript(no-import-type-side-effects)",
+      "file": "src/assets/brand-icons/icon-docker.tsx",
+      "severity": "error",
+      "line": 19,
+      "column": 1,
+      "message_sha256": "22f21ae0f7ff30d0ba549605cf079551ef89a62254c8151a5451068526a5fc12"
+    },
+    {
+      "rule": "typescript(no-import-type-side-effects)",
+      "file": "src/assets/brand-icons/icon-facebook.tsx",
+      "severity": "error",
+      "line": 19,
+      "column": 1,
+      "message_sha256": "22f21ae0f7ff30d0ba549605cf079551ef89a62254c8151a5451068526a5fc12"
+    },
+    {
+      "rule": "typescript(no-import-type-side-effects)",
+      "file": "src/assets/brand-icons/icon-figma.tsx",
+      "severity": "error",
+      "line": 19,
+      "column": 1,
+      "message_sha256": "22f21ae0f7ff30d0ba549605cf079551ef89a62254c8151a5451068526a5fc12"
+    },
+    {
+      "rule": "typescript(no-import-type-side-effects)",
+      "file": "src/assets/brand-icons/icon-github.tsx",
+      "severity": "error",
+      "line": 19,
+      "column": 1,
+      "message_sha256": "22f21ae0f7ff30d0ba549605cf079551ef89a62254c8151a5451068526a5fc12"
+    },
+    {
+      "rule": "typescript(no-import-type-side-effects)",
+      "file": "src/assets/brand-icons/icon-gitlab.tsx",
+      "severity": "error",
+      "line": 19,
+      "column": 1,
+      "message_sha256": "22f21ae0f7ff30d0ba549605cf079551ef89a62254c8151a5451068526a5fc12"
+    },
+    {
+      "rule": "typescript(no-import-type-side-effects)",
+      "file": "src/assets/brand-icons/icon-gmail.tsx",
+      "severity": "error",
+      "line": 19,
+      "column": 1,
+      "message_sha256": "22f21ae0f7ff30d0ba549605cf079551ef89a62254c8151a5451068526a5fc12"
+    },
+    {
+      "rule": "typescript(no-import-type-side-effects)",
+      "file": "src/assets/brand-icons/icon-linuxdo.tsx",
+      "severity": "error",
+      "line": 19,
+      "column": 1,
+      "message_sha256": "22f21ae0f7ff30d0ba549605cf079551ef89a62254c8151a5451068526a5fc12"
+    },
+    {
+      "rule": "typescript(no-import-type-side-effects)",
+      "file": "src/assets/brand-icons/icon-medium.tsx",
+      "severity": "error",
+      "line": 19,
+      "column": 1,
+      "message_sha256": "22f21ae0f7ff30d0ba549605cf079551ef89a62254c8151a5451068526a5fc12"
+    },
+    {
+      "rule": "typescript(no-import-type-side-effects)",
+      "file": "src/assets/brand-icons/icon-notion.tsx",
+      "severity": "error",
+      "line": 19,
+      "column": 1,
+      "message_sha256": "22f21ae0f7ff30d0ba549605cf079551ef89a62254c8151a5451068526a5fc12"
+    },
+    {
+      "rule": "typescript(no-import-type-side-effects)",
+      "file": "src/assets/brand-icons/icon-skype.tsx",
+      "severity": "error",
+      "line": 19,
+      "column": 1,
+      "message_sha256": "22f21ae0f7ff30d0ba549605cf079551ef89a62254c8151a5451068526a5fc12"
+    },
+    {
+      "rule": "typescript(no-import-type-side-effects)",
+      "file": "src/assets/brand-icons/icon-slack.tsx",
+      "severity": "error",
+      "line": 19,
+      "column": 1,
+      "message_sha256": "22f21ae0f7ff30d0ba549605cf079551ef89a62254c8151a5451068526a5fc12"
+    },
+    {
+      "rule": "typescript(no-import-type-side-effects)",
+      "file": "src/assets/brand-icons/icon-stripe.tsx",
+      "severity": "error",
+      "line": 19,
+      "column": 1,
+      "message_sha256": "22f21ae0f7ff30d0ba549605cf079551ef89a62254c8151a5451068526a5fc12"
+    },
+    {
+      "rule": "typescript(no-import-type-side-effects)",
+      "file": "src/assets/brand-icons/icon-telegram.tsx",
+      "severity": "error",
+      "line": 19,
+      "column": 1,
+      "message_sha256": "22f21ae0f7ff30d0ba549605cf079551ef89a62254c8151a5451068526a5fc12"
+    },
+    {
+      "rule": "typescript(no-import-type-side-effects)",
+      "file": "src/assets/brand-icons/icon-trello.tsx",
+      "severity": "error",
+      "line": 19,
+      "column": 1,
+      "message_sha256": "22f21ae0f7ff30d0ba549605cf079551ef89a62254c8151a5451068526a5fc12"
+    },
+    {
+      "rule": "typescript(no-import-type-side-effects)",
+      "file": "src/assets/brand-icons/icon-wechat.tsx",
+      "severity": "error",
+      "line": 19,
+      "column": 1,
+      "message_sha256": "22f21ae0f7ff30d0ba549605cf079551ef89a62254c8151a5451068526a5fc12"
+    },
+    {
+      "rule": "typescript(no-import-type-side-effects)",
+      "file": "src/assets/brand-icons/icon-whatsapp.tsx",
+      "severity": "error",
+      "line": 19,
+      "column": 1,
+      "message_sha256": "22f21ae0f7ff30d0ba549605cf079551ef89a62254c8151a5451068526a5fc12"
+    },
+    {
+      "rule": "typescript(no-import-type-side-effects)",
+      "file": "src/assets/brand-icons/icon-zoom.tsx",
+      "severity": "error",
+      "line": 19,
+      "column": 1,
+      "message_sha256": "22f21ae0f7ff30d0ba549605cf079551ef89a62254c8151a5451068526a5fc12"
+    },
+    {
+      "rule": "typescript(no-import-type-side-effects)",
+      "file": "src/assets/clerk-full-logo.tsx",
+      "severity": "error",
+      "line": 19,
+      "column": 1,
+      "message_sha256": "22f21ae0f7ff30d0ba549605cf079551ef89a62254c8151a5451068526a5fc12"
+    },
+    {
+      "rule": "typescript(no-import-type-side-effects)",
+      "file": "src/assets/clerk-logo.tsx",
+      "severity": "error",
+      "line": 19,
+      "column": 1,
+      "message_sha256": "22f21ae0f7ff30d0ba549605cf079551ef89a62254c8151a5451068526a5fc12"
+    },
+    {
+      "rule": "react(self-closing-comp)",
+      "file": "src/assets/clerk-logo.tsx",
+      "severity": "warning",
+      "line": 39,
+      "column": 8,
+      "message_sha256": "e19c04e6b588bd4128fdc24951650492db9e32d7db63ee0f08cc106091f32135"
+    },
+    {
+      "rule": "typescript(no-import-type-side-effects)",
+      "file": "src/assets/custom/icon-dir.tsx",
+      "severity": "error",
+      "line": 19,
+      "column": 1,
+      "message_sha256": "22f21ae0f7ff30d0ba549605cf079551ef89a62254c8151a5451068526a5fc12"
+    },
+    {
+      "rule": "typescript(no-import-type-side-effects)",
+      "file": "src/assets/custom/icon-dir.tsx",
+      "severity": "error",
+      "line": 21,
+      "column": 1,
+      "message_sha256": "22f21ae0f7ff30d0ba549605cf079551ef89a62254c8151a5451068526a5fc12"
+    },
+    {
+      "rule": "typescript(no-import-type-side-effects)",
+      "file": "src/assets/custom/icon-layout-compact.tsx",
+      "severity": "error",
+      "line": 19,
+      "column": 1,
+      "message_sha256": "22f21ae0f7ff30d0ba549605cf079551ef89a62254c8151a5451068526a5fc12"
+    },
+    {
+      "rule": "typescript(no-import-type-side-effects)",
+      "file": "src/assets/custom/icon-layout-default.tsx",
+      "severity": "error",
+      "line": 19,
+      "column": 1,
+      "message_sha256": "22f21ae0f7ff30d0ba549605cf079551ef89a62254c8151a5451068526a5fc12"
+    },
+    {
+      "rule": "typescript(no-import-type-side-effects)",
+      "file": "src/assets/custom/icon-layout-full.tsx",
+      "severity": "error",
+      "line": 19,
+      "column": 1,
+      "message_sha256": "22f21ae0f7ff30d0ba549605cf079551ef89a62254c8151a5451068526a5fc12"
+    },
+    {
+      "rule": "typescript(no-import-type-side-effects)",
+      "file": "src/assets/custom/icon-sidebar-floating.tsx",
+      "severity": "error",
+      "line": 19,
+      "column": 1,
+      "message_sha256": "22f21ae0f7ff30d0ba549605cf079551ef89a62254c8151a5451068526a5fc12"
+    },
+    {
+      "rule": "typescript(no-import-type-side-effects)",
+      "file": "src/assets/custom/icon-sidebar-inset.tsx",
+      "severity": "error",
+      "line": 19,
+      "column": 1,
+      "message_sha256": "22f21ae0f7ff30d0ba549605cf079551ef89a62254c8151a5451068526a5fc12"
+    },
+    {
+      "rule": "typescript(no-import-type-side-effects)",
+      "file": "src/assets/custom/icon-sidebar-sidebar.tsx",
+      "severity": "error",
+      "line": 19,
+      "column": 1,
+      "message_sha256": "22f21ae0f7ff30d0ba549605cf079551ef89a62254c8151a5451068526a5fc12"
+    },
+    {
+      "rule": "typescript(no-import-type-side-effects)",
+      "file": "src/assets/custom/icon-theme-dark.tsx",
+      "severity": "error",
+      "line": 19,
+      "column": 1,
+      "message_sha256": "22f21ae0f7ff30d0ba549605cf079551ef89a62254c8151a5451068526a5fc12"
+    },
+    {
+      "rule": "typescript(no-import-type-side-effects)",
+      "file": "src/assets/custom/icon-theme-light.tsx",
+      "severity": "error",
+      "line": 19,
+      "column": 1,
+      "message_sha256": "22f21ae0f7ff30d0ba549605cf079551ef89a62254c8151a5451068526a5fc12"
+    },
+    {
+      "rule": "typescript(no-import-type-side-effects)",
+      "file": "src/assets/custom/icon-theme-system.tsx",
+      "severity": "error",
+      "line": 19,
+      "column": 1,
+      "message_sha256": "22f21ae0f7ff30d0ba549605cf079551ef89a62254c8151a5451068526a5fc12"
+    },
+    {
+      "rule": "typescript(no-import-type-side-effects)",
+      "file": "src/assets/logo.tsx",
+      "severity": "error",
+      "line": 19,
+      "column": 1,
+      "message_sha256": "22f21ae0f7ff30d0ba549605cf079551ef89a62254c8151a5451068526a5fc12"
+    },
+    {
+      "rule": "react(self-closing-comp)",
+      "file": "src/components/ai-elements/actions.tsx",
+      "severity": "warning",
+      "line": 74,
+      "column": 43,
+      "message_sha256": "e19c04e6b588bd4128fdc24951650492db9e32d7db63ee0f08cc106091f32135"
+    },
+    {
+      "rule": "react(self-closing-comp)",
+      "file": "src/components/ai-elements/artifact.tsx",
+      "severity": "warning",
+      "line": 151,
+      "column": 43,
+      "message_sha256": "e19c04e6b588bd4128fdc24951650492db9e32d7db63ee0f08cc106091f32135"
+    },
+    {
+      "rule": "react(jsx-boolean-value)",
+      "file": "src/components/ai-elements/canvas.tsx",
+      "severity": "warning",
+      "line": 35,
+      "column": 20,
+      "message_sha256": "72cf452722cab05025ad779aa83702ecb478ba58041de20b7b0ec9a511acc535"
+    },
+    {
+      "rule": "react(self-closing-comp)",
+      "file": "src/components/ai-elements/plan.tsx",
+      "severity": "warning",
+      "line": 142,
+      "column": 4,
+      "message_sha256": "e19c04e6b588bd4128fdc24951650492db9e32d7db63ee0f08cc106091f32135"
+    },
+    {
+      "rule": "unicorn(prefer-spread)",
+      "file": "src/components/ai-elements/prompt-input.tsx",
+      "severity": "error",
+      "line": 180,
+      "column": 22,
+      "message_sha256": "d4ac9422208fe6b61c0016341139f8cc1eaf232de181a1009a78a2eedf3ec92d"
+    },
+    {
+      "rule": "unicorn(prefer-spread)",
+      "file": "src/components/ai-elements/prompt-input.tsx",
+      "severity": "error",
+      "line": 184,
+      "column": 7,
+      "message_sha256": "a919cadca622dc8925ded37c8068a7ff6c6c6c9e21c62d7078991e46e4f465df"
+    },
+    {
+      "rule": "unicorn(prefer-spread)",
+      "file": "src/components/ai-elements/prompt-input.tsx",
+      "severity": "error",
+      "line": 512,
+      "column": 24,
+      "message_sha256": "d4ac9422208fe6b61c0016341139f8cc1eaf232de181a1009a78a2eedf3ec92d"
+    },
+    {
+      "rule": "unicorn(prefer-spread)",
+      "file": "src/components/ai-elements/prompt-input.tsx",
+      "severity": "error",
+      "line": 555,
+      "column": 16,
+      "message_sha256": "a919cadca622dc8925ded37c8068a7ff6c6c6c9e21c62d7078991e46e4f465df"
+    },
+    {
+      "rule": "unicorn(prefer-add-event-listener)",
+      "file": "src/components/ai-elements/prompt-input.tsx",
+      "severity": "warning",
+      "line": 695,
+      "column": 14,
+      "message_sha256": "24aa01bce9cdeb6f3045fa8d330f92dd9e5be2e0a5d965c1debb2e5afed45dde"
+    },
+    {
+      "rule": "promise(catch-or-return)",
+      "file": "src/components/ai-elements/prompt-input.tsx",
+      "severity": "error",
+      "line": 730,
+      "column": 5,
+      "message_sha256": "c8b16b22b2dc248686f68ea534f0343004763c7532effa4591c4038b1c9b7627"
+    },
+    {
+      "rule": "unicorn(prefer-optional-catch-binding)",
+      "file": "src/components/ai-elements/prompt-input.tsx",
+      "severity": "error",
+      "line": 763,
+      "column": 16,
+      "message_sha256": "98aa9dfc8d20c098cd946d8f8f9c86e2ba4968c74f02c2126c1d486ab4307223"
+    },
+    {
+      "rule": "unicorn(prefer-at)",
+      "file": "src/components/ai-elements/prompt-input.tsx",
+      "severity": "error",
+      "line": 846,
+      "column": 13,
+      "message_sha256": "76a1a4ae70fe0541a4b4a0e70f539a96fc2a37f6b2303f91c82675d02c49ebdf"
+    },
+    {
+      "rule": "unicorn(prefer-spread)",
+      "file": "src/components/ai-elements/prompt-input.tsx",
+      "severity": "error",
+      "line": 1141,
+      "column": 25,
+      "message_sha256": "d4ac9422208fe6b61c0016341139f8cc1eaf232de181a1009a78a2eedf3ec92d"
+    },
+    {
+      "rule": "unicorn(prefer-add-event-listener)",
+      "file": "src/components/ai-elements/prompt-input.tsx",
+      "severity": "warning",
+      "line": 1161,
+      "column": 25,
+      "message_sha256": "24aa01bce9cdeb6f3045fa8d330f92dd9e5be2e0a5d965c1debb2e5afed45dde"
+    },
+    {
+      "rule": "react(iframe-missing-sandbox)",
+      "file": "src/components/ai-elements/web-preview.tsx",
+      "severity": "error",
+      "line": 215,
+      "column": 17,
+      "message_sha256": "d56f92fb8e7fdf0dccd3f7bfd9284154b55180755c628b9b68ee2938ec22b8a0"
+    },
+    {
+      "rule": "react(no-array-index-key)",
+      "file": "src/components/ai-elements/web-preview.tsx",
+      "severity": "error",
+      "line": 283,
+      "column": 17,
+      "message_sha256": "094bbe5bb0b7775a065d17e65045ffc706bed5515e2f64e89d6431ea4e414ad0"
+    },
+    {
+      "rule": "oxc(const-comparisons)",
+      "file": "src/components/confirm-dialog.tsx",
+      "severity": "error",
+      "line": 65,
+      "column": 41,
+      "message_sha256": "f02f79fb8bf1344ece34a7dee114b5a0f0b1c7999f121ed38ce688ba3771e40c"
+    },
+    {
+      "rule": "typescript(no-import-type-side-effects)",
+      "file": "src/components/copy-button.tsx",
+      "severity": "error",
+      "line": 20,
+      "column": 1,
+      "message_sha256": "22f21ae0f7ff30d0ba549605cf079551ef89a62254c8151a5451068526a5fc12"
+    },
+    {
+      "rule": "react(self-closing-comp)",
+      "file": "src/components/copy-button.tsx",
+      "severity": "warning",
+      "line": 83,
+      "column": 41,
+      "message_sha256": "e19c04e6b588bd4128fdc24951650492db9e32d7db63ee0f08cc106091f32135"
+    },
+    {
+      "rule": "typescript(no-import-type-side-effects)",
+      "file": "src/components/data-table/core/column-header.tsx",
+      "severity": "error",
+      "line": 19,
+      "column": 1,
+      "message_sha256": "22f21ae0f7ff30d0ba549605cf079551ef89a62254c8151a5451068526a5fc12"
+    },
+    {
+      "rule": "eslint(no-nested-ternary)",
+      "file": "src/components/data-table/core/column-header.tsx",
+      "severity": "error",
+      "line": 67,
+      "column": 12,
+      "message_sha256": "1cbe7c38ed0d368bd4a55de9914cbecc108f95fa2a27658764e72f073821171e"
+    },
+    {
+      "rule": "typescript(no-import-type-side-effects)",
+      "file": "src/components/data-table/toolbar/faceted-filter.tsx",
+      "severity": "error",
+      "line": 19,
+      "column": 1,
+      "message_sha256": "22f21ae0f7ff30d0ba549605cf079551ef89a62254c8151a5451068526a5fc12"
+    },
+    {
+      "rule": "eslint(no-nested-ternary)",
+      "file": "src/components/data-table/toolbar/faceted-filter.tsx",
+      "severity": "error",
+      "line": 146,
+      "column": 22,
+      "message_sha256": "1cbe7c38ed0d368bd4a55de9914cbecc108f95fa2a27658764e72f073821171e"
+    },
+    {
+      "rule": "eslint(no-nested-ternary)",
+      "file": "src/components/data-table/toolbar/faceted-filter.tsx",
+      "severity": "error",
+      "line": 159,
+      "column": 22,
+      "message_sha256": "1cbe7c38ed0d368bd4a55de9914cbecc108f95fa2a27658764e72f073821171e"
+    },
+    {
+      "rule": "unicorn(prefer-spread)",
+      "file": "src/components/data-table/toolbar/faceted-filter.tsx",
+      "severity": "error",
+      "line": 212,
+      "column": 10,
+      "message_sha256": "d4ac9422208fe6b61c0016341139f8cc1eaf232de181a1009a78a2eedf3ec92d"
+    },
+    {
+      "rule": "typescript(no-import-type-side-effects)",
+      "file": "src/components/data-table/toolbar/view-options.tsx",
+      "severity": "error",
+      "line": 19,
+      "column": 1,
+      "message_sha256": "22f21ae0f7ff30d0ba549605cf079551ef89a62254c8151a5451068526a5fc12"
+    },
+    {
+      "rule": "react(no-danger)",
+      "file": "src/components/layout/components/footer.tsx",
+      "severity": "warning",
+      "line": 237,
+      "column": 15,
+      "message_sha256": "df58289cee0794ff2119e67ebba3fa93a55b908586a080e4c64454f9fdefed8d"
+    },
+    {
+      "rule": "react(no-array-index-key)",
+      "file": "src/components/layout/components/footer.tsx",
+      "severity": "error",
+      "line": 276,
+      "column": 22,
+      "message_sha256": "094bbe5bb0b7775a065d17e65045ffc706bed5515e2f64e89d6431ea4e414ad0"
+    },
+    {
+      "rule": "react(no-array-index-key)",
+      "file": "src/components/layout/components/footer.tsx",
+      "severity": "error",
+      "line": 282,
+      "column": 27,
+      "message_sha256": "094bbe5bb0b7775a065d17e65045ffc706bed5515e2f64e89d6431ea4e414ad0"
+    },
+    {
+      "rule": "react(no-array-index-key)",
+      "file": "src/components/layout/components/nav-link-item.tsx",
+      "severity": "error",
+      "line": 81,
+      "column": 11,
+      "message_sha256": "094bbe5bb0b7775a065d17e65045ffc706bed5515e2f64e89d6431ea4e414ad0"
+    },
+    {
+      "rule": "react(no-array-index-key)",
+      "file": "src/components/layout/components/public-navigation.tsx",
+      "severity": "error",
+      "line": 59,
+      "column": 15,
+      "message_sha256": "094bbe5bb0b7775a065d17e65045ffc706bed5515e2f64e89d6431ea4e414ad0"
+    },
+    {
+      "rule": "react(no-array-index-key)",
+      "file": "src/components/layout/components/public-navigation.tsx",
+      "severity": "error",
+      "line": 75,
+      "column": 13,
+      "message_sha256": "094bbe5bb0b7775a065d17e65045ffc706bed5515e2f64e89d6431ea4e414ad0"
+    },
+    {
+      "rule": "typescript(no-import-type-side-effects)",
+      "file": "src/components/layout/components/top-nav.tsx",
+      "severity": "error",
+      "line": 33,
+      "column": 1,
+      "message_sha256": "22f21ae0f7ff30d0ba549605cf079551ef89a62254c8151a5451068526a5fc12"
+    },
+    {
+      "rule": "react(self-closing-comp)",
+      "file": "src/components/layout/components/top-nav.tsx",
+      "severity": "warning",
+      "line": 99,
+      "column": 18,
+      "message_sha256": "e19c04e6b588bd4128fdc24951650492db9e32d7db63ee0f08cc106091f32135"
+    },
+    {
+      "rule": "typescript(no-import-type-side-effects)",
+      "file": "src/components/layout/config/top-nav.config.ts",
+      "severity": "error",
+      "line": 19,
+      "column": 1,
+      "message_sha256": "22f21ae0f7ff30d0ba549605cf079551ef89a62254c8151a5451068526a5fc12"
+    },
+    {
+      "rule": "eslint(curly)",
+      "file": "src/components/layout/lib/url-utils.ts",
+      "severity": "error",
+      "line": 91,
+      "column": 7,
+      "message_sha256": "307e8c63677de2a5ea2a80bef26410be4417f1d78fd7bd8a289a599f649c1a63"
+    },
+    {
+      "rule": "eslint(curly)",
+      "file": "src/components/long-text.tsx",
+      "severity": "error",
+      "line": 58,
+      "column": 5,
+      "message_sha256": "307e8c63677de2a5ea2a80bef26410be4417f1d78fd7bd8a289a599f649c1a63"
+    },
+    {
+      "rule": "react(jsx-no-useless-fragment)",
+      "file": "src/components/page-transition.tsx",
+      "severity": "error",
+      "line": 145,
+      "column": 12,
+      "message_sha256": "03fcab0546bc0b5bc996c7b5015a355797de4d4b51da8e2b7a54e9872831363f"
+    },
+    {
+      "rule": "unicorn(prefer-spread)",
+      "file": "src/components/risk-acknowledgement-dialog.tsx",
+      "severity": "error",
+      "line": 68,
+      "column": 32,
+      "message_sha256": "d4ac9422208fe6b61c0016341139f8cc1eaf232de181a1009a78a2eedf3ec92d"
+    },
+    {
+      "rule": "react(no-array-index-key)",
+      "file": "src/components/risk-acknowledgement-dialog.tsx",
+      "severity": "error",
+      "line": 250,
+      "column": 25,
+      "message_sha256": "094bbe5bb0b7775a065d17e65045ffc706bed5515e2f64e89d6431ea4e414ad0"
+    },
+    {
+      "rule": "react(no-array-index-key)",
+      "file": "src/components/risk-acknowledgement-dialog.tsx",
+      "severity": "error",
+      "line": 257,
+      "column": 25,
+      "message_sha256": "094bbe5bb0b7775a065d17e65045ffc706bed5515e2f64e89d6431ea4e414ad0"
+    },
+    {
+      "rule": "react(jsx-curly-brace-presence)",
+      "file": "src/components/skip-to-main.tsx",
+      "severity": "warning",
+      "line": 25,
+      "column": 18,
+      "message_sha256": "7a95204800e60b8fe21ad938b1a41a2e30f8f6aca949dcbf71a87693135c4a0a"
+    },
+    {
+      "rule": "unicorn(prefer-at)",
+      "file": "src/components/tag-input.tsx",
+      "severity": "error",
+      "line": 64,
+      "column": 17,
+      "message_sha256": "76a1a4ae70fe0541a4b4a0e70f539a96fc2a37f6b2303f91c82675d02c49ebdf"
+    },
+    {
+      "rule": "unicorn(prefer-query-selector)",
+      "file": "src/components/turnstile.tsx",
+      "severity": "warning",
+      "line": 64,
+      "column": 18,
+      "message_sha256": "e453e507ec32cc2550191e06202bc4a7c4b159d3f9f8fe19d3f368adf45dd72a"
+    },
+    {
+      "rule": "unicorn(prefer-add-event-listener)",
+      "file": "src/components/turnstile.tsx",
+      "severity": "warning",
+      "line": 71,
+      "column": 7,
+      "message_sha256": "24aa01bce9cdeb6f3045fa8d330f92dd9e5be2e0a5d965c1debb2e5afed45dde"
+    },
+    {
+      "rule": "unicorn(prefer-string-replace-all)",
+      "file": "src/features/auth/lib/validation.ts",
+      "severity": "error",
+      "line": 48,
+      "column": 37,
+      "message_sha256": "ed2388344e6ce81b21fa3e59f0a28e5b1d367829577dda71d4353277fd85fcbb"
+    },
+    {
+      "rule": "eslint(prefer-template)",
+      "file": "src/features/auth/lib/validation.ts",
+      "severity": "warning",
+      "line": 57,
+      "column": 12,
+      "message_sha256": "5f80a04dcb148af4d7a1da01fdbf37da1fab0df0753d3656292c528a42aabf4b"
+    },
+    {
+      "rule": "unicorn(prefer-string-replace-all)",
+      "file": "src/features/auth/lib/validation.ts",
+      "severity": "error",
+      "line": 67,
+      "column": 15,
+      "message_sha256": "ed2388344e6ce81b21fa3e59f0a28e5b1d367829577dda71d4353277fd85fcbb"
+    },
+    {
+      "rule": "typescript(no-import-type-side-effects)",
+      "file": "src/features/channels/components/data-table-bulk-actions.tsx",
+      "severity": "error",
+      "line": 20,
+      "column": 1,
+      "message_sha256": "22f21ae0f7ff30d0ba549605cf079551ef89a62254c8151a5451068526a5fc12"
+    },
+    {
+      "rule": "unicorn(prefer-spread)",
+      "file": "src/features/channels/lib/model-mapping-validation.ts",
+      "severity": "error",
+      "line": 39,
+      "column": 10,
+      "message_sha256": "d4ac9422208fe6b61c0016341139f8cc1eaf232de181a1009a78a2eedf3ec92d"
+    },
+    {
+      "rule": "unicorn(prefer-spread)",
+      "file": "src/features/channels/lib/model-mapping-validation.ts",
+      "severity": "error",
+      "line": 68,
+      "column": 12,
+      "message_sha256": "d4ac9422208fe6b61c0016341139f8cc1eaf232de181a1009a78a2eedf3ec92d"
+    },
+    {
+      "rule": "unicorn(prefer-spread)",
+      "file": "src/features/channels/lib/model-mapping-validation.ts",
+      "severity": "error",
+      "line": 93,
+      "column": 12,
+      "message_sha256": "d4ac9422208fe6b61c0016341139f8cc1eaf232de181a1009a78a2eedf3ec92d"
+    },
+    {
+      "rule": "unicorn(prefer-spread)",
+      "file": "src/features/channels/lib/model-mapping-validation.ts",
+      "severity": "error",
+      "line": 160,
+      "column": 10,
+      "message_sha256": "d4ac9422208fe6b61c0016341139f8cc1eaf232de181a1009a78a2eedf3ec92d"
+    },
+    {
+      "rule": "unicorn(prefer-spread)",
+      "file": "src/features/channels/lib/model-mapping-validation.ts",
+      "severity": "error",
+      "line": 242,
+      "column": 5,
+      "message_sha256": "d4ac9422208fe6b61c0016341139f8cc1eaf232de181a1009a78a2eedf3ec92d"
+    },
+    {
+      "rule": "unicorn(prefer-spread)",
+      "file": "src/features/channels/lib/upstream-update-utils.ts",
+      "severity": "error",
+      "line": 20,
+      "column": 10,
+      "message_sha256": "d4ac9422208fe6b61c0016341139f8cc1eaf232de181a1009a78a2eedf3ec92d"
+    },
+    {
+      "rule": "unicorn(prefer-query-selector)",
+      "file": "src/features/chat/lib/send-to-fluent.ts",
+      "severity": "warning",
+      "line": 24,
+      "column": 30,
+      "message_sha256": "e453e507ec32cc2550191e06202bc4a7c4b159d3f9f8fe19d3f368adf45dd72a"
+    },
+    {
+      "rule": "unicorn(no-useless-spread)",
+      "file": "src/features/dashboard/components/models/models-chart-preferences.tsx",
+      "severity": "error",
+      "line": 95,
+      "column": 13,
+      "message_sha256": "b7a5376c5148e297b4ae8e71be56018a8d2f8f710439ab3ba37921aef35ae171"
+    },
+    {
+      "rule": "unicorn(no-useless-spread)",
+      "file": "src/features/dashboard/components/models/models-chart-preferences.tsx",
+      "severity": "error",
+      "line": 128,
+      "column": 13,
+      "message_sha256": "b7a5376c5148e297b4ae8e71be56018a8d2f8f710439ab3ba37921aef35ae171"
+    },
+    {
+      "rule": "unicorn(no-useless-spread)",
+      "file": "src/features/dashboard/components/models/models-chart-preferences.tsx",
+      "severity": "error",
+      "line": 161,
+      "column": 13,
+      "message_sha256": "b7a5376c5148e297b4ae8e71be56018a8d2f8f710439ab3ba37921aef35ae171"
+    },
+    {
+      "rule": "unicorn(no-useless-spread)",
+      "file": "src/features/dashboard/components/models/models-chart-preferences.tsx",
+      "severity": "error",
+      "line": 195,
+      "column": 13,
+      "message_sha256": "b7a5376c5148e297b4ae8e71be56018a8d2f8f710439ab3ba37921aef35ae171"
+    },
+    {
+      "rule": "eslint(curly)",
+      "file": "src/features/dashboard/components/models/models-filter-dialog.tsx",
+      "severity": "error",
+      "line": 154,
+      "column": 7,
+      "message_sha256": "307e8c63677de2a5ea2a80bef26410be4417f1d78fd7bd8a289a599f649c1a63"
+    },
+    {
+      "rule": "unicorn(no-useless-spread)",
+      "file": "src/features/dashboard/components/models/models-filter-dialog.tsx",
+      "severity": "error",
+      "line": 261,
+      "column": 17,
+      "message_sha256": "b7a5376c5148e297b4ae8e71be56018a8d2f8f710439ab3ba37921aef35ae171"
+    },
+    {
+      "rule": "unicorn(prefer-query-selector)",
+      "file": "src/features/dashboard/components/overview/__tests__/setup-guide.test.tsx",
+      "severity": "warning",
+      "line": 123,
+      "column": 28,
+      "message_sha256": "e453e507ec32cc2550191e06202bc4a7c4b159d3f9f8fe19d3f368adf45dd72a"
+    },
+    {
+      "rule": "unicorn(prefer-query-selector)",
+      "file": "src/features/dashboard/components/overview/__tests__/setup-guide.test.tsx",
+      "severity": "warning",
+      "line": 140,
+      "column": 16,
+      "message_sha256": "e453e507ec32cc2550191e06202bc4a7c4b159d3f9f8fe19d3f368adf45dd72a"
+    },
+    {
+      "rule": "typescript(no-import-type-side-effects)",
+      "file": "src/features/dashboard/components/ui/panel-wrapper.tsx",
+      "severity": "error",
+      "line": 19,
+      "column": 1,
+      "message_sha256": "22f21ae0f7ff30d0ba549605cf079551ef89a62254c8151a5451068526a5fc12"
+    },
+    {
+      "rule": "unicorn(prefer-optional-catch-binding)",
+      "file": "src/features/dashboard/lib/api-info.ts",
+      "severity": "error",
+      "line": 49,
+      "column": 12,
+      "message_sha256": "98aa9dfc8d20c098cd946d8f8f9c86e2ba4968c74f02c2126c1d486ab4307223"
+    },
+    {
+      "rule": "unicorn(prefer-number-properties)",
+      "file": "src/features/dashboard/lib/stats.ts",
+      "severity": "warning",
+      "line": 30,
+      "column": 7,
+      "message_sha256": "e23972551a5ffcd7b512cc3b3b60cb63463ff666d2f2b515f44c8d509b1b7ad0"
+    },
+    {
+      "rule": "unicorn(prefer-number-properties)",
+      "file": "src/features/dashboard/lib/stats.ts",
+      "severity": "warning",
+      "line": 30,
+      "column": 25,
+      "message_sha256": "f477febea06ce5ee8ef2b66a792b6fb3fd98c5ef8e1f4085cd4e887999c6ffe9"
+    },
+    {
+      "rule": "unicorn(prefer-string-replace-all)",
+      "file": "src/features/dashboard/lib/text.ts",
+      "severity": "error",
+      "line": 28,
+      "column": 6,
+      "message_sha256": "ed2388344e6ce81b21fa3e59f0a28e5b1d367829577dda71d4353277fd85fcbb"
+    },
+    {
+      "rule": "unicorn(prefer-string-replace-all)",
+      "file": "src/features/dashboard/lib/text.ts",
+      "severity": "error",
+      "line": 29,
+      "column": 6,
+      "message_sha256": "ed2388344e6ce81b21fa3e59f0a28e5b1d367829577dda71d4353277fd85fcbb"
+    },
+    {
+      "rule": "eslint(prefer-template)",
+      "file": "src/features/dashboard/lib/text.ts",
+      "severity": "warning",
+      "line": 32,
+      "column": 7,
+      "message_sha256": "5f80a04dcb148af4d7a1da01fdbf37da1fab0df0753d3656292c528a42aabf4b"
+    },
+    {
+      "rule": "unicorn(prefer-string-slice)",
+      "file": "src/features/dashboard/lib/text.ts",
+      "severity": "warning",
+      "line": 32,
+      "column": 17,
+      "message_sha256": "eb293519885f280ba1b35d4d5b2087339ac754357e26a8aed42496281cd022dc"
+    },
+    {
+      "rule": "react(no-array-index-key)",
+      "file": "src/features/home/components/gateway-card.tsx",
+      "severity": "error",
+      "line": 54,
+      "column": 15,
+      "message_sha256": "094bbe5bb0b7775a065d17e65045ffc706bed5515e2f64e89d6431ea4e414ad0"
+    },
+    {
+      "rule": "react(button-has-type)",
+      "file": "src/features/home/components/hero-terminal-demo.tsx",
+      "severity": "error",
+      "line": 184,
+      "column": 16,
+      "message_sha256": "663f13466d30b115474eb6c13894b8d4e3e1fc04d7620a54451bfb134b7cebfd"
+    },
+    {
+      "rule": "react(no-array-index-key)",
+      "file": "src/features/home/components/hero-terminal-demo.tsx",
+      "severity": "error",
+      "line": 291,
+      "column": 21,
+      "message_sha256": "094bbe5bb0b7775a065d17e65045ffc706bed5515e2f64e89d6431ea4e414ad0"
+    },
+    {
+      "rule": "react(no-array-index-key)",
+      "file": "src/features/home/components/hero-terminal-demo.tsx",
+      "severity": "error",
+      "line": 316,
+      "column": 21,
+      "message_sha256": "094bbe5bb0b7775a065d17e65045ffc706bed5515e2f64e89d6431ea4e414ad0"
+    },
+    {
+      "rule": "react(no-array-index-key)",
+      "file": "src/features/home/components/hero-terminal-demo.tsx",
+      "severity": "error",
+      "line": 352,
+      "column": 15,
+      "message_sha256": "094bbe5bb0b7775a065d17e65045ffc706bed5515e2f64e89d6431ea4e414ad0"
+    },
+    {
+      "rule": "react(no-array-index-key)",
+      "file": "src/features/home/components/hero-terminal-demo.tsx",
+      "severity": "error",
+      "line": 358,
+      "column": 17,
+      "message_sha256": "094bbe5bb0b7775a065d17e65045ffc706bed5515e2f64e89d6431ea4e414ad0"
+    },
+    {
+      "rule": "react(no-array-index-key)",
+      "file": "src/features/home/components/hero-terminal-demo.tsx",
+      "severity": "error",
+      "line": 361,
+      "column": 33,
+      "message_sha256": "094bbe5bb0b7775a065d17e65045ffc706bed5515e2f64e89d6431ea4e414ad0"
+    },
+    {
+      "rule": "react(no-array-index-key)",
+      "file": "src/features/home/components/hero-terminal-demo.tsx",
+      "severity": "error",
+      "line": 364,
+      "column": 21,
+      "message_sha256": "094bbe5bb0b7775a065d17e65045ffc706bed5515e2f64e89d6431ea4e414ad0"
+    },
+    {
+      "rule": "react(no-array-index-key)",
+      "file": "src/features/home/components/hero-terminal-demo.tsx",
+      "severity": "error",
+      "line": 370,
+      "column": 21,
+      "message_sha256": "094bbe5bb0b7775a065d17e65045ffc706bed5515e2f64e89d6431ea4e414ad0"
+    },
+    {
+      "rule": "react(no-array-index-key)",
+      "file": "src/features/home/components/hero-terminal-demo.tsx",
+      "severity": "error",
+      "line": 375,
+      "column": 28,
+      "message_sha256": "094bbe5bb0b7775a065d17e65045ffc706bed5515e2f64e89d6431ea4e414ad0"
+    },
+    {
+      "rule": "react(no-array-index-key)",
+      "file": "src/features/home/components/hero-terminal-demo.tsx",
+      "severity": "error",
+      "line": 407,
+      "column": 16,
+      "message_sha256": "094bbe5bb0b7775a065d17e65045ffc706bed5515e2f64e89d6431ea4e414ad0"
+    },
+    {
+      "rule": "react(no-array-index-key)",
+      "file": "src/features/home/components/hero-terminal-demo.tsx",
+      "severity": "error",
+      "line": 414,
+      "column": 26,
+      "message_sha256": "094bbe5bb0b7775a065d17e65045ffc706bed5515e2f64e89d6431ea4e414ad0"
+    },
+    {
+      "rule": "react(no-array-index-key)",
+      "file": "src/features/home/components/hero-terminal-demo.tsx",
+      "severity": "error",
+      "line": 416,
+      "column": 33,
+      "message_sha256": "094bbe5bb0b7775a065d17e65045ffc706bed5515e2f64e89d6431ea4e414ad0"
+    },
+    {
+      "rule": "react(no-array-index-key)",
+      "file": "src/features/home/components/scrolling-icons.tsx",
+      "severity": "error",
+      "line": 50,
+      "column": 21,
+      "message_sha256": "094bbe5bb0b7775a065d17e65045ffc706bed5515e2f64e89d6431ea4e414ad0"
+    },
+    {
+      "rule": "react(no-array-index-key)",
+      "file": "src/features/home/components/scrolling-icons.tsx",
+      "severity": "error",
+      "line": 55,
+      "column": 13,
+      "message_sha256": "094bbe5bb0b7775a065d17e65045ffc706bed5515e2f64e89d6431ea4e414ad0"
+    },
+    {
+      "rule": "typescript(no-import-type-side-effects)",
+      "file": "src/features/home/constants.ts",
+      "severity": "error",
+      "line": 23,
+      "column": 1,
+      "message_sha256": "22f21ae0f7ff30d0ba549605cf079551ef89a62254c8151a5451068526a5fc12"
+    },
+    {
+      "rule": "typescript(no-import-type-side-effects)",
+      "file": "src/features/keys/components/data-table-bulk-actions.tsx",
+      "severity": "error",
+      "line": 19,
+      "column": 1,
+      "message_sha256": "22f21ae0f7ff30d0ba549605cf079551ef89a62254c8151a5451068526a5fc12"
+    },
+    {
+      "rule": "typescript(no-import-type-side-effects)",
+      "file": "src/features/keys/components/data-table-bulk-actions.tsx",
+      "severity": "error",
+      "line": 34,
+      "column": 1,
+      "message_sha256": "22f21ae0f7ff30d0ba549605cf079551ef89a62254c8151a5451068526a5fc12"
+    },
+    {
+      "rule": "typescript(no-import-type-side-effects)",
+      "file": "src/features/keys/constants.ts",
+      "severity": "error",
+      "line": 19,
+      "column": 1,
+      "message_sha256": "22f21ae0f7ff30d0ba549605cf079551ef89a62254c8151a5451068526a5fc12"
+    },
+    {
+      "rule": "react(jsx-no-useless-fragment)",
+      "file": "src/features/models/components/deployment-access-guard.tsx",
+      "severity": "error",
+      "line": 202,
+      "column": 10,
+      "message_sha256": "03fcab0546bc0b5bc996c7b5015a355797de4d4b51da8e2b7a54e9872831363f"
+    },
+    {
+      "rule": "typescript(no-import-type-side-effects)",
+      "file": "src/features/models/components/prefill-group-shared.ts",
+      "severity": "error",
+      "line": 21,
+      "column": 1,
+      "message_sha256": "22f21ae0f7ff30d0ba549605cf079551ef89a62254c8151a5451068526a5fc12"
+    },
+    {
+      "rule": "eslint(no-nested-ternary)",
+      "file": "src/features/models/components/prefill-group-shared.ts",
+      "severity": "error",
+      "line": 102,
+      "column": 11,
+      "message_sha256": "1cbe7c38ed0d368bd4a55de9914cbecc108f95fa2a27658764e72f073821171e"
+    },
+    {
+      "rule": "eslint(no-nested-ternary)",
+      "file": "src/features/models/lib/deployments-utils.ts",
+      "severity": "error",
+      "line": 25,
+      "column": 5,
+      "message_sha256": "1cbe7c38ed0d368bd4a55de9914cbecc108f95fa2a27658764e72f073821171e"
+    },
+    {
+      "rule": "unicorn(prefer-number-properties)",
+      "file": "src/features/models/lib/deployments-utils.ts",
+      "severity": "warning",
+      "line": 29,
+      "column": 11,
+      "message_sha256": "672a0a0bf7141e46f92ca83545907bda4d5a909d26fe923963c87422266c012c"
+    },
+    {
+      "rule": "unicorn(prefer-string-replace-all)",
+      "file": "src/features/pricing/components/model-details-api.tsx",
+      "severity": "error",
+      "line": 112,
+      "column": 25,
+      "message_sha256": "ed2388344e6ce81b21fa3e59f0a28e5b1d367829577dda71d4353277fd85fcbb"
+    },
+    {
+      "rule": "unicorn(prefer-string-replace-all)",
+      "file": "src/features/pricing/components/model-details-api.tsx",
+      "severity": "error",
+      "line": 180,
+      "column": 21,
+      "message_sha256": "ed2388344e6ce81b21fa3e59f0a28e5b1d367829577dda71d4353277fd85fcbb"
+    },
+    {
+      "rule": "unicorn(prefer-string-replace-all)",
+      "file": "src/features/pricing/components/model-details-api.tsx",
+      "severity": "error",
+      "line": 252,
+      "column": 21,
+      "message_sha256": "ed2388344e6ce81b21fa3e59f0a28e5b1d367829577dda71d4353277fd85fcbb"
+    },
+    {
+      "rule": "unicorn(prefer-string-replace-all)",
+      "file": "src/features/pricing/components/model-details-api.tsx",
+      "severity": "error",
+      "line": 302,
+      "column": 21,
+      "message_sha256": "ed2388344e6ce81b21fa3e59f0a28e5b1d367829577dda71d4353277fd85fcbb"
+    },
+    {
+      "rule": "unicorn(prefer-string-replace-all)",
+      "file": "src/features/pricing/components/model-details-api.tsx",
+      "severity": "error",
+      "line": 368,
+      "column": 21,
+      "message_sha256": "ed2388344e6ce81b21fa3e59f0a28e5b1d367829577dda71d4353277fd85fcbb"
+    },
+    {
+      "rule": "eslint(curly)",
+      "file": "src/features/pricing/components/model-details-api.tsx",
+      "severity": "error",
+      "line": 434,
+      "column": 5,
+      "message_sha256": "307e8c63677de2a5ea2a80bef26410be4417f1d78fd7bd8a289a599f649c1a63"
+    },
+    {
+      "rule": "eslint(no-nested-ternary)",
+      "file": "src/features/pricing/components/model-details-apps.tsx",
+      "severity": "error",
+      "line": 50,
+      "column": 5,
+      "message_sha256": "1cbe7c38ed0d368bd4a55de9914cbecc108f95fa2a27658764e72f073821171e"
+    },
+    {
+      "rule": "eslint(no-nested-ternary)",
+      "file": "src/features/pricing/components/model-details-apps.tsx",
+      "severity": "error",
+      "line": 52,
+      "column": 9,
+      "message_sha256": "1cbe7c38ed0d368bd4a55de9914cbecc108f95fa2a27658764e72f073821171e"
+    },
+    {
+      "rule": "eslint(no-nested-ternary)",
+      "file": "src/features/pricing/components/model-details-apps.tsx",
+      "severity": "error",
+      "line": 73,
+      "column": 19,
+      "message_sha256": "1cbe7c38ed0d368bd4a55de9914cbecc108f95fa2a27658764e72f073821171e"
+    },
+    {
+      "rule": "eslint(no-nested-ternary)",
+      "file": "src/features/pricing/components/model-details-apps.tsx",
+      "severity": "error",
+      "line": 78,
+      "column": 16,
+      "message_sha256": "1cbe7c38ed0d368bd4a55de9914cbecc108f95fa2a27658764e72f073821171e"
+    },
+    {
+      "rule": "typescript(no-import-type-side-effects)",
+      "file": "src/features/pricing/constants.ts",
+      "severity": "error",
+      "line": 19,
+      "column": 1,
+      "message_sha256": "22f21ae0f7ff30d0ba549605cf079551ef89a62254c8151a5451068526a5fc12"
+    },
+    {
+      "rule": "unicorn(prefer-spread)",
+      "file": "src/features/pricing/lib/mock-stats.ts",
+      "severity": "error",
+      "line": 318,
+      "column": 10,
+      "message_sha256": "6ba807b11aa72610b3a1fd944d7fde5559125e96656d845fe2f56c9582c41119"
+    },
+    {
+      "rule": "eslint(no-nested-ternary)",
+      "file": "src/features/pricing/lib/mock-stats.ts",
+      "severity": "error",
+      "line": 816,
+      "column": 19,
+      "message_sha256": "1cbe7c38ed0d368bd4a55de9914cbecc108f95fa2a27658764e72f073821171e"
+    },
+    {
+      "rule": "eslint(no-nested-ternary)",
+      "file": "src/features/pricing/lib/mock-stats.ts",
+      "severity": "error",
+      "line": 817,
+      "column": 19,
+      "message_sha256": "1cbe7c38ed0d368bd4a55de9914cbecc108f95fa2a27658764e72f073821171e"
+    },
+    {
+      "rule": "eslint(no-nested-ternary)",
+      "file": "src/features/pricing/lib/mock-stats.ts",
+      "severity": "error",
+      "line": 818,
+      "column": 19,
+      "message_sha256": "1cbe7c38ed0d368bd4a55de9914cbecc108f95fa2a27658764e72f073821171e"
+    },
+    {
+      "rule": "unicorn(prefer-spread)",
+      "file": "src/features/pricing/lib/mock-stats.ts",
+      "severity": "error",
+      "line": 820,
+      "column": 10,
+      "message_sha256": "6ba807b11aa72610b3a1fd944d7fde5559125e96656d845fe2f56c9582c41119"
+    },
+    {
+      "rule": "eslint(curly)",
+      "file": "src/features/pricing/lib/mock-stats.ts",
+      "severity": "error",
+      "line": 840,
+      "column": 5,
+      "message_sha256": "307e8c63677de2a5ea2a80bef26410be4417f1d78fd7bd8a289a599f649c1a63"
+    },
+    {
+      "rule": "unicorn(prefer-structured-clone)",
+      "file": "src/features/profile/__tests__/settings.test.tsx",
+      "severity": "warning",
+      "line": 63,
+      "column": 10,
+      "message_sha256": "86666b66044426a86fc26f83a7c8e076d5b200d14a4645d30ea362dd97d8c879"
+    },
+    {
+      "rule": "unicorn(prefer-set-has)",
+      "file": "src/features/rankings/index.tsx",
+      "severity": "warning",
+      "line": 35,
+      "column": 7,
+      "message_sha256": "0024d673a83680e496464ac2689d6cd3e1316f9b5ee5d5209375bee74381e3d2"
+    },
+    {
+      "rule": "eslint(no-nested-ternary)",
+      "file": "src/features/rankings/index.tsx",
+      "severity": "error",
+      "line": 64,
+      "column": 12,
+      "message_sha256": "1cbe7c38ed0d368bd4a55de9914cbecc108f95fa2a27658764e72f073821171e"
+    },
+    {
+      "rule": "eslint(curly)",
+      "file": "src/features/rankings/lib/format.ts",
+      "severity": "error",
+      "line": 27,
+      "column": 5,
+      "message_sha256": "307e8c63677de2a5ea2a80bef26410be4417f1d78fd7bd8a289a599f649c1a63"
+    },
+    {
+      "rule": "eslint(curly)",
+      "file": "src/features/rankings/lib/format.ts",
+      "severity": "error",
+      "line": 29,
+      "column": 5,
+      "message_sha256": "307e8c63677de2a5ea2a80bef26410be4417f1d78fd7bd8a289a599f649c1a63"
+    },
+    {
+      "rule": "eslint(curly)",
+      "file": "src/features/rankings/lib/format.ts",
+      "severity": "error",
+      "line": 31,
+      "column": 5,
+      "message_sha256": "307e8c63677de2a5ea2a80bef26410be4417f1d78fd7bd8a289a599f649c1a63"
+    },
+    {
+      "rule": "eslint(curly)",
+      "file": "src/features/rankings/lib/format.ts",
+      "severity": "error",
+      "line": 33,
+      "column": 5,
+      "message_sha256": "307e8c63677de2a5ea2a80bef26410be4417f1d78fd7bd8a289a599f649c1a63"
+    },
+    {
+      "rule": "react(self-closing-comp)",
+      "file": "src/features/redemption-codes/components/redemptions-columns.tsx",
+      "severity": "warning",
+      "line": 236,
+      "column": 14,
+      "message_sha256": "e19c04e6b588bd4128fdc24951650492db9e32d7db63ee0f08cc106091f32135"
+    },
+    {
+      "rule": "typescript(no-import-type-side-effects)",
+      "file": "src/features/redemption-codes/components/redemptions-provider.tsx",
+      "severity": "error",
+      "line": 23,
+      "column": 1,
+      "message_sha256": "22f21ae0f7ff30d0ba549605cf079551ef89a62254c8151a5451068526a5fc12"
+    },
+    {
+      "rule": "typescript(no-import-type-side-effects)",
+      "file": "src/features/subscriptions/components/subscriptions-provider.tsx",
+      "severity": "error",
+      "line": 27,
+      "column": 1,
+      "message_sha256": "22f21ae0f7ff30d0ba549605cf079551ef89a62254c8151a5451068526a5fc12"
+    },
+    {
+      "rule": "typescript(no-import-type-side-effects)",
+      "file": "src/features/subscriptions/constants.ts",
+      "severity": "error",
+      "line": 19,
+      "column": 1,
+      "message_sha256": "22f21ae0f7ff30d0ba549605cf079551ef89a62254c8151a5451068526a5fc12"
+    },
+    {
+      "rule": "unicorn(no-useless-spread)",
+      "file": "src/features/system-settings/content/dashboard-section.tsx",
+      "severity": "error",
+      "line": 158,
+      "column": 23,
+      "message_sha256": "b7a5376c5148e297b4ae8e71be56018a8d2f8f710439ab3ba37921aef35ae171"
+    },
+    {
+      "rule": "unicorn(prefer-structured-clone)",
+      "file": "src/features/system-settings/general/channel-affinity/constants.ts",
+      "severity": "warning",
+      "line": 133,
+      "column": 10,
+      "message_sha256": "86666b66044426a86fc26f83a7c8e076d5b200d14a4645d30ea362dd97d8c879"
+    },
+    {
+      "rule": "eslint(no-nested-ternary)",
+      "file": "src/features/system-settings/general/pricing-section.tsx",
+      "severity": "error",
+      "line": 239,
+      "column": 24,
+      "message_sha256": "1cbe7c38ed0d368bd4a55de9914cbecc108f95fa2a27658764e72f073821171e"
+    },
+    {
+      "rule": "unicorn(prefer-number-properties)",
+      "file": "src/features/system-settings/integrations/amount-discount-dialog.tsx",
+      "severity": "warning",
+      "line": 159,
+      "column": 38,
+      "message_sha256": "7cfad7cd9cd9d222c6114b5bc3db4c56bf5063132b4dfc75b5ab94fb1d776149"
+    },
+    {
+      "rule": "unicorn(prefer-number-properties)",
+      "file": "src/features/system-settings/integrations/amount-discount-dialog.tsx",
+      "severity": "warning",
+      "line": 191,
+      "column": 38,
+      "message_sha256": "59bb2b51b1c30a367f2ba4adac6fc3b861b93aa4116968c6d2146a51b969b732"
+    },
+    {
+      "rule": "unicorn(prefer-number-properties)",
+      "file": "src/features/system-settings/integrations/amount-discount-visual-editor.tsx",
+      "severity": "warning",
+      "line": 62,
+      "column": 26,
+      "message_sha256": "e23972551a5ffcd7b512cc3b3b60cb63463ff666d2f2b515f44c8d509b1b7ad0"
+    },
+    {
+      "rule": "unicorn(prefer-number-properties)",
+      "file": "src/features/system-settings/integrations/amount-discount-visual-editor.tsx",
+      "severity": "warning",
+      "line": 62,
+      "column": 49,
+      "message_sha256": "e23972551a5ffcd7b512cc3b3b60cb63463ff666d2f2b515f44c8d509b1b7ad0"
+    },
+    {
+      "rule": "unicorn(prefer-number-properties)",
+      "file": "src/features/system-settings/integrations/amount-options-visual-editor.tsx",
+      "severity": "warning",
+      "line": 52,
+      "column": 54,
+      "message_sha256": "e23972551a5ffcd7b512cc3b3b60cb63463ff666d2f2b515f44c8d509b1b7ad0"
+    },
+    {
+      "rule": "unicorn(prefer-number-properties)",
+      "file": "src/features/system-settings/integrations/amount-options-visual-editor.tsx",
+      "severity": "warning",
+      "line": 58,
+      "column": 20,
+      "message_sha256": "59bb2b51b1c30a367f2ba4adac6fc3b861b93aa4116968c6d2146a51b969b732"
+    },
+    {
+      "rule": "unicorn(prefer-number-properties)",
+      "file": "src/features/system-settings/integrations/amount-options-visual-editor.tsx",
+      "severity": "warning",
+      "line": 59,
+      "column": 9,
+      "message_sha256": "e23972551a5ffcd7b512cc3b3b60cb63463ff666d2f2b515f44c8d509b1b7ad0"
+    },
+    {
+      "rule": "unicorn(prefer-number-properties)",
+      "file": "src/features/system-settings/integrations/amount-options-visual-editor.tsx",
+      "severity": "warning",
+      "line": 159,
+      "column": 35,
+      "message_sha256": "59bb2b51b1c30a367f2ba4adac6fc3b861b93aa4116968c6d2146a51b969b732"
+    },
+    {
+      "rule": "unicorn(prefer-number-properties)",
+      "file": "src/features/system-settings/integrations/utils.ts",
+      "severity": "warning",
+      "line": 55,
+      "column": 22,
+      "message_sha256": "7cfad7cd9cd9d222c6114b5bc3db4c56bf5063132b4dfc75b5ab94fb1d776149"
+    },
+    {
+      "rule": "unicorn(prefer-string-slice)",
+      "file": "src/features/system-settings/integrations/utils.ts",
+      "severity": "warning",
+      "line": 56,
+      "column": 30,
+      "message_sha256": "eb293519885f280ba1b35d4d5b2087339ac754357e26a8aed42496281cd022dc"
+    },
+    {
+      "rule": "unicorn(prefer-at)",
+      "file": "src/features/system-settings/integrations/utils.ts",
+      "severity": "error",
+      "line": 59,
+      "column": 15,
+      "message_sha256": "76a1a4ae70fe0541a4b4a0e70f539a96fc2a37f6b2303f91c82675d02c49ebdf"
+    },
+    {
+      "rule": "unicorn(prefer-number-properties)",
+      "file": "src/features/system-settings/integrations/utils.ts",
+      "severity": "warning",
+      "line": 66,
+      "column": 13,
+      "message_sha256": "7cfad7cd9cd9d222c6114b5bc3db4c56bf5063132b4dfc75b5ab94fb1d776149"
+    },
+    {
+      "rule": "unicorn(prefer-number-properties)",
+      "file": "src/features/system-settings/integrations/utils.ts",
+      "severity": "warning",
+      "line": 67,
+      "column": 15,
+      "message_sha256": "7cfad7cd9cd9d222c6114b5bc3db4c56bf5063132b4dfc75b5ab94fb1d776149"
+    },
+    {
+      "rule": "unicorn(prefer-number-properties)",
+      "file": "src/features/system-settings/models/utils.ts",
+      "severity": "warning",
+      "line": 71,
+      "column": 22,
+      "message_sha256": "7cfad7cd9cd9d222c6114b5bc3db4c56bf5063132b4dfc75b5ab94fb1d776149"
+    },
+    {
+      "rule": "unicorn(prefer-string-slice)",
+      "file": "src/features/system-settings/models/utils.ts",
+      "severity": "warning",
+      "line": 72,
+      "column": 30,
+      "message_sha256": "eb293519885f280ba1b35d4d5b2087339ac754357e26a8aed42496281cd022dc"
+    },
+    {
+      "rule": "unicorn(prefer-at)",
+      "file": "src/features/system-settings/models/utils.ts",
+      "severity": "error",
+      "line": 75,
+      "column": 15,
+      "message_sha256": "76a1a4ae70fe0541a4b4a0e70f539a96fc2a37f6b2303f91c82675d02c49ebdf"
+    },
+    {
+      "rule": "unicorn(prefer-number-properties)",
+      "file": "src/features/system-settings/models/utils.ts",
+      "severity": "warning",
+      "line": 84,
+      "column": 13,
+      "message_sha256": "7cfad7cd9cd9d222c6114b5bc3db4c56bf5063132b4dfc75b5ab94fb1d776149"
+    },
+    {
+      "rule": "unicorn(prefer-number-properties)",
+      "file": "src/features/system-settings/models/utils.ts",
+      "severity": "warning",
+      "line": 85,
+      "column": 15,
+      "message_sha256": "7cfad7cd9cd9d222c6114b5bc3db4c56bf5063132b4dfc75b5ab94fb1d776149"
+    },
+    {
+      "rule": "unicorn(prefer-number-properties)",
+      "file": "src/features/system-settings/request-limits/rate-limit-dialog.tsx",
+      "severity": "warning",
+      "line": 175,
+      "column": 40,
+      "message_sha256": "7cfad7cd9cd9d222c6114b5bc3db4c56bf5063132b4dfc75b5ab94fb1d776149"
+    },
+    {
+      "rule": "unicorn(prefer-number-properties)",
+      "file": "src/features/system-settings/request-limits/rate-limit-dialog.tsx",
+      "severity": "warning",
+      "line": 206,
+      "column": 40,
+      "message_sha256": "7cfad7cd9cd9d222c6114b5bc3db4c56bf5063132b4dfc75b5ab94fb1d776149"
+    },
+    {
+      "rule": "unicorn(prefer-number-properties)",
+      "file": "src/features/system-settings/request-limits/rate-limit-section.tsx",
+      "severity": "warning",
+      "line": 164,
+      "column": 42,
+      "message_sha256": "7cfad7cd9cd9d222c6114b5bc3db4c56bf5063132b4dfc75b5ab94fb1d776149"
+    },
+    {
+      "rule": "unicorn(prefer-number-properties)",
+      "file": "src/features/system-settings/request-limits/rate-limit-section.tsx",
+      "severity": "warning",
+      "line": 195,
+      "column": 42,
+      "message_sha256": "7cfad7cd9cd9d222c6114b5bc3db4c56bf5063132b4dfc75b5ab94fb1d776149"
+    },
+    {
+      "rule": "unicorn(prefer-number-properties)",
+      "file": "src/features/system-settings/request-limits/rate-limit-section.tsx",
+      "severity": "warning",
+      "line": 226,
+      "column": 42,
+      "message_sha256": "7cfad7cd9cd9d222c6114b5bc3db4c56bf5063132b4dfc75b5ab94fb1d776149"
+    },
+    {
+      "rule": "unicorn(prefer-number-properties)",
+      "file": "src/features/system-settings/utils/json-parser.ts",
+      "severity": "warning",
+      "line": 55,
+      "column": 22,
+      "message_sha256": "7cfad7cd9cd9d222c6114b5bc3db4c56bf5063132b4dfc75b5ab94fb1d776149"
+    },
+    {
+      "rule": "unicorn(prefer-number-properties)",
+      "file": "src/features/system-settings/utils/json-parser.ts",
+      "severity": "warning",
+      "line": 64,
+      "column": 13,
+      "message_sha256": "7cfad7cd9cd9d222c6114b5bc3db4c56bf5063132b4dfc75b5ab94fb1d776149"
+    },
+    {
+      "rule": "unicorn(prefer-number-properties)",
+      "file": "src/features/system-settings/utils/json-parser.ts",
+      "severity": "warning",
+      "line": 65,
+      "column": 15,
+      "message_sha256": "7cfad7cd9cd9d222c6114b5bc3db4c56bf5063132b4dfc75b5ab94fb1d776149"
+    },
+    {
+      "rule": "unicorn(prefer-string-slice)",
+      "file": "src/features/system-settings/utils/json-parser.ts",
+      "severity": "warning",
+      "line": 76,
+      "column": 22,
+      "message_sha256": "eb293519885f280ba1b35d4d5b2087339ac754357e26a8aed42496281cd022dc"
+    },
+    {
+      "rule": "unicorn(prefer-at)",
+      "file": "src/features/system-settings/utils/json-parser.ts",
+      "severity": "error",
+      "line": 79,
+      "column": 13,
+      "message_sha256": "76a1a4ae70fe0541a4b4a0e70f539a96fc2a37f6b2303f91c82675d02c49ebdf"
+    },
+    {
+      "rule": "react(self-closing-comp)",
+      "file": "src/features/usage-logs/components/columns/column-helpers.tsx",
+      "severity": "warning",
+      "line": 59,
+      "column": 10,
+      "message_sha256": "e19c04e6b588bd4128fdc24951650492db9e32d7db63ee0f08cc106091f32135"
+    },
+    {
+      "rule": "typescript(no-import-type-side-effects)",
+      "file": "src/features/usage-logs/components/task-logs-filter-bar.tsx",
+      "severity": "error",
+      "line": 21,
+      "column": 1,
+      "message_sha256": "22f21ae0f7ff30d0ba549605cf079551ef89a62254c8151a5451068526a5fc12"
+    },
+    {
+      "rule": "typescript(no-import-type-side-effects)",
+      "file": "src/features/users/components/data-table-bulk-actions.tsx",
+      "severity": "error",
+      "line": 19,
+      "column": 1,
+      "message_sha256": "22f21ae0f7ff30d0ba549605cf079551ef89a62254c8151a5451068526a5fc12"
+    },
+    {
+      "rule": "typescript(no-import-type-side-effects)",
+      "file": "src/features/users/components/data-table-bulk-actions.tsx",
+      "severity": "error",
+      "line": 23,
+      "column": 1,
+      "message_sha256": "22f21ae0f7ff30d0ba549605cf079551ef89a62254c8151a5451068526a5fc12"
+    },
+    {
+      "rule": "react(jsx-no-useless-fragment)",
+      "file": "src/features/users/components/data-table-bulk-actions.tsx",
+      "severity": "error",
+      "line": 32,
+      "column": 7,
+      "message_sha256": "03fcab0546bc0b5bc996c7b5015a355797de4d4b51da8e2b7a54e9872831363f"
+    },
+    {
+      "rule": "typescript(no-import-type-side-effects)",
+      "file": "src/features/users/lib/user-actions.ts",
+      "severity": "error",
+      "line": 19,
+      "column": 1,
+      "message_sha256": "22f21ae0f7ff30d0ba549605cf079551ef89a62254c8151a5451068526a5fc12"
+    },
+    {
+      "rule": "typescript(no-import-type-side-effects)",
+      "file": "src/features/users/lib/user-form.ts",
+      "severity": "error",
+      "line": 30,
+      "column": 1,
+      "message_sha256": "22f21ae0f7ff30d0ba549605cf079551ef89a62254c8151a5451068526a5fc12"
+    },
+    {
+      "rule": "react(no-array-index-key)",
+      "file": "src/features/wallet/components/creem-products-section.tsx",
+      "severity": "error",
+      "line": 45,
+      "column": 21,
+      "message_sha256": "094bbe5bb0b7775a065d17e65045ffc706bed5515e2f64e89d6431ea4e414ad0"
+    },
+    {
+      "rule": "unicorn(prefer-add-event-listener)",
+      "file": "src/hooks/use-system-config.ts",
+      "severity": "warning",
+      "line": 39,
+      "column": 7,
+      "message_sha256": "24aa01bce9cdeb6f3045fa8d330f92dd9e5be2e0a5d965c1debb2e5afed45dde"
+    },
+    {
+      "rule": "unicorn(prefer-add-event-listener)",
+      "file": "src/hooks/use-system-config.ts",
+      "severity": "warning",
+      "line": 40,
+      "column": 7,
+      "message_sha256": "24aa01bce9cdeb6f3045fa8d330f92dd9e5be2e0a5d965c1debb2e5afed45dde"
+    },
+    {
+      "rule": "unicorn(prefer-add-event-listener)",
+      "file": "src/hooks/use-system-config.ts",
+      "severity": "warning",
+      "line": 44,
+      "column": 9,
+      "message_sha256": "24aa01bce9cdeb6f3045fa8d330f92dd9e5be2e0a5d965c1debb2e5afed45dde"
+    },
+    {
+      "rule": "unicorn(prefer-add-event-listener)",
+      "file": "src/hooks/use-system-config.ts",
+      "severity": "warning",
+      "line": 45,
+      "column": 9,
+      "message_sha256": "24aa01bce9cdeb6f3045fa8d330f92dd9e5be2e0a5d965c1debb2e5afed45dde"
+    },
+    {
+      "rule": "unicorn(prefer-number-properties)",
+      "file": "src/hooks/use-table-url-state.ts",
+      "severity": "warning",
+      "line": 34,
+      "column": 15,
+      "message_sha256": "7cfad7cd9cd9d222c6114b5bc3db4c56bf5063132b4dfc75b5ab94fb1d776149"
+    },
+    {
+      "rule": "typescript(no-non-null-assertion)",
+      "file": "src/hooks/use-table-url-state.ts",
+      "severity": "error",
+      "line": 225,
+      "column": 14,
+      "message_sha256": "e4ee207902bc1bd3fcbf2bd9e0621d38984edfdfde38d57011c0aa86f7a17343"
+    },
+    {
+      "rule": "unicorn(prefer-string-replace-all)",
+      "file": "src/lib/http-status-code-rules.ts",
+      "severity": "error",
+      "line": 46,
+      "column": 25,
+      "message_sha256": "ed2388344e6ce81b21fa3e59f0a28e5b1d367829577dda71d4353277fd85fcbb"
+    },
+    {
+      "rule": "unicorn(prefer-string-replace-all)",
+      "file": "src/lib/http-status-code-rules.ts",
+      "severity": "error",
+      "line": 90,
+      "column": 32,
+      "message_sha256": "ed2388344e6ce81b21fa3e59f0a28e5b1d367829577dda71d4353277fd85fcbb"
+    },
+    {
+      "rule": "unicorn(prefer-at)",
+      "file": "src/lib/http-status-code-rules.ts",
+      "severity": "error",
+      "line": 126,
+      "column": 18,
+      "message_sha256": "76a1a4ae70fe0541a4b4a0e70f539a96fc2a37f6b2303f91c82675d02c49ebdf"
+    },
+    {
+      "rule": "unicorn(prefer-string-replace-all)",
+      "file": "src/lib/utils.ts",
+      "severity": "error",
+      "line": 39,
+      "column": 15,
+      "message_sha256": "ed2388344e6ce81b21fa3e59f0a28e5b1d367829577dda71d4353277fd85fcbb"
+    },
+    {
+      "rule": "unicorn(prefer-string-replace-all)",
+      "file": "src/lib/utils.ts",
+      "severity": "error",
+      "line": 39,
+      "column": 39,
+      "message_sha256": "ed2388344e6ce81b21fa3e59f0a28e5b1d367829577dda71d4353277fd85fcbb"
+    },
+    {
+      "rule": "eslint(prefer-template)",
+      "file": "src/lib/utils.ts",
+      "severity": "warning",
+      "line": 86,
+      "column": 10,
+      "message_sha256": "5f80a04dcb148af4d7a1da01fdbf37da1fab0df0753d3656292c528a42aabf4b"
+    },
+    {
+      "rule": "react(iframe-missing-sandbox)",
+      "file": "src/routes/_authenticated/chat/$chatId.tsx",
+      "severity": "error",
+      "line": 157,
+      "column": 6,
+      "message_sha256": "32c83b7ba90191a52559082525f32381c76bce5ee79758adeb438cbc0adde9e9"
+    },
+    {
+      "rule": "unicorn(no-useless-fallback-in-spread)",
+      "file": "src/stores/system-config-store.ts",
+      "severity": "warning",
+      "line": 89,
+      "column": 15,
+      "message_sha256": "2aefc214e42f181ef8e21146b0849451f4e37711402c30282c3d0881378efb70"
+    }
+  ]
+}

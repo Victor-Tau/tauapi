@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "example_only": true,
+  "check_id": "database-matrix",
+  "required": true,
+  "subject": {
+    "commit": null,
+    "source_digest": null,
+    "check_run_id": null
+  },
+  "working_directory": "tauapi-be",
+  "command": null,
+  "tool_versions": {},
+  "environment_class": "isolated_ci",
+  "started_at": null,
+  "finished_at": null,
+  "exit_code": null,
+  "status": "not_run",
+  "cases": [],
+  "skipped_required_cases": [],
+  "evidence_refs": [],
+  "blocker": "Template only. No verification has been performed."
+}

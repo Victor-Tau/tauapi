@@ -5,3 +5,8 @@
 .DS_Store
 .idea/
 .vscode/
+
+# Isolated documentation tooling and external check evidence.
+.docs-venv/
+.docs-reports/
+**/__pycache__/

@@ -1,0 +1,167 @@
+schema_version: 1
+example_only: true
+status: draft
+description: >-
+  Proposed schema shape. Target document paths and proposed check profiles are
+  not installed. Expand source coverage and implement the matcher before use.
+path_base: repository_root
+match_policy: union_of_intent_expected_paths_actual_diff_and_contract_edges
+unknown_source_policy: require_owner_and_conservative_routing
+
+components:
+  backend:
+    owned_paths: ["tauapi-be/**"]
+    policy_target: tauapi-be/AGENTS.md
+    index_target: tauapi-be/docs/ai/INDEX.md
+  frontend:
+    owned_paths: ["tauapi-fe/**"]
+    policy_target: tauapi-fe/AGENTS.md
+    index_target: tauapi-fe/docs/ai/INDEX.md
+  operations:
+    owned_paths: ["tauapi-ops/**"]
+    policy_target: tauapi-ops/AGENTS.md
+    index_target: tauapi-ops/docs/ai/INDEX.md
+  governance:
+    owned_paths: ["docs/**", "scripts/docs/**", ".claude/**", ".github/**", "AGENTS.md", "CLAUDE.md"]
+    policy_target: AGENTS.md
+    index_target: docs/ai/INDEX.md
+
+documents:
+  contract-routing:
+    type: contract
+    status: draft
+    target_path: docs/ai/contracts/routing-and-origin.md
+    owner_area: operations
+    source_paths:
+      - tauapi-ops/ROUTE_CONTRACT.json
+      - tauapi-ops/scripts/generate-nginx.py
+      - tauapi-be/router/main.go
+  contract-auth:
+    type: contract
+    status: draft
+    target_path: docs/ai/contracts/authentication-and-authorization.md
+    owner_area: backend
+    source_paths:
+      - tauapi-be/docs/authentication.md
+      - tauapi-be/middleware/access_token_routes.go
+      - tauapi-fe/src/lib/auth-session.ts
+  contract-billing:
+    type: contract
+    status: draft
+    target_path: docs/ai/contracts/billing-and-quota.md
+    owner_area: backend
+    source_paths:
+      - tauapi-be/.agents/rules/billing.md
+      - tauapi-be/pkg/billingexpr/expr.md
+      - tauapi-be/common/quota_math.go
+      - tauapi-fe/testdata/contracts/frontend_simulation.json
+  contract-plugins:
+    type: contract
+    status: draft
+    target_path: docs/ai/contracts/task-plugins.md
+    owner_area: backend
+    source_paths:
+      - tauapi-be/docs/plugin-api/v1.md
+      - tauapi-be/router/plugin-router.go
+  contract-frontend-release:
+    type: contract
+    status: draft
+    target_path: docs/ai/contracts/frontend-release.md
+    owner_area: operations
+    source_paths:
+      - tauapi-fe/rsbuild.config.ts
+      - tauapi-ops/scripts/build-frontend.sh
+      - tauapi-ops/scripts/deploy-frontend.sh
+  contract-backend-release:
+    type: contract
+    status: draft
+    target_path: docs/ai/contracts/backend-release-and-schema.md
+    owner_area: operations
+    source_paths:
+      - tauapi-be/model/main.go
+      - tauapi-ops/scripts/deploy-backend.sh
+      - tauapi-ops/scripts/rollback-backend.sh
+
+domains:
+  routing:
+    paths: ["tauapi-fe/src/routes/**", "tauapi-be/router/**", "tauapi-ops/ROUTE_CONTRACT.json", "tauapi-ops/scripts/generate-nginx.py"]
+    read: [contract-routing]
+    checks: [route-contract]
+  authentication:
+    paths: ["tauapi-be/middleware/auth*.go", "tauapi-be/service/auth*.go", "tauapi-be/model/user_session.go", "tauapi-fe/src/lib/auth-session.ts", "tauapi-fe/src/lib/http-client.ts", "tauapi-fe/src/stores/auth-store.ts"]
+    read: [contract-auth]
+    checks: [auth-contract]
+  billing:
+    paths: ["tauapi-be/pkg/billingexpr/**", "tauapi-be/common/quota_math.go", "tauapi-be/service/*billing*.go", "tauapi-be/relay/**", "tauapi-be/plugins/tasks/**", "tauapi-fe/src/features/pricing/**"]
+    read: [contract-billing]
+    checks: [billing-contract, fixture-equality]
+  plugins:
+    paths: ["tauapi-be/plugins/**", "tauapi-be/pkg/jsplugin/**", "tauapi-be/docs/plugin-api/**"]
+    read: [contract-plugins, contract-billing, contract-routing]
+    checks: [plugin-tools, billing-contract, route-contract]
+  persistence:
+    paths: ["tauapi-be/model/**", "tauapi-be/common/database.go", "tauapi-be/go.mod", "tauapi-be/go.sum"]
+    read: [contract-backend-release]
+    checks: [database-matrix]
+  releases:
+    paths: ["tauapi-ops/scripts/*frontend.sh", "tauapi-ops/scripts/*backend.sh", "tauapi-ops/templates/**", "tauapi-fe/rsbuild.config.ts"]
+    read: [contract-frontend-release, contract-backend-release]
+    checks: [isolated-builds, release-compatibility]
+
+task_intents:
+  add_frontend_page:
+    domains: [routing]
+    checks: [frontend-validation, route-contract]
+  fix_session_refresh:
+    domains: [authentication]
+    checks: [auth-contract]
+  change_billable_quantity:
+    domains: [billing]
+    checks: [billing-contract]
+  add_task_provider:
+    domains: [plugins, billing, routing]
+    checks: [plugin-tools, billing-contract, route-contract]
+  change_database_behavior:
+    domains: [persistence]
+    checks: [database-matrix, backend-modules]
+  release_component:
+    domains: [releases]
+    checks: [isolated-builds, release-compatibility]
+
+checks:
+  backend-modules:
+    availability: existing
+    cwd: tauapi-be
+    commands: ["make test"]
+    note: Database cases may skip; this profile alone is not a database-compatibility proof.
+  frontend-validation:
+    availability: existing
+    cwd: tauapi-fe
+    prerequisites: ["bun install --frozen-lockfile"]
+    commands: ["bun run typecheck", "bun run test", "bun run build"]
+    note: Add lint with an independently verified debt policy.
+  plugin-tools:
+    availability: existing
+    cwd: tauapi-be
+    commands: ["make lint-plugins", "make format-plugins-check"]
+  route-contract:
+    availability: proposed_profile
+    requirement: Existing generator plus route-registration and HTTP behavior checks.
+  auth-contract:
+    availability: proposed_profile
+    requirement: Existing backend and frontend session/PAT/permission regression suites.
+  billing-contract:
+    availability: proposed_profile
+    requirement: Existing billing/quantity/settlement tests plus affected cross-component semantics.
+  fixture-equality:
+    availability: proposed_profile
+    requirement: Compare local fixture snapshots and provenance without rewriting upstream history.
+  database-matrix:
+    availability: proposed_profile
+    requirement: Real supported engines; missing required DSNs or relevant skipped tests block completion.
+  isolated-builds:
+    availability: adaptation_required
+    requirement: Export and test the exact candidate commit, not hardcoded main.
+  release-compatibility:
+    availability: proposed_profile
+    requirement: Validate capabilities and schema compatibility through every release/rollback entry point.

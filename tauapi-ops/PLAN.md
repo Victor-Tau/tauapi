@@ -1,3 +1,7 @@
+> Historical record: 2026-11-04 deployment/bootstrap scope, retained at baseline e2af94c1affa0d760cd6dd5fb4c57117949e9e6f.
+> Current maintenance entry: [active documentation](../docs/ai/INDEX.md).
+> GOAL.md references and split-repository phases are historical, not current policy.
+
 # PLAN — tauapi
 
 Source of truth: GOAL.md (v1.0, 2026-11-04). Phases and gates follow GOAL §18.

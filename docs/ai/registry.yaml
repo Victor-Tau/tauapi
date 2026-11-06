@@ -1,0 +1,4578 @@
+{
+  "schema_version": 1,
+  "components": [
+    {
+      "id": "fe",
+      "owned_paths": [
+        "tauapi-fe/**"
+      ],
+      "policy": "fe-policy",
+      "index": "fe-index",
+      "fallback_domain": "fe-general"
+    },
+    {
+      "id": "be",
+      "owned_paths": [
+        "tauapi-be/**"
+      ],
+      "policy": "be-policy",
+      "index": "be-index",
+      "fallback_domain": "be-general"
+    },
+    {
+      "id": "ops",
+      "owned_paths": [
+        "tauapi-ops/**"
+      ],
+      "policy": "ops-policy",
+      "index": "ops-index",
+      "fallback_domain": "ops-general"
+    },
+    {
+      "id": "governance",
+      "owned_paths": [
+        "docs/**",
+        "scripts/docs/**",
+        ".claude/**",
+        ".github/**",
+        "AGENTS.md",
+        "CLAUDE.md",
+        "Makefile",
+        "README.md",
+        "map.md",
+        ".gitignore",
+        "文档管理体系构建指导.md",
+        "tauapi-docs-design/**"
+      ],
+      "policy": "root-policy",
+      "index": "root-index",
+      "fallback_domain": "governance"
+    }
+  ],
+  "documents": [
+    {
+      "id": "root-policy",
+      "path": "AGENTS.md",
+      "audience": "ai",
+      "type": "policy",
+      "status": "active",
+      "owner_area": "governance",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-6ebdb617a810",
+      "path": "CLAUDE.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "active",
+      "owner_area": "governance",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-b33563055168",
+      "path": "README.md",
+      "audience": "human",
+      "type": "human-guide",
+      "status": "active",
+      "owner_area": "governance",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-2d788a624518",
+      "path": "docs/_bootstrap/tauapi-docs-design/ACCEPTANCE.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "governance",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "bootstrap_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-29429f2cb1c1",
+      "path": "docs/_bootstrap/tauapi-docs-design/IMPLEMENTATION.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "governance",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "bootstrap_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-23ec42b89160",
+      "path": "docs/_bootstrap/tauapi-docs-design/README.zh-CN.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "governance",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "bootstrap_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-9f98f4e61666",
+      "path": "docs/_bootstrap/tauapi-docs-design/audit/CLAUDE_CODE_MECHANICS.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "governance",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "bootstrap_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-f7e06f396299",
+      "path": "docs/_bootstrap/tauapi-docs-design/audit/REPOSITORY_AUDIT.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "governance",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "bootstrap_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-3a5493e3b578",
+      "path": "docs/_bootstrap/tauapi-docs-design/audit/TASK_ROUTING.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "governance",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "bootstrap_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-2f9ecf3e0fa8",
+      "path": "docs/_bootstrap/tauapi-docs-design/examples/billing-rule.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "governance",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "bootstrap_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-2a69e01e12ab",
+      "path": "docs/_bootstrap/tauapi-docs-design/examples/component-AGENTS.md",
+      "audience": "ai",
+      "type": "policy",
+      "status": "historical",
+      "owner_area": "governance",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "bootstrap_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-da61f54d6ade",
+      "path": "docs/_bootstrap/tauapi-docs-design/examples/docs-INDEX.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "governance",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "bootstrap_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-92f5ef68ee37",
+      "path": "docs/_bootstrap/tauapi-docs-design/examples/root-AGENTS.md",
+      "audience": "ai",
+      "type": "policy",
+      "status": "historical",
+      "owner_area": "governance",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "bootstrap_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-e25551918677",
+      "path": "docs/_bootstrap/tauapi-docs-design/examples/root-CLAUDE.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "governance",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "bootstrap_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-fa4069cefe5b",
+      "path": "docs/_bootstrap/tauapi-docs-design/templates/change.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "governance",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "bootstrap_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-0010dd5b2423",
+      "path": "docs/_bootstrap/tauapi-docs-design/templates/contract.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "governance",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "bootstrap_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-ea6f053d2aa3",
+      "path": "docs/_bootstrap/tauapi-docs-design/templates/decision.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "governance",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "bootstrap_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-21b64e1eb931",
+      "path": "docs/_bootstrap/tauapi-docs-design/templates/human-release-note.zh-CN.md",
+      "audience": "human",
+      "type": "human-guide",
+      "status": "historical",
+      "owner_area": "governance",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "bootstrap_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-0732570983c1",
+      "path": "docs/_bootstrap/tauapi-docs-design/templates/module.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "governance",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "bootstrap_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-f44c736b426b",
+      "path": "docs/_bootstrap/tauapi-docs-design/templates/runbook.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "governance",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "bootstrap_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-3142b4980c03",
+      "path": "docs/_bootstrap/文档管理体系构建指导.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "governance",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "bootstrap_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "root-index",
+      "path": "docs/ai/INDEX.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "active",
+      "owner_area": "governance",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-344146057630",
+      "path": "docs/ai/KNOWN_GAPS.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "active",
+      "owner_area": "governance",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-98fe20a9e7a5",
+      "path": "docs/ai/REPOSITORY_MAP.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "active",
+      "owner_area": "governance",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "task-index",
+      "path": "docs/ai/TASK_INDEX.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "active",
+      "owner_area": "governance",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-ce2c9c245de2",
+      "path": "docs/ai/changes/active/docs-system-bootstrap.md",
+      "audience": "ai",
+      "type": "change",
+      "status": "active",
+      "owner_area": "governance",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "authentication",
+      "path": "docs/ai/contracts/authentication.md",
+      "audience": "ai",
+      "type": "contract",
+      "status": "active",
+      "owner_area": "governance",
+      "source_paths": [
+        "tauapi-be/common/database.go",
+        "tauapi-be/middleware/auth.go",
+        "tauapi-be/model/locking.go",
+        "tauapi-be/model/main.go",
+        "tauapi-be/model/user_session.go",
+        "tauapi-be/service/auth_session.go",
+        "tauapi-be/service/auth_token.go",
+        "tauapi-fe/src/lib/auth-session-sync.ts",
+        "tauapi-fe/src/lib/auth-session.ts",
+        "tauapi-fe/src/lib/handle-server-error.ts",
+        "tauapi-fe/src/lib/http-client.ts",
+        "tauapi-fe/src/lib/query-client.ts",
+        "tauapi-fe/src/stores"
+      ],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "backend-release-and-schema",
+      "path": "docs/ai/contracts/backend-release-and-schema.md",
+      "audience": "ai",
+      "type": "contract",
+      "status": "active",
+      "owner_area": "governance",
+      "source_paths": [
+        "tauapi-be/common/database.go",
+        "tauapi-be/model/locking.go",
+        "tauapi-be/model/main.go",
+        "tauapi-ops/scripts/backup.sh",
+        "tauapi-ops/scripts/bootstrap-stack.sh",
+        "tauapi-ops/scripts/deploy-backend.sh",
+        "tauapi-ops/scripts/restore-check.sh",
+        "tauapi-ops/scripts/rollback-backend.sh"
+      ],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "billing-and-quota",
+      "path": "docs/ai/contracts/billing-and-quota.md",
+      "audience": "ai",
+      "type": "contract",
+      "status": "active",
+      "owner_area": "governance",
+      "source_paths": [
+        "tauapi-be/common/database.go",
+        "tauapi-be/common/quota_math.go",
+        "tauapi-be/controller/relay.go",
+        "tauapi-be/middleware/distributor.go",
+        "tauapi-be/model/locking.go",
+        "tauapi-be/model/main.go",
+        "tauapi-be/pkg/billingexpr",
+        "tauapi-be/pkg/jsplugin",
+        "tauapi-be/plugins/tasks",
+        "tauapi-be/relay",
+        "tauapi-be/relay/request_billing.go",
+        "tauapi-be/relaykit/go.mod",
+        "tauapi-be/relaykit/relayconvert",
+        "tauapi-be/router/relay-router.go",
+        "tauapi-be/service/billing_session.go",
+        "tauapi-be/service/task_billing.go",
+        "tauapi-be/service/task_polling.go",
+        "tauapi-be/tokenkit",
+        "tauapi-be/tokenkit/go.mod",
+        "tauapi-fe/src/features/model-pricing",
+        "tauapi-fe/src/features/pricing",
+        "tauapi-fe/src/features/usage-logs",
+        "tauapi-fe/testdata/contracts/frontend_simulation.json",
+        "tauapi-ops/UPSTREAM_LOCK.json",
+        "tauapi-ops/scripts/import-upstream.py",
+        "tauapi-ops/scripts/sync-upstream.sh"
+      ],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "frontend-release",
+      "path": "docs/ai/contracts/frontend-release.md",
+      "audience": "ai",
+      "type": "contract",
+      "status": "active",
+      "owner_area": "governance",
+      "source_paths": [
+        "tauapi-fe/src/lib/legacy-route.ts",
+        "tauapi-fe/src/routeTree.gen.ts",
+        "tauapi-fe/src/routes",
+        "tauapi-ops/scripts/build-frontend.sh",
+        "tauapi-ops/scripts/deploy-frontend.sh",
+        "tauapi-ops/scripts/rollback-frontend.sh"
+      ],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "routing-and-origin",
+      "path": "docs/ai/contracts/routing-and-origin.md",
+      "audience": "ai",
+      "type": "contract",
+      "status": "active",
+      "owner_area": "governance",
+      "source_paths": [
+        "tauapi-be/controller/relay.go",
+        "tauapi-be/middleware/distributor.go",
+        "tauapi-be/pkg/jsplugin",
+        "tauapi-be/plugins/tasks",
+        "tauapi-be/relay",
+        "tauapi-be/router/relay-router.go",
+        "tauapi-be/service/task_polling.go",
+        "tauapi-fe/src/lib/handle-server-error.ts",
+        "tauapi-fe/src/lib/http-client.ts",
+        "tauapi-fe/src/lib/legacy-route.ts",
+        "tauapi-fe/src/lib/query-client.ts",
+        "tauapi-fe/src/routeTree.gen.ts",
+        "tauapi-fe/src/routes",
+        "tauapi-ops/ROUTE_CONTRACT.json",
+        "tauapi-ops/UPSTREAM_LOCK.json",
+        "tauapi-ops/scripts/generate-nginx.py",
+        "tauapi-ops/scripts/import-upstream.py",
+        "tauapi-ops/scripts/sync-upstream.sh"
+      ],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "task-plugins",
+      "path": "docs/ai/contracts/task-plugins.md",
+      "audience": "ai",
+      "type": "contract",
+      "status": "active",
+      "owner_area": "governance",
+      "source_paths": [
+        "tauapi-be/pkg/jsplugin",
+        "tauapi-be/plugins/tasks",
+        "tauapi-be/service/task_polling.go",
+        "tauapi-fe/src/features/model-pricing",
+        "tauapi-fe/src/features/pricing",
+        "tauapi-fe/src/features/usage-logs",
+        "tauapi-fe/testdata/contracts/frontend_simulation.json",
+        "tauapi-ops/UPSTREAM_LOCK.json",
+        "tauapi-ops/scripts/import-upstream.py",
+        "tauapi-ops/scripts/sync-upstream.sh"
+      ],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-b70db4e60460",
+      "path": "docs/ai/decisions/001-release-boundaries.md",
+      "audience": "ai",
+      "type": "decision",
+      "status": "active",
+      "owner_area": "governance",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-b927fdd2aae9",
+      "path": "docs/ai/decisions/002-runtime-isolation.md",
+      "audience": "ai",
+      "type": "decision",
+      "status": "active",
+      "owner_area": "governance",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-f47a98da38f0",
+      "path": "docs/ai/decisions/003-release-channel.md",
+      "audience": "ai",
+      "type": "decision",
+      "status": "active",
+      "owner_area": "governance",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-3bb8f5913a71",
+      "path": "docs/ai/decisions/004-document-authority.md",
+      "audience": "ai",
+      "type": "decision",
+      "status": "active",
+      "owner_area": "governance",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-1f3d94b7dcc1",
+      "path": "docs/ai/templates/change.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "active",
+      "owner_area": "governance",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-ac2376e25f37",
+      "path": "docs/ai/templates/contract.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "active",
+      "owner_area": "governance",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-10bdbb145619",
+      "path": "docs/ai/templates/decision.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "active",
+      "owner_area": "governance",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-de6dbeed8a89",
+      "path": "docs/ai/templates/human-release-note.zh-CN.md",
+      "audience": "human",
+      "type": "human-guide",
+      "status": "active",
+      "owner_area": "governance",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-12d4f5a7ee5b",
+      "path": "docs/ai/templates/module.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "active",
+      "owner_area": "governance",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-763dc28a4dce",
+      "path": "docs/ai/templates/runbook.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "active",
+      "owner_area": "governance",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-a94cba8d990a",
+      "path": "docs/ai/workflows/bugfix.md",
+      "audience": "ai",
+      "type": "workflow",
+      "status": "active",
+      "owner_area": "governance",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-4ec8704ca332",
+      "path": "docs/ai/workflows/docs-maintenance.md",
+      "audience": "ai",
+      "type": "workflow",
+      "status": "active",
+      "owner_area": "governance",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-6044b4f00229",
+      "path": "docs/ai/workflows/feature.md",
+      "audience": "ai",
+      "type": "workflow",
+      "status": "active",
+      "owner_area": "governance",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-02c512548be7",
+      "path": "docs/ai/workflows/recovery.md",
+      "audience": "ai",
+      "type": "workflow",
+      "status": "active",
+      "owner_area": "governance",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-535950975c5e",
+      "path": "docs/ai/workflows/tooling.md",
+      "audience": "ai",
+      "type": "workflow",
+      "status": "active",
+      "owner_area": "governance",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-19cf6222c7a5",
+      "path": "docs/ai/workflows/upstream-sync.md",
+      "audience": "ai",
+      "type": "workflow",
+      "status": "active",
+      "owner_area": "governance",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-5355bcfe48a8",
+      "path": "docs/zh-CN/README.md",
+      "audience": "human",
+      "type": "human-guide",
+      "status": "active",
+      "owner_area": "governance",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-8310fd231678",
+      "path": "docs/zh-CN/authentication.md",
+      "audience": "human",
+      "type": "human-guide",
+      "status": "active",
+      "owner_area": "governance",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-744a125ad4f0",
+      "path": "docs/zh-CN/documentation-system-handoff.md",
+      "audience": "human",
+      "type": "human-guide",
+      "status": "active",
+      "owner_area": "governance",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-c94b8a5b8fe8",
+      "path": "map.md",
+      "audience": "human",
+      "type": "human-guide",
+      "status": "active",
+      "owner_area": "governance",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-f10cc585b30a",
+      "path": "tauapi-be/.agents/github/ISSUE.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "be",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-3c999094ddff",
+      "path": "tauapi-be/.agents/github/PR.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "be",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-84298c5d1eba",
+      "path": "tauapi-be/.agents/rules/billing.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "be",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-a60c9a0c626b",
+      "path": "tauapi-be/.agents/skills/i18n-translate/SKILL.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "be",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-e8c912244885",
+      "path": "tauapi-be/.agents/skills/shadcn-ui/SKILL.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "be",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-527d4a871e13",
+      "path": "tauapi-be/.agents/skills/shadcn-ui/vendor/shadcn/cli.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "be",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-6078e9c728cd",
+      "path": "tauapi-be/.agents/skills/shadcn-ui/vendor/shadcn/customization.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "be",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-c05f6433732d",
+      "path": "tauapi-be/.agents/skills/shadcn-ui/vendor/shadcn/mcp.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "be",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-20a753eaab38",
+      "path": "tauapi-be/.agents/skills/shadcn-ui/vendor/shadcn/official-shadcn-ui-workflow.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "be",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-d1a9b4b14234",
+      "path": "tauapi-be/.agents/skills/shadcn-ui/vendor/shadcn/rules/base-vs-radix.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "be",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-53a16bbea604",
+      "path": "tauapi-be/.agents/skills/shadcn-ui/vendor/shadcn/rules/composition.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "be",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-5e20b26695f3",
+      "path": "tauapi-be/.agents/skills/shadcn-ui/vendor/shadcn/rules/forms.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "be",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-255150705820",
+      "path": "tauapi-be/.agents/skills/shadcn-ui/vendor/shadcn/rules/icons.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "be",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-530f08c02da2",
+      "path": "tauapi-be/.agents/skills/shadcn-ui/vendor/shadcn/rules/styling.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "be",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-6af174382ebe",
+      "path": "tauapi-be/.agents/skills/vercel-react-best-practices/SKILL.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "be",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-c7f8fce1e87a",
+      "path": "tauapi-be/.agents/skills/vercel-react-best-practices/references/full-guide.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "be",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-6a95573717d0",
+      "path": "tauapi-be/.github/CODE_OF_CONDUCT.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "be",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-8c9397504a83",
+      "path": "tauapi-be/.github/PULL_REQUEST_TEMPLATE.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "be",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-0ee13a1f5c1d",
+      "path": "tauapi-be/.github/PULL_REQUEST_TEMPLATE/en.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "be",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-65bad391ee88",
+      "path": "tauapi-be/.github/SECURITY.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "be",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "be-policy",
+      "path": "tauapi-be/AGENTS.md",
+      "audience": "ai",
+      "type": "policy",
+      "status": "active",
+      "owner_area": "be",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-fc1253cd13de",
+      "path": "tauapi-be/CLAUDE.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "active",
+      "owner_area": "be",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-372302bec648",
+      "path": "tauapi-be/README.en.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "be",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-aea428b2aa53",
+      "path": "tauapi-be/README.fr.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "be",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-f6331ad5eeb8",
+      "path": "tauapi-be/README.ja.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "be",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-894bac507491",
+      "path": "tauapi-be/README.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "be",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-7e3e83291cb5",
+      "path": "tauapi-be/README.zh_CN.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "be",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-a34c273eb99d",
+      "path": "tauapi-be/README.zh_TW.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "be",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-ba1860177c5d",
+      "path": "tauapi-be/REPOSITORY_SPLIT.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "be",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-5a600d1c8ef4",
+      "path": "tauapi-be/THIRD-PARTY-LICENSES.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "be",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-3b5b0908b9ad",
+      "path": "tauapi-be/constant/README.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "be",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "be-index",
+      "path": "tauapi-be/docs/ai/INDEX.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "active",
+      "owner_area": "be",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-475a14362125",
+      "path": "tauapi-be/docs/ai/billing-expression.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "active",
+      "owner_area": "be",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-2c0b5ea0f523",
+      "path": "tauapi-be/docs/ai/engineering.md",
+      "audience": "ai",
+      "type": "policy",
+      "status": "active",
+      "owner_area": "be",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "be-auth",
+      "path": "tauapi-be/docs/ai/modules/be-auth.md",
+      "audience": "ai",
+      "type": "module",
+      "status": "active",
+      "owner_area": "be",
+      "source_paths": [
+        "tauapi-be/middleware/auth.go",
+        "tauapi-be/service/auth_session.go",
+        "tauapi-be/service/auth_token.go",
+        "tauapi-be/model/user_session.go"
+      ],
+      "related_docs": [
+        "authentication"
+      ],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "be-billing",
+      "path": "tauapi-be/docs/ai/modules/be-billing.md",
+      "audience": "ai",
+      "type": "module",
+      "status": "active",
+      "owner_area": "be",
+      "source_paths": [
+        "tauapi-be/relay/request_billing.go",
+        "tauapi-be/common/quota_math.go",
+        "tauapi-be/service/billing_session.go",
+        "tauapi-be/service/task_billing.go",
+        "tauapi-be/pkg/billingexpr"
+      ],
+      "related_docs": [
+        "billing-and-quota"
+      ],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "be-libraries",
+      "path": "tauapi-be/docs/ai/modules/be-libraries.md",
+      "audience": "ai",
+      "type": "module",
+      "status": "active",
+      "owner_area": "be",
+      "source_paths": [
+        "tauapi-be/relaykit/go.mod",
+        "tauapi-be/tokenkit/go.mod",
+        "tauapi-be/relaykit/relayconvert",
+        "tauapi-be/tokenkit"
+      ],
+      "related_docs": [
+        "billing-and-quota"
+      ],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "be-persistence",
+      "path": "tauapi-be/docs/ai/modules/be-persistence.md",
+      "audience": "ai",
+      "type": "module",
+      "status": "active",
+      "owner_area": "be",
+      "source_paths": [
+        "tauapi-be/model/main.go",
+        "tauapi-be/model/locking.go",
+        "tauapi-be/common/database.go"
+      ],
+      "related_docs": [
+        "backend-release-and-schema",
+        "authentication",
+        "billing-and-quota"
+      ],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "be-plugins",
+      "path": "tauapi-be/docs/ai/modules/be-plugins.md",
+      "audience": "ai",
+      "type": "module",
+      "status": "active",
+      "owner_area": "be",
+      "source_paths": [
+        "tauapi-be/pkg/jsplugin",
+        "tauapi-be/plugins/tasks",
+        "tauapi-be/service/task_polling.go"
+      ],
+      "related_docs": [
+        "task-plugins",
+        "billing-and-quota",
+        "routing-and-origin"
+      ],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "be-relay",
+      "path": "tauapi-be/docs/ai/modules/be-relay.md",
+      "audience": "ai",
+      "type": "module",
+      "status": "active",
+      "owner_area": "be",
+      "source_paths": [
+        "tauapi-be/router/relay-router.go",
+        "tauapi-be/middleware/distributor.go",
+        "tauapi-be/controller/relay.go",
+        "tauapi-be/relay"
+      ],
+      "related_docs": [
+        "routing-and-origin",
+        "billing-and-quota"
+      ],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-51ebadf131e3",
+      "path": "tauapi-be/docs/authentication.md",
+      "audience": "human",
+      "type": "human-guide",
+      "status": "historical",
+      "owner_area": "be",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-23a2a3346a33",
+      "path": "tauapi-be/docs/channel/other_setting.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "be",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-d45f2ca15d35",
+      "path": "tauapi-be/docs/installation/BT.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "be",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-0196c5e74be6",
+      "path": "tauapi-be/docs/ionet-client.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "be",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-e6cf683ba482",
+      "path": "tauapi-be/docs/plugin-api/README.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "be",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-3ad8ce3244c3",
+      "path": "tauapi-be/docs/plugin-api/v1.md",
+      "audience": "ai",
+      "type": "contract",
+      "status": "active",
+      "owner_area": "be",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-819083949b1a",
+      "path": "tauapi-be/docs/translation-glossary.fr.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "be",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-2ab44ece4d69",
+      "path": "tauapi-be/docs/translation-glossary.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "be",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-6e82ca9ac564",
+      "path": "tauapi-be/docs/translation-glossary.ru.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "be",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-5fd94474203d",
+      "path": "tauapi-be/pkg/billingexpr/expr.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "be",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-8060a4b56102",
+      "path": "tauapi-be/relaykit/README.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "be",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-f594ba929fac",
+      "path": "tauapi-be/tokenkit/README.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "be",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-93d38f380cf4",
+      "path": "tauapi-fe/.agents/github/ISSUE.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "fe",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-03f8c7550b06",
+      "path": "tauapi-fe/.agents/github/PR.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "fe",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-09e34156c213",
+      "path": "tauapi-fe/.agents/rules/billing.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "fe",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-dc22ed741604",
+      "path": "tauapi-fe/.agents/skills/i18n-translate/SKILL.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "fe",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-a44d96abad15",
+      "path": "tauapi-fe/.agents/skills/shadcn-ui/SKILL.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "fe",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-2d136767c2ed",
+      "path": "tauapi-fe/.agents/skills/shadcn-ui/vendor/shadcn/cli.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "fe",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-d65658ee9c91",
+      "path": "tauapi-fe/.agents/skills/shadcn-ui/vendor/shadcn/customization.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "fe",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-bf18ad51f5fd",
+      "path": "tauapi-fe/.agents/skills/shadcn-ui/vendor/shadcn/mcp.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "fe",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-b8a77723e711",
+      "path": "tauapi-fe/.agents/skills/shadcn-ui/vendor/shadcn/official-shadcn-ui-workflow.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "fe",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-73095c94adeb",
+      "path": "tauapi-fe/.agents/skills/shadcn-ui/vendor/shadcn/rules/base-vs-radix.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "fe",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-0bdeb3211192",
+      "path": "tauapi-fe/.agents/skills/shadcn-ui/vendor/shadcn/rules/composition.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "fe",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-a73d0724ef9e",
+      "path": "tauapi-fe/.agents/skills/shadcn-ui/vendor/shadcn/rules/forms.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "fe",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-7154e3100f77",
+      "path": "tauapi-fe/.agents/skills/shadcn-ui/vendor/shadcn/rules/icons.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "fe",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-fb5dbca443bb",
+      "path": "tauapi-fe/.agents/skills/shadcn-ui/vendor/shadcn/rules/styling.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "fe",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-e9c57e9b317c",
+      "path": "tauapi-fe/.agents/skills/vercel-react-best-practices/SKILL.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "fe",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-21b680f6b2c9",
+      "path": "tauapi-fe/.agents/skills/vercel-react-best-practices/references/full-guide.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "fe",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "fe-policy",
+      "path": "tauapi-fe/AGENTS.md",
+      "audience": "ai",
+      "type": "policy",
+      "status": "active",
+      "owner_area": "fe",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-690c2f886e56",
+      "path": "tauapi-fe/CLAUDE.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "active",
+      "owner_area": "fe",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-1b1646b1e5ca",
+      "path": "tauapi-fe/THIRD-PARTY-LICENSES.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "fe",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-cbcce6d4cc73",
+      "path": "tauapi-fe/UPSTREAM_ROOT_AGENTS.md",
+      "audience": "ai",
+      "type": "policy",
+      "status": "historical",
+      "owner_area": "fe",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "fe-index",
+      "path": "tauapi-fe/docs/ai/INDEX.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "active",
+      "owner_area": "fe",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-197bdd53daf5",
+      "path": "tauapi-fe/docs/ai/engineering.md",
+      "audience": "ai",
+      "type": "policy",
+      "status": "active",
+      "owner_area": "fe",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "fe-auth",
+      "path": "tauapi-fe/docs/ai/modules/fe-auth.md",
+      "audience": "ai",
+      "type": "module",
+      "status": "active",
+      "owner_area": "fe",
+      "source_paths": [
+        "tauapi-fe/src/lib/auth-session.ts",
+        "tauapi-fe/src/lib/auth-session-sync.ts",
+        "tauapi-fe/src/lib/http-client.ts",
+        "tauapi-fe/src/stores"
+      ],
+      "related_docs": [
+        "authentication"
+      ],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "fe-billing",
+      "path": "tauapi-fe/docs/ai/modules/fe-billing.md",
+      "audience": "ai",
+      "type": "module",
+      "status": "active",
+      "owner_area": "fe",
+      "source_paths": [
+        "tauapi-fe/src/features/pricing",
+        "tauapi-fe/src/features/model-pricing",
+        "tauapi-fe/src/features/usage-logs",
+        "tauapi-fe/testdata/contracts/frontend_simulation.json"
+      ],
+      "related_docs": [
+        "billing-and-quota",
+        "task-plugins"
+      ],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "fe-data",
+      "path": "tauapi-fe/docs/ai/modules/fe-data.md",
+      "audience": "ai",
+      "type": "module",
+      "status": "active",
+      "owner_area": "fe",
+      "source_paths": [
+        "tauapi-fe/src/lib/http-client.ts",
+        "tauapi-fe/src/lib/query-client.ts",
+        "tauapi-fe/src/lib/handle-server-error.ts"
+      ],
+      "related_docs": [
+        "authentication",
+        "routing-and-origin"
+      ],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "fe-shell",
+      "path": "tauapi-fe/docs/ai/modules/fe-shell.md",
+      "audience": "ai",
+      "type": "module",
+      "status": "active",
+      "owner_area": "fe",
+      "source_paths": [
+        "tauapi-fe/src/routes",
+        "tauapi-fe/src/routeTree.gen.ts",
+        "tauapi-fe/src/lib/legacy-route.ts"
+      ],
+      "related_docs": [
+        "routing-and-origin",
+        "frontend-release"
+      ],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "fe-ui",
+      "path": "tauapi-fe/docs/ai/modules/fe-ui.md",
+      "audience": "ai",
+      "type": "module",
+      "status": "active",
+      "owner_area": "fe",
+      "source_paths": [
+        "tauapi-fe/src/components",
+        "tauapi-fe/src/styles",
+        "tauapi-fe/src/i18n"
+      ],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-e3a56710a6dc",
+      "path": "tauapi-fe/src/components/data-table/README.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "fe",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-7097c1049228",
+      "path": "tauapi-fe/src/features/pricing/lib/billing-expression/README.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "fe",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "ops-policy",
+      "path": "tauapi-ops/AGENTS.md",
+      "audience": "ai",
+      "type": "policy",
+      "status": "active",
+      "owner_area": "ops",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-96c60ad0898f",
+      "path": "tauapi-ops/CLAUDE.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "active",
+      "owner_area": "ops",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-2da49ca266d5",
+      "path": "tauapi-ops/DECISIONS.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "ops",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-d1dd84cff284",
+      "path": "tauapi-ops/HANDOFF.md",
+      "audience": "human",
+      "type": "human-guide",
+      "status": "historical",
+      "owner_area": "ops",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-00ee2a871abc",
+      "path": "tauapi-ops/PLAN.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "ops",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-6465f43a1ab2",
+      "path": "tauapi-ops/STATUS.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "ops",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-b966c853f3ba",
+      "path": "tauapi-ops/docs/DEPLOYMENT.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "ops",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-640ec65dd908",
+      "path": "tauapi-ops/docs/MINIMALIST_FLAT.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "ops",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "ops-index",
+      "path": "tauapi-ops/docs/ai/INDEX.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "active",
+      "owner_area": "ops",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "ops-backend",
+      "path": "tauapi-ops/docs/ai/modules/ops-backend.md",
+      "audience": "ai",
+      "type": "module",
+      "status": "active",
+      "owner_area": "ops",
+      "source_paths": [
+        "tauapi-ops/scripts/deploy-backend.sh",
+        "tauapi-ops/scripts/rollback-backend.sh",
+        "tauapi-ops/scripts/bootstrap-stack.sh"
+      ],
+      "related_docs": [
+        "backend-release-and-schema"
+      ],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "ops-backup",
+      "path": "tauapi-ops/docs/ai/modules/ops-backup.md",
+      "audience": "ai",
+      "type": "module",
+      "status": "active",
+      "owner_area": "ops",
+      "source_paths": [
+        "tauapi-ops/scripts/backup.sh",
+        "tauapi-ops/scripts/restore-check.sh"
+      ],
+      "related_docs": [
+        "backend-release-and-schema"
+      ],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "ops-frontend",
+      "path": "tauapi-ops/docs/ai/modules/ops-frontend.md",
+      "audience": "ai",
+      "type": "module",
+      "status": "active",
+      "owner_area": "ops",
+      "source_paths": [
+        "tauapi-ops/scripts/build-frontend.sh",
+        "tauapi-ops/scripts/deploy-frontend.sh",
+        "tauapi-ops/scripts/rollback-frontend.sh"
+      ],
+      "related_docs": [
+        "frontend-release"
+      ],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "ops-routing",
+      "path": "tauapi-ops/docs/ai/modules/ops-routing.md",
+      "audience": "ai",
+      "type": "module",
+      "status": "active",
+      "owner_area": "ops",
+      "source_paths": [
+        "tauapi-ops/ROUTE_CONTRACT.json",
+        "tauapi-ops/scripts/generate-nginx.py"
+      ],
+      "related_docs": [
+        "routing-and-origin"
+      ],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "ops-upstream",
+      "path": "tauapi-ops/docs/ai/modules/ops-upstream.md",
+      "audience": "ai",
+      "type": "module",
+      "status": "active",
+      "owner_area": "ops",
+      "source_paths": [
+        "tauapi-ops/scripts/import-upstream.py",
+        "tauapi-ops/scripts/sync-upstream.sh",
+        "tauapi-ops/UPSTREAM_LOCK.json"
+      ],
+      "related_docs": [
+        "routing-and-origin",
+        "billing-and-quota",
+        "task-plugins"
+      ],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-7cea7143cbe0",
+      "path": "tauapi-ops/docs/ai/runbooks/backup-and-recovery.md",
+      "audience": "ai",
+      "type": "runbook",
+      "status": "active",
+      "owner_area": "ops",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-9726f37876fe",
+      "path": "tauapi-ops/docs/ai/runbooks/fresh-host.md",
+      "audience": "ai",
+      "type": "runbook",
+      "status": "active",
+      "owner_area": "ops",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-5466b98bc556",
+      "path": "tauapi-ops/evidence/ACCEPTANCE.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "ops",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-73d382c75a36",
+      "path": "tauapi-ops/evidence/P0-preflight.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "ops",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-3bfe2c06cd06",
+      "path": "tauapi-ops/evidence/RELEASE_DRILLS.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "ops",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-b39330574414",
+      "path": "tauapi-ops/evidence/SUMMARY-prod.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "ops",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-166248221dc1",
+      "path": "tauapi-ops/evidence/UI_REVIEW.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "ops",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "doc-baafde856ceb",
+      "path": "tauapi-ops/evidence/ui/CONTRAST.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "historical",
+      "owner_area": "ops",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "retained_reference",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "retained_original",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "billing-reminder",
+      "path": ".claude/rules/billing.md",
+      "audience": "ai",
+      "type": "policy",
+      "status": "active",
+      "owner_area": "governance",
+      "source_paths": [
+        "docs/ai/contracts/billing-and-quota.md"
+      ],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    }
+  ],
+  "domains": [
+    {
+      "id": "be-auth",
+      "component": "be",
+      "path_patterns": [
+        "tauapi-be/middleware/**",
+        "tauapi-be/service/auth*",
+        "tauapi-be/service/authz/**",
+        "tauapi-be/model/user*",
+        "tauapi-be/controller/*auth*"
+      ],
+      "required_reads": [
+        "be-policy",
+        "be-auth"
+      ],
+      "contracts": [
+        "authentication"
+      ],
+      "checks": [
+        "backend-tests"
+      ],
+      "semantic_triggers": [
+        "auth",
+        "登录",
+        "刷新",
+        "会话",
+        "权限",
+        "refresh"
+      ]
+    },
+    {
+      "id": "be-relay",
+      "component": "be",
+      "path_patterns": [
+        "tauapi-be/relay/**",
+        "tauapi-be/router/**",
+        "tauapi-be/controller/relay*"
+      ],
+      "required_reads": [
+        "be-policy",
+        "be-relay"
+      ],
+      "contracts": [
+        "routing-and-origin",
+        "billing-and-quota"
+      ],
+      "checks": [
+        "backend-tests",
+        "route-analysis"
+      ],
+      "semantic_triggers": [
+        "relay",
+        "中转",
+        "供应商"
+      ]
+    },
+    {
+      "id": "be-billing",
+      "component": "be",
+      "path_patterns": [
+        "tauapi-be/pkg/billingexpr/**",
+        "tauapi-be/setting/billing_setting/**",
+        "tauapi-be/common/quota*",
+        "tauapi-be/service/*quota*",
+        "tauapi-be/service/*billing*",
+        "tauapi-be/service/*settle*",
+        "tauapi-be/relay/**",
+        "tauapi-be/model/*pricing*",
+        "tauapi-be/types/price_data.go",
+        "tauapi-be/plugins/tasks/**"
+      ],
+      "required_reads": [
+        "be-policy",
+        "be-billing"
+      ],
+      "contracts": [
+        "billing-and-quota"
+      ],
+      "checks": [
+        "backend-tests",
+        "fixture-equality",
+        "billing-go",
+        "billing-fe"
+      ],
+      "semantic_triggers": [
+        "计费",
+        "价格",
+        "额度",
+        "扣费",
+        "billing",
+        "quota",
+        "用量",
+        "image"
+      ]
+    },
+    {
+      "id": "be-plugins",
+      "component": "be",
+      "path_patterns": [
+        "tauapi-be/plugins/**",
+        "tauapi-be/pkg/jsplugin/**",
+        "tauapi-be/service/task*",
+        "tauapi-be/router/*plugin*",
+        "tauapi-be/docs/plugin-api/**"
+      ],
+      "required_reads": [
+        "be-policy",
+        "be-plugins"
+      ],
+      "contracts": [
+        "task-plugins",
+        "billing-and-quota",
+        "routing-and-origin"
+      ],
+      "checks": [
+        "plugins-lint",
+        "plugins-format",
+        "backend-tests",
+        "route-analysis"
+      ],
+      "semantic_triggers": [
+        "插件",
+        "plugin",
+        "异步"
+      ]
+    },
+    {
+      "id": "be-persistence",
+      "component": "be",
+      "path_patterns": [
+        "tauapi-be/model/**",
+        "tauapi-be/common/database*",
+        "tauapi-be/go.mod",
+        "tauapi-be/go.sum",
+        "tauapi-be/setting/**"
+      ],
+      "required_reads": [
+        "be-policy",
+        "be-persistence"
+      ],
+      "contracts": [
+        "backend-release-and-schema",
+        "authentication",
+        "billing-and-quota"
+      ],
+      "checks": [
+        "database-matrix",
+        "backend-tests"
+      ],
+      "semantic_triggers": [
+        "迁移",
+        "数据库",
+        "migration",
+        "database",
+        "schema"
+      ]
+    },
+    {
+      "id": "be-libraries",
+      "component": "be",
+      "path_patterns": [
+        "tauapi-be/relaykit/**",
+        "tauapi-be/tokenkit/**"
+      ],
+      "required_reads": [
+        "be-policy",
+        "be-libraries"
+      ],
+      "contracts": [
+        "billing-and-quota"
+      ],
+      "checks": [
+        "backend-tests",
+        "libraries-build"
+      ],
+      "semantic_triggers": [
+        "relaykit",
+        "tokenkit",
+        "协议转换",
+        "token计数"
+      ]
+    },
+    {
+      "id": "fe-shell",
+      "component": "fe",
+      "path_patterns": [
+        "tauapi-fe/src/routes/**",
+        "tauapi-fe/src/routeTree.gen.ts",
+        "tauapi-fe/src/features/**/section-registry.tsx",
+        "tauapi-fe/rsbuild.config.ts"
+      ],
+      "required_reads": [
+        "fe-policy",
+        "fe-shell"
+      ],
+      "contracts": [
+        "routing-and-origin",
+        "frontend-release"
+      ],
+      "checks": [
+        "frontend-typecheck",
+        "frontend-tests",
+        "frontend-build",
+        "route-analysis"
+      ],
+      "semantic_triggers": [
+        "页面",
+        "路由",
+        "page",
+        "route",
+        "add_frontend_page"
+      ]
+    },
+    {
+      "id": "fe-auth",
+      "component": "fe",
+      "path_patterns": [
+        "tauapi-fe/src/lib/*auth*",
+        "tauapi-fe/src/lib/http-client*",
+        "tauapi-fe/src/stores/**",
+        "tauapi-fe/src/features/auth/**",
+        "tauapi-fe/src/features/security/**"
+      ],
+      "required_reads": [
+        "fe-policy",
+        "fe-auth"
+      ],
+      "contracts": [
+        "authentication"
+      ],
+      "checks": [
+        "frontend-typecheck",
+        "frontend-tests"
+      ],
+      "semantic_triggers": [
+        "登录",
+        "刷新",
+        "会话",
+        "refresh",
+        "auth"
+      ]
+    },
+    {
+      "id": "fe-data",
+      "component": "fe",
+      "path_patterns": [
+        "tauapi-fe/src/lib/**",
+        "tauapi-fe/src/features/**"
+      ],
+      "required_reads": [
+        "fe-policy",
+        "fe-data"
+      ],
+      "contracts": [
+        "authentication",
+        "routing-and-origin"
+      ],
+      "checks": [
+        "frontend-typecheck",
+        "frontend-tests"
+      ],
+      "semantic_triggers": [
+        "请求",
+        "缓存",
+        "请求重试",
+        "data"
+      ]
+    },
+    {
+      "id": "fe-ui",
+      "component": "fe",
+      "path_patterns": [
+        "tauapi-fe/src/components/**",
+        "tauapi-fe/src/hooks/**",
+        "tauapi-fe/src/styles/**",
+        "tauapi-fe/src/i18n/**"
+      ],
+      "required_reads": [
+        "fe-policy",
+        "fe-ui"
+      ],
+      "contracts": [],
+      "checks": [
+        "frontend-typecheck",
+        "frontend-tests",
+        "frontend-lint"
+      ],
+      "semantic_triggers": [
+        "组件",
+        "主题",
+        "翻译",
+        "无障碍",
+        "component",
+        "theme"
+      ]
+    },
+    {
+      "id": "fe-billing",
+      "component": "fe",
+      "path_patterns": [
+        "tauapi-fe/src/features/pricing/**",
+        "tauapi-fe/src/features/model-pricing/**",
+        "tauapi-fe/src/features/usage-logs/**",
+        "tauapi-fe/src/features/system-settings/**",
+        "tauapi-fe/testdata/**"
+      ],
+      "required_reads": [
+        "fe-policy",
+        "fe-billing"
+      ],
+      "contracts": [
+        "billing-and-quota",
+        "task-plugins"
+      ],
+      "checks": [
+        "fixture-equality",
+        "billing-fe",
+        "frontend-typecheck"
+      ],
+      "semantic_triggers": [
+        "价格",
+        "计费",
+        "表达式",
+        "billing",
+        "pricing"
+      ]
+    },
+    {
+      "id": "ops-routing",
+      "component": "ops",
+      "path_patterns": [
+        "tauapi-ops/ROUTE_CONTRACT.json",
+        "tauapi-ops/scripts/*nginx*"
+      ],
+      "required_reads": [
+        "ops-policy",
+        "ops-routing"
+      ],
+      "contracts": [
+        "routing-and-origin"
+      ],
+      "checks": [
+        "route-analysis"
+      ],
+      "semantic_triggers": [
+        "nginx",
+        "路由"
+      ]
+    },
+    {
+      "id": "ops-frontend",
+      "component": "ops",
+      "path_patterns": [
+        "tauapi-ops/scripts/*frontend*",
+        "tauapi-ops/scripts/verify-independent-builds.sh"
+      ],
+      "required_reads": [
+        "ops-policy",
+        "ops-frontend"
+      ],
+      "contracts": [
+        "frontend-release"
+      ],
+      "checks": [
+        "isolated-builds"
+      ],
+      "semantic_triggers": [
+        "前端发布",
+        "旧标签页",
+        "old tab"
+      ]
+    },
+    {
+      "id": "ops-backend",
+      "component": "ops",
+      "path_patterns": [
+        "tauapi-ops/scripts/*backend*",
+        "tauapi-ops/scripts/bootstrap*",
+        "tauapi-ops/templates/**",
+        "tauapi-ops/scripts/verify-independent-builds.sh"
+      ],
+      "required_reads": [
+        "ops-policy",
+        "ops-backend"
+      ],
+      "contracts": [
+        "backend-release-and-schema"
+      ],
+      "checks": [
+        "isolated-builds"
+      ],
+      "semantic_triggers": [
+        "后端发布",
+        "回滚",
+        "rollback"
+      ]
+    },
+    {
+      "id": "ops-backup",
+      "component": "ops",
+      "path_patterns": [
+        "tauapi-ops/scripts/*backup*",
+        "tauapi-ops/scripts/*restore*",
+        "tauapi-ops/config/**"
+      ],
+      "required_reads": [
+        "ops-policy",
+        "ops-backup"
+      ],
+      "contracts": [
+        "backend-release-and-schema"
+      ],
+      "checks": [
+        "shell-syntax"
+      ],
+      "semantic_triggers": [
+        "备份",
+        "恢复",
+        "backup",
+        "restore"
+      ]
+    },
+    {
+      "id": "ops-upstream",
+      "component": "ops",
+      "path_patterns": [
+        "tauapi-ops/scripts/*upstream*",
+        "tauapi-fe/UPSTREAM*",
+        "tauapi-be/UPSTREAM*"
+      ],
+      "required_reads": [
+        "ops-policy",
+        "ops-upstream"
+      ],
+      "contracts": [
+        "routing-and-origin",
+        "billing-and-quota",
+        "task-plugins"
+      ],
+      "checks": [
+        "docs-integrity",
+        "fixture-equality",
+        "isolated-builds"
+      ],
+      "semantic_triggers": [
+        "上游",
+        "upstream"
+      ]
+    },
+    {
+      "id": "fe-general",
+      "component": "fe",
+      "path_patterns": [
+        "tauapi-fe/**"
+      ],
+      "required_reads": [
+        "fe-policy",
+        "fe-index"
+      ],
+      "contracts": [],
+      "checks": [],
+      "semantic_triggers": []
+    },
+    {
+      "id": "be-general",
+      "component": "be",
+      "path_patterns": [
+        "tauapi-be/**"
+      ],
+      "required_reads": [
+        "be-policy",
+        "be-index"
+      ],
+      "contracts": [],
+      "checks": [],
+      "semantic_triggers": []
+    },
+    {
+      "id": "ops-general",
+      "component": "ops",
+      "path_patterns": [
+        "tauapi-ops/**"
+      ],
+      "required_reads": [
+        "ops-policy",
+        "ops-index"
+      ],
+      "contracts": [],
+      "checks": [],
+      "semantic_triggers": []
+    },
+    {
+      "id": "governance",
+      "component": "governance",
+      "path_patterns": [
+        "docs/**",
+        "scripts/docs/**",
+        ".claude/**",
+        ".github/**",
+        "AGENTS.md",
+        "CLAUDE.md",
+        "Makefile",
+        "README.md",
+        "map.md",
+        ".gitignore",
+        "文档管理体系构建指导.md",
+        "tauapi-docs-design/**"
+      ],
+      "required_reads": [
+        "root-policy",
+        "root-index"
+      ],
+      "contracts": [],
+      "checks": [
+        "docs-integrity",
+        "docs-tests"
+      ],
+      "semantic_triggers": [
+        "文档",
+        "documentation",
+        "governance"
+      ]
+    }
+  ],
+  "task_intents": [
+    {
+      "id": "add_frontend_page",
+      "domains": [
+        "fe-shell",
+        "ops-routing"
+      ],
+      "required_reads": [],
+      "checks": []
+    },
+    {
+      "id": "diagnose_refresh_loop",
+      "domains": [
+        "fe-auth",
+        "be-auth",
+        "fe-data"
+      ],
+      "required_reads": [],
+      "checks": []
+    },
+    {
+      "id": "change_plugin_billing",
+      "domains": [
+        "be-plugins",
+        "be-billing",
+        "fe-billing"
+      ],
+      "required_reads": [],
+      "checks": []
+    },
+    {
+      "id": "change_migration",
+      "domains": [
+        "be-persistence",
+        "ops-backend"
+      ],
+      "required_reads": [],
+      "checks": []
+    },
+    {
+      "id": "upstream_sync",
+      "domains": [
+        "ops-upstream",
+        "governance"
+      ],
+      "required_reads": [],
+      "checks": []
+    }
+  ],
+  "checks": [
+    {
+      "id": "docs-integrity",
+      "runner": "docs-integrity",
+      "cwd": ".",
+      "prerequisites": [],
+      "required_when": "selected by impact; no required skip may pass",
+      "evidence_contract": "check-result-v1"
+    },
+    {
+      "id": "docs-tests",
+      "runner": "docs-tests",
+      "cwd": ".",
+      "prerequisites": [],
+      "required_when": "selected by impact; no required skip may pass",
+      "evidence_contract": "check-result-v1"
+    },
+    {
+      "id": "fixture-equality",
+      "runner": "fixture-equality",
+      "cwd": ".",
+      "prerequisites": [],
+      "required_when": "selected by impact; no required skip may pass",
+      "evidence_contract": "check-result-v1"
+    },
+    {
+      "id": "backend-tests",
+      "runner": "backend-tests",
+      "cwd": "tauapi-be",
+      "prerequisites": [],
+      "required_when": "selected by impact; no required skip may pass",
+      "evidence_contract": "check-result-v1"
+    },
+    {
+      "id": "backend-build",
+      "runner": "backend-build",
+      "cwd": "tauapi-be",
+      "prerequisites": [],
+      "required_when": "selected by impact; no required skip may pass",
+      "evidence_contract": "check-result-v1"
+    },
+    {
+      "id": "frontend-typecheck",
+      "runner": "frontend-typecheck",
+      "cwd": "tauapi-fe",
+      "prerequisites": [],
+      "required_when": "selected by impact; no required skip may pass",
+      "evidence_contract": "check-result-v1"
+    },
+    {
+      "id": "frontend-tests",
+      "runner": "frontend-tests",
+      "cwd": "tauapi-fe",
+      "prerequisites": [],
+      "required_when": "selected by impact; no required skip may pass",
+      "evidence_contract": "check-result-v1"
+    },
+    {
+      "id": "frontend-build",
+      "runner": "frontend-build",
+      "cwd": "tauapi-fe",
+      "prerequisites": [],
+      "required_when": "selected by impact; no required skip may pass",
+      "evidence_contract": "check-result-v1"
+    },
+    {
+      "id": "frontend-lint",
+      "runner": "frontend-lint",
+      "cwd": ".",
+      "prerequisites": [],
+      "required_when": "selected by impact; no required skip may pass",
+      "evidence_contract": "check-result-v1"
+    },
+    {
+      "id": "plugins-lint",
+      "runner": "plugins-lint",
+      "cwd": "tauapi-be",
+      "prerequisites": [],
+      "required_when": "selected by impact; no required skip may pass",
+      "evidence_contract": "check-result-v1"
+    },
+    {
+      "id": "plugins-format",
+      "runner": "plugins-format",
+      "cwd": "tauapi-be",
+      "prerequisites": [],
+      "required_when": "selected by impact; no required skip may pass",
+      "evidence_contract": "check-result-v1"
+    },
+    {
+      "id": "billing-go",
+      "runner": "billing-go",
+      "cwd": "tauapi-be",
+      "prerequisites": [],
+      "required_when": "selected by impact; no required skip may pass",
+      "evidence_contract": "check-result-v1"
+    },
+    {
+      "id": "billing-fe",
+      "runner": "billing-fe",
+      "cwd": "tauapi-fe",
+      "prerequisites": [],
+      "required_when": "selected by impact; no required skip may pass",
+      "evidence_contract": "check-result-v1"
+    },
+    {
+      "id": "database-matrix",
+      "runner": "database-matrix",
+      "cwd": "tauapi-be",
+      "prerequisites": [
+        "TEST_MYSQL_DSN",
+        "TEST_POSTGRES_DSN",
+        "DOCS_DB_UPGRADE_EVIDENCE"
+      ],
+      "required_when": "selected by impact; no required skip may pass",
+      "evidence_contract": "check-result-v1"
+    },
+    {
+      "id": "route-analysis",
+      "runner": "route-analysis",
+      "cwd": ".",
+      "prerequisites": [],
+      "required_when": "selected by impact; no required skip may pass",
+      "evidence_contract": "check-result-v1"
+    },
+    {
+      "id": "isolated-builds",
+      "runner": "isolated-builds",
+      "cwd": ".",
+      "prerequisites": [],
+      "required_when": "selected by impact; no required skip may pass",
+      "evidence_contract": "check-result-v1"
+    },
+    {
+      "id": "libraries-build",
+      "runner": "libraries-build",
+      "cwd": ".",
+      "prerequisites": [],
+      "required_when": "selected by impact; no required skip may pass",
+      "evidence_contract": "check-result-v1"
+    },
+    {
+      "id": "shell-syntax",
+      "runner": "shell-syntax",
+      "cwd": ".",
+      "prerequisites": [],
+      "required_when": "selected by impact; no required skip may pass",
+      "evidence_contract": "check-result-v1"
+    }
+  ],
+  "exceptions": [
+    {
+      "scope": "tauapi-be/docs/plugin-api/v1.md: description translation table final column",
+      "reason": "Chinese translation examples are intentional UI authoring examples, not operative untranslated prose.",
+      "provenance": "preserved central plugin API v1",
+      "review_trigger": "Any change to description writing conventions or this exact table",
+      "category": "language_example"
+    }
+  ],
+  "generated": [
+    {
+      "path": "docs/ai/TASK_INDEX.md",
+      "generator": "scripts/docs/docsctl.py"
+    }
+  ]
+}

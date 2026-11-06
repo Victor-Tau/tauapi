@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "id": "docs-system-bootstrap",
+  "base_revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+  "work_status": "in_progress",
+  "docs_impact": "affected",
+  "dispositions": {
+    "authentication": {
+      "status": "updated",
+      "reason": "Migrated operative obligations and source-linked technical intent; runtime behavior is unchanged.",
+      "evidence": [
+        "docs/ai/contracts/authentication.md",
+        "docs/ai/migrations/obligation-map.yaml"
+      ]
+    },
+    "billing-and-quota": {
+      "status": "updated",
+      "reason": "Migrated operative obligations and source-linked technical intent; runtime behavior is unchanged.",
+      "evidence": [
+        "docs/ai/contracts/billing-and-quota.md",
+        "docs/ai/migrations/obligation-map.yaml"
+      ]
+    },
+    "task-plugins": {
+      "status": "updated",
+      "reason": "Migrated operative obligations and source-linked technical intent; runtime behavior is unchanged.",
+      "evidence": [
+        "docs/ai/contracts/task-plugins.md",
+        "docs/ai/migrations/obligation-map.yaml"
+      ]
+    },
+    "routing-and-origin": {
+      "status": "updated",
+      "reason": "Migrated operative obligations and source-linked technical intent; runtime behavior is unchanged.",
+      "evidence": [
+        "docs/ai/contracts/routing-and-origin.md",
+        "docs/ai/migrations/obligation-map.yaml"
+      ]
+    },
+    "frontend-release": {
+      "status": "updated",
+      "reason": "Migrated operative obligations and source-linked technical intent; runtime behavior is unchanged.",
+      "evidence": [
+        "docs/ai/contracts/frontend-release.md",
+        "docs/ai/migrations/obligation-map.yaml"
+      ]
+    },
+    "backend-release-and-schema": {
+      "status": "updated",
+      "reason": "Migrated operative obligations and source-linked technical intent; runtime behavior is unchanged.",
+      "evidence": [
+        "docs/ai/contracts/backend-release-and-schema.md",
+        "docs/ai/migrations/obligation-map.yaml"
+      ]
+    }
+  },
+  "validation": {
+    "local_built": "in_progress",
+    "local_verified": "not_run",
+    "remote_ci_verified": "not_run",
+    "merge_gate_enabled": "not_run"
+  },
+  "next_action": "Run local gates and integration drills; report exact limits."
+}
