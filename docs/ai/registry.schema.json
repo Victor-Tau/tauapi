@@ -138,6 +138,24 @@
               "scope",
               "gaps"
             ]
+          },
+          "supersedes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "superseded_by": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "mandatory_reads": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         },
         "required": [

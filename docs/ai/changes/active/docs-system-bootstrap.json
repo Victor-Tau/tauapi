@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "docs-system-bootstrap",
   "base_revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-  "work_status": "in_progress",
+  "work_status": "ready_for_ci",
   "docs_impact": "affected",
   "dispositions": {
     "authentication": {
@@ -55,10 +55,19 @@
     }
   },
   "validation": {
-    "local_built": "in_progress",
-    "local_verified": "not_run",
-    "remote_ci_verified": "not_run",
-    "merge_gate_enabled": "not_run"
+    "local_built": "passed",
+    "local_verified": "passed for documentation/checker scope; application isolation verified at 0640332bd5ceae8512dc926291989ef7b0496118",
+    "last_tested_application_revision": "0640332bd5ceae8512dc926291989ef7b0496118",
+    "application_evidence_refs": [
+      ".docs-reports/isolated-builds.json",
+      "/tmp/tauapi-docs-verification.json"
+    ],
+    "remote_ci_verified": "not_run: local task branch has not been published or submitted to remote CI",
+    "merge_gate_enabled": "not_run: external repository enforcement was not configured or observed",
+    "claude_root_loading": "passed: installed 2.1.316 root /memory lists imported AGENTS.md; SessionStart observed",
+    "claude_component_launches": "blocked: all three show external-import trust prompt; use canonical root launcher",
+    "claude_compaction_rules_delegation": "not_run: no model/provider session requested",
+    "lint": "152 pre-existing errors/65 warnings; exact fingerprint baseline comparison passed"
   },
-  "next_action": "Run local gates and integration drills; report exact limits."
+  "next_action": "Publish/submit the candidate only within later authorization; observe remote docs-required and configure independent governance trust/merge rules. Keep runtime safety fixes separately scoped."
 }

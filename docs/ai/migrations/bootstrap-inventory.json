@@ -67,7 +67,7 @@
       "provenance": "git:e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
       "classification": "retained_reference",
       "current_authority": "see registry",
-      "destination": "doc-c94b8a5b8fe8",
+      "destination": "docs/ai/REPOSITORY_MAP.md",
       "retained_invariants": "preserved obligations or original reference",
       "inbound_links": [
         "AGENTS.md",
@@ -76,8 +76,8 @@
         "tauapi-ops/HANDOFF.md",
         "tauapi-ops/docs/DEPLOYMENT.md"
       ],
-      "migration_action": "registered; migrated where superseded",
-      "verification_status": "inventoried_at_revision",
+      "migration_action": "migrated operative content; retained original provenance",
+      "verification_status": "obligation_mapped",
       "source_revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f"
     },
     {
@@ -125,7 +125,7 @@
       "provenance": "git:e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
       "classification": "retained_reference",
       "current_authority": "see registry",
-      "destination": "doc-84298c5d1eba",
+      "destination": "docs/ai/contracts/billing-and-quota.md",
       "retained_invariants": "preserved obligations or original reference",
       "inbound_links": [
         "tauapi-be/AGENTS.md",
@@ -133,8 +133,8 @@
         "tauapi-fe/CLAUDE.md",
         "tauapi-fe/UPSTREAM_ROOT_AGENTS.md"
       ],
-      "migration_action": "registered; migrated where superseded",
-      "verification_status": "inventoried_at_revision",
+      "migration_action": "migrated operative content; retained original provenance",
+      "verification_status": "obligation_mapped",
       "source_revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f"
     },
     {
@@ -636,7 +636,7 @@
       "provenance": "git:e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
       "classification": "retained_reference",
       "current_authority": "see registry",
-      "destination": "be-policy",
+      "destination": "tauapi-be/docs/ai/engineering.md",
       "retained_invariants": "preserved obligations or original reference",
       "inbound_links": [
         "AGENTS.md",
@@ -658,8 +658,8 @@
         "tauapi-ops/DECISIONS.md",
         "tauapi-ops/docs/MINIMALIST_FLAT.md"
       ],
-      "migration_action": "registered; migrated where superseded",
-      "verification_status": "inventoried_at_revision",
+      "migration_action": "migrated operative content; retained original provenance",
+      "verification_status": "obligation_mapped",
       "source_revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f"
     },
     {
@@ -894,7 +894,7 @@
       "provenance": "git:e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
       "classification": "retained_reference",
       "current_authority": "see registry",
-      "destination": "doc-51ebadf131e3",
+      "destination": "docs/ai/contracts/authentication.md",
       "retained_invariants": "preserved obligations or original reference",
       "inbound_links": [
         "tauapi-be/README.en.md",
@@ -904,8 +904,8 @@
         "tauapi-be/README.zh_CN.md",
         "tauapi-be/README.zh_TW.md"
       ],
-      "migration_action": "registered; migrated where superseded",
-      "verification_status": "inventoried_at_revision",
+      "migration_action": "migrated operative content; retained original provenance",
+      "verification_status": "obligation_mapped",
       "source_revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f"
     },
     {
@@ -1066,14 +1066,14 @@
       "provenance": "git:e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
       "classification": "retained_reference",
       "current_authority": "see registry",
-      "destination": "doc-5fd94474203d",
+      "destination": "tauapi-be/docs/ai/billing-expression.md",
       "retained_invariants": "preserved obligations or original reference",
       "inbound_links": [
         "tauapi-be/.agents/rules/billing.md",
         "tauapi-fe/.agents/rules/billing.md"
       ],
-      "migration_action": "registered; migrated where superseded",
-      "verification_status": "inventoried_at_revision",
+      "migration_action": "migrated operative content; retained original provenance",
+      "verification_status": "obligation_mapped",
       "source_revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f"
     },
     {
@@ -1083,7 +1083,7 @@
       "provenance": "git:e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
       "classification": "retained_reference",
       "current_authority": "see registry",
-      "destination": "doc-8060a4b56102",
+      "destination": "tauapi-be/docs/ai/independent-libraries.md",
       "retained_invariants": "preserved obligations or original reference",
       "inbound_links": [
         "AGENTS.md",
@@ -1097,8 +1097,8 @@
         "tauapi-fe/AGENTS.md",
         "tauapi-ops/HANDOFF.md"
       ],
-      "migration_action": "registered; migrated where superseded",
-      "verification_status": "inventoried_at_revision",
+      "migration_action": "migrated operative content; retained original provenance",
+      "verification_status": "obligation_mapped",
       "source_revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f"
     },
     {
@@ -1108,7 +1108,7 @@
       "provenance": "git:e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
       "classification": "retained_reference",
       "current_authority": "see registry",
-      "destination": "doc-f594ba929fac",
+      "destination": "tauapi-be/docs/ai/independent-libraries.md",
       "retained_invariants": "preserved obligations or original reference",
       "inbound_links": [
         "AGENTS.md",
@@ -1122,8 +1122,8 @@
         "tauapi-fe/AGENTS.md",
         "tauapi-ops/HANDOFF.md"
       ],
-      "migration_action": "registered; migrated where superseded",
-      "verification_status": "inventoried_at_revision",
+      "migration_action": "migrated operative content; retained original provenance",
+      "verification_status": "obligation_mapped",
       "source_revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f"
     },
     {
@@ -1441,7 +1441,7 @@
       "provenance": "git:e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
       "classification": "retained_reference",
       "current_authority": "see registry",
-      "destination": "fe-policy",
+      "destination": "tauapi-fe/docs/ai/engineering.md",
       "retained_invariants": "preserved obligations or original reference",
       "inbound_links": [
         "AGENTS.md",
@@ -1463,8 +1463,8 @@
         "tauapi-ops/DECISIONS.md",
         "tauapi-ops/docs/MINIMALIST_FLAT.md"
       ],
-      "migration_action": "registered; migrated where superseded",
-      "verification_status": "inventoried_at_revision",
+      "migration_action": "migrated operative content; retained original provenance",
+      "verification_status": "obligation_mapped",
       "source_revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f"
     },
     {
@@ -1580,7 +1580,7 @@
       "provenance": "git:e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
       "classification": "retained_reference",
       "current_authority": "see registry",
-      "destination": "doc-7097c1049228",
+      "destination": "tauapi-fe/docs/ai/billing-presentation.md",
       "retained_invariants": "preserved obligations or original reference",
       "inbound_links": [
         "AGENTS.md",
@@ -1594,8 +1594,8 @@
         "tauapi-fe/AGENTS.md",
         "tauapi-ops/HANDOFF.md"
       ],
-      "migration_action": "registered; migrated where superseded",
-      "verification_status": "inventoried_at_revision",
+      "migration_action": "migrated operative content; retained original provenance",
+      "verification_status": "obligation_mapped",
       "source_revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f"
     },
     {
@@ -1735,13 +1735,13 @@
       "provenance": "git:e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
       "classification": "retained_reference",
       "current_authority": "see registry",
-      "destination": "doc-b966c853f3ba",
+      "destination": "tauapi-ops/docs/ai/runbooks/fresh-host.md",
       "retained_invariants": "preserved obligations or original reference",
       "inbound_links": [
         "README.md"
       ],
-      "migration_action": "registered; migrated where superseded",
-      "verification_status": "inventoried_at_revision",
+      "migration_action": "migrated operative content; retained original provenance",
+      "verification_status": "obligation_mapped",
       "source_revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f"
     },
     {
@@ -1751,15 +1751,15 @@
       "provenance": "git:e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
       "classification": "retained_reference",
       "current_authority": "see registry",
-      "destination": "doc-640ec65dd908",
+      "destination": "tauapi-fe/docs/ai/theme-and-accessibility.md",
       "retained_invariants": "preserved obligations or original reference",
       "inbound_links": [
         "map.md",
         "tauapi-ops/HANDOFF.md",
         "tauapi-ops/evidence/UI_REVIEW.md"
       ],
-      "migration_action": "registered; migrated where superseded",
-      "verification_status": "inventoried_at_revision",
+      "migration_action": "migrated operative content; retained original provenance",
+      "verification_status": "obligation_mapped",
       "source_revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f"
     },
     {

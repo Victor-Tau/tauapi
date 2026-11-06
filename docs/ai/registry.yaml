@@ -750,7 +750,8 @@
         "tauapi-fe/testdata/contracts/frontend_simulation.json",
         "tauapi-ops/UPSTREAM_LOCK.json",
         "tauapi-ops/scripts/import-upstream.py",
-        "tauapi-ops/scripts/sync-upstream.sh"
+        "tauapi-ops/scripts/sync-upstream.sh",
+        "docs/ai/contracts/billing-fixture.json"
       ],
       "related_docs": [],
       "checks": [
@@ -3233,15 +3234,15 @@
       "id": "doc-e3a56710a6dc",
       "path": "tauapi-fe/src/components/data-table/README.md",
       "audience": "ai",
-      "type": "index",
-      "status": "historical",
+      "type": "module",
+      "status": "active",
       "owner_area": "fe",
       "source_paths": [],
       "related_docs": [],
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "retained_reference",
+      "provenance": "first_party",
       "verification": {
         "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
         "timestamp": "2026-11-06",
@@ -3835,6 +3836,83 @@
           "No new production observation"
         ]
       }
+    },
+    {
+      "id": "fe-billing-semantics",
+      "path": "tauapi-fe/docs/ai/billing-presentation.md",
+      "audience": "ai",
+      "type": "module",
+      "status": "active",
+      "owner_area": "fe",
+      "source_paths": [
+        "tauapi-fe/src/features/pricing/lib/billing-expression"
+      ],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "be-library-guide",
+      "path": "tauapi-be/docs/ai/independent-libraries.md",
+      "audience": "ai",
+      "type": "module",
+      "status": "active",
+      "owner_area": "be",
+      "source_paths": [
+        "tauapi-be/relaykit",
+        "tauapi-be/tokenkit"
+      ],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
+    },
+    {
+      "id": "fe-design",
+      "path": "tauapi-fe/docs/ai/theme-and-accessibility.md",
+      "audience": "ai",
+      "type": "module",
+      "status": "active",
+      "owner_area": "fe",
+      "source_paths": [
+        "tauapi-fe/src/styles/theme.css",
+        "tauapi-fe/src/components/ui"
+      ],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party",
+      "verification": {
+        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+        "timestamp": "2026-11-06",
+        "method": "source_review",
+        "scope": "Navigation and source inspection; runtime behavior not certified",
+        "gaps": [
+          "No new production observation"
+        ]
+      }
     }
   ],
   "domains": [
@@ -4003,7 +4081,8 @@
       ],
       "required_reads": [
         "be-policy",
-        "be-libraries"
+        "be-libraries",
+        "be-library-guide"
       ],
       "contracts": [
         "billing-and-quota"
@@ -4116,7 +4195,8 @@
       ],
       "required_reads": [
         "fe-policy",
-        "fe-ui"
+        "fe-ui",
+        "fe-design"
       ],
       "contracts": [],
       "checks": [
@@ -4145,7 +4225,8 @@
       ],
       "required_reads": [
         "fe-policy",
-        "fe-billing"
+        "fe-billing",
+        "fe-billing-semantics"
       ],
       "contracts": [
         "billing-and-quota",

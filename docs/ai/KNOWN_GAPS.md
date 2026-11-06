@@ -19,9 +19,13 @@ No background semantic-repair service, production deployment or remote policy ac
 
 ## Tool integration limits observed during bootstrap
 
-Claude Code 2.1.316 is installed. Thin adapters, canonical root launcher and hook adapters
-are installed and tested locally. Live instruction loading, direct component trust,
-resume/compaction and path-rule activation require an interactive client session; these
-are not inferred from adapter files. No provider call was made for this migration test.
+Claude Code 2.1.316 is installed. A real root session /memory listed CLAUDE.md and
+@-imported AGENTS.md; the SessionStart hook ran. Direct launches from all three component
+directories showed the external-import trust prompt for root AGENTS.md. No trust setting
+was changed. The canonical launcher was tested from all three components and resolves root.
+Relevant/irrelevant path-rule activation, model-assisted recovery after compaction and delegated
+runtime sessions remain not_run; no provider prompt or provider request was issued.
+User/global configuration keys were inspected without exposing values; no user/global hook
+registrations or claudeMdExcludes were present. Existing user settings were not changed.
 Remote CI and merge rules were not activated. Trusted independent governance validation
 remains GAP-7; the candidate workflow alone cannot establish that trust boundary.

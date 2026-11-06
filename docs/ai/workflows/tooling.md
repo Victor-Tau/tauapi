@@ -19,3 +19,17 @@ Bootstrap inputs are immutable provenance. Unchanged upstream references are exp
 Run audit on demand; do not install cron/daemons or refresh review dates without actual review.
 External logs/screenshots should be retained at least 90 days in CI and durable summaries kept in Git;
 retain critical evidence elsewhere before expiry. Local workflow files do not enable branch protection.
+
+
+Setup requires Python with venv/ensurepip, or an available uv (the Make target detects it).
+Tool dependencies are pinned separately from application dependencies. Renames are deliberately
+represented as deletion plus addition so both old and new obligations survive routing.
+The canonical client launcher is `bash scripts/docs/claude-root.sh`; it resolves Git root from
+any component before starting Claude. Direct component starts may require an ancestor-import
+trust decision; use the root launcher without rewriting user/global trust configuration.
+Official integration references: [memory](https://code.claude.com/docs/en/memory) and
+[hooks](https://code.claude.com/docs/en/hooks). Runtime loading still needs installed-client observation.
+
+
+Preserved bootstrap Markdown includes upstream/supplied trailing-space hard breaks. Do not edit
+those bytes to satisfy whitespace cleanup; validate task-authored content separately from immutable input.

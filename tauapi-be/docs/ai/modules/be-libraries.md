@@ -31,3 +31,5 @@ Source inspection is the verification basis at baseline e2af94c1affa0d760cd6dd5f
 Update this card when entry points, flow boundaries or validation commands change.
 Review contracts when behavior, compatibility or failure handling changes. Re-route against
 actual diff; source-only refactors may use evidence-backed reviewed_unchanged dispositions.
+
+Read the full [independent-library guide](../independent-libraries.md) for operative local requirements.

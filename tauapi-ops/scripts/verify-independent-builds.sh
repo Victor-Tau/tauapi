@@ -42,8 +42,17 @@ if [[ $WHAT == be || $WHAT == all ]]; then
   mkdir -p "$D/tauapi-be"; git -C "$REPO" archive "$REV:tauapi-be" | tar -x -C "$D/tauapi-be"
   cd "$D/tauapi-be"
   [[ -e web || -e electron ]] && { echo "be: web/ or electron/ present"; rc=1; }
-  export PATH="$GO_DIR:/usr/bin:/bin" GOTOOLCHAIN=local GOWORK=off
-  for b in bun node npm; do command -v $b >/dev/null && { echo "be: $b unexpectedly on PATH ($(command -v $b))"; }; done
+  # Curate system tools so the Go acceptance cannot discover a JS runtime.
+  mkdir -p "$D/system-bin"
+  for tool in /usr/bin/*; do
+    name=${tool##*/}
+    case "$name" in node|nodejs|npm|npx|bun|bunx|yarn|yarnpkg|pnpm|corepack|go) continue ;; esac
+    [[ -x "$tool" && ! -d "$tool" ]] && ln -s "$tool" "$D/system-bin/$name"
+  done
+  export PATH="$GO_DIR:$D/system-bin" GOTOOLCHAIN=local GOWORK=off
+  for b in bun node npm; do
+    if command -v "$b" >/dev/null; then echo "be: forbidden JS runtime $b on PATH" >&2; exit 1; fi
+  done
   set +e
   {
     go build -o /dev/null . && go vet ./router/ ./middleware/ && go test ./... \

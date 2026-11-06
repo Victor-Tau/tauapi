@@ -30,7 +30,7 @@ class DocumentationChecks(unittest.TestCase):
                 p.parent.mkdir(parents=True,exist_ok=True)
                 if (ROOT/source).is_dir():p.mkdir(exist_ok=True)
                 else:p.write_bytes((ROOT/source).read_bytes())
-        for path in ['docs/ai/registry.yaml','docs/ai/registry.schema.json','docs/ai/schemas/change-v1.schema.json','scripts/docs/docsctl.py','tauapi-ops/ROUTE_CONTRACT.json','tauapi-be/pkg/billingexpr/testdata/frontend_simulation.json','tauapi-fe/testdata/contracts/frontend_simulation.json','docs/ai/changes/active/docs-system-bootstrap.json','docs/ai/schemas/migration-v1.schema.json','docs/ai/schemas/check-result-v1.schema.json','docs/ai/migrations/obligation-map.yaml']:
+        for path in ['docs/ai/registry.yaml','docs/ai/registry.schema.json','docs/ai/schemas/change-v1.schema.json','scripts/docs/docsctl.py','tauapi-ops/ROUTE_CONTRACT.json','tauapi-be/pkg/billingexpr/testdata/frontend_simulation.json','tauapi-fe/testdata/contracts/frontend_simulation.json','docs/ai/changes/active/docs-system-bootstrap.json','docs/ai/schemas/migration-v1.schema.json','docs/ai/schemas/check-result-v1.schema.json','docs/ai/migrations/obligation-map.yaml','docs/ai/contracts/billing-fixture.json']:
             p=self.root/path;p.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(ROOT/path,p)
         p=self.root/'docs/ai/migrations/bootstrap-inventory.json';p.parent.mkdir(parents=True,exist_ok=True);p.write_text('{"schema_version":1,"revision":"fixture","items":[]}')
         subprocess.run(['git','init','-q',str(self.root)],check=True)
@@ -173,6 +173,31 @@ class DocumentationChecks(unittest.TestCase):
         self.assertEqual(missing.returncode,3)
         invalid=subprocess.run(['bash',str(script),'invalid'],env=env,capture_output=True)
         self.assertEqual(invalid.returncode,2)
+
+    def test_stop_hook_rejection_error_and_unavailable_prerequisite(self):
+        import io
+        hook_spec=importlib.util.spec_from_file_location('docs_hook',ROOT/'scripts/docs/hooks/adapter.py')
+        hook=importlib.util.module_from_spec(hook_spec);hook_spec.loader.exec_module(hook)
+        for code,payload,expected in [(1,{'findings':['broken link']},0),(3,{'status':'blocked'},1),(4,{'status':'failed'},1)]:
+            output=io.StringIO()
+            with mock.patch('sys.stdin',io.StringIO('{"hook_event_name":"Stop"}')), mock.patch('sys.stdout',output), mock.patch.object(hook.subprocess,'run',return_value=subprocess.CompletedProcess([],code,json.dumps(payload),'')):
+                self.assertEqual(hook.main(),expected)
+            if code==1:self.assertEqual(json.loads(output.getvalue())['decision'],'block')
+        with mock.patch('sys.stdin',io.StringIO('{"hook_event_name":"Stop"}')), mock.patch.object(hook.Path,'exists',return_value=False):
+            self.assertEqual(hook.main(),1)
+
+    def test_authority_cycles_fail_but_ordinary_crosslinks_are_allowed(self):
+        docs=[{'id':'a','status':'active','mandatory_reads':['b']},{'id':'b','status':'active','mandatory_reads':['a']}]
+        self.assertIn('mandatory cycle',d.authority_findings(docs))
+        docs=[{'id':'a','status':'historical','superseded_by':['b']},{'id':'b','status':'active','supersedes':['a']}]
+        self.assertEqual(d.authority_findings(docs),[])
+        docs[1]['superseded_by']=['a']
+        self.assertIn('supersession cycle',d.authority_findings(docs))
+
+    def test_both_changed_fixtures_need_local_revision_update(self):
+        for p in ['tauapi-be/pkg/billingexpr/testdata/frontend_simulation.json','tauapi-fe/testdata/contracts/frontend_simulation.json']:
+            (self.root/p).write_text('{}')
+        self.assertIn('local billing fixture revision/hash differs',d.fixture_findings(self.root))
 
 from unittest import mock
 if __name__=='__main__':unittest.main()
