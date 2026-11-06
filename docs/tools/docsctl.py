@@ -221,7 +221,7 @@ def rendered_index(r):
     for d in sorted(r['documents'], key=lambda d: d['id']):
         if d['type'] == 'change' and d['status'] == 'active':
             lines.append('- ['+d['id']+']('+os.path.relpath(d['path'], 'docs/ai')+')')
-    return '\n'.join(lines)+'\n'
+    return '\n'.join(lines).rstrip()+'\n'
 
 def fixture_findings(root):
     a = root/'tauapi-be/pkg/billingexpr/testdata/frontend_simulation.json'

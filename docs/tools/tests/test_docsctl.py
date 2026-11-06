@@ -95,6 +95,10 @@ class DocumentationChecks(unittest.TestCase):
 
     def test_generation_is_deterministic(self):
         self.assertEqual(d.rendered_index(self.r),d.rendered_index(copy.deepcopy(self.r)))
+        no_active=copy.deepcopy(self.r)
+        for doc in no_active['documents']:
+            if doc['type']=='change':doc['status']='historical'
+        self.assertFalse(d.rendered_index(no_active).endswith('\n\n'))
 
     def test_changed_billing_snapshot_is_rejected(self):
         p=self.root/'tauapi-fe/testdata/contracts/frontend_simulation.json';p.write_text('{}')

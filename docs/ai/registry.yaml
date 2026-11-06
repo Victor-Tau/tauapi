@@ -3821,10 +3821,10 @@
     },
     {
       "id": "change-remove-github-actions",
-      "path": "docs/ai/changes/active/remove-github-actions.md",
+      "path": "docs/ai/changes/archive/2026-11-06-remove-github-actions.md",
       "audience": "ai",
       "type": "change",
-      "status": "active",
+      "status": "historical",
       "owner_area": "governance",
       "source_paths": [],
       "related_docs": [],
@@ -3833,13 +3833,11 @@
       ],
       "provenance": "first_party",
       "verification": {
-        "revision": "cf202ac73ff12b462f2da2f7c4a9dcad7517ad41",
+        "revision": "9e2bad24188883fcd90dbdedea57cbdbea4160d3",
         "timestamp": "2026-11-06",
         "method": "source_and_remote_api_review",
         "scope": "Workflow removal and repository Actions configuration; no application behavior change",
-        "gaps": [
-          "GitHub main source removal pending publication"
-        ]
+        "gaps": []
       }
     }
   ],
