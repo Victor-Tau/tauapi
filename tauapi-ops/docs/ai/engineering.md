@@ -114,3 +114,48 @@ defaulting to `Victor-Tau/tauapi`; `/api/status` supplies the effective reposito
 Publish a matching `v<version>` tag for a release. Changing the repository changes the frontend
 query/cache key. Source: `tauapi-fe/src/features/system-update/releases.ts` and
 `tauapi-be/common/system_update.go`.
+
+Build GitHub assets locally from an explicit committed candidate. Keep release artifacts
+outside the source tree. `build-frontend.sh --out DIRECTORY --test-workers 1` supports
+resource-limited hosts and retains all frontend checks. `build-backend-binaries.sh` exports
+only `tauapi-be`, runs host/library checks, and creates CGO-free Linux amd64/arm64 archives
+with the executable, manifests, checksums and upstream notices. Both release units retain
+their own source/version metadata. Cross-compiled arm64 packages require target-host smoke
+checks before production use. Building packages does not establish schema compatibility.
+
+```bash
+candidate=$(git rev-parse HEAD)
+version=$(git show "$candidate:tauapi-be/VERSION")
+assets=/tmp/tauapi-release-assets
+mkdir -p "$assets"
+BUN_BIN=$(command -v bun) scripts/build-frontend.sh --repo .. --rev "$candidate" \
+  --release-id "fe-v${version}-${candidate:0:12}" --compat-backend "=$version" \
+  --out "$assets" --test-workers 1
+scripts/build-backend-binaries.sh --repo .. --rev "$candidate" --out "$assets"
+scripts/build-backend.sh --repo .. --rev "$candidate" --tag "tauapi-be:$version" --out "$assets"
+docker save "tauapi-be:$version" | gzip > "$assets/tauapi-be-v${version}-docker-linux-amd64.tar.gz"
+git archive --format=tar.gz --output="$assets/tauapi-ops-v${version}.tar.gz" "$candidate:tauapi-ops"
+(cd "$assets" && find . -maxdepth 1 -type f ! -name SHA256SUMS -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS)
+```
+
+Keep the Docker builder JSON alongside its image archive; its image ID, candidate and
+version identify the image accepted by the existing deploy script. Publish only after
+candidate checks and digest verification. GitHub Actions stay disabled. Push the reviewed
+candidate branch and an annotated `v<version>` tag; create a draft GitHub Release, upload
+verified assets, then publish it as latest. Confirm the public feed exposes that tag and
+all expected assets. Publishing and production deployment require separate authorization.
+
+On an existing configured host, download assets into an empty staging directory, verify
+`sha256sum -c SHA256SUMS`, then stage the frontend tar and its `.sha256` under
+`/srv/tauapi/artifacts/frontend/`. Load the Docker archive before the authorized rollout:
+
+```bash
+gzip -dc tauapi-be-v1.0.1-docker-linux-amd64.tar.gz | sudo docker load
+sudo scripts/deploy-frontend.sh fe-v1.0.1-<candidate-prefix>
+sudo scripts/deploy-backend.sh tauapi-be:1.0.1
+```
+
+Use the release's actual frontend ID and backend tag. Keep previous frontend releases;
+the backend rollout drains requests/SSE/WS and can pause on long connections. Application
+rollback remains subject to BER-2/BER-3 and the known schema compatibility gaps. The UI
+checks and links releases; it does not download artifacts or execute server deployments.

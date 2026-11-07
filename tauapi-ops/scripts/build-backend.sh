@@ -4,6 +4,7 @@
 # only the committed backend subtree is used: no frontend, ops or uncommitted files.
 #
 # Usage: build-backend.sh [--repo /opt/tauapi] [--subdir tauapi-be] [--rev main] [--tag <tag>]
+#                         [--out DIRECTORY]
 # Output: prints KEY=VALUE lines (BACKEND_COMMIT, IMAGE_TAG, IMAGE_ID) and writes
 #         /srv/tauapi/artifacts/backend/<tag>.json
 # Exit codes: 0 ok, 2 usage, 3 dirty/invalid revision, 4 build failure.
@@ -13,12 +14,14 @@ REPO=/opt/tauapi
 SUBDIR=tauapi-be
 REV=main
 TAG=""
+OUT=/srv/tauapi/artifacts/backend
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --repo) REPO="$2"; shift 2 ;;
     --subdir) SUBDIR="$2"; shift 2 ;;
     --rev) REV="$2"; shift 2 ;;
     --tag) TAG="$2"; shift 2 ;;
+    --out) OUT="$2"; shift 2 ;;
     *) echo "unknown argument: $1" >&2; exit 2 ;;
   esac
 done
@@ -58,7 +61,6 @@ if "${DOCKER[@]}" run --rm --entrypoint /bin/sh "$TAG" -c 'find / -xdev \( -name
   echo "backend image contains frontend or test artefacts" >&2; exit 4
 fi
 
-OUT=/srv/tauapi/artifacts/backend
 mkdir -p "$OUT"
 cat > "$OUT/${SHORT}.json" <<JSON
 {

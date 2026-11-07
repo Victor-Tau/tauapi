@@ -7,6 +7,7 @@
 #
 # Usage: build-frontend.sh [--repo /opt/tauapi] [--subdir tauapi-fe] [--rev main]
 #                          [--release-id ID] [--skip-checks] [--compat-backend RANGE]
+#                          [--out DIRECTORY] [--test-workers COUNT]
 # Output: /srv/tauapi/artifacts/frontend/<release-id>.tar.gz (+ .sha256, manifest)
 # Exit codes: 0 ok, 2 usage, 3 invalid revision / id exists, 4 check or build failure.
 set -euo pipefail
@@ -19,6 +20,7 @@ RELEASE_ID=""
 SKIP_CHECKS=0
 COMPAT_BACKEND=">=be.53c0e999057f"
 OUT=/srv/tauapi/artifacts/frontend
+TEST_ARGS=()
 BUN_BIN=${BUN_BIN:-$HOME/.local/toolchains/bun-linux-x64/bun}
 while [[ $# -gt 0 ]]; do
   case "$1" in
@@ -28,6 +30,10 @@ while [[ $# -gt 0 ]]; do
     --release-id) RELEASE_ID="$2"; shift 2 ;;
     --skip-checks) SKIP_CHECKS=1; shift ;;
     --compat-backend) COMPAT_BACKEND="$2"; shift 2 ;;
+    --out) OUT="$2"; shift 2 ;;
+    --test-workers)
+      [[ $2 =~ ^[1-9][0-9]*$ ]] || { echo "invalid test worker count" >&2; exit 2; }
+      TEST_ARGS=(--maxWorkers "$2"); shift 2 ;;
     *) echo "unknown argument: $1" >&2; exit 2 ;;
   esac
 done
@@ -39,6 +45,7 @@ SHORT=${COMMIT:0:12}
 [[ -n $RELEASE_ID ]] || RELEASE_ID="$(date -u +%Y%m%d%H%M%S)-${SHORT:0:8}"
 [[ $RELEASE_ID =~ ^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$ ]] || { echo "invalid release id" >&2; exit 2; }
 mkdir -p "$OUT"
+OUT=$(cd "$OUT" && pwd)
 if [[ -e $OUT/$RELEASE_ID.tar.gz ]]; then echo "release id $RELEASE_ID already built" >&2; exit 3; fi
 PM=$(git -C "$REPO" show "$COMMIT:$SUBDIR/package.json" | python3 -I -c 'import json,sys;print(json.load(sys.stdin).get("packageManager",""))')
 [[ $PM == "bun@$BUN_VERSION" ]] || { echo "toolchain mismatch: package.json $PM vs bun $BUN_VERSION" >&2; exit 4; }
@@ -55,7 +62,7 @@ echo "== install (frozen lockfile, bun $BUN_VERSION)" >&2
 "$BUN_BIN" install --frozen-lockfile >&2 || exit 4
 if [[ $SKIP_CHECKS == 0 ]]; then
   echo "== typecheck" >&2; "$BUN_BIN" run typecheck >&2 || exit 4
-  echo "== test" >&2; "$BUN_BIN" run test >&2 || exit 4
+  echo "== test" >&2; "$BUN_BIN" run test "${TEST_ARGS[@]}" >&2 || exit 4
 fi
 echo "== build release $RELEASE_ID" >&2
 TAUAPI_RELEASE_ID="$RELEASE_ID" VITE_REACT_APP_VERSION="$APP_VERSION" NODE_OPTIONS=--max-old-space-size=2048 \
@@ -63,6 +70,7 @@ TAUAPI_RELEASE_ID="$RELEASE_ID" VITE_REACT_APP_VERSION="$APP_VERSION" NODE_OPTIO
 
 DIST="$WORK/dist"
 [[ -f $DIST/index.html ]] || { echo "dist/index.html missing" >&2; exit 4; }
+cp LICENSE NOTICE THIRD-PARTY-LICENSES.md "$DIST/"
 grep -q "/_ui/$RELEASE_ID/" "$DIST/index.html" || { echo "index.html does not reference /_ui/$RELEASE_ID/" >&2; exit 4; }
 # Artefact must not carry backend sources or secrets.
 if find "$DIST" \( -name '*.go' -o -name '.env*' -o -name '*.pem' -o -name '*.key' -o -name 'go.mod' \) | grep -q .; then

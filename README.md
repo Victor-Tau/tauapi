@@ -31,6 +31,12 @@ make docs-impact-worktree DOCS_BASE=HEAD
 
 ## 运维与文档
 
+[GitHub Releases](https://github.com/Victor-Tau/tauapi/releases) 提供版本化前端包、Linux amd64/arm64 后端包、Docker 镜像归档和 SHA-256 校验文件。下载后先运行 `sha256sum -c SHA256SUMS`。前端包内保留发布号、不可变资源路径和逐文件校验；后端包内包含 `new-api`、版本清单和许可证。
+
+使用现有运维目录更新时，将前端归档放入前端产物目录，运行 `deploy-frontend.sh <release-id>` 完成资源发布和原子切换；Docker 镜像归档先用 `gzip -dc <image.tar.gz> | docker load` 加载，再运行 `deploy-backend.sh tauapi-be:<version>` 排空连接并逐个替换实例。完整命令见运维规范。保留旧前端资源供已打开的页面使用；后端重启仍需遵守数据库兼容和备份要求。
+
+系统更新检查默认读取本仓库的公开 Release，管理员可在维护设置中修改仓库。发布标签使用 `v<version>`，版本来自两端各自的 `VERSION`；发布包供运维更新，页面中的“检查更新”负责通知和打开 Release 页面。
+
 [运维规范](tauapi-ops/docs/ai/engineering.md)集中列出发布、回滚、备份和上游同步入口；[新主机流程](tauapi-ops/docs/ai/runbooks/fresh-host.md)说明安装顺序。
 后端的 `README*` 是保留的上游原文，其中的 `web/`、`electron/` 路径和相关构建步骤属于上游整仓。TauAPI 的构建方式见本页和系统架构。
 

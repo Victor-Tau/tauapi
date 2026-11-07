@@ -144,7 +144,9 @@
         "tauapi-ops/scripts/bootstrap-stack.sh",
         "tauapi-ops/scripts/deploy-backend.sh",
         "tauapi-ops/scripts/restore-check.sh",
-        "tauapi-ops/scripts/rollback-backend.sh"
+        "tauapi-ops/scripts/rollback-backend.sh",
+        "tauapi-ops/scripts/build-backend.sh",
+        "tauapi-ops/scripts/build-backend-binaries.sh"
       ],
       "related_docs": [],
       "checks": [
@@ -1777,7 +1779,8 @@
       "component": "ops",
       "path_patterns": [
         "tauapi-ops/scripts/*frontend*",
-        "tauapi-ops/scripts/verify-independent-builds.sh"
+        "tauapi-ops/scripts/verify-independent-builds.sh",
+        "tauapi-fe/VERSION"
       ],
       "required_reads": [
         "ops-engineering",
@@ -1802,7 +1805,8 @@
         "tauapi-ops/scripts/*backend*",
         "tauapi-ops/scripts/bootstrap*",
         "tauapi-ops/templates/**",
-        "tauapi-ops/scripts/verify-independent-builds.sh"
+        "tauapi-ops/scripts/verify-independent-builds.sh",
+        "tauapi-be/VERSION"
       ],
       "required_reads": [
         "ops-engineering",

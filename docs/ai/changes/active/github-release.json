@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "id": "github-release",
+  "base_revision": "0af19ebe467d2a605d299a06be35661c857280a1",
+  "work_status": "in_progress",
+  "docs_impact": "affected",
+  "dispositions": {
+    "frontend-release": {
+      "status": "reviewed_unchanged",
+      "reason": "FER-1/2/4/5 are preserved: versioned independent assets and full checks remain; output selection and notices do not change serving or deployment semantics.",
+      "evidence": [
+        "tauapi-ops/scripts/build-frontend.sh",
+        "tauapi-fe/VERSION"
+      ]
+    },
+    "backend-release-and-schema": {
+      "status": "reviewed_unchanged",
+      "reason": "Independent binary/image packaging retains attribution and runtime-only files. No persistence or deployment logic changes; schema compatibility stays unknown.",
+      "evidence": [
+        "tauapi-ops/scripts/build-backend-binaries.sh",
+        "tauapi-ops/scripts/build-backend.sh",
+        "tauapi-be/VERSION"
+      ]
+    }
+  },
+  "validation": {
+    "objective": "Compile the current project and publish verified GitHub Release assets usable by existing frontend atomic and backend rolling deployment commands.",
+    "acceptance": [
+      "Publish v1.0.1 in Victor-Tau/tauapi with downloadable checksummed assets.",
+      "Build frontend and backend independently from committed component subtree exports.",
+      "Preserve upstream licenses, notices and module identities.",
+      "Provide update instructions without changing production services or enabling GitHub Actions."
+    ],
+    "scope": [
+      "tauapi-ops/scripts/build-frontend.sh",
+      "tauapi-ops/scripts/build-backend.sh",
+      "tauapi-ops/scripts/build-backend-binaries.sh",
+      "tauapi-fe/VERSION",
+      "tauapi-be/VERSION",
+      "README.md",
+      "docs/CHANGELOG.md",
+      "tauapi-ops/docs/ai/engineering.md",
+      "docs/ai/registry.yaml"
+    ],
+    "required_reads": [
+      "AGENTS.md",
+      "docs/ai/INDEX.md",
+      "docs/ai/engineering.md",
+      "docs/ai/workflows/docs-maintenance.md",
+      "docs/ai/templates/change.md",
+      "tauapi-ops/AGENTS.md",
+      "tauapi-ops/docs/ai/engineering.md",
+      "tauapi-fe/AGENTS.md",
+      "tauapi-fe/docs/ai/engineering.md",
+      "tauapi-be/AGENTS.md",
+      "tauapi-be/docs/ai/engineering.md",
+      "docs/ai/contracts/frontend-release.md",
+      "docs/ai/contracts/backend-release-and-schema.md",
+      "docs/ai/KNOWN_GAPS.md"
+    ],
+    "checks": {
+      "passed": [],
+      "failed": [],
+      "skipped": [],
+      "blocked": [],
+      "not_run": [
+        "Production deployment and database mutations: outside the requested release publication scope."
+      ],
+      "running": []
+    },
+    "upstream_reference": "QuantumNous/new-api .github/workflows/release.yml and latest release v1.0.0-rc.48 inspected through GitHub API on 2026-11-07; mirror version tags, Linux architectures and checksum distribution without enabling hosted workflows."
+  },
+  "next_action": "Check documentation and shell syntax, commit the candidate, build isolated assets and publish the verified GitHub Release."
+}
