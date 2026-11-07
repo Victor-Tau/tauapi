@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "main-only-branches",
   "base_revision": "ba80b8df105f42ffb0187c391c570eea4ca68649",
-  "work_status": "in_progress",
+  "work_status": "completed",
   "docs_impact": "affected",
   "dispositions": {},
   "validation": {
@@ -34,9 +34,19 @@
       "passed": [
         "Initial worktree clean; remote has exactly the four expected branches.",
         "main and both upstream vendor tips are ancestors of the release task branch; main can fast-forward without discarding history.",
-        "Snapshot of all local tag objects saved to /tmp/tauapi-main-only-tags-before.txt."
+        "Snapshot of all local tag objects saved to /tmp/tauapi-main-only-tags-before.txt.",
+        "make docs-check docs-test passed; all 38 documentation tests passed.",
+        "docsctl.py fixture-check passed.",
+        "Worktree impact and contract disposition verification passed with no findings; no runtime contracts affected.",
+        "Fast-forwarded main to include the published release work and cleanup record, then atomically pushed main and deleted all three specified remote branches using leases against the observed commits.",
+        "Deleted the fully merged local task branch. Local refs/heads contains only main; remote-tracking refs contain only origin/main and symbolic origin/HEAD.",
+        "GitHub branches API and git ls-remote --heads both confirm main is the only remote branch.",
+        "All eight local and remote tag objects match their pre-cleanup snapshots; v1.0.1 remains at the original release commit.",
+        "All three deleted branch tips remain reachable from main; no history discarded."
       ],
-      "failed": [],
+      "failed": [
+        "Initial atomic push failed because the VS Code credential socket was unavailable; no remote refs changed. Retried successfully using the existing GitHub CLI credential helper for that command only."
+      ],
       "skipped": [],
       "blocked": [],
       "not_run": [
@@ -45,8 +55,17 @@
       ]
     },
     "evidence_logs": [
-      "/tmp/tauapi-main-only-tags-before.txt"
-    ]
+      "/tmp/tauapi-main-only-tags-before.txt",
+      "/tmp/tauapi-main-only-docs.log",
+      "/tmp/tauapi-main-only-impact.json",
+      "/tmp/tauapi-main-only-dispositions.json",
+      "/tmp/tauapi-main-only-tags-after.txt",
+      "/tmp/tauapi-main-only-remote-tags-before.txt",
+      "/tmp/tauapi-main-only-remote-tags-after.txt",
+      "/tmp/tauapi-main-only-remote-heads.json.txt",
+      "/tmp/tauapi-main-only-github-branches.json"
+    ],
+    "outcome": "Only main remains locally and on GitHub. Published release work is integrated into main, all deleted branch history remains reachable, and every release/upstream tag is preserved."
   },
-  "next_action": "Validate documentation, fast-forward main, atomically push main and delete the three specified remote branches, then verify refs and remove the local task branch."
+  "next_action": "No remaining branch cleanup. main is the only retained branch."
 }
