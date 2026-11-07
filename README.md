@@ -10,17 +10,20 @@ TauAPI 基于 [QuantumNous/new-api](https://github.com/QuantumNous/new-api) 开�
 
 前端在 `tauapi-fe/` 使用 Bun，版本见 `package.json`。运行 `bun install --frozen-lockfile`、`bun run dev`；提交前运行相关测试、`bun run typecheck` 和 lint。
 
-后端在 `tauapi-be/` 使用 Go，版本见各模块的 `go.mod`。运行 `make build`、`make test`。修改 RelayKit 或 TokenKit 后，进入相应目录运行 `GOWORK=off go build ./...` 和相关测试。
+后端在 `tauapi-be/` 使用 Go，版本见各模块的 `go.mod`。运行 `make build`；测试时使用 `make test TEST_MODULE=. TEST_PACKAGES=./修改的包`，只选择新增或修改的包。RelayKit、TokenKit 分别用 `TEST_MODULE=relaykit`、`TEST_MODULE=tokenkit` 单独测试。
 
 文档工具在根目录初始化和运行：
 
 ```sh
 make docs-setup
-make docs-check docs-test
+make docs-check
+# 仅在该测试模块涉及新增或修改内容时运行：
+make docs-test DOCS_TEST_MODULES=docs.tools.tests.test_release_policy
 make docs-impact-worktree DOCS_BASE=HEAD
 ```
 
 修改文档登记表后运行 `make docs-generate`。项目检查在本地执行。
+所有操作必须在现有 `main` 分支上进行，禁止创建任何分支，包括任务、功能、发布、上游导入和升级分支。测试只允许针对新增或修改的模块单独进行，严禁全量测试、未指定测试文件或包的测试命令，以及测试未修改模块。构建和发布脚本不再自动运行全量测试。
 
 ## 登录与使用
 
@@ -31,7 +34,7 @@ make docs-impact-worktree DOCS_BASE=HEAD
 
 ## 运维与文档
 
-[GitHub Releases](https://github.com/Victor-Tau/tauapi/releases) 提供版本化前端包、Linux amd64/arm64 后端包、Docker 镜像归档和 SHA-256 校验文件。下载后先运行 `sha256sum -c SHA256SUMS`。前端包内保留发布号、不可变资源路径和逐文件校验；后端包内包含 `new-api`、版本清单和许可证。
+[GitHub Releases](https://github.com/Victor-Tau/tauapi/releases) 的发布说明必须使用简体中文，只列出修改或更新内容，不添加安装部署步骤、构建测试结果或其他说明。后端可执行文件和 Docker 镜像只构建 `linux-amd64`，前端提供平台无关的静态包。禁止 SHA256 校验及 SHA256 操作，禁止生成、打包或上传 SHA256 校验文件、数值及相关校验元数据。前端包保留发布号和不可变资源路径，部署与回滚直接比较文件内容；后端包包含 `new-api`、版本清单和许可证。
 
 使用现有运维目录更新时，将前端归档放入前端产物目录，运行 `deploy-frontend.sh <release-id>` 完成资源发布和原子切换；Docker 镜像归档先用 `gzip -dc <image.tar.gz> | docker load` 加载，再运行 `deploy-backend.sh tauapi-be:<version>` 排空连接并逐个替换实例。完整命令见运维规范。保留旧前端资源供已打开的页面使用；后端重启仍需遵守数据库兼容和备份要求。
 

@@ -1806,7 +1806,8 @@
         "tauapi-ops/scripts/bootstrap*",
         "tauapi-ops/templates/**",
         "tauapi-ops/scripts/verify-independent-builds.sh",
-        "tauapi-be/VERSION"
+        "tauapi-be/VERSION",
+        "tauapi-be/makefile"
       ],
       "required_reads": [
         "ops-engineering",

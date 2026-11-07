@@ -142,7 +142,7 @@ def main():
             data = subprocess.run(["git", "-C", a.upstream, "show", f"{a.sha}:{fx}"],
                                   capture_output=True, check=True).stdout
             fixtures[fx] = {
-                "sha256": hashlib.sha256(data).hexdigest(),
+                "sha512": hashlib.sha512(data).hexdigest(),
                 "frontend_path": map_path("frontend", fx),
                 "backend_path": fx,
             }

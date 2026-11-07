@@ -52,7 +52,7 @@ cat <<EOT
 Next (manual gates, GOAL §6.6), on branch $branch:
   - backend:  cd $ROOT/tauapi-be && go build . && go test ./... (relaykit/tokenkit too)
   - frontend: cd $ROOT/tauapi-fe && bun install --frozen-lockfile && bun run typecheck && bun run test && bun run build
-  - compare tauapi-fe/testdata/contracts/frontend_simulation.json with tauapi-be/pkg/billingexpr/testdata (UPSTREAM.json sha256)
+  - compare tauapi-fe/testdata/contracts/frontend_simulation.json with tauapi-be/pkg/billingexpr/testdata (local equality; UPSTREAM.json is provenance only)
   - review schema/auth/plugin route changes; regenerate ROUTE_CONTRACT.json if src/routes changed
   - only then merge $branch into main and release with build-*/deploy-* scripts
 EOT

@@ -10,6 +10,9 @@ multipart multipliers, quota, reservation, settlement or refund behavior.
 
 RelayKit cannot import the host. TokenKit cannot import the host or RelayKit.
 Verify each affected library with `GOWORK=off go build ./...` and relevant tests.
+Run tests only for new or modified packages or cases, one module at a time.
+Full backend/repository suites, recursive `go test ./...` and testing unchanged modules
+are prohibited. Do not use an unfiltered aggregate test target.
 Host JSON operations use `common.*`; RelayKit uses `kitutil.*`.
 Keep plugin specifications in `docs/plugin-api/`; add no documentation under `plugins/`.
 

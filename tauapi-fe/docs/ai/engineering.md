@@ -172,7 +172,7 @@ The following are common search entry points; do not treat this table as a compl
 - Tests MUST protect real user behavior, stable API contracts, or explicit regression paths; it is forbidden to add smoke, sleep/timing, random-input, log-output, or merely code-runs tests for the sake of coverage.
 - When adding or substantially rewriting tests, prefer the standard assertions and queries of Vitest and React Testing Library, and avoid hand-written generic assertion helpers; extract test helpers only to express project-specific business invariants.
 - When cleaning up tests, first merge duplicate scenarios and delete assertions on unclear implementation details; if an old test indirectly covered a real contract, replace it with a smaller, more direct behavior test.
-- Before committing, you MUST run at least the affected test files, and, depending on the scope of impact, run the relevant test suites, `bun check -b`, and lint on the files involved; do not declare testing complete without seeing the latest passing results.
+- Test only explicit files or cases for new or modified modules. Full frontend/repository suites and unfiltered test commands are prohibited. Run `bun check -b` and lint on changed code when required; record only observed completed test results.
 
 ### 3.15 Dependency Management
 

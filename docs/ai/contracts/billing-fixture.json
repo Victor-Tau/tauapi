@@ -3,6 +3,6 @@
   "local_revision": 1,
   "canonical_path": "tauapi-be/pkg/billingexpr/testdata/frontend_simulation.json",
   "snapshot_path": "tauapi-fe/testdata/contracts/frontend_simulation.json",
-  "sha256": "1569342ecacee420addba7b777c1d87a6594cb72ff0acd667d779ce40b8335e3",
-  "origin_revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f"
+  "origin_revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
+  "sha512": "2823ca8a78e9dab40dcaa3d27761f510892f2a88923166bd53b2b95991b7b6a8aae1d3182293ca9d713ddeab292805cc80d8447f269b1256b2b53195005810e0"
 }

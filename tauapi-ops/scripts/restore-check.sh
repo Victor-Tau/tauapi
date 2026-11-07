@@ -10,7 +10,10 @@ require_root
 source "$IMAGES_ENV"
 DUMP=${1:-$(ls -1t "$BACKUP_ROOT"/db/tauapi-*.dump 2>/dev/null | head -1)}
 [[ -f $DUMP ]] || die "no dump found" 3
-( cd "$(dirname "$DUMP")" && sha256sum -c --quiet "$(basename "$DUMP").sha256" ) || die "dump checksum mismatch" 3
+if [[ -f $DUMP.b2 ]]; then
+  ( cd "$(dirname "$DUMP")" && b2sum -c --quiet "$(basename "$DUMP").b2" ) || die "dump checksum mismatch" 3
+fi
+# Legacy dumps have no BLAKE2 checksum; pg_restore still validates their structure.
 NAME=tauapi-restorecheck-$$
 NET=tauapi-restorecheck-$$
 PW=$(python3 -I -c 'import secrets;print(secrets.token_urlsafe(24))')

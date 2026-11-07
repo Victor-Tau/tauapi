@@ -19,11 +19,41 @@ backend_fingerprint() {
   done
 }
 
-# Verify the immutable public copy of a release matches its SHA256SUMS.
+# Compare file names and bytes without computing checksums. Ignore entry metadata
+# and the legacy checksum list only at the release root, including during rollback.
+compare_public_assets() { # release_dir public_dir
+  python3 -I - "$1" "$2" <<'PY'
+import filecmp
+from pathlib import Path
+import sys
+
+release, public = map(Path, sys.argv[1:])
+excluded = {"index.html", "ui-version.json", "release-manifest.json", "SHA256SUMS"}
+def entries(root, skip):
+    return {p.relative_to(root).as_posix(): p for p in root.rglob("*")
+            if p.relative_to(root).as_posix() not in skip}
+
+if not release.is_dir() or not public.is_dir():
+    sys.exit(1)
+expected = entries(release, excluded)
+actual = entries(public, set())
+if expected.keys() != actual.keys():
+    sys.exit(1)
+for name, source in expected.items():
+    target = actual[name]
+    if source.is_symlink() or target.is_symlink():
+        sys.exit(1)
+    if source.is_dir() and target.is_dir():
+        continue
+    if not source.is_file() or not target.is_file() or not filecmp.cmp(source, target, shallow=False):
+        sys.exit(1)
+PY
+}
+
+# Verify the immutable public copy against the retained release bytes.
 verify_public_assets() { # release_id
   local id=$1 rel=$FRONTEND_RELEASES/$1 pub=$PUBLIC_ROOT/_ui/$1
-  [[ -f $rel/SHA256SUMS && -d $pub ]] || return 1
-  ( cd "$pub" && grep -vE '  \./(index\.html|ui-version\.json|release-manifest\.json)$' "$rel/SHA256SUMS" | sha256sum -c --quiet - ) >/dev/null
+  compare_public_assets "$rel" "$pub"
 }
 
 # Atomically point current/frontend at a release (same filesystem rename).

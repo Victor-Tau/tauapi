@@ -7,6 +7,14 @@ helper for reusable behavior, framework callbacks, exported APIs, test fixtures 
 business logic that needs direct tests. Keep simple single-use logic at its call site.
 Use nested functions when the callback API or local closure benefits from them.
 
+## Test scope
+
+Test only new or modified modules, individually. Select explicit package paths, test
+files or test cases from the actual diff. Never run repository-wide or component-wide
+suites, recursive `go test ./...`, unfiltered frontend tests or unittest discovery.
+Do not run tests for unchanged modules. Build and release commands must not launch
+full suites automatically. Use the selected module's test command separately.
+
 ## Authentication
 
 Authentication work follows the [authentication contract](contracts/authentication.md),

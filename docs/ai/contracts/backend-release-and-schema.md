@@ -29,3 +29,11 @@ Record exact engine versions. Version-specific work includes minimum supported v
 
 
 BER-4: Source regression tests remain in Git. The runtime image copies the Go executable and required licenses, not builder sources. The release builder rejects application test-source paths in the final image. This does not prohibit OS utilities whose names contain test.
+
+BER-5: Follow the [root release requirements](../../../AGENTS.md#release-requirements).
+Build release executables only for linux-amd64 and Docker images only for linux/amd64.
+Release archives contain executables, manifests and notices without SHA256 checksum files,
+sidecars or checksum metadata. Release notes contain only Simplified Chinese changes.
+Backup/restore scripts use BLAKE2 sidecars for new dumps; legacy dumps without those
+sidecars remain restorable through the isolated structural/data/application checks.
+Do not calculate or verify SHA256 during build, deployment, backup or restoration.

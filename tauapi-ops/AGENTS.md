@@ -1,6 +1,8 @@
 # TauAPI operations policy
 
 The root policy applies. Read [operations engineering](docs/ai/engineering.md).
+Perform all operations on `main`. Never create task, release, vendor, upgrade or any
+other branches. Do not invoke branch-creating workflows.
 Use repository-relative paths for source and explicit target paths for runtime state.
 `DEPLOYMENT_STATE.json` records deployment observations with their collection time.
 
@@ -33,3 +35,8 @@ Record environment, timestamp, release and command for every deployment observat
 Summarize user effects in root README, docs/map.md or docs/CHANGELOG.md.
 Technical procedures and logs use English.
 Run applicable script syntax checks, docs checks and isolated QA checks within scope.
+Test only new or modified modules using explicit targets. Full suites are prohibited.
+Build and release scripts must not trigger full tests; run scoped tests separately.
+Apply the root release requirements to every build and publication: Simplified Chinese
+change-only notes, linux-amd64 executables/images, and no SHA256 verification or operations.
+Do not generate or upload SHA256 checksum files, values or metadata.

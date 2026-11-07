@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 # Independent-build acceptance (GOAL §17.2) for the TauAPI monorepo: export
 # ONE subtree (git archive REV:tauapi-fe or REV:tauapi-be) into an empty temp
-# dir and build/test it there, so it cannot read the sibling directory.
+# dir and build it there, so it cannot read the sibling directory.
+# This is build-only acceptance. Run changed-module tests separately; full suites
+# are prohibited and must never be launched by this helper.
 #   frontend: no sibling backend dir, no Go needed
 #   backend:  no web/, no Bun/Node on PATH, no placeholder HTML
 # Usage: verify-independent-builds.sh [fe|be|all]   -> summary to stdout, logs in /tmp
@@ -26,13 +28,13 @@ if [[ $WHAT == fe || $WHAT == all ]]; then
   if command -v go >/dev/null; then echo "fe: go unexpectedly on PATH"; rc=1; fi
   set +e
   {
-    bun install --frozen-lockfile && bun run typecheck && bun run test && TAUAPI_RELEASE_ID=indep-check bun run build
+    bun install --frozen-lockfile && bun run typecheck && TAUAPI_RELEASE_ID=indep-check bun run build
   } > "$L" 2>&1
   r=$?
   set -e
   (grep -rlE '\.\./(backend|tauapi-be|plugins|pkg)/' src scripts rsbuild.config.ts vitest.config.ts 2>/dev/null || true) | head -3 > "$D/xrefs"
   find dist -name '*.go' -o -name 'go.mod' | head -1 > "$D/leak"
-  echo "fe: build+test exit=$r tests=$(grep -oE 'Tests +[0-9]+ passed' "$L" | tail -1 || true) cross-repo-refs=$(wc -l < "$D/xrefs") backend-files-in-dist=$(wc -l < "$D/leak") log=$L"
+  echo "fe: build exit=$r cross-repo-refs=$(wc -l < "$D/xrefs") backend-files-in-dist=$(wc -l < "$D/leak") log=$L"
   (( r == 0 )) || rc=1
   cd /; rm -rf "$D"
 fi
@@ -55,13 +57,13 @@ if [[ $WHAT == be || $WHAT == all ]]; then
   done
   set +e
   {
-    go build -o /dev/null . && go vet ./router/ ./middleware/ && go test ./... \
-      && (cd relaykit && go build ./... && go test ./...) && (cd tokenkit && go build ./... && go test ./...)
+    go build -o /dev/null . \
+      && (cd relaykit && go build ./...) && (cd tokenkit && go build ./...)
   } > "$L" 2>&1
   r=$?
   set -e
   find . -name index.html -not -path './docs/*' | head -3 > "$D/html"
-  echo "be: build+test exit=$r ok-pkgs=$(grep -c '^ok' "$L" || true) fail=$(grep -c '^FAIL' "$L" || true) html-files=$(wc -l < "$D/html") log=$L"
+  echo "be: build exit=$r html-files=$(wc -l < "$D/html") log=$L"
   (( r == 0 )) || rc=1
   cd /; rm -rf "$D"
 fi

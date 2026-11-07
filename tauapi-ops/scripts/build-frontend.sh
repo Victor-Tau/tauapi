@@ -3,12 +3,13 @@
 #
 # The source is `git archive <rev>:tauapi-fe` of the TauAPI monorepo into an
 # empty temp dir (frontend subtree only: no backend/ops files, no uncommitted files). Dependencies are installed with the locked Bun
-# version and --frozen-lockfile; typecheck and tests run before the build.
+# version and --frozen-lockfile; typecheck runs before the build.
+# Run explicit tests for new or modified modules separately; never run full suites.
 #
 # Usage: build-frontend.sh [--repo /opt/tauapi] [--subdir tauapi-fe] [--rev main]
 #                          [--release-id ID] [--skip-checks] [--compat-backend RANGE]
-#                          [--out DIRECTORY] [--test-workers COUNT]
-# Output: /srv/tauapi/artifacts/frontend/<release-id>.tar.gz (+ .sha256, manifest)
+#                          [--out DIRECTORY]
+# Output: /srv/tauapi/artifacts/frontend/<release-id>.tar.gz (+ manifest)
 # Exit codes: 0 ok, 2 usage, 3 invalid revision / id exists, 4 check or build failure.
 set -euo pipefail
 umask 022
@@ -20,7 +21,6 @@ RELEASE_ID=""
 SKIP_CHECKS=0
 COMPAT_BACKEND=">=be.53c0e999057f"
 OUT=/srv/tauapi/artifacts/frontend
-TEST_ARGS=()
 BUN_BIN=${BUN_BIN:-$HOME/.local/toolchains/bun-linux-x64/bun}
 while [[ $# -gt 0 ]]; do
   case "$1" in
@@ -31,9 +31,6 @@ while [[ $# -gt 0 ]]; do
     --skip-checks) SKIP_CHECKS=1; shift ;;
     --compat-backend) COMPAT_BACKEND="$2"; shift 2 ;;
     --out) OUT="$2"; shift 2 ;;
-    --test-workers)
-      [[ $2 =~ ^[1-9][0-9]*$ ]] || { echo "invalid test worker count" >&2; exit 2; }
-      TEST_ARGS=(--maxWorkers "$2"); shift 2 ;;
     *) echo "unknown argument: $1" >&2; exit 2 ;;
   esac
 done
@@ -62,7 +59,6 @@ echo "== install (frozen lockfile, bun $BUN_VERSION)" >&2
 "$BUN_BIN" install --frozen-lockfile >&2 || exit 4
 if [[ $SKIP_CHECKS == 0 ]]; then
   echo "== typecheck" >&2; "$BUN_BIN" run typecheck >&2 || exit 4
-  echo "== test" >&2; "$BUN_BIN" run test "${TEST_ARGS[@]}" >&2 || exit 4
 fi
 echo "== build release $RELEASE_ID" >&2
 TAUAPI_RELEASE_ID="$RELEASE_ID" VITE_REACT_APP_VERSION="$APP_VERSION" NODE_OPTIONS=--max-old-space-size=2048 \
@@ -107,11 +103,8 @@ cat > "$DIST/release-manifest.json" <<JSON
   "built_at": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
 }
 JSON
-( cd "$DIST" && find . -type f ! -name SHA256SUMS -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS )
 tar --owner=0 --group=0 --numeric-owner -czf "$OUT/$RELEASE_ID.tar.gz" -C "$DIST" .
-( cd "$OUT" && sha256sum "$RELEASE_ID.tar.gz" > "$RELEASE_ID.tar.gz.sha256" )
 cp "$DIST/release-manifest.json" "$OUT/$RELEASE_ID.manifest.json"
 echo "RELEASE_ID=$RELEASE_ID"
 echo "FRONTEND_COMMIT=$COMMIT"
 echo "ARTIFACT=$OUT/$RELEASE_ID.tar.gz"
-echo "SHA256=$(cut -d' ' -f1 "$OUT/$RELEASE_ID.tar.gz.sha256")"

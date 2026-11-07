@@ -33,7 +33,6 @@ cat > "$OPS_ROOT/DEPLOYMENT_STATE.json" <<EOF
     "frontend_commit": "$(jq -r .frontend_commit "$FE_MAN")",
     "upstream_commit": "$(jq -r .upstream_commit "$FE_MAN")",
     "asset_prefix": "$(jq -r .asset_prefix "$FE_MAN")",
-    "artifact_sha256": "$(cut -d' ' -f1 "$ARTIFACT_ROOT/frontend/$FE_REL.tar.gz.sha256" 2>/dev/null)",
     "published_releases": $(ls -1 "$FRONTEND_RELEASES" | grep -v '^\.' | jq -R . | jq -s .)
   },
   "backend": {

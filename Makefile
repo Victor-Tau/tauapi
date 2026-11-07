@@ -12,7 +12,9 @@ docs-check:
 docs-generate:
 	$(DOCS) generate --write
 docs-test:
-	$(DOCS_PYTHON) -m unittest discover -s docs/tools/tests -v
+	@test -n "$(DOCS_TEST_MODULES)" || { echo 'Set DOCS_TEST_MODULES to explicit tests for new or modified modules.' >&2; exit 2; }
+	@for target in $(DOCS_TEST_MODULES); do case "$$target" in *'*'*|*'?'*|*'['*) echo 'Test wildcards and discovery are prohibited.' >&2; exit 2 ;; esac; case "$$target" in docs.tools.tests.test_*) ;; *) echo 'Select an explicit documentation test module or case.' >&2; exit 2 ;; esac; done
+	$(DOCS_PYTHON) -m unittest -v $(DOCS_TEST_MODULES)
 docs-audit:
 	$(DOCS) audit --format json
 docs-impact:

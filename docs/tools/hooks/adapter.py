@@ -22,7 +22,7 @@ def main():
         print('Documentation hook: bounded continuation exhausted; report remaining blockers.',file=sys.stderr);return 0
     python=root/'.docs-venv/bin/python'
     if not python.exists():
-        print('Documentation hook unavailable: run make docs-setup, then make docs-check docs-test.',file=sys.stderr);return 1
+        print('Documentation hook unavailable: run make docs-setup, then make docs-check and explicit changed-module tests.',file=sys.stderr);return 1
     try:
         result=subprocess.run([str(python),str(root/'docs/tools/docsctl.py'),'check','--format','json'],cwd=root,capture_output=True,text=True,timeout=30)
         report=json.loads(result.stdout)

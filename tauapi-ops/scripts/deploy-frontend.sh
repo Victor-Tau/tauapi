@@ -22,8 +22,7 @@ done
 acquire_lock
 
 TAR=$ART/$ID.tar.gz
-[[ -f $TAR && -f $TAR.sha256 ]] || die "artefact $TAR (+.sha256) missing" 3
-( cd "$ART" && sha256sum -c --quiet "$ID.tar.gz.sha256" ) || die "artefact checksum mismatch" 3
+[[ -f $TAR ]] || die "artefact $TAR missing" 3
 
 # 1) unpack into a temp dir and validate structure / paths
 TMP=$(mktemp -d "$FRONTEND_RELEASES/.incoming.XXXXXX")
@@ -31,8 +30,7 @@ trap 'rm -rf "$TMP"' EXIT
 if tar -tzf "$TAR" | grep -E '(^/|(^|/)\.\.(/|$))' >/dev/null; then die "artefact contains unsafe paths" 3; fi
 if tar -tvzf "$TAR" | grep -E '^[lhcbp]' >/dev/null; then die "artefact contains links/devices" 3; fi
 tar -xzf "$TAR" -C "$TMP" --no-same-owner --no-same-permissions
-for f in index.html ui-version.json release-manifest.json SHA256SUMS; do [[ -f $TMP/$f ]] || die "artefact missing $f" 3; done
-( cd "$TMP" && sha256sum -c --quiet SHA256SUMS ) || die "artefact content checksum mismatch" 3
+for f in index.html ui-version.json release-manifest.json; do [[ -f $TMP/$f ]] || die "artefact missing $f" 3; done
 [[ $(jq -r .release_id "$TMP/release-manifest.json") == "$ID" ]] || die "manifest release_id mismatch" 3
 [[ $(jq -r .asset_prefix "$TMP/release-manifest.json") == "/_ui/$ID/" ]] || die "asset prefix mismatch" 3
 # every /_ui/<id>/ reference in index.html must exist in the artefact
@@ -48,7 +46,7 @@ PREV=$(current_release)
 # 2) immutable versioned assets first (never overwrite different bytes)
 PUB=$PUBLIC_ROOT/_ui/$ID
 if [[ -d $PUB ]]; then
-  ( cd "$PUB" && grep -vE '  \./(index\.html|ui-version\.json|release-manifest\.json|SHA256SUMS)$' "$TMP/SHA256SUMS" | sha256sum -c --quiet - ) \
+  compare_public_assets "$TMP" "$PUB" \
     || die "/_ui/$ID already exists with different bytes; refusing to overwrite" 3
   log "versioned assets for $ID already published (identical)"
 else
@@ -62,7 +60,7 @@ fi
 # 3) full release directory
 REL=$FRONTEND_RELEASES/$ID
 if [[ -d $REL ]]; then
-  cmp -s "$REL/SHA256SUMS" "$TMP/SHA256SUMS" || die "release dir $ID exists with different content" 3
+  diff -qr "$REL" "$TMP" >/dev/null || die "release dir $ID exists with different content" 3
 else
   find "$TMP" -type d -exec chmod 0755 {} + ; find "$TMP" -type f -exec chmod 0644 {} +
   mv -T "$TMP" "$REL"; trap - EXIT

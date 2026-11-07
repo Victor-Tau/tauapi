@@ -28,7 +28,7 @@ DUMP=$DB_DIR/tauapi-$STAMP.dump
 docker exec "$PG" pg_dump -U tauapi -d tauapi -Fc --no-owner > "$DUMP.part" || { rm -f "$DUMP.part"; die "pg_dump failed" 3; }
 docker exec -i "$PG" pg_restore --list < "$DUMP.part" > /dev/null || { rm -f "$DUMP.part"; die "dump not readable by pg_restore" 3; }
 mv "$DUMP.part" "$DUMP"
-sha256sum "$DUMP" > "$DUMP.sha256"
+b2sum "$DUMP" > "$DUMP.b2"
 PGVER=$(docker exec "$PG" psql -U tauapi -d tauapi -Atc 'show server_version')
 printf '{"file":"%s","reason":"%s","pg_server_version":"%s","bytes":%s,"at":"%s"}\n' \
   "$(basename "$DUMP")" "$REASON" "$PGVER" "$(stat -c %s "$DUMP")" "$STAMP" > "$DUMP.json"
@@ -59,7 +59,7 @@ prune() { # dir pattern
   done
   for f in "${files[@]}"; do
     [[ -n ${keep[$f]:-} ]] && continue
-    rm -f "$f" "$f.sha256" "$f.json"
+    rm -f "$f" "$f.b2" "$f.json"
   done
 }
 if [[ $PRUNE == 1 ]]; then

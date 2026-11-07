@@ -46,7 +46,7 @@ if [[ -e "$WORK/web" || -e "$WORK/electron" ]]; then
 fi
 
 echo "building $TAG from $COMMIT" >&2
-if ! "${DOCKER[@]}" build --pull=false \
+if ! "${DOCKER[@]}" build --pull=false --platform linux/amd64 \
     --label "org.opencontainers.image.revision=$COMMIT" \
     --label "org.opencontainers.image.source=local:/opt/tauapi (tauapi-be/)" \
     --label "tauapi.upstream.commit=$UPSTREAM" \

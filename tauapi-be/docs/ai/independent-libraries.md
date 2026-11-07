@@ -24,7 +24,7 @@ safe rejects request errors, strict rejects any request diagnostic with Conversi
 Response/stream conversions complete under every policy; inspect state.Diagnostics even for
 chunks emitting no event. Golden matrix tests cover serializations; update snapshots only after
 confirming intended behavior. v0.x public API may change in minor versions; verify tools/media/reasoning
-and streaming end to end where used. Run GOWORK=off go build ./... and go test ./... in relaykit.
+and streaming end to end where used. Run GOWORK=off go build ./... and go test ./path/to/changed-package in relaykit.
 
 ## TokenKit
 
@@ -49,5 +49,5 @@ records differences from provider documentation and Gemini measurements; do not 
 universally exact. Untrusted dimensions >65535 scale down, max30000 patches bounds output.
 For image-rule changes, reproduce image-minus-text upstream usage only within separately authorized
 provider-test scope. Never send real provider requests merely for a documentation migration.
-Run GOWORK=off go build ./... and go test ./... inside tokenkit. Keep each module AGPL attribution
+Run GOWORK=off go build ./... and go test ./path/to/changed-package inside tokenkit. Keep each module AGPL attribution
 and README original unchanged. Host supplies usage semantics and safety bounds before billing.

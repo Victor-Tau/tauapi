@@ -222,3 +222,11 @@ See `service/http_client.go` and its tests.
 `controller.GetStatus` exposes the running `common.Version` as `backend_version`
 and retains the equal `version` alias for older frontend clients. The API does not
 report a frontend version: each frontend bundle owns its independent build metadata.
+
+## Test selection
+
+Only test new or modified packages or cases, one Go module at a time. Full repository
+or backend suites and recursive `go test ./...` are prohibited. Use
+`make test TEST_MODULE=. TEST_PACKAGES=./path/to/changed-package`, or select `relaykit`
+or `tokenkit` as TEST_MODULE with explicit package paths relative to that module.
+Build-only acceptance does not launch tests.

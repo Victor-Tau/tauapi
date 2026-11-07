@@ -68,7 +68,7 @@ def registry(root):
     return r
 
 def digest(root):
-    h = hashlib.sha256()
+    h = hashlib.sha512()
     for p in files(root):
         h.update(p.encode()); h.update(b'\0'); h.update((root / p).read_bytes())
     return h.hexdigest()
@@ -242,7 +242,7 @@ def fixture_findings(root):
     b = root/'tauapi-fe/testdata/contracts/frontend_simulation.json'
     findings = [] if a.read_bytes() == b.read_bytes() else ['billing fixture snapshot differs']
     local = read_json(root/'docs/ai/contracts/billing-fixture.json')
-    if local['sha256'] != hashlib.sha256(a.read_bytes()).hexdigest(): findings.append('local billing fixture revision/hash differs')
+    if local['sha512'] != hashlib.sha512(a.read_bytes()).hexdigest(): findings.append('local billing fixture revision/hash differs')
     return findings
 
 def route_findings(root):
@@ -341,7 +341,7 @@ RUNNERS = {
  'plugins-format': (['make','format-plugins-check'], 'tauapi-be', [], 600),
  'billing-go': (['go','test','./pkg/billingexpr','-run','TestFrontendSimulationContract'], 'tauapi-be', [], 600),
  'billing-fe': (['bun','run','test','src/features/pricing/lib/__tests__/billing-expression.test.ts'], 'tauapi-fe', [], 600),
- 'database-matrix': (['go','test','-v','./model/...'], 'tauapi-be', ['TEST_MYSQL_DSN','TEST_POSTGRES_DSN','DOCS_DB_UPGRADE_EVIDENCE'], 1800),
+ 'database-matrix': (['go','test','-v','./model'], 'tauapi-be', ['TEST_MYSQL_DSN','TEST_POSTGRES_DSN','DOCS_DB_UPGRADE_EVIDENCE'], 1800),
  'route-analysis': (['{python}','tauapi-ops/scripts/generate-nginx.py','--contract','tauapi-ops/ROUTE_CONTRACT.json','--mode','live','--check-plugins','tauapi-be/plugins/tasks'], '.', [], 120),
  'isolated-builds': (['bash','tauapi-ops/scripts/verify-independent-builds.sh','all'], '.', [], 3600),
  'libraries-build': (['{python}','docs/tools/docsctl.py','libraries-build'], '.', [], 1200),
@@ -378,6 +378,10 @@ def evidence_findings(root, path, expected, required):
     return []
 
 def execute(root, ids, out, subj):
+    broad = sorted(set(ids) & {'docs-tests', 'backend-tests', 'frontend-tests'})
+    if broad:
+        raise Invalid('Full-suite runners are prohibited: ' + ', '.join(broad)
+                      + '. Run explicit tests for new or modified modules separately.')
     out.mkdir(parents=True, exist_ok=True); results=[]
     tool_versions={'python':sys.version.split()[0]}
     for tool, option in [('go','version'),('bun','--version'),('make','--version')]:
@@ -427,7 +431,7 @@ def lint_findings(root):
     actual=[]
     for x in diagnostics:
         label=x['labels'][0]['span'] if x['labels'] else {'line':0,'column':0}
-        actual.append({'rule':x['code'],'file':x['filename'],'severity':x['severity'],'line':label['line'],'column':label['column'],'message_sha256':hashlib.sha256(x['message'].encode()).hexdigest()})
+        actual.append({'rule':x['code'],'file':x['filename'],'severity':x['severity'],'line':label['line'],'column':label['column'],'message_sha512':hashlib.sha512(x['message'].encode()).hexdigest()})
     encoded=lambda x: json.dumps(x,sort_keys=True)
     current={encoded(x) for x in actual}; old={encoded(x) for x in baseline['diagnostics']}
     return (['New lint diagnostic: '+x for x in sorted(current-old)] +
@@ -463,9 +467,9 @@ def main():
         source=root/'tauapi-be/pkg/billingexpr/testdata/frontend_simulation.json'
         shutil.copyfile(source,root/'tauapi-fe/testdata/contracts/frontend_simulation.json')
         path=root/'docs/ai/contracts/billing-fixture.json'; local=read_json(path)
-        new_hash=hashlib.sha256(source.read_bytes()).hexdigest()
-        if local['sha256'] != new_hash:
-            local['sha256']=new_hash; local['local_revision']+=1
+        new_hash=hashlib.sha512(source.read_bytes()).hexdigest()
+        if local['sha512'] != new_hash:
+            local['sha512']=new_hash; local['local_revision']+=1
             path.write_text(json.dumps(local,indent=2)+'\n')
     elif args.cmd=='libraries-build':
         for module in ['relaykit','tokenkit']:

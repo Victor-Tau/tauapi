@@ -10,6 +10,8 @@ DEV_SQLITE_PATH ?= one-api.db
 OXLINT_VERSION ?= 1.74.0
 OXFMT_VERSION ?= 0.72.0
 PLUGIN_TOOL ?= bunx
+TEST_MODULE ?= .
+TEST_PACKAGES ?=
 
 .PHONY: all build start-api dev-api dev-api-rebuild reset-setup test lint-plugins format-plugins format-plugins-check
 
@@ -32,12 +34,10 @@ dev-api-rebuild:
 	@docker compose -f $(DEV_COMPOSE_FILE) up -d --build $(DEV_API_SERVICE)
 
 test:
-	@echo "Testing root Go module..."
-	@GOWORK=off go test ./...
-	@echo "Testing relaykit Go module..."
-	@cd relaykit && GOWORK=off go test ./...
-	@echo "Testing tokenkit Go module..."
-	@cd tokenkit && GOWORK=off go test ./...
+	@case "$(TEST_MODULE)" in .|relaykit|tokenkit) ;; *) echo 'Select one changed module with TEST_MODULE.' >&2; exit 2 ;; esac
+	@test -n "$(TEST_PACKAGES)" || { echo 'Set TEST_PACKAGES to explicit new or modified packages.' >&2; exit 2; }
+	@for package in $(TEST_PACKAGES); do case "$$package" in *...*) echo 'Recursive test suites are prohibited.' >&2; exit 2 ;; esac; case "$$package" in .|./*) ;; *) echo 'Use explicit local package paths.' >&2; exit 2 ;; esac; done
+	@cd "$(TEST_MODULE)" && GOWORK=off go test $(TEST_PACKAGES)
 
 lint-plugins:
 	@cd plugins && $(PLUGIN_TOOL) oxlint@$(OXLINT_VERSION) -c .oxlintrc.json .

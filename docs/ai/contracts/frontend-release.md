@@ -35,3 +35,10 @@ backend; `data.version` remains an equal compatibility alias for older frontends
 frontends fall back to `data.version` when talking to older backends. Missing versions
 are displayed as unknown, never borrowed from the other release unit. Update comparison
 continues to use the backend semantic version; frontend release notices remain independent.
+
+FER-6: Follow the [root release requirements](../../../AGENTS.md#release-requirements).
+Frontend archives contain runtime assets and manifests without SHA256 checksum files
+or sidecars. Deploy and rollback must work without them. Validate paths, manifest identity
+and referenced assets before switching. Compare complete retained/public file paths and
+bytes without hashing; reject changed, missing or extra immutable assets. Legacy releases
+may retain a root checksum list, but no workflow reads or verifies its checksums.
