@@ -134,7 +134,13 @@ BUN_BIN=$(command -v bun) scripts/build-frontend.sh --repo .. --rev "$candidate"
 scripts/build-backend-binaries.sh --repo .. --rev "$candidate" --out "$assets"
 scripts/build-backend.sh --repo .. --rev "$candidate" --tag "tauapi-be:$version" --out "$assets"
 docker save "tauapi-be:$version" | gzip > "$assets/tauapi-be-v${version}-docker-linux-amd64.tar.gz"
-git archive --format=tar.gz --output="$assets/tauapi-ops-v${version}.tar.gz" "$candidate:tauapi-ops"
+ops_package=$(mktemp -d)
+git archive "$candidate:tauapi-ops" | tar -x -C "$ops_package"
+for notice in LICENSE NOTICE THIRD-PARTY-LICENSES.md; do
+  git show "$candidate:tauapi-be/$notice" > "$ops_package/$notice"
+done
+tar -czf "$assets/tauapi-ops-v${version}.tar.gz" -C "$ops_package" .
+rm -rf "$ops_package"
 (cd "$assets" && find . -maxdepth 1 -type f ! -name SHA256SUMS -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS)
 ```
 
