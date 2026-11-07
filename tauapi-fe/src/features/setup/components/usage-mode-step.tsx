@@ -16,7 +16,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 For commercial licensing, please contact support@quantumnous.com
 */
-import { Building2, Home, Presentation } from 'lucide-react'
+import { Building2, Home } from 'lucide-react'
 import type { ComponentType } from 'react'
 import type { UseFormReturn } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
@@ -57,13 +57,6 @@ const USAGE_MODE_OPTIONS: Array<{
     descriptionKey:
       'Best for single-tenant deployments. Pricing and billing options stay hidden.',
     icon: Home,
-  },
-  {
-    value: 'demo',
-    titleKey: 'Demo site',
-    descriptionKey:
-      'Showcase core capabilities with demo credentials and limited access.',
-    icon: Presentation,
   },
 ]
 

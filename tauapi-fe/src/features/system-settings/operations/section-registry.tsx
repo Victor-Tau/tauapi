@@ -33,8 +33,6 @@ const OPERATIONS_SECTIONS = [
     build: (settings: OperationsSettings) => (
       <SystemBehaviorSection
         defaultValues={{
-          DefaultCollapseSidebar: settings.DefaultCollapseSidebar,
-          DemoSiteEnabled: settings.DemoSiteEnabled,
           SelfUseModeEnabled: settings.SelfUseModeEnabled,
         }}
       />
@@ -142,12 +140,11 @@ const OPERATIONS_SECTIONS = [
     id: 'update-checker',
     titleKey: 'System maintenance',
     build: (
-      settings: OperationsSettings,
+      _settings: OperationsSettings,
       currentVersion?: string | null,
       startTime?: number | null
     ) => (
       <UpdateCheckerSection
-        repository={settings.SystemUpdateRepository ?? ''}
         currentVersion={currentVersion}
         startTime={startTime}
       />

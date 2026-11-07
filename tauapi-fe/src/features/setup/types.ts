@@ -16,7 +16,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 For commercial licensing, please contact support@quantumnous.com
 */
-export type SetupUsageMode = 'external' | 'self' | 'demo'
+export type SetupUsageMode = 'external' | 'self'
 
 export interface SetupStatus {
   status: boolean
@@ -24,7 +24,6 @@ export interface SetupStatus {
   database_type: string
   // Some backends also echo mode flags; they are optional here.
   SelfUseModeEnabled?: boolean
-  DemoSiteEnabled?: boolean
 }
 
 export interface SetupFormValues {

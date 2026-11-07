@@ -25,8 +25,8 @@ import { useStatus } from '@/hooks/use-status'
 import { api } from '@/lib/api'
 import {
   getModuleAccessForGuard,
-  type HeaderNavModule,
-} from '@/lib/nav-modules'
+  type PublicResource,
+} from '@/lib/public-resource-access'
 import {
   STATUS_QUERY_KEY,
   ensureStatus,
@@ -48,12 +48,14 @@ const originalGet = apiClient.get
 let statusRequests: string[] = []
 const queryClients: QueryClient[] = []
 
-/** Count `/api/status` calls at the network boundary and serve `system_name`. */
-function stubStatusEndpoint(systemName: string): void {
+/** Count `/api/status` calls at the network boundary and serve `backend_version`. */
+function stubStatusEndpoint(backendVersion: string): void {
   apiClient.get = async (url) => {
     if (url !== '/api/status') throw new Error(`Unexpected GET ${url}`)
     statusRequests.push(url)
-    return { data: { success: true, data: { system_name: systemName } } }
+    return {
+      data: { success: true, data: { backend_version: backendVersion } },
+    }
   }
 }
 
@@ -98,15 +100,15 @@ describe('shared status query deduplication', () => {
         queryClient.setQueryData(
           STATUS_QUERY_KEY,
           {
-            system_name: 'old',
-            HeaderNavModules: { pricing: false, rankings: false },
+            backend_version: 'old',
+            public_resource_access: { pricing: false, rankings: false },
           },
           { updatedAt: Date.now() - 600_000 }
         )
       }
       const status = {
-        system_name: 'shared',
-        HeaderNavModules: {
+        backend_version: 'shared',
+        public_resource_access: {
           pricing: { enabled: true, requireAuth: true },
           rankings: { enabled: true, requireAuth: false },
         },
@@ -138,7 +140,7 @@ describe('shared status query deduplication', () => {
         { enabled: true, requireAuth: false },
       ])
       await waitFor(() =>
-        expect(hook.result.current.status?.system_name).toBe('shared')
+        expect(hook.result.current.status?.backend_version).toBe('shared')
       )
       expect(statusRequests).toHaveLength(1)
     }
@@ -151,7 +153,7 @@ describe('shared status query deduplication', () => {
     await ensureStatus(queryClient)
     const second = await ensureStatus(queryClient)
 
-    expect(second?.system_name).toBe('warm')
+    expect(second?.backend_version).toBe('warm')
     expect(statusRequests).toHaveLength(1)
   })
 
@@ -161,7 +163,7 @@ describe('shared status query deduplication', () => {
     const staleTime = statusQueryOptions.staleTime as number
     queryClient.setQueryData(
       STATUS_QUERY_KEY,
-      { system_name: 'stale' },
+      { backend_version: 'stale' },
       {
         updatedAt: Date.now() - staleTime - 1,
       }
@@ -169,11 +171,11 @@ describe('shared status query deduplication', () => {
 
     const resolved = await ensureStatus(queryClient)
 
-    expect(resolved?.system_name).toBe('stale')
+    expect(resolved?.backend_version).toBe('stale')
     await waitFor(() => {
       expect(
         queryClient.getQueryData<Record<string, unknown>>(STATUS_QUERY_KEY)
-          ?.system_name
+          ?.backend_version
       ).toBe('refreshed')
     })
     expect(statusRequests).toHaveLength(1)
@@ -206,19 +208,19 @@ describe('module guard status freshness', () => {
     const queryClient = createQueryClient()
     queryClient.setQueryData(
       STATUS_QUERY_KEY,
-      { HeaderNavModules: { [scenario.module]: scenario.before } },
+      { public_resource_access: { [scenario.module]: scenario.before } },
       { updatedAt: Date.now() - 600_000 }
     )
     apiClient.get = async () => ({
       data: {
         success: true,
-        data: { HeaderNavModules: { [scenario.module]: scenario.after } },
+        data: { public_resource_access: { [scenario.module]: scenario.after } },
       },
     })
     expect(
       await getModuleAccessForGuard(
         queryClient,
-        scenario.module as HeaderNavModule
+        scenario.module as PublicResource
       )
     ).toEqual(scenario.after)
   })
@@ -226,7 +228,7 @@ describe('module guard status freshness', () => {
   test('reuses fresh access but refreshes explicitly invalidated access', async () => {
     const queryClient = createQueryClient()
     queryClient.setQueryData(STATUS_QUERY_KEY, {
-      HeaderNavModules: { pricing: false },
+      public_resource_access: { pricing: false },
     })
     stubStatusEndpoint('updated')
     expect(await getModuleAccessForGuard(queryClient, 'pricing')).toEqual({
@@ -249,7 +251,7 @@ describe('module guard status freshness', () => {
       if (cacheState === 'stale') {
         queryClient.setQueryData(
           STATUS_QUERY_KEY,
-          { HeaderNavModules: { pricing: true } },
+          { public_resource_access: { pricing: true } },
           { updatedAt: Date.now() - 600_000 }
         )
       }

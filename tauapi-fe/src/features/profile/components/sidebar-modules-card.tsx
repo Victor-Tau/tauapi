@@ -17,7 +17,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 For commercial licensing, please contact support@quantumnous.com
 */
 import { LayoutDashboard } from 'lucide-react'
-import { useCallback, useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'sonner'
 
@@ -31,11 +31,9 @@ import {
 } from '@/components/ui/card'
 import { IconBadge } from '@/components/ui/icon-badge'
 import { Switch } from '@/components/ui/switch'
-import { parseSidebarModulesAdmin } from '@/features/system-settings/maintenance/config'
-import { useStatus } from '@/hooks/use-status'
-import { api } from '@/lib/api'
-import { handleServerError } from '@/lib/handle-server-error'
+import { siteConfig } from '@/config/site'
 import { useAuthStore } from '@/stores/auth-store'
+import { useSidebarPreferencesStore } from '@/stores/sidebar-preferences-store'
 
 type SidebarModuleConfig = {
   enabled: boolean
@@ -53,12 +51,14 @@ type SectionDef = {
 
 export function SidebarModulesCard() {
   const { t } = useTranslation()
-  const { status } = useStatus()
-  const [loading, setLoading] = useState(false)
-  const [config, setConfig] = useState<SidebarModulesConfig>({})
-  const currentUser = useAuthStore((s) => s.auth.user)
-  const setUser = useAuthStore((s) => s.auth.setUser)
-
+  const account = String(
+    useAuthStore((state) => state.auth.user?.id) ?? 'anonymous'
+  )
+  const savedConfig = useSidebarPreferencesStore(
+    (state) => state.accounts[account]
+  )
+  const saveConfig = useSidebarPreferencesStore((state) => state.setConfig)
+  const [config, setConfig] = useState<SidebarModulesConfig>(savedConfig ?? {})
   const sectionDefs: SectionDef[] = [
     {
       key: 'chat',
@@ -138,41 +138,15 @@ export function SidebarModulesCard() {
     },
   ]
 
-  const adminConfig = parseSidebarModulesAdmin(
-    status?.SidebarModulesAdmin as string | null | undefined
-  )
-  const visibleSectionDefs = status
-    ? sectionDefs.flatMap((section) => {
-        const adminSection = adminConfig[section.key]
-        if (!adminSection?.enabled) return []
-
-        const modules = section.modules.filter(
-          (module) => adminSection[module.key] === true
-        )
-        return modules.length ? [{ ...section, modules }] : []
-      })
-    : []
-
-  const loadConfig = useCallback(async () => {
-    try {
-      const res = await api.get('/api/user/self')
-      if (res.data.success && res.data.data?.sidebar_modules) {
-        const raw = res.data.data.sidebar_modules
-        const parsed = typeof raw === 'string' ? JSON.parse(raw) : raw
-        setConfig(parsed)
-      } else {
-        setConfig({})
-      }
-    } catch {
-      /* ignore */
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
-  useEffect(() => {
-    loadConfig()
-  }, [loadConfig])
-
+  const adminConfig = siteConfig.sidebar as SidebarModulesConfig
+  const visibleSectionDefs = sectionDefs.flatMap((section) => {
+    const configured = adminConfig[section.key]
+    if (!configured?.enabled) return []
+    const modules = section.modules.filter(
+      (module) => configured[module.key] !== false
+    )
+    return modules.length ? [{ ...section, modules }] : []
+  })
   const toggleSection = (sectionKey: string, val: boolean) => {
     setConfig((prev) => ({
       ...prev,
@@ -191,28 +165,9 @@ export function SidebarModulesCard() {
     }))
   }
 
-  const handleSave = async () => {
-    setLoading(true)
-    try {
-      const serialized = JSON.stringify(config)
-      const res = await api.put('/api/user/self', {
-        sidebar_modules: serialized,
-      })
-      if (res.data.success) {
-        // Sync to auth-store so useSidebarConfig re-runs and the sidebar
-        // updates immediately without needing a page refresh.
-        if (currentUser) {
-          setUser({ ...currentUser, sidebar_modules: serialized })
-        }
-        toast.success(t('Saved successfully'))
-      } else {
-        handleServerError(res.data, t('Save failed'))
-      }
-    } catch (error) {
-      handleServerError(error, t('Save failed, please retry'))
-    } finally {
-      setLoading(false)
-    }
+  const handleSave = () => {
+    saveConfig(account, config)
+    toast.success(t('Saved successfully'))
   }
 
   const handleReset = () => {
@@ -224,8 +179,6 @@ export function SidebarModulesCard() {
     setConfig(defaults)
     toast.success(t('Reset to default configuration'))
   }
-
-  if (!status) return null
 
   return (
     <Card data-card-hover='false' className='gap-0 overflow-hidden py-0'>
@@ -298,9 +251,7 @@ export function SidebarModulesCard() {
           <Button variant='outline' onClick={handleReset}>
             {t('Reset to Default')}
           </Button>
-          <Button onClick={handleSave} disabled={loading}>
-            {loading ? t('Saving...') : t('Save Changes')}
-          </Button>
+          <Button onClick={handleSave}>{t('Save Changes')}</Button>
         </div>
       </CardContent>
     </Card>

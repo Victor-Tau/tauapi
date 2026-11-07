@@ -9,19 +9,19 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type headerNavAccess struct {
+type publicResourceAccess struct {
 	Enabled     bool
 	RequireAuth bool
 }
 
-func getHeaderNavAccess(module string) headerNavAccess {
-	fallback := headerNavAccess{
+func getPublicResourceAccess(module string) publicResourceAccess {
+	fallback := publicResourceAccess{
 		Enabled:     true,
 		RequireAuth: false,
 	}
 
 	common.OptionMapRWMutex.RLock()
-	raw := common.OptionMap["HeaderNavModules"]
+	raw := common.OptionMap["PublicResourceAccess"]
 	common.OptionMapRWMutex.RUnlock()
 
 	if strings.TrimSpace(raw) == "" {
@@ -29,37 +29,37 @@ func getHeaderNavAccess(module string) headerNavAccess {
 	}
 
 	var parsed map[string]any
-	if err := common.Unmarshal([]byte(raw), &parsed); err != nil {
-		return fallback
+	if err := common.Unmarshal([]byte(raw), &parsed); err != nil || parsed == nil {
+		return publicResourceAccess{Enabled: false, RequireAuth: true}
 	}
 
-	return parseHeaderNavAccess(parsed[module], fallback)
+	return parsePublicResourceAccess(parsed[module], fallback)
 }
 
-func parseHeaderNavAccess(raw any, fallback headerNavAccess) headerNavAccess {
+func parsePublicResourceAccess(raw any, fallback publicResourceAccess) publicResourceAccess {
 	switch value := raw.(type) {
 	case bool:
-		return headerNavAccess{
+		return publicResourceAccess{
 			Enabled:     value,
 			RequireAuth: fallback.RequireAuth,
 		}
 	case string:
-		return headerNavAccess{
-			Enabled:     parseHeaderNavBool(value, fallback.Enabled),
+		return publicResourceAccess{
+			Enabled:     parsePublicResourceBool(value, fallback.Enabled),
 			RequireAuth: fallback.RequireAuth,
 		}
 	case float64:
-		return headerNavAccess{
-			Enabled:     parseHeaderNavBool(value, fallback.Enabled),
+		return publicResourceAccess{
+			Enabled:     parsePublicResourceBool(value, fallback.Enabled),
 			RequireAuth: fallback.RequireAuth,
 		}
 	case map[string]any:
 		access := fallback
 		if enabled, ok := value["enabled"]; ok {
-			access.Enabled = parseHeaderNavBool(enabled, fallback.Enabled)
+			access.Enabled = parsePublicResourceBool(enabled, fallback.Enabled)
 		}
 		if requireAuth, ok := value["requireAuth"]; ok {
-			access.RequireAuth = parseHeaderNavBool(requireAuth, fallback.RequireAuth)
+			access.RequireAuth = parsePublicResourceBool(requireAuth, fallback.RequireAuth)
 		}
 		return access
 	default:
@@ -67,7 +67,7 @@ func parseHeaderNavAccess(raw any, fallback headerNavAccess) headerNavAccess {
 	}
 }
 
-func parseHeaderNavBool(value any, fallback bool) bool {
+func parsePublicResourceBool(value any, fallback bool) bool {
 	switch v := value.(type) {
 	case bool:
 		return v
@@ -101,9 +101,9 @@ func parseHeaderNavBool(value any, fallback bool) bool {
 	}
 }
 
-func HeaderNavModuleAuth(module string) gin.HandlerFunc {
+func PublicResourceAuth(module string) gin.HandlerFunc {
 	return func(c *gin.Context) {
-		access := getHeaderNavAccess(module)
+		access := getPublicResourceAccess(module)
 		if !access.Enabled {
 			// Keep root pricing management available without reopening the public model square.
 			if module == "pricing" && c.GetHeader("Authorization") != "" {
@@ -127,9 +127,9 @@ func HeaderNavModuleAuth(module string) gin.HandlerFunc {
 	}
 }
 
-func HeaderNavModulePublicOrUserAuth(module string) gin.HandlerFunc {
+func PublicResourceOrUserAuth(module string) gin.HandlerFunc {
 	return func(c *gin.Context) {
-		access := getHeaderNavAccess(module)
+		access := getPublicResourceAccess(module)
 		if !access.Enabled || access.RequireAuth {
 			UserAuth()(c)
 			return

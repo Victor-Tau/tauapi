@@ -19,7 +19,6 @@ For commercial licensing, please contact support@quantumnous.com
 import { queryOptions, type QueryClient } from '@tanstack/react-query'
 
 import { getStatus } from '@/lib/api'
-import { DEFAULT_SYSTEM_NAME, DEFAULT_LOGO } from '@/lib/constants'
 import {
   useSystemConfigStore,
   type CurrencyConfig,
@@ -34,7 +33,7 @@ import {
  * `/api/status` is entirely global on the backend: every field is read from
  * in-memory option maps under a read lock, with no user context and no auth
  * middleware on the route. That makes it safe to share one cache entry across
- * every consumer — branding, nav module gates, and the setup guard.
+ * business-capability consumers and the setup guard.
  *
  * Anything that needs status must go through `statusQueryOptions` so React
  * Query can dedupe. Calling `getStatus()` directly re-introduces the duplicate
@@ -92,13 +91,6 @@ export function mapStatusDataToConfig(
   }
 
   return {
-    systemName: (data.system_name as string | undefined) || DEFAULT_SYSTEM_NAME,
-    logo: (data.logo as string | undefined) || DEFAULT_LOGO,
-    footerHtml: data.footer_html as string | undefined,
-    demoSiteEnabled: data.demo_site_enabled as boolean | undefined,
-    displayTokenStatEnabled: data.display_token_stat_enabled as
-      | boolean
-      | undefined,
     currency,
   }
 }
@@ -162,7 +154,7 @@ export const statusQueryOptions = queryOptions({
  * Await status from the shared cache.
  *
  * Use this when a cached snapshot can be shown during a background refresh,
- * such as system configuration loading. Concurrent callers share one request.
+ * such as business conversion loading. Concurrent callers share one request.
  * Navigation guards use `fetchQuery(statusQueryOptions)` instead, because
  * redirects must wait for stale or invalidated access flags to refresh.
  *

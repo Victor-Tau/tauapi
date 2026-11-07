@@ -22,44 +22,14 @@ import { readCachedStatus, statusQueryOptions } from '@/lib/status-query'
 
 export type ModuleAccess = { enabled: boolean; requireAuth: boolean }
 
-export type HeaderNavModule = 'rankings' | 'pricing'
+export type PublicResource = 'rankings' | 'pricing'
 
-export type HeaderNavModules = {
-  home: boolean
-  console: boolean
-  pricing: ModuleAccess
-  rankings: ModuleAccess
-  docs: boolean
-  about: boolean
-  [key: string]: boolean | ModuleAccess
-}
-
-const DEFAULT_HEADER_NAV_MODULES: HeaderNavModules = {
-  home: true,
-  console: true,
+const DEFAULTS: Record<PublicResource, ModuleAccess> = {
   pricing: { enabled: true, requireAuth: false },
   rankings: { enabled: true, requireAuth: false },
-  docs: true,
-  about: true,
 }
 
-const DEFAULTS: Record<HeaderNavModule, ModuleAccess> = {
-  pricing: DEFAULT_HEADER_NAV_MODULES.pricing,
-  rankings: DEFAULT_HEADER_NAV_MODULES.rankings,
-}
-
-function cloneHeaderNavDefaults(): HeaderNavModules {
-  return {
-    ...DEFAULT_HEADER_NAV_MODULES,
-    pricing: { ...DEFAULT_HEADER_NAV_MODULES.pricing },
-    rankings: { ...DEFAULT_HEADER_NAV_MODULES.rankings },
-  }
-}
-
-export function parseHeaderNavBoolean(
-  raw: unknown,
-  fallback: boolean
-): boolean {
+export function parseAccessBoolean(raw: unknown, fallback: boolean): boolean {
   if (typeof raw === 'boolean') return raw
   if (typeof raw === 'number') {
     if (raw === 1) return true
@@ -81,21 +51,21 @@ function parseAccess(raw: unknown, fallback: ModuleAccess): ModuleAccess {
     typeof raw === 'string'
   ) {
     return {
-      enabled: parseHeaderNavBoolean(raw, fallback.enabled),
+      enabled: parseAccessBoolean(raw, fallback.enabled),
       requireAuth: fallback.requireAuth,
     }
   }
   if (raw && typeof raw === 'object') {
     const r = raw as Record<string, unknown>
     return {
-      enabled: parseHeaderNavBoolean(r.enabled, fallback.enabled),
-      requireAuth: parseHeaderNavBoolean(r.requireAuth, fallback.requireAuth),
+      enabled: parseAccessBoolean(r.enabled, fallback.enabled),
+      requireAuth: parseAccessBoolean(r.requireAuth, fallback.requireAuth),
     }
   }
   return { ...fallback }
 }
 
-function parseHeaderNavRecord(raw: unknown): Record<string, unknown> | null {
+function parseAccessRecord(raw: unknown): Record<string, unknown> | null {
   if (!raw || String(raw).trim() === '') return null
   if (raw && typeof raw === 'object') return raw as Record<string, unknown>
 
@@ -106,55 +76,12 @@ function parseHeaderNavRecord(raw: unknown): Record<string, unknown> | null {
   }
 }
 
-export function parseHeaderNavModules(raw: unknown): HeaderNavModules {
-  const result = cloneHeaderNavDefaults()
-  const parsed = parseHeaderNavRecord(raw)
-  if (!parsed) return result
-
-  Object.entries(parsed).forEach(([key, value]) => {
-    if (key === 'pricing') {
-      result.pricing = parseAccess(value, result.pricing)
-      return
-    }
-    if (key === 'rankings') {
-      result.rankings = parseAccess(value, result.rankings)
-      return
-    }
-
-    const fallback = result[key]
-    if (
-      typeof fallback === 'boolean' ||
-      typeof value === 'boolean' ||
-      typeof value === 'number' ||
-      typeof value === 'string'
-    ) {
-      result[key] = parseHeaderNavBoolean(
-        value,
-        typeof fallback === 'boolean' ? fallback : true
-      )
-    }
-  })
-
-  return result
-}
-
-export function parseHeaderNavModulesFromStatus(
-  status: Record<string, unknown> | null
-): HeaderNavModules {
-  return parseHeaderNavModules(status?.HeaderNavModules)
-}
-
-/**
- * Resolve one module's access flags from an already-loaded status payload.
- *
- * Falls back to the module's default when status is missing or does not carry
- * a `HeaderNavModules` entry for it.
- */
 export function getModuleAccessFromStatus(
   status: Record<string, unknown> | null,
-  module: HeaderNavModule
+  module: PublicResource
 ): ModuleAccess {
-  return parseHeaderNavModulesFromStatus(status)[module] ?? DEFAULTS[module]
+  const policies = parseAccessRecord(status?.public_resource_access)
+  return parseAccess(policies?.[module], DEFAULTS[module])
 }
 
 /**
@@ -164,7 +91,7 @@ export function getModuleAccessFromStatus(
  * item. Never issues a request; use {@link getModuleAccessForGuard} when the
  * caller can await.
  */
-export function getModuleAccess(module: HeaderNavModule): ModuleAccess {
+export function getModuleAccess(module: PublicResource): ModuleAccess {
   return getModuleAccessFromStatus(readCachedStatus(), module)
 }
 
@@ -183,43 +110,12 @@ export function getModuleAccess(module: HeaderNavModule): ModuleAccess {
  */
 export async function getModuleAccessForGuard(
   queryClient: QueryClient,
-  module: HeaderNavModule
+  module: PublicResource
 ): Promise<ModuleAccess> {
   try {
     const status = await queryClient.fetchQuery(statusQueryOptions)
     return getModuleAccessFromStatus(status, module)
   } catch {
     return { enabled: false, requireAuth: true }
-  }
-}
-
-/**
- * Whether an admin sidebar entry is enabled by `SidebarModulesAdmin`.
- *
- * Fails open: an absent, blank, or unparsable configuration keeps every module
- * visible, so a status read that has not landed yet cannot blank the sidebar.
- */
-export function isSidebarModuleEnabled(
-  section: string,
-  module: string
-): boolean {
-  const status = readCachedStatus()
-  if (!status) return true
-
-  const raw = status.SidebarModulesAdmin
-  if (!raw || String(raw).trim() === '') return true
-
-  try {
-    const parsed = JSON.parse(String(raw)) as Record<
-      string,
-      Record<string, boolean>
-    >
-    const sectionConfig = parsed[section]
-    if (!sectionConfig) return true
-    if (sectionConfig.enabled === false) return false
-    if (sectionConfig[module] === false) return false
-    return true
-  } catch {
-    return true
   }
 }

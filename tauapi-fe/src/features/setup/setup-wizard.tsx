@@ -151,12 +151,6 @@ export function SetupWizard() {
         shouldTouch: false,
         shouldValidate: false,
       })
-    } else if (status.DemoSiteEnabled) {
-      form.setValue('usageMode', 'demo', {
-        shouldDirty: false,
-        shouldTouch: false,
-        shouldValidate: false,
-      })
     } else {
       form.setValue('usageMode', 'external', {
         shouldDirty: false,

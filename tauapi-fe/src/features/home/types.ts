@@ -21,15 +21,6 @@ For commercial licensing, please contact support@quantumnous.com
 // ============================================================================
 
 /**
- * Response from home page content API
- */
-export interface HomePageContentResponse {
-  success: boolean
-  message?: string
-  data?: string
-}
-
-/**
  * Home page content result from hook
  */
 export interface HomePageContentResult {

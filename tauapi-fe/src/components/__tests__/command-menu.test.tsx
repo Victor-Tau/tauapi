@@ -31,6 +31,7 @@ import { SearchProvider } from '@/context/search-provider'
 import { ROLE } from '@/lib/roles'
 import { STATUS_QUERY_KEY } from '@/lib/status-query'
 import { useAuthStore } from '@/stores/auth-store'
+import { useSidebarPreferencesStore } from '@/stores/sidebar-preferences-store'
 
 import { CommandMenu } from '../command-menu'
 import { Search } from '../search'
@@ -65,17 +66,21 @@ afterAll(() => {
 
 afterEach(() => {
   useAuthStore.setState(useAuthStore.getInitialState(), true)
+  useSidebarPreferencesStore.setState({ accounts: {} })
   window.localStorage.clear()
 })
 
-async function searchEntriesFor(role: number, sidebarModulesAdmin = '') {
+async function searchEntriesFor(role: number, sidebarPreferences = '') {
   useAuthStore.getState().auth.setUser({ id: 1, username: 'alice', role })
   const client = new QueryClient({
     defaultOptions: { queries: { retry: false } },
   })
-  client.setQueryData(STATUS_QUERY_KEY, {
-    SidebarModulesAdmin: sidebarModulesAdmin,
-  })
+  client.setQueryData(STATUS_QUERY_KEY, {})
+  if (sidebarPreferences) {
+    useSidebarPreferencesStore
+      .getState()
+      .setConfig('1', JSON.parse(sidebarPreferences))
+  }
   const router = createRouter({
     routeTree: createRootRoute({
       component: () => (

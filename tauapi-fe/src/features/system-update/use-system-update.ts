@@ -27,6 +27,7 @@ import type { TFunction } from 'i18next'
 import { useEffect, useSyncExternalStore } from 'react'
 import { useTranslation } from 'react-i18next'
 
+import { siteConfig } from '@/config/site'
 import { useStatus } from '@/hooks/use-status'
 import { getBackendVersion } from '@/lib/component-versions'
 import { handleServerError } from '@/lib/handle-server-error'
@@ -150,7 +151,7 @@ export function useSystemUpdate() {
   const online = useSyncExternalStore(onlineManager.subscribe, isBrowserOnline)
   const { status } = useStatus()
   const repository = resolveSystemReleaseRepository(
-    status?.system_update_repository as string | undefined
+    siteConfig.releaseRepository
   )
   const queryClient = useQueryClient()
   const query = useQuery({

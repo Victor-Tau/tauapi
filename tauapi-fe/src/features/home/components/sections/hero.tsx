@@ -22,7 +22,7 @@ import { ArrowRight, BookOpen } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 
 import { Button } from '@/components/ui/button'
-import { useStatus } from '@/hooks/use-status'
+import { siteConfig } from '@/config/site'
 
 import { HeroTerminalDemo } from '../hero-terminal-demo'
 
@@ -47,9 +47,7 @@ const MoreIcon = () => (
 
 export function Hero(props: HeroProps) {
   const { t } = useTranslation()
-  const { status } = useStatus()
-  const docsUrl =
-    (status?.docs_link as string | undefined) || 'https://docs.newapi.pro'
+  const docsUrl = siteConfig.docsUrl
 
   const renderDocsButton = () => {
     const isExternal = docsUrl.startsWith('http')

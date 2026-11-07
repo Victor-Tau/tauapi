@@ -16,11 +16,11 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 For commercial licensing, please contact support@quantumnous.com
 */
-import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 
+import { siteConfig } from '@/config/site'
 import { useStatus } from '@/hooks/use-status'
-import { parseHeaderNavModulesFromStatus } from '@/lib/nav-modules'
+import { getModuleAccessFromStatus } from '@/lib/public-resource-access'
 import { useAuthStore } from '@/stores/auth-store'
 
 export type TopNavLink = {
@@ -31,33 +31,13 @@ export type TopNavLink = {
   external?: boolean
 }
 
-/**
- * Generate top navigation links based on HeaderNavModules configuration from backend /api/status
- * Backend format example (stringified JSON):
- * {
- *   home: true,
- *   console: true,
- *   pricing: { enabled: true, requireAuth: false },
- *   rankings: { enabled: true, requireAuth: false },
- *   docs: true,
- *   about: true
- * }
- */
 export function useTopNavLinks(): TopNavLink[] {
   const { t } = useTranslation()
   const { status } = useStatus()
   const { auth } = useAuthStore()
 
-  // Parse HeaderNavModules
-  const modules = useMemo(() => {
-    return parseHeaderNavModulesFromStatus(
-      status as Record<string, unknown> | null
-    )
-  }, [status])
-
-  // Documentation link (may be external)
-  const docsLink: string | undefined = status?.docs_link as string | undefined
-
+  const modules = siteConfig.navigation
+  const docsLink = siteConfig.docsUrl
   const isAuthed = !!auth?.user
 
   const links: TopNavLink[] = []
@@ -73,15 +53,21 @@ export function useTopNavLinks(): TopNavLink[] {
   }
 
   // Pricing
-  const pricing = modules?.pricing
-  if (pricing && typeof pricing === 'object' && pricing.enabled) {
+  const pricing = getModuleAccessFromStatus(
+    status as Record<string, unknown> | null,
+    'pricing'
+  )
+  if (modules.pricing) {
     const requiresAuth = pricing.requireAuth && !isAuthed
     links.push({ title: t('Model Square'), href: '/pricing', requiresAuth })
   }
 
   // Rankings
-  const rankings = modules?.rankings
-  if (rankings && typeof rankings === 'object' && rankings.enabled) {
+  const rankings = getModuleAccessFromStatus(
+    status as Record<string, unknown> | null,
+    'rankings'
+  )
+  if (modules.rankings) {
     const requiresAuth = rankings.requireAuth && !isAuthed
     links.push({ title: t('Rankings'), href: '/rankings', requiresAuth })
   }

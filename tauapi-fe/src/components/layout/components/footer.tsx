@@ -20,7 +20,7 @@ import { Link } from '@tanstack/react-router'
 import { Fragment, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { useStatus } from '@/hooks/use-status'
+import { siteConfig } from '@/config/site'
 import { useSystemConfig } from '@/hooks/use-system-config'
 import { cn } from '@/lib/utils'
 
@@ -77,20 +77,19 @@ function FooterLinkItem(props: { link: FooterLink }) {
 }
 
 // Renders User Agreement / Privacy Policy links inline with the parent's
-// copyright row when either is configured in System Settings → Site. Emits
+// copyright row when either is configured in the frontend site configuration. Emits
 // fragmented siblings so the parent flex container's gap controls spacing.
 function LegalLinks(props: { leadingSeparator?: boolean }) {
   const { t } = useTranslation()
-  const { status } = useStatus()
   const items: { key: string; label: string; href: string }[] = []
-  if (status?.user_agreement_enabled) {
+  if (siteConfig.userAgreement) {
     items.push({
       key: 'user-agreement',
       label: t('User Agreement'),
       href: '/user-agreement',
     })
   }
-  if (status?.privacy_policy_enabled) {
+  if (siteConfig.privacyPolicy) {
     items.push({
       key: 'privacy-policy',
       label: t('Privacy Policy'),
@@ -272,14 +271,14 @@ export function Footer(props: FooterProps) {
           {/* Links columns */}
           {isDemoSiteMode && (
             <div className='grid grid-cols-3 gap-8 md:gap-16'>
-              {displayColumns.map((column, index) => (
-                <div key={index}>
+              {displayColumns.map((column) => (
+                <div key={column.title}>
                   <p className='text-muted-foreground/50 mb-3 text-xs font-medium tracking-wider uppercase'>
                     {t(column.title)}
                   </p>
                   <ul className='space-y-2.5'>
-                    {column.links.map((link, linkIndex) => (
-                      <li key={linkIndex}>
+                    {column.links.map((link) => (
+                      <li key={link.href}>
                         <FooterLinkItem link={link} />
                       </li>
                     ))}

@@ -45,7 +45,6 @@ export function buildSetupPayload(
 
   const basePayload = {
     SelfUseModeEnabled: usageMode === 'self',
-    DemoSiteEnabled: usageMode === 'demo',
   }
 
   if (rootInitialized) {

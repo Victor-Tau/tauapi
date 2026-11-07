@@ -16,17 +16,26 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 For commercial licensing, please contact support@quantumnous.com
 */
-/**
- * Application-wide constants
- */
+import { create } from 'zustand'
+import { persist } from 'zustand/middleware'
 
-// System Configuration Defaults
-export const DEFAULT_SYSTEM_NAME = 'New API'
-export const DEFAULT_LOGO = '/logo.png'
-
-// LocalStorage Keys
-export const STORAGE_KEYS = {
-  SYSTEM_NAME: 'system_name',
-  LOGO: 'logo',
-  FOOTER_HTML: 'footer_html',
-} as const
+export type SidebarConfig = Record<
+  string,
+  { enabled: boolean; [key: string]: boolean }
+>
+interface SidebarPreferences {
+  accounts: Record<string, SidebarConfig>
+  setConfig: (account: string, config: SidebarConfig) => void
+}
+export const useSidebarPreferencesStore = create<SidebarPreferences>()(
+  persist(
+    (set) => ({
+      accounts: {},
+      setConfig: (account, config) =>
+        set((state) => ({
+          accounts: { ...state.accounts, [account]: config },
+        })),
+    }),
+    { name: 'sidebar-preferences-v1' }
+  )
+)

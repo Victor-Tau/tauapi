@@ -68,9 +68,7 @@ beforeEach(() => {
     removeItem: () => undefined,
   })
   vi.spyOn(window, 'scrollTo').mockImplementation(() => undefined)
-  useAuthStore
-    .getState()
-    .auth.setUser({ ...profile, permissions: { sidebar_settings: false } })
+  useAuthStore.getState().auth.setUser({ ...profile, permissions: {} })
   vi.spyOn(api, 'get').mockImplementation(async (url) => {
     if (url === '/api/user/access_tokens') {
       return { data: { success: true, data: { items: [], legacy: null } } }

@@ -22,3 +22,9 @@ Do not maintain another exhaustive route table.
 - `tauapi-be/router/main.go`
 - `tauapi-be/router/plugin-router.go`
 - `tauapi-fe/src/routes`
+
+RTE-4: The backend has no native site-content routes at `/api/notice`, `/api/about`,
+`/api/home_page_content`, `/api/user-agreement`, `/api/privacy-policy` or
+`/api/uptime/status`. The frontend owns this content and public monitoring embeds.
+`/api/status` remains a business capability/version endpoint. Frontend legal and
+content page routes remain registered SPA pages.

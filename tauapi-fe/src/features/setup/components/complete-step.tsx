@@ -32,7 +32,6 @@ interface CompleteStepProps {
 const USAGE_MODE_LABEL_KEYS: Record<SetupFormValues['usageMode'], string> = {
   external: 'External operations mode',
   self: 'Personal use mode',
-  demo: 'Demo site mode',
 }
 
 const DATABASE_VARIANT: Record<

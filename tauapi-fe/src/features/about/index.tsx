@@ -16,17 +16,13 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 For commercial licensing, please contact support@quantumnous.com
 */
-import { useQuery } from '@tanstack/react-query'
 import { Construction } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 
 import { PublicLayout } from '@/components/layout'
 import { RichContent } from '@/components/rich-content'
-import { Skeleton } from '@/components/ui/skeleton'
+import { siteConfig } from '@/config/site'
 import { isHttpUrl, isLikelyHtml } from '@/lib/content-format'
-import { requireServerSuccess } from '@/lib/server-error-message'
-
-import { getAboutContent } from './api'
 
 function EmptyAboutState() {
   const { t } = useTranslation()
@@ -41,9 +37,7 @@ function EmptyAboutState() {
         <div className='space-y-2'>
           <h2 className='text-2xl font-bold'>{t('No About Content Set')}</h2>
           <p className='text-muted-foreground'>
-            {t(
-              'The administrator has not configured any about content yet. You can set it in the settings page, supporting HTML or URL.'
-            )}
+            {t('No about content is available.')}
           </p>
         </div>
         <div className='space-y-4 text-sm'>
@@ -115,28 +109,11 @@ function EmptyAboutState() {
 
 export function About() {
   const { t } = useTranslation()
-  const { data, isLoading } = useQuery({
-    queryKey: ['about-content'],
-    queryFn: async () => requireServerSuccess(await getAboutContent()),
-  })
 
-  const rawContent = data?.data?.trim() ?? ''
+  const rawContent = siteConfig.aboutContent.trim()
   const hasContent = rawContent.length > 0
   const isUrl = hasContent && isHttpUrl(rawContent)
   const contentIsHtml = hasContent && isLikelyHtml(rawContent)
-
-  if (isLoading) {
-    return (
-      <PublicLayout>
-        <div className='mx-auto flex max-w-4xl flex-col gap-4 py-12'>
-          <Skeleton className='h-8 w-[45%]' />
-          <Skeleton className='h-4 w-full' />
-          <Skeleton className='h-4 w-[90%]' />
-          <Skeleton className='h-4 w-[80%]' />
-        </div>
-      </PublicLayout>
-    )
-  }
 
   if (!hasContent) {
     return (

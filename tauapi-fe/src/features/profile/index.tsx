@@ -22,7 +22,6 @@ import {
   CardStaggerItem,
 } from '@/components/page-transition'
 import { useStatus } from '@/hooks/use-status'
-import { useAuthStore } from '@/stores/auth-store'
 
 import { CheckinCalendarCard } from './components/checkin-calendar-card'
 import { LanguagePreferencesCard } from './components/language-preferences-card'
@@ -34,14 +33,12 @@ import { useProfile } from './hooks'
 export function Profile() {
   const { profile, loading, refreshProfile } = useProfile()
   const { status } = useStatus()
-  const permissions = useAuthStore((s) => s.auth.user?.permissions)
 
   const checkinEnabled = status?.checkin_enabled === true
   const turnstileEnabled = !!(
     status?.turnstile_check && status?.turnstile_site_key
   )
   const turnstileSiteKey = status?.turnstile_site_key || ''
-  const canConfigureSidebar = permissions?.sidebar_settings !== false
   // Older cached status payloads lack these fields; the site default is on.
   const quotaRemindEnabled = status?.quota_remind_enabled !== false
   const quotaRemindThreshold = status?.quota_remind_threshold ?? 0
@@ -78,7 +75,7 @@ export function Profile() {
                     turnstileSiteKey={turnstileSiteKey}
                   />
                 )}
-                {canConfigureSidebar && <SidebarModulesCard />}
+                <SidebarModulesCard />
               </div>
             </div>
           </CardStaggerItem>

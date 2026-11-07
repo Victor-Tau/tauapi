@@ -278,3 +278,15 @@ this bundle. `src/lib/component-versions.ts` reads that frontend version and res
 `backend_version` with a legacy `version` fallback from the shared status query.
 `src/components/component-versions.tsx` supplies localized labels for the header and
 sidebar; update details show both versions. Only administrators run release checks.
+
+## Frontend-owned presentation
+
+Edit `src/config/site.ts` to customize branding, favicon, static page/legal content,
+notices, announcements, dashboard panels, public uptime embed, chat presets,
+release repository and navigation.
+Publish a new frontend bundle to change these values. Static assets stay in `public/`.
+Keep upstream project attribution in the footer and source. Do not add API or Web Storage
+fallbacks for presentation. The system config hook returns local presentation immediately;
+the shared status query synchronizes business conversion data only. API resource access
+is separate from navigation visibility. Personal sidebar preferences live in
+`src/stores/sidebar-preferences-store.ts`, keyed by account ID in this browser.

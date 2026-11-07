@@ -15,7 +15,6 @@ import (
 	"github.com/QuantumNous/new-api/oauth"
 	"github.com/QuantumNous/new-api/service"
 	"github.com/QuantumNous/new-api/setting"
-	"github.com/QuantumNous/new-api/setting/console_setting"
 	"github.com/QuantumNous/new-api/setting/operation_setting"
 	"github.com/QuantumNous/new-api/setting/system_setting"
 
@@ -40,12 +39,9 @@ func TestStatus(c *gin.Context) {
 
 func GetStatus(c *gin.Context) {
 
-	cs := console_setting.GetConsoleSetting()
 	passkeySetting := system_setting.PasskeySettingsSnapshot()
 	common.OptionMapRWMutex.RLock()
 	defer common.OptionMapRWMutex.RUnlock()
-
-	legalSetting := system_setting.GetLegalSettings()
 
 	data := gin.H{
 		"version":                     common.Version,
@@ -62,16 +58,11 @@ func GetStatus(c *gin.Context) {
 		"telegram_oauth":              common.TelegramOAuthEnabled,
 		"telegram_oauth_configured":   oauth.TelegramConfigurationError() == nil,
 		"telegram_bot_name":           common.TelegramBotName,
-		"theme":                       "default",
-		"system_name":                 common.SystemName,
-		"logo":                        common.Logo,
-		"footer_html":                 common.Footer,
 		"wechat_qrcode":               common.WeChatAccountQRCodeImageURL,
 		"wechat_login":                common.WeChatAuthEnabled,
 		"server_address":              system_setting.ServerAddress,
 		"turnstile_check":             common.TurnstileCheckEnabled,
 		"turnstile_site_key":          common.TurnstileSiteKey,
-		"docs_link":                   operation_setting.GetGeneralSetting().DocsLink,
 		"quota_per_unit":              common.QuotaPerUnit,
 		// 兼容旧前端：保留 display_in_currency，同时提供新的 quota_display_type
 		"display_in_currency":           operation_setting.IsCurrencyDisplay(),
@@ -79,14 +70,8 @@ func GetStatus(c *gin.Context) {
 		"custom_currency_symbol":        operation_setting.GetGeneralSetting().CustomCurrencySymbol,
 		"custom_currency_exchange_rate": operation_setting.GetGeneralSetting().CustomCurrencyExchangeRate,
 		"enable_batch_update":           common.BatchUpdateEnabled,
-		"enable_drawing":                common.DrawingEnabled,
-		"enable_task":                   common.TaskEnabled,
 		"enable_data_export":            common.DataExportEnabled,
-		"data_export_default_time":      common.DataExportDefaultTime,
-		"default_collapse_sidebar":      common.DefaultCollapseSidebar,
 		"mj_notify_enabled":             setting.MjNotifyEnabled,
-		"chats":                         setting.Chats,
-		"demo_site_enabled":             operation_setting.DemoSiteEnabled,
 		"self_use_mode_enabled":         operation_setting.SelfUseModeEnabled,
 		"register_enabled":              common.RegisterEnabled,
 		"password_login_enabled":        common.PasswordLoginEnabled,
@@ -99,17 +84,7 @@ func GetStatus(c *gin.Context) {
 		"price":             operation_setting.Price,
 		"stripe_unit_price": setting.StripeUnitPrice,
 
-		// 面板启用开关
-		"api_info_enabled":      cs.ApiInfoEnabled,
-		"uptime_kuma_enabled":   cs.UptimeKumaEnabled,
-		"announcements_enabled": cs.AnnouncementsEnabled,
-		"faq_enabled":           cs.FAQEnabled,
-
-		// 模块管理配置
-		"system_update_repository": common.EffectiveSystemUpdateRepository(common.OptionMap[common.SystemUpdateRepositoryOptionKey]),
-
-		"HeaderNavModules":    common.OptionMap["HeaderNavModules"],
-		"SidebarModulesAdmin": common.OptionMap["SidebarModulesAdmin"],
+		"public_resource_access": common.OptionMap["PublicResourceAccess"],
 
 		"oidc_enabled":                system_setting.GetOIDCSettings().Enabled,
 		"oidc_client_id":              system_setting.GetOIDCSettings().ClientId,
@@ -123,24 +98,11 @@ func GetStatus(c *gin.Context) {
 		"passkey_user_verification":   passkeySetting.UserVerification,
 		"passkey_attachment":          passkeySetting.AttachmentPreference,
 		"setup":                       constant.Setup,
-		"user_agreement_enabled":      legalSetting.UserAgreement != "",
-		"privacy_policy_enabled":      legalSetting.PrivacyPolicy != "",
 		"checkin_enabled":             operation_setting.GetCheckinSetting().Enabled,
 		"log_export_enabled":          operation_setting.GetLogSetting().UserExportEnabled,
 		"log_max_range_days":          operation_setting.GetLogSetting().MaxRangeDays,
 		"quota_remind_enabled":        common.QuotaRemindEnabled,
 		"quota_remind_threshold":      common.QuotaRemindThreshold,
-	}
-
-	// 根据启用状态注入可选内容
-	if cs.ApiInfoEnabled {
-		data["api_info"] = console_setting.GetApiInfo()
-	}
-	if cs.AnnouncementsEnabled {
-		data["announcements"] = console_setting.GetAnnouncements()
-	}
-	if cs.FAQEnabled {
-		data["faq"] = console_setting.GetFAQ()
 	}
 
 	// Add enabled custom OAuth providers
@@ -177,46 +139,6 @@ func GetStatus(c *gin.Context) {
 		"data":    data,
 	})
 	return
-}
-
-func GetNotice(c *gin.Context) {
-	common.OptionMapRWMutex.RLock()
-	notice := common.OptionMap["Notice"]
-	common.OptionMapRWMutex.RUnlock()
-	serveRevalidatedJSON(c, notice)
-}
-
-func GetAbout(c *gin.Context) {
-	common.OptionMapRWMutex.RLock()
-	about := common.OptionMap["About"]
-	common.OptionMapRWMutex.RUnlock()
-	serveRevalidatedJSON(c, about)
-}
-
-func GetUserAgreement(c *gin.Context) {
-	serveRevalidatedJSON(c, system_setting.GetLegalSettings().UserAgreement)
-}
-
-func GetPrivacyPolicy(c *gin.Context) {
-	serveRevalidatedJSON(c, system_setting.GetLegalSettings().PrivacyPolicy)
-}
-
-func GetMidjourney(c *gin.Context) {
-	common.OptionMapRWMutex.RLock()
-	defer common.OptionMapRWMutex.RUnlock()
-	c.JSON(http.StatusOK, gin.H{
-		"success": true,
-		"message": "",
-		"data":    common.OptionMap["Midjourney"],
-	})
-	return
-}
-
-func GetHomePageContent(c *gin.Context) {
-	common.OptionMapRWMutex.RLock()
-	homePageContent := common.OptionMap["HomePageContent"]
-	common.OptionMapRWMutex.RUnlock()
-	serveRevalidatedJSON(c, homePageContent)
 }
 
 func SendEmailVerification(c *gin.Context) {

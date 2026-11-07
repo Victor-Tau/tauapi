@@ -28,10 +28,6 @@ import type { UpdateOptionRequest, UpdatePasskeyDomainsRequest } from '../types'
 
 // Configuration keys that require status refresh
 const STATUS_RELATED_KEYS = new Set([
-  'HeaderNavModules',
-  'SidebarModulesAdmin',
-  'Notice',
-  'SystemUpdateRepository',
   'LogConsumeEnabled',
   'log_setting.user_export_enabled',
   'log_setting.max_range_days',

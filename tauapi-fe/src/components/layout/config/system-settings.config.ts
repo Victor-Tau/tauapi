@@ -56,7 +56,7 @@ function getSystemSettingsNavGroups(
       title: t('System Administration'),
       items: [
         {
-          title: t('Site & Branding'),
+          title: t('System Information'),
           icon: Settings,
           items: getSiteSectionNavItems(t),
         },

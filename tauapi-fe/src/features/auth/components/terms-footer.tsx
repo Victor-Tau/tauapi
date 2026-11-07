@@ -18,20 +18,17 @@ For commercial licensing, please contact support@quantumnous.com
 */
 import { useTranslation } from 'react-i18next'
 
+import { siteConfig } from '@/config/site'
 import { cn } from '@/lib/utils'
-
-import type { SystemStatus } from '../types'
 
 interface TermsFooterProps {
   variant?: 'sign-in' | 'sign-up'
   className?: string
-  status?: SystemStatus | null
 }
 
 export function TermsFooter({
   variant = 'sign-in',
   className,
-  status,
 }: TermsFooterProps) {
   const { t } = useTranslation()
   const text =
@@ -39,8 +36,8 @@ export function TermsFooter({
       ? 'By clicking sign in, you agree to our'
       : 'By creating an account, you agree to our'
 
-  const hasUserAgreement = Boolean(status?.user_agreement_enabled)
-  const hasPrivacyPolicy = Boolean(status?.privacy_policy_enabled)
+  const hasUserAgreement = Boolean(siteConfig.userAgreement)
+  const hasPrivacyPolicy = Boolean(siteConfig.privacyPolicy)
 
   if (!hasUserAgreement && !hasPrivacyPolicy) {
     return null

@@ -1349,7 +1349,7 @@
         "tauapi-ops/scripts/rollback-frontend.sh",
         "tauapi-ops/scripts/sync-upstream.sh",
         "tauapi-ops/scripts/collect-evidence.sh",
-        "tauapi-be/common/system_update.go",
+        "tauapi-fe/src/config/site.ts",
         "tauapi-fe/src/features/system-update/releases.ts"
       ],
       "related_docs": [],
@@ -1431,7 +1431,9 @@
         "tauapi-be/service/auth*",
         "tauapi-be/service/authz/**",
         "tauapi-be/model/user*",
-        "tauapi-be/controller/*auth*"
+        "tauapi-be/controller/*auth*",
+        "tauapi-be/controller/setup.go",
+        "tauapi-be/controller/user.go"
       ],
       "required_reads": [
         "be-policy",
@@ -1612,7 +1614,9 @@
         "tauapi-fe/src/routes/**",
         "tauapi-fe/src/routeTree.gen.ts",
         "tauapi-fe/src/features/**/section-registry.tsx",
-        "tauapi-fe/rsbuild.config.ts"
+        "tauapi-fe/rsbuild.config.ts",
+        "tauapi-fe/src/config/**",
+        "tauapi-fe/src/main.tsx"
       ],
       "required_reads": [
         "fe-engineering",
@@ -1952,7 +1956,16 @@
       "component": "be",
       "path_patterns": [
         "tauapi-be/controller/misc.go",
-        "tauapi-be/controller/theme_compat_test.go"
+        "tauapi-be/controller/theme_compat_test.go",
+        "tauapi-be/common/constants.go",
+        "tauapi-be/common/frontend_options.go",
+        "tauapi-be/controller/option.go",
+        "tauapi-be/controller/revalidated_response*",
+        "tauapi-be/controller/setup.go",
+        "tauapi-be/controller/uptime_kuma*",
+        "tauapi-be/controller/user.go",
+        "tauapi-be/main.go",
+        "tauapi-be/common/system_update*"
       ],
       "required_reads": [
         "be-policy",

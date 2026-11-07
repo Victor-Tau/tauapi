@@ -140,21 +140,7 @@ export type SystemTaskFilters = {
   offset?: number
 }
 
-export type SiteSettings = {
-  Notice: string
-  SystemName: string
-  Logo: string
-  Footer: string
-  About: string
-  HomePageContent: string
-  ServerAddress: string
-  TaskPublicAddress: string
-  'general_setting.docs_link': string
-  'legal.user_agreement': string
-  'legal.privacy_policy': string
-  HeaderNavModules: string
-  SidebarModulesAdmin: string
-}
+export type SiteSettings = { ServerAddress: string; TaskPublicAddress: string }
 
 export type AuthSettings = {
   PasswordLoginEnabled: boolean
@@ -206,19 +192,8 @@ export type AuthSettings = {
 }
 
 export type ContentSettings = {
-  'console_setting.api_info': string
-  'console_setting.announcements': string
-  'console_setting.faq': string
-  'console_setting.uptime_kuma_groups': string
-  'console_setting.api_info_enabled': boolean
-  'console_setting.announcements_enabled': boolean
-  'console_setting.faq_enabled': boolean
-  'console_setting.uptime_kuma_enabled': boolean
   DataExportEnabled: boolean
-  DataExportDefaultTime: string
   DataExportInterval: number
-  Chats: string
-  DrawingEnabled: boolean
   MjNotifyEnabled: boolean
   MjAccountFilterEnabled: boolean
   MjForwardUrlEnabled: boolean
@@ -358,8 +333,6 @@ export type BillingSettings = {
 }
 
 export type OperationsSettings = {
-  DefaultCollapseSidebar: boolean
-  DemoSiteEnabled: boolean
   SelfUseModeEnabled: boolean
   QuotaRemindEnabled: boolean
   QuotaRemindThreshold: string
@@ -376,7 +349,6 @@ export type OperationsSettings = {
   SMTPStartTLSEnabled: boolean
   SMTPInsecureSkipVerify: boolean
   SMTPForceAuthLogin: boolean
-  SystemUpdateRepository: string
   WorkerUrl: string
   WorkerValidKey: string
   WorkerAllowHttpImageRequestEnabled: boolean

@@ -37,3 +37,10 @@ sidecars or checksum metadata. Release notes contain only Simplified Chinese cha
 Backup/restore scripts use BLAKE2 sidecars for new dumps; legacy dumps without those
 sidecars remain restorable through the isolated structural/data/application checks.
 Do not calculate or verify SHA256 during build, deployment, backup or restoration.
+
+BER-6: Retired frontend presentation options are ignored at startup without transforming
+or deleting their stored rows. The former frontend-option migration is removed. The
+Option schema, primary key and existing business values are unchanged. Verify two option
+initializations against representative released option rows on SQLite, MySQL and PostgreSQL;
+legacy API restrictions are recovered without reactivating UI settings. No log-database
+schema or shared migration path is changed by this retirement.

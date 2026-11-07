@@ -114,11 +114,12 @@ Apply root contracts to schema, authentication, billing, plugin and routing chan
 
 TauAPI uses its own semantic version in `tauapi-fe/VERSION` and `tauapi-be/VERSION`.
 Update both for a coordinated release and retain them during upstream imports.
-The browser checks the public GitHub Releases repository selected by `SystemUpdateRepository`,
-defaulting to `Victor-Tau/tauapi`; `/api/status` supplies the effective repository and backend version.
+The browser checks the public GitHub Releases repository selected by frontend
+`src/config/site.ts` (`releaseRepository`), defaulting to `Victor-Tau/tauapi`.
+`/api/status` supplies only the backend version and business capabilities.
 Publish a matching `v<version>` tag for a release. Changing the repository changes the frontend
 query/cache key. Source: `tauapi-fe/src/features/system-update/releases.ts` and
-`tauapi-be/common/system_update.go`.
+`tauapi-fe/src/config/site.ts`.
 
 Build GitHub assets locally from an explicit committed candidate. Keep release artifacts
 outside the source tree. Put the candidate frontend's `.node-version` runtime on PATH

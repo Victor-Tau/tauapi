@@ -27,8 +27,6 @@ import {
 } from './section-registry.tsx'
 
 const defaultOperationsSettings: OperationsSettings = {
-  DefaultCollapseSidebar: false,
-  DemoSiteEnabled: false,
   SelfUseModeEnabled: false,
   QuotaRemindEnabled: true,
   QuotaRemindThreshold: '',
@@ -45,7 +43,6 @@ const defaultOperationsSettings: OperationsSettings = {
   SMTPStartTLSEnabled: false,
   SMTPInsecureSkipVerify: false,
   SMTPForceAuthLogin: false,
-  SystemUpdateRepository: '',
   WorkerUrl: '',
   WorkerValidKey: '',
   WorkerAllowHttpImageRequestEnabled: false,

@@ -35,18 +35,16 @@ import type { ReactNode } from 'react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { checkIsActive } from '@/components/layout/lib/url-utils'
+import { siteConfig } from '@/config/site'
 import { invalidateModelPricing } from '@/features/model-pricing/api'
-import {
-  parseSidebarModulesAdmin,
-  serializeSidebarModulesAdmin,
-} from '@/features/system-settings/maintenance/config'
 import {
   MODEL_PRICING_ISSUES_QUERY_KEY,
   type ModelPricingIssue,
 } from '@/features/system-settings/models/pricing-issues'
 import { api } from '@/lib/api'
 import { ROLE } from '@/lib/roles'
-import { useAuthStore } from '@/stores/auth-store'
+import { useAuthStore, type AuthUser } from '@/stores/auth-store'
+import { useSidebarPreferencesStore } from '@/stores/sidebar-preferences-store'
 
 import { useSidebarConfig } from '../use-sidebar-config'
 import { useSidebarData } from '../use-sidebar-data'
@@ -64,141 +62,87 @@ afterEach(() => {
   cleanup()
   vi.unstubAllGlobals()
   useAuthStore.getState().auth.reset()
+  useSidebarPreferencesStore.setState({ accounts: {} })
 })
 
-function sidebarFor(admin?: object, user?: object, canConfigure = true) {
+function sidebarFor(
+  browserConfig?: Record<string, { enabled: boolean; [key: string]: boolean }>
+) {
   const client = new QueryClient({
     defaultOptions: { queries: { retry: false } },
   })
   client.setQueryData(['status'], {
-    SidebarModulesAdmin: admin ? JSON.stringify(admin) : '',
+    SidebarModulesAdmin: JSON.stringify({
+      personal: { enabled: false },
+      console: { enabled: false },
+    }),
   })
   useAuthStore.getState().auth.setUser({
     id: 1,
     username: 'alice',
     role: 1,
-    permissions: { sidebar_settings: canConfigure },
-    sidebar_modules: user ? JSON.stringify(user) : '',
-  })
-  function Wrapper(props: { children: ReactNode }) {
-    return (
+    permissions: { sidebar_settings: false },
+    sidebar_modules: '{"personal":{"enabled":false}}',
+  } as unknown as AuthUser)
+  if (browserConfig) {
+    useSidebarPreferencesStore.getState().setConfig('1', browserConfig)
+  }
+  return renderHook(() => useSidebarConfig(useSidebarData().navGroups), {
+    wrapper: (props: { children: ReactNode }) => (
       <QueryClientProvider client={client}>
         {props.children}
       </QueryClientProvider>
-    )
-  }
-  const result = renderHook(
-    () => useSidebarConfig(useSidebarData().navGroups),
-    { wrapper: Wrapper }
-  )
-  return result
+    ),
+  })
 }
 
-describe('security sidebar visibility', () => {
-  it('old configurations show Security & Access immediately after Profile and keep API Keys', () => {
-    const { result } = sidebarFor(
-      { personal: { enabled: true, personal: true, topup: true } },
-      { personal: { enabled: true, personal: true } }
-    )
-    expect(
-      result.current
-        .find((group) => group.id === 'personal')
-        ?.items.map((item) => item.title)
-    ).toEqual(['Wallet', 'Profile', 'Security & Access'])
-    expect(
-      result.current
-        .flatMap((group) => group.items)
-        .some((item) => item.title === 'API Keys')
-    ).toBe(true)
+describe('frontend sidebar ownership', () => {
+  it('ignores backend navigation and legacy user configuration', () => {
+    const { result } = sidebarFor()
+    const titles = result.current
+      .flatMap((group) => group.items)
+      .map((item) => item.title)
+    expect(titles).toContain('Security & Access')
+    expect(titles).toContain('Audit Logs')
   })
-  it.each([
-    [{ personal: { enabled: true, security: false } }, undefined],
-    [{ personal: { enabled: false } }, { personal: { security: true } }],
-    [undefined, { personal: { enabled: true, security: false } }],
-    [undefined, { personal: { enabled: false } }],
-  ])(
-    'admin or user disablement hides Security & Access (%j, %j)',
-    (admin, user) => {
-      const { result } = sidebarFor(admin, user)
-      expect(
-        result.current
-          .flatMap((group) => group.items)
-          .some((item) => item.title === 'Security & Access')
-      ).toBe(false)
-    }
-  )
-  it('users without sidebar configuration permission retain the admin view', () => {
-    const { result } = sidebarFor(
-      undefined,
-      { personal: { security: false } },
-      false
+  it('applies browser preferences immediately and keeps audit separate from usage', () => {
+    const { result } = sidebarFor({ console: { enabled: true, log: false } })
+    let titles = result.current
+      .flatMap((group) => group.items)
+      .map((item) => item.title)
+    expect(titles).not.toContain('Usage Logs')
+    expect(titles).toContain('Audit Logs')
+    act(() =>
+      useSidebarPreferencesStore
+        .getState()
+        .setConfig('1', { personal: { enabled: true, security: false } })
     )
+    titles = result.current
+      .flatMap((group) => group.items)
+      .map((item) => item.title)
+    expect(titles).not.toContain('Security & Access')
+  })
+  it('isolates preferences between accounts', () => {
+    useSidebarPreferencesStore
+      .getState()
+      .setConfig('2', { personal: { enabled: false } })
+    const { result } = sidebarFor()
     expect(
       result.current
         .flatMap((group) => group.items)
         .some((item) => item.title === 'Security & Access')
     ).toBe(true)
   })
-})
-
-describe('audit log sidebar entry', () => {
-  it('admin settings default Audit Logs to visible and preserve its independent toggle when saved', () => {
-    const config = parseSidebarModulesAdmin(
-      '{"console":{"enabled":true,"log":true}}'
-    )
-    expect(config.console.audit).toBe(true)
-    config.console.audit = false
-    const saved = parseSidebarModulesAdmin(serializeSidebarModulesAdmin(config))
-    const { result } = sidebarFor(saved)
-    const titles = result.current
-      .flatMap((group) => group.items)
-      .map((item) => item.title)
-    expect(titles).not.toContain('Audit Logs')
-    expect(titles).toContain('Usage Logs')
-  })
-
-  it('legacy configurations show a separate Audit Logs link immediately after Usage Logs', () => {
-    const { result } = sidebarFor(
-      { console: { enabled: true, log: true } },
-      { console: { enabled: true, log: true } }
-    )
+  it('keeps audit links selectable independently', () => {
+    expect(siteConfig.sidebar.console.audit).toBe(true)
+    const { result } = sidebarFor()
     const items =
       result.current.find((group) => group.id === 'general')?.items ?? []
-    const usageIndex = items.findIndex((item) => item.title === 'Usage Logs')
-    expect(items[usageIndex + 1]).toMatchObject({
-      title: 'Audit Logs',
-      url: '/usage-logs/audit',
-    })
-    const selected = items.filter((item) =>
-      checkIsActive('/usage-logs/audit', item)
-    )
-    expect(selected.map((item) => item.title)).toEqual(['Audit Logs'])
-  })
-
-  it.each([
-    [{ console: { enabled: true, audit: false } }, undefined],
-    [{ console: { enabled: false } }, { console: { audit: true } }],
-    [undefined, { console: { enabled: true, audit: false } }],
-    [undefined, { console: { enabled: false } }],
-  ])(
-    'admin and personal visibility rules can hide Audit Logs (%j, %j)',
-    (admin, user) => {
-      const { result } = sidebarFor(admin, user)
-      expect(
-        result.current
-          .flatMap((group) => group.items)
-          .some((item) => item.title === 'Audit Logs')
-      ).toBe(false)
-    }
-  )
-
-  it('hiding Usage Logs does not hide the independently configured Audit Logs entry', () => {
-    const { result } = sidebarFor({ console: { enabled: true, log: false } })
-    const titles = result.current
-      .flatMap((group) => group.items)
-      .map((item) => item.title)
-    expect(titles).not.toContain('Usage Logs')
-    expect(titles).toContain('Audit Logs')
+    expect(
+      items
+        .filter((item) => checkIsActive('/usage-logs/audit', item))
+        .map((item) => item.title)
+    ).toEqual(['Audit Logs'])
   })
 })
 

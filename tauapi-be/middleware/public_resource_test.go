@@ -16,29 +16,29 @@ import (
 	"gorm.io/gorm"
 )
 
-func withHeaderNavModules(t *testing.T, raw string) {
+func withPublicResourceAccess(t *testing.T, raw string) {
 	t.Helper()
 
 	common.OptionMapRWMutex.Lock()
 	if common.OptionMap == nil {
 		common.OptionMap = map[string]string{}
 	}
-	previous, hadPrevious := common.OptionMap["HeaderNavModules"]
-	common.OptionMap["HeaderNavModules"] = raw
+	previous, hadPrevious := common.OptionMap["PublicResourceAccess"]
+	common.OptionMap["PublicResourceAccess"] = raw
 	common.OptionMapRWMutex.Unlock()
 
 	t.Cleanup(func() {
 		common.OptionMapRWMutex.Lock()
 		defer common.OptionMapRWMutex.Unlock()
 		if hadPrevious {
-			common.OptionMap["HeaderNavModules"] = previous
+			common.OptionMap["PublicResourceAccess"] = previous
 			return
 		}
-		delete(common.OptionMap, "HeaderNavModules")
+		delete(common.OptionMap, "PublicResourceAccess")
 	})
 }
 
-func performHeaderNavRequest(t *testing.T, handler gin.HandlerFunc, authenticated bool) *httptest.ResponseRecorder {
+func performPublicResourceRequest(t *testing.T, handler gin.HandlerFunc, authenticated bool) *httptest.ResponseRecorder {
 	t.Helper()
 
 	gin.SetMode(gin.TestMode)
@@ -82,19 +82,19 @@ func performHeaderNavRequest(t *testing.T, handler gin.HandlerFunc, authenticate
 	return recorder
 }
 
-func TestHeaderNavModuleAuthAllowsDefaultPublicAccess(t *testing.T) {
-	withHeaderNavModules(t, "")
+func TestPublicResourceAuthAllowsDefaultPublicAccess(t *testing.T) {
+	withPublicResourceAccess(t, "")
 
-	recorder := performHeaderNavRequest(t, HeaderNavModuleAuth("pricing"), false)
+	recorder := performPublicResourceRequest(t, PublicResourceAuth("pricing"), false)
 
 	require.Equal(t, http.StatusOK, recorder.Code)
 }
 
-func TestHeaderNavModuleAuthRejectsDisabledPricing(t *testing.T) {
+func TestPublicResourceAuthRejectsDisabledPricing(t *testing.T) {
 	raw := `{"pricing":{"enabled":false,"requireAuth":false}}`
-	withHeaderNavModules(t, raw)
+	withPublicResourceAccess(t, raw)
 
-	recorder := performHeaderNavRequest(t, HeaderNavModuleAuth("pricing"), false)
+	recorder := performPublicResourceRequest(t, PublicResourceAuth("pricing"), false)
 
 	require.Equal(t, http.StatusForbidden, recorder.Code)
 }
@@ -126,7 +126,7 @@ func TestDisabledPricingRequiresRootAuthentication(t *testing.T) {
 			if options == "" {
 				options = `{"pricing":{"enabled":false,"requireAuth":false}}`
 			}
-			withHeaderNavModules(t, options)
+			withPublicResourceAccess(t, options)
 			user := model.User{
 				Username: "pricing-reader", Password: "unused-password-hash", Role: tc.role,
 				Status: common.UserStatusEnabled, Group: "default", AuthVersion: 1,
@@ -157,7 +157,7 @@ func TestDisabledPricingRequiresRootAuthentication(t *testing.T) {
 			}
 			handled := false
 			router := gin.New()
-			router.GET("/api/"+module, HeaderNavModuleAuth(module), func(c *gin.Context) {
+			router.GET("/api/"+module, PublicResourceAuth(module), func(c *gin.Context) {
 				handled = true
 				assert.Equal(t, user.Id, c.GetInt("id"))
 				assert.Equal(t, common.RoleRootUser, c.GetInt("role"))
@@ -172,84 +172,84 @@ func TestDisabledPricingRequiresRootAuthentication(t *testing.T) {
 	}
 }
 
-func TestHeaderNavModuleAuthRequiresLoginForPricing(t *testing.T) {
+func TestPublicResourceAuthRequiresLoginForPricing(t *testing.T) {
 	raw := `{"pricing":{"enabled":true,"requireAuth":true}}`
-	withHeaderNavModules(t, raw)
+	withPublicResourceAccess(t, raw)
 
-	recorder := performHeaderNavRequest(t, HeaderNavModuleAuth("pricing"), false)
+	recorder := performPublicResourceRequest(t, PublicResourceAuth("pricing"), false)
 
 	require.Equal(t, http.StatusUnauthorized, recorder.Code)
 }
 
-func TestHeaderNavModuleAuthRequiresLoginForRankings(t *testing.T) {
+func TestPublicResourceAuthRequiresLoginForRankings(t *testing.T) {
 	raw := `{"rankings":{"enabled":true,"requireAuth":true}}`
-	withHeaderNavModules(t, raw)
+	withPublicResourceAccess(t, raw)
 
-	recorder := performHeaderNavRequest(t, HeaderNavModuleAuth("rankings"), false)
+	recorder := performPublicResourceRequest(t, PublicResourceAuth("rankings"), false)
 
 	require.Equal(t, http.StatusUnauthorized, recorder.Code)
 }
 
-func TestHeaderNavModuleAuthRejectsLegacyDisabledModule(t *testing.T) {
+func TestPublicResourceAuthRejectsLegacyDisabledModule(t *testing.T) {
 	raw := `{"rankings":false}`
-	withHeaderNavModules(t, raw)
+	withPublicResourceAccess(t, raw)
 
-	recorder := performHeaderNavRequest(t, HeaderNavModuleAuth("rankings"), false)
+	recorder := performPublicResourceRequest(t, PublicResourceAuth("rankings"), false)
 
 	require.Equal(t, http.StatusForbidden, recorder.Code)
 }
 
-func TestHeaderNavModulePublicOrUserAuthAllowsDefaultPublicAccess(t *testing.T) {
-	withHeaderNavModules(t, "")
+func TestPublicResourceOrUserAuthAllowsDefaultPublicAccess(t *testing.T) {
+	withPublicResourceAccess(t, "")
 
-	recorder := performHeaderNavRequest(t, HeaderNavModulePublicOrUserAuth("pricing"), false)
+	recorder := performPublicResourceRequest(t, PublicResourceOrUserAuth("pricing"), false)
 
 	require.Equal(t, http.StatusOK, recorder.Code)
 }
 
-func TestHeaderNavModulePublicOrUserAuthRequiresLoginWhenDisabled(t *testing.T) {
+func TestPublicResourceOrUserAuthRequiresLoginWhenDisabled(t *testing.T) {
 	raw := `{"pricing":{"enabled":false,"requireAuth":false}}`
-	withHeaderNavModules(t, raw)
+	withPublicResourceAccess(t, raw)
 
-	recorder := performHeaderNavRequest(t, HeaderNavModulePublicOrUserAuth("pricing"), false)
+	recorder := performPublicResourceRequest(t, PublicResourceOrUserAuth("pricing"), false)
 
 	require.Equal(t, http.StatusUnauthorized, recorder.Code)
 }
 
-func TestHeaderNavModulePublicOrUserAuthAllowsLoggedInWhenDisabled(t *testing.T) {
+func TestPublicResourceOrUserAuthAllowsLoggedInWhenDisabled(t *testing.T) {
 	raw := `{"pricing":{"enabled":false,"requireAuth":false}}`
-	withHeaderNavModules(t, raw)
+	withPublicResourceAccess(t, raw)
 
-	recorder := performHeaderNavRequest(t, HeaderNavModulePublicOrUserAuth("pricing"), true)
+	recorder := performPublicResourceRequest(t, PublicResourceOrUserAuth("pricing"), true)
 
 	require.Equal(t, http.StatusOK, recorder.Code)
 }
 
-func TestHeaderNavModulePublicOrUserAuthRequiresLoginWhenRequireAuth(t *testing.T) {
+func TestPublicResourceOrUserAuthRequiresLoginWhenRequireAuth(t *testing.T) {
 	raw := `{"pricing":{"enabled":true,"requireAuth":true}}`
-	withHeaderNavModules(t, raw)
+	withPublicResourceAccess(t, raw)
 
-	recorder := performHeaderNavRequest(t, HeaderNavModulePublicOrUserAuth("pricing"), false)
+	recorder := performPublicResourceRequest(t, PublicResourceOrUserAuth("pricing"), false)
 
 	require.Equal(t, http.StatusUnauthorized, recorder.Code)
 }
 
-func TestHeaderNavModulePublicOrUserAuthRequiresLoginForLegacyDisabledModule(t *testing.T) {
+func TestPublicResourceOrUserAuthRequiresLoginForLegacyDisabledModule(t *testing.T) {
 	raw := `{"pricing":false}`
-	withHeaderNavModules(t, raw)
+	withPublicResourceAccess(t, raw)
 
-	recorder := performHeaderNavRequest(t, HeaderNavModulePublicOrUserAuth("pricing"), false)
+	recorder := performPublicResourceRequest(t, PublicResourceOrUserAuth("pricing"), false)
 
 	require.Equal(t, http.StatusUnauthorized, recorder.Code)
 }
 
-func TestHeaderNavPublicRouteRejectsExpiredInternalAccessToken(t *testing.T) {
+func TestPublicResourcePublicRouteRejectsExpiredInternalAccessToken(t *testing.T) {
 	setupDashboardAuthMiddlewareTest(t)
-	withHeaderNavModules(t, "")
+	withPublicResourceAccess(t, "")
 	gin.SetMode(gin.TestMode)
 
 	router := gin.New()
-	router.GET("/api/test", HeaderNavModuleAuth("pricing"), func(c *gin.Context) {
+	router.GET("/api/test", PublicResourceAuth("pricing"), func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{"success": true})
 	})
 	request := httptest.NewRequest(http.MethodGet, "/api/test", nil)
@@ -262,4 +262,13 @@ func TestHeaderNavPublicRouteRejectsExpiredInternalAccessToken(t *testing.T) {
 
 	require.Equal(t, http.StatusUnauthorized, response.Code)
 	require.Contains(t, response.Body.String(), "AUTH_TOKEN_EXPIRED")
+}
+
+func TestPublicResourceAuthRejectsMalformedPolicy(t *testing.T) {
+	withPublicResourceAccess(t, "invalid")
+	response := httptest.NewRecorder()
+	context, _ := gin.CreateTestContext(response)
+	context.Request = httptest.NewRequest(http.MethodGet, "/api/pricing", nil)
+	PublicResourceAuth("pricing")(context)
+	assert.Equal(t, http.StatusForbidden, response.Code)
 }

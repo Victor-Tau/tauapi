@@ -230,3 +230,18 @@ or backend suites and recursive `go test ./...` are prohibited. Use
 `make test TEST_MODULE=. TEST_PACKAGES=./path/to/changed-package`, or select `relaykit`
 or `tokenkit` as TEST_MODULE with explicit package paths relative to that module.
 Build-only acceptance does not launch tests.
+
+## API-only presentation boundary
+
+Do not store, serve or accept frontend branding, layout, navigation, legal/page content,
+notices, FAQ, console announcements or chat presets. `common.IsFrontendOption` identifies
+retired option keys: model loading ignores historical values, settings reads omit them,
+and validation rejects writes before accessing the database. Historical rows are preserved
+for rollback; the removed frontend-option migration no longer transforms or deletes them.
+Backend service identity in email/log output is independent of frontend branding.
+
+`PublicResourceAccess` is a business API policy, limited to pricing/rankings with boolean
+`enabled` and `requireAuth` fields. Root can configure it through `/api/option/`. On load,
+only API restrictions are recovered from a historical navigation row if no dedicated policy
+exists. No other presentation setting is read. Keep enforcement on the server and test
+anonymous, authenticated, disabled-resource and root-management paths.

@@ -21,7 +21,6 @@ type SetupRequest struct {
 	Password           string `json:"password"`
 	ConfirmPassword    string `json:"confirmPassword"`
 	SelfUseModeEnabled bool   `json:"SelfUseModeEnabled"`
-	DemoSiteEnabled    bool   `json:"DemoSiteEnabled"`
 }
 
 func GetSetup(c *gin.Context) {
@@ -105,18 +104,11 @@ func PostSetup(c *gin.Context) {
 
 	// Set operation modes
 	operation_setting.SelfUseModeEnabled = req.SelfUseModeEnabled
-	operation_setting.DemoSiteEnabled = req.DemoSiteEnabled
 
 	// Save operation modes to database for persistence
 	err = model.UpdateOption("SelfUseModeEnabled", boolToString(req.SelfUseModeEnabled))
 	if err != nil {
 		common.ApiErrorT(c, "Failed to save the self-use mode setting: {{error}}", map[string]any{"error": err.Error()})
-		return
-	}
-
-	err = model.UpdateOption("DemoSiteEnabled", boolToString(req.DemoSiteEnabled))
-	if err != nil {
-		common.ApiErrorT(c, "Failed to save the demo site mode setting: {{error}}", map[string]any{"error": err.Error()})
 		return
 	}
 

@@ -19,12 +19,15 @@ For commercial licensing, please contact support@quantumnous.com
 import { createFileRoute, redirect } from '@tanstack/react-router'
 
 import { Main } from '@/components/layout'
+import { siteConfig } from '@/config/site'
 import { Playground } from '@/features/playground'
-import { isSidebarModuleEnabled } from '@/lib/nav-modules'
 
 export const Route = createFileRoute('/_authenticated/playground/')({
   beforeLoad: () => {
-    if (!isSidebarModuleEnabled('chat', 'playground')) {
+    if (
+      !siteConfig.sidebar.chat.enabled ||
+      !siteConfig.sidebar.chat.playground
+    ) {
       throw redirect({ to: '/dashboard' })
     }
   },

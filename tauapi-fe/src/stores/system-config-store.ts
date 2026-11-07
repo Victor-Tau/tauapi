@@ -19,8 +19,6 @@ For commercial licensing, please contact support@quantumnous.com
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
-import { DEFAULT_SYSTEM_NAME, DEFAULT_LOGO } from '@/lib/constants'
-
 export type CurrencyDisplayType = 'USD' | 'CNY' | 'TOKENS' | 'CUSTOM'
 
 export interface CurrencyConfig {
@@ -39,11 +37,6 @@ export interface CurrencyConfig {
 }
 
 export interface SystemConfig {
-  systemName: string
-  logo: string
-  footerHtml?: string
-  demoSiteEnabled?: boolean
-  displayTokenStatEnabled?: boolean
   currency: CurrencyConfig
 }
 
@@ -58,56 +51,49 @@ export const DEFAULT_CURRENCY_CONFIG: CurrencyConfig = {
 
 interface SystemConfigState {
   config: SystemConfig
-  loading: boolean
-  loadedLogoUrl: string
   setConfig: (config: Partial<SystemConfig>) => void
-  setLoadedLogoUrl: (url: string) => void
-  setLoading: (loading: boolean) => void
 }
 
 /**
- * System configuration store with automatic persistence
- * Manages system name, logo, footer HTML and loading states
+ * Business conversion metadata cache. Presentation is owned by the frontend bundle.
  */
 export const useSystemConfigStore = create<SystemConfigState>()(
   persist(
     (set) => ({
       config: {
-        systemName: DEFAULT_SYSTEM_NAME,
-        logo: DEFAULT_LOGO,
         currency: { ...DEFAULT_CURRENCY_CONFIG },
       },
-      loading: true,
-      loadedLogoUrl: DEFAULT_LOGO,
       setConfig: (newConfig) =>
         set((state) => ({
           config: {
             ...state.config,
-            ...newConfig,
             currency: {
               ...state.config.currency,
-              ...(newConfig.currency ?? {}),
+              ...newConfig.currency,
             },
           },
         })),
-      setLoadedLogoUrl: (url) => set({ loadedLogoUrl: url }),
-      setLoading: (loading) => set({ loading }),
     }),
     {
-      name: 'system-config-storage',
+      name: 'system-config-storage-v2',
+      merge: (saved, current) => {
+        const persisted = saved as
+          | { config?: { currency?: CurrencyConfig } }
+          | undefined
+        return {
+          ...current,
+          config: {
+            ...current.config,
+            currency: {
+              ...current.config.currency,
+              ...persisted?.config?.currency,
+            },
+          },
+        }
+      },
       partialize: (state) => ({
-        config: state.config,
-        loadedLogoUrl: state.loadedLogoUrl,
+        config: { currency: state.config.currency },
       }),
     }
   )
 )
-
-// Selector helpers for convenience
-export const getSystemName = () =>
-  useSystemConfigStore.getState().config.systemName
-
-export const getLogo = () => useSystemConfigStore.getState().config.logo
-
-export const getFooterHtml = () =>
-  useSystemConfigStore.getState().config.footerHtml

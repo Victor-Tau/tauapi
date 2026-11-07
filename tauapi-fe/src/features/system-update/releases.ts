@@ -20,16 +20,14 @@ import { z } from 'zod'
 
 /**
  * TauAPI publishes its own releases; the upstream New API feed is not used.
- * Administrators can point the check at another repository in
- * System settings → Maintenance (option `SystemUpdateRepository`, exposed as
- * `system_update_repository` by /api/status).
+ * The frontend site configuration owns the update repository.
  */
 export const DEFAULT_SYSTEM_RELEASE_REPOSITORY = 'Victor-Tau/tauapi'
 
 const githubRepositoryPattern =
   /^[A-Za-z0-9][A-Za-z0-9-]{0,38}\/[A-Za-z0-9._-]{1,100}$/
 
-/** Mirrors backend NormalizeSystemUpdateRepository: owner/repo or a github.com URL. */
+/** Accept a GitHub owner/repo or repository URL from the frontend configuration. */
 export function normalizeSystemReleaseRepository(
   value: string | null | undefined
 ): string | null {

@@ -39,6 +39,7 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import { siteConfig } from '@/config/site'
 import { login, wechatLoginByCode } from '@/features/auth/api'
 import { LegalConsent } from '@/features/auth/components/legal-consent'
 import { OAuthProviders } from '@/features/auth/components/oauth-providers'
@@ -104,8 +105,8 @@ export function UserAuthForm({
   } = useTurnstile()
   const { handleLoginResult } = useAuthRedirect()
 
-  const hasUserAgreement = Boolean(status?.user_agreement_enabled)
-  const hasPrivacyPolicy = Boolean(status?.privacy_policy_enabled)
+  const hasUserAgreement = Boolean(siteConfig.userAgreement)
+  const hasPrivacyPolicy = Boolean(siteConfig.privacyPolicy)
   const requiresLegalConsent = hasUserAgreement || hasPrivacyPolicy
   const passkeyButtonDisabled =
     isPasskeyLoading ||
@@ -420,7 +421,6 @@ export function UserAuthForm({
         )}
 
         <LegalConsent
-          status={status}
           checked={agreedToLegal}
           onCheckedChange={setAgreedToLegal}
           className='mt-1'

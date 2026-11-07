@@ -18,7 +18,8 @@ For commercial licensing, please contact support@quantumnous.com
 */
 import { useTranslation } from 'react-i18next'
 
-import { getUserAgreement } from './api'
+import { siteConfig } from '@/config/site'
+
 import { LegalDocument } from './legal-document'
 
 export function UserAgreement() {
@@ -26,8 +27,7 @@ export function UserAgreement() {
   return (
     <LegalDocument
       title={t('User Agreement')}
-      queryKey='user-agreement'
-      fetchDocument={getUserAgreement}
+      content={siteConfig.userAgreement}
       emptyMessage={t(
         'The administrator has not configured a user agreement yet.'
       )}

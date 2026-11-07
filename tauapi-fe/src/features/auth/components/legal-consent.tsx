@@ -20,26 +20,23 @@ import { useTranslation } from 'react-i18next'
 
 import { Checkbox } from '@/components/ui/checkbox'
 import { Label } from '@/components/ui/label'
+import { siteConfig } from '@/config/site'
 import { cn } from '@/lib/utils'
 
-import type { SystemStatus } from '../types'
-
 interface LegalConsentProps {
-  status: SystemStatus | null
   checked: boolean
   onCheckedChange: (nextValue: boolean) => void
   className?: string
 }
 
 export function LegalConsent({
-  status,
   checked,
   onCheckedChange,
   className,
 }: LegalConsentProps) {
   const { t } = useTranslation()
-  const hasUserAgreement = Boolean(status?.user_agreement_enabled)
-  const hasPrivacyPolicy = Boolean(status?.privacy_policy_enabled)
+  const hasUserAgreement = Boolean(siteConfig.userAgreement)
+  const hasPrivacyPolicy = Boolean(siteConfig.privacyPolicy)
 
   if (!hasUserAgreement && !hasPrivacyPolicy) {
     return null

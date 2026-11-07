@@ -169,3 +169,15 @@ replay and revocation tests. Apply latest stable OWASP ASVS and relevant Authent
 Session, Password Storage, Recovery, MFA, OAuth and CSRF cheat sheets before security changes;
 identify controls, enforce server-side, omit credentials from audit, record references/version/IDs
 and regression evidence.
+
+## AUTH-9 Resource policies and frontend independence
+
+`PublicResourceAccess` governs API access to pricing and rankings. Status exposes it
+as `public_resource_access`; frontend route guards may use it as a capability hint,
+while `PublicResourceAuth` and `PublicResourceOrUserAuth` enforce every request on
+the server. Disabling pricing preserves authenticated root pricing management.
+Navigation visibility and personal sidebar preferences never authorize API requests.
+When the dedicated option is absent, startup/sync extracts only pricing/rankings
+restrictions from historical `HeaderNavModules` rows. Remaining legacy navigation
+fields are ignored. Explicit resource policies take precedence. Retired presentation
+options are omitted from settings reads and rejected on writes, including bulk writes.

@@ -42,7 +42,6 @@ import { SettingsSection } from '../components/settings-section'
 import { useUpdateOption } from '../hooks/use-update-option'
 
 const drawingSchema = z.object({
-  DrawingEnabled: z.boolean(),
   MjNotifyEnabled: z.boolean(),
   MjAccountFilterEnabled: z.boolean(),
   MjForwardUrlEnabled: z.boolean(),
@@ -85,13 +84,6 @@ export function DrawingSettingsSection({
     label: string
     description: string
   }> = [
-    {
-      name: 'DrawingEnabled',
-      label: t('Enable drawing features'),
-      description: t(
-        'Required to expose MjProxy-style image generation to end users.'
-      ),
-    },
     {
       name: 'MjNotifyEnabled',
       label: t('Allow upstream callbacks'),

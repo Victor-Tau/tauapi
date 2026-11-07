@@ -93,8 +93,6 @@ export interface SystemStatus {
   data?: {
     version?: string
     backend_version?: string
-    system_name?: string
-    logo?: string
     github_oauth?: boolean
     github_client_id?: string
     discord_oauth?: boolean
@@ -127,9 +125,6 @@ export interface SystemStatus {
     usd_exchange_rate?: number
     custom_currency_symbol?: string
     custom_currency_exchange_rate?: number
-    demo_site_enabled?: boolean
-    user_agreement_enabled?: boolean
-    privacy_policy_enabled?: boolean
     oauth_register_enabled?: boolean
     register_enabled?: boolean
     password_login_enabled?: boolean
@@ -141,8 +136,6 @@ export interface SystemStatus {
   // Allow direct access to common properties
   version?: string
   backend_version?: string
-  system_name?: string
-  logo?: string
   github_oauth?: boolean
   github_client_id?: string
   discord_oauth?: boolean
@@ -175,9 +168,6 @@ export interface SystemStatus {
   usd_exchange_rate?: number
   custom_currency_symbol?: string
   custom_currency_exchange_rate?: number
-  demo_site_enabled?: boolean
-  user_agreement_enabled?: boolean
-  privacy_policy_enabled?: boolean
   oauth_register_enabled?: boolean
   register_enabled?: boolean
   password_login_enabled?: boolean

@@ -4,6 +4,8 @@ import (
 	"go/ast"
 	"go/parser"
 	"go/token"
+	"net/http"
+	"net/http/httptest"
 	"path/filepath"
 	"strconv"
 	"strings"
@@ -25,12 +27,6 @@ var accessTokenExemptRoutes = []string{
 	"GET /api/setup",
 	"POST /api/setup",
 	"GET /api/status",
-	"GET /api/uptime/status",
-	"GET /api/notice",
-	"GET /api/user-agreement",
-	"GET /api/privacy-policy",
-	"GET /api/about",
-	"GET /api/home_page_content",
 	"GET /api/ratio_config",
 	"GET /api/user/groups",
 
@@ -198,5 +194,14 @@ func TestAccessTokenVerificationScopesAreAllListed(t *testing.T) {
 	for _, scope := range scopes {
 		_, listed := service.AccessTokenVerificationScope(scope)
 		assert.True(t, listed, "verification scope %s has no access token rule", scope)
+	}
+}
+
+func TestFrontendContentRoutesRemoved(t *testing.T) {
+	engine := newAccessTokenScopeTestEngine(t)
+	for _, path := range []string{"/api/notice", "/api/about", "/api/home_page_content", "/api/user-agreement", "/api/privacy-policy", "/api/uptime/status"} {
+		response := httptest.NewRecorder()
+		engine.ServeHTTP(response, httptest.NewRequest(http.MethodGet, path, nil))
+		assert.Equal(t, http.StatusNotFound, response.Code, path)
 	}
 }

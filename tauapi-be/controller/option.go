@@ -14,7 +14,6 @@ import (
 	"github.com/QuantumNous/new-api/service"
 	"github.com/QuantumNous/new-api/setting"
 	"github.com/QuantumNous/new-api/setting/billing_setting"
-	"github.com/QuantumNous/new-api/setting/console_setting"
 	"github.com/QuantumNous/new-api/setting/model_setting"
 	"github.com/QuantumNous/new-api/setting/operation_setting"
 	"github.com/QuantumNous/new-api/setting/ratio_setting"
@@ -85,7 +84,7 @@ func GetOptions(c *gin.Context) {
 	optionValues := make(map[string]string)
 	common.OptionMapRWMutex.Lock()
 	for k, v := range common.OptionMap {
-		if k == "theme.frontend" || k == "billing_setting.billing_mode" || k == "billing_setting.billing_expr" || k == "ResendKeyConfigured" {
+		if common.IsFrontendOption(k) || k == "billing_setting.billing_mode" || k == "billing_setting.billing_expr" || k == "ResendKeyConfigured" {
 			continue
 		}
 		value := common.Interface2String(v)
@@ -211,14 +210,6 @@ func UpdateOption(c *gin.Context) {
 			return
 		}
 	}
-	if option.Key == common.SystemUpdateRepositoryOptionKey {
-		repo, err := common.NormalizeSystemUpdateRepository(option.Value.(string))
-		if err != nil {
-			common.ApiErrorT(c, "Enter a GitHub repository as owner/repo or https://github.com/owner/repo")
-			return
-		}
-		option.Value = repo
-	}
 	if option.Key == "TaskPublicAddress" && option.Value.(string) != "" {
 		if err := service.ValidateTaskArtifactBaseURL(option.Value.(string)); err != nil {
 			common.ApiError(c, err)
@@ -268,11 +259,6 @@ func UpdateOption(c *gin.Context) {
 				"code":    "TELEGRAM_OAUTH_NOT_CONFIGURED",
 				"message": "Telegram OAuth is not configured or enabled. Please contact your administrator.",
 			})
-			return
-		}
-	case "theme.frontend":
-		if option.Value != "default" {
-			common.ApiErrorT(c, "The Classic frontend has been removed. The theme can only be set to default")
 			return
 		}
 	case "GroupRatio":
@@ -388,30 +374,7 @@ func UpdateOption(c *gin.Context) {
 				return
 			}
 		}
-	case "console_setting.api_info":
-		err = console_setting.ValidateConsoleSettings(option.Value.(string), "ApiInfo")
-		if err != nil {
-			common.ApiError(c, err)
-			return
-		}
-	case "console_setting.announcements":
-		err = console_setting.ValidateConsoleSettings(option.Value.(string), "Announcements")
-		if err != nil {
-			common.ApiError(c, err)
-			return
-		}
-	case "console_setting.faq":
-		err = console_setting.ValidateConsoleSettings(option.Value.(string), "FAQ")
-		if err != nil {
-			common.ApiError(c, err)
-			return
-		}
-	case "console_setting.uptime_kuma_groups":
-		err = console_setting.ValidateConsoleSettings(option.Value.(string), "UptimeKumaGroups")
-		if err != nil {
-			common.ApiError(c, err)
-			return
-		}
+
 	}
 	if model.IsPasskeyDomainOption(option.Key) {
 		change, updateErr := model.UpdatePasskeyDomainOptions(map[string]string{option.Key: option.Value.(string)}, false, "")

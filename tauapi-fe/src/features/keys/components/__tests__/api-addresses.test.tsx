@@ -28,6 +28,8 @@ import {
 import userEvent from '@testing-library/user-event'
 import { afterEach, beforeEach, expect, it, vi } from 'vitest'
 
+import { siteConfig } from '@/config/site'
+import type { ApiInfoItem } from '@/features/dashboard/types'
 import { STATUS_QUERY_KEY, type StatusData } from '@/lib/status-query'
 
 import { ApiKeysPrimaryButtons } from '../api-keys-primary-buttons'
@@ -45,11 +47,18 @@ beforeEach(() => {
 afterEach(() => {
   cleanup()
   client.clear()
+  siteConfig.dashboard.apiInfoEnabled = true
+  siteConfig.dashboard.apiInfo = []
   localStorage.clear()
 })
 
-function renderAddresses(status: StatusData) {
-  client.setQueryData(STATUS_QUERY_KEY, status)
+function renderAddresses(options: StatusData) {
+  siteConfig.dashboard.apiInfoEnabled = options.enabled !== false
+  siteConfig.dashboard.apiInfo =
+    (options.addresses as ApiInfoItem[] | undefined) ?? []
+  client.setQueryData(STATUS_QUERY_KEY, {
+    server_address: options.serverAddress,
+  })
   return render(
     <QueryClientProvider client={client}>
       <ApiKeysProvider>
@@ -63,9 +72,9 @@ it('shows every configured address and copies only the chosen visible URL', asyn
   const user = userEvent.setup()
   const writeText = vi.spyOn(navigator.clipboard, 'writeText')
   renderAddresses({
-    server_address: 'https://console.example.com',
-    api_info_enabled: true,
-    api_info: [
+    serverAddress: 'https://console.example.com',
+    enabled: true,
+    addresses: [
       {
         route: 'Global',
         description: 'Worldwide access',
@@ -114,21 +123,21 @@ it('shows every configured address and copies only the chosen visible URL', asyn
 it.each([
   {
     status: {
-      api_info: [],
-      server_address: 'https://gateway.example.com/proxy/',
+      addresses: [],
+      serverAddress: 'https://gateway.example.com/proxy/',
     },
     label: 'Default API address',
     url: 'https://gateway.example.com/proxy/',
   },
   {
-    status: { api_info: [] },
+    status: { addresses: [] },
     label: 'Current domain',
     url: window.location.origin,
   },
   {
     status: {
-      api_info_enabled: false,
-      api_info: [
+      enabled: false,
+      addresses: [
         {
           route: 'Hidden',
           description: 'Disabled address',
@@ -136,7 +145,7 @@ it.each([
           color: 'blue',
         },
       ],
-      server_address: 'https://gateway.example.com',
+      serverAddress: 'https://gateway.example.com',
     },
     label: 'Default API address',
     url: 'https://gateway.example.com',
@@ -171,12 +180,12 @@ it.each([
   }
 )
 
-it('keeps long addresses readable within the scrollable panel and updates when configuration changes', async () => {
+it('keeps long addresses readable within the scrollable panel and ignores backend attempts to replace local configuration', async () => {
   const user = userEvent.setup()
   const url =
     'https://regional-api-gateway.example.com/organization/production/openai-compatible/v1/'
   renderAddresses({
-    api_info: [
+    addresses: [
       {
         route: 'Regional gateway',
         description: 'Regional production gateway',
@@ -203,14 +212,12 @@ it('keeps long addresses readable within the scrollable panel and updates when c
       ],
     })
   })
+  expect(within(dialog).getByText(url)).toBeVisible()
   expect(
-    await within(dialog).findByText('https://new.example.com')
-  ).toBeVisible()
-  expect(within(dialog).queryByText(url)).not.toBeInTheDocument()
+    within(dialog).queryByText('https://new.example.com')
+  ).not.toBeInTheDocument()
   await user.click(
-    within(dialog).getByRole('button', {
-      name: 'Copy API URL: https://new.example.com',
-    })
+    within(dialog).getByRole('button', { name: `Copy API URL: ${url}` })
   )
-  expect(await navigator.clipboard.readText()).toBe('https://new.example.com')
+  expect(await navigator.clipboard.readText()).toBe(url)
 })

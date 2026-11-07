@@ -36,6 +36,7 @@ import type { ReactNode } from 'react'
 import { toast } from 'sonner'
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest'
 
+import { siteConfig } from '@/config/site'
 import { UpdateCheckerSection } from '@/features/system-settings/maintenance/update-checker-section'
 import { api } from '@/lib/api'
 import { createAppQueryClient } from '@/lib/query-client'
@@ -93,6 +94,7 @@ beforeEach(() => {
 })
 
 afterEach(() => {
+  siteConfig.releaseRepository = 'Victor-Tau/tauapi'
   cleanup()
   client.clear()
   useSystemUpdateStore.setState({ snapshot: null })
@@ -691,7 +693,8 @@ describe('update cache and scheduling', () => {
     expect(fetchMock).toHaveBeenCalledTimes(1)
   })
 
-  test('checks the repository configured in system maintenance and ignores snapshots from another source', async () => {
+  test('checks the frontend release repository and ignores backend repository overrides', async () => {
+    siteConfig.releaseRepository = 'acme/fork'
     useSystemUpdateStore.getState().setSnapshot({
       repository: 'Victor-Tau/tauapi',
       release: { ...release, tag_name: 'v9.9.9' },
@@ -701,7 +704,7 @@ describe('update cache and scheduling', () => {
     })
     client.setQueryData(STATUS_QUERY_KEY, {
       version: 'v1.0.0-rc.35',
-      system_update_repository: 'acme/fork',
+      system_update_repository: 'backend/ignored',
     })
     const hook = renderHook(useSystemUpdate, { wrapper: Wrapper })
     await waitFor(() =>

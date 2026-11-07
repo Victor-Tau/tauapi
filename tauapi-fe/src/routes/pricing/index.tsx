@@ -20,7 +20,7 @@ import { createFileRoute, redirect } from '@tanstack/react-router'
 import z from 'zod'
 
 import { Pricing } from '@/features/pricing'
-import { getModuleAccessForGuard } from '@/lib/nav-modules'
+import { getModuleAccessForGuard } from '@/lib/public-resource-access'
 import { useAuthStore } from '@/stores/auth-store'
 
 const pricingSearchSchema = z.object({

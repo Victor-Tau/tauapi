@@ -42,3 +42,16 @@ or sidecars. Deploy and rollback must work without them. Validate paths, manifes
 and referenced assets before switching. Compare complete retained/public file paths and
 bytes without hashing; reject changed, missing or extra immutable assets. Legacy releases
 may retain a root checksum list, but no workflow reads or verifies its checksums.
+
+## Frontend presentation ownership
+
+FER-7: Each frontend release owns presentation in `tauapi-fe/src/config/site.ts`:
+brand name, logo, favicon, footer, documentation URL, page/legal content, notice,
+announcements, dashboard panels, chat presets, release repository and navigation. API status and legacy
+browser snapshots cannot override these values. Sidebar preferences are account-scoped
+browser data. The backend exposes business capabilities and authorization policies,
+not frontend content, layout or navigation configuration. Currency conversion metadata
+remains part of the billing API contract because it also defines payment input units.
+Removed presentation APIs intentionally break compatibility with older frontends;
+deploy the matching frontend before the backend. No server-side content migration or
+automatic transfer of historical custom content is performed.

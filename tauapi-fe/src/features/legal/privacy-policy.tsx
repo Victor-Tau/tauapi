@@ -18,7 +18,8 @@ For commercial licensing, please contact support@quantumnous.com
 */
 import { useTranslation } from 'react-i18next'
 
-import { getPrivacyPolicy } from './api'
+import { siteConfig } from '@/config/site'
+
 import { LegalDocument } from './legal-document'
 
 export function PrivacyPolicy() {
@@ -26,8 +27,7 @@ export function PrivacyPolicy() {
   return (
     <LegalDocument
       title={t('Privacy Policy')}
-      queryKey='privacy-policy'
-      fetchDocument={getPrivacyPolicy}
+      content={siteConfig.privacyPolicy}
       emptyMessage={t(
         'The administrator has not configured a privacy policy yet.'
       )}

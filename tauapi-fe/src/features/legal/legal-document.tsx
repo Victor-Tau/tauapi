@@ -16,7 +16,6 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 For commercial licensing, please contact support@quantumnous.com
 */
-import { useQuery } from '@tanstack/react-query'
 import { FileWarning } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 
@@ -24,51 +23,27 @@ import { PublicLayout } from '@/components/layout'
 import { RichContent } from '@/components/rich-content'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Skeleton } from '@/components/ui/skeleton'
 import { isHttpUrl, isLikelyHtml } from '@/lib/content-format'
-
-import type { LegalDocumentResponse } from './types'
 
 type LegalDocumentProps = {
   title: string
-  queryKey: string
-  fetchDocument: () => Promise<LegalDocumentResponse>
+  content: string
   emptyMessage: string
 }
 
 export function LegalDocument({
   title,
-  queryKey,
-  fetchDocument,
+  content,
   emptyMessage,
 }: LegalDocumentProps) {
   const { t } = useTranslation()
-  const { data, isLoading } = useQuery({
-    queryKey: [queryKey],
-    queryFn: fetchDocument,
-    staleTime: 10 * 60 * 1000,
-  })
 
-  const rawContent = data?.data?.trim() ?? ''
+  const rawContent = content.trim()
   const hasContent = rawContent.length > 0
   const isUrl = hasContent && isHttpUrl(rawContent)
   const contentIsHtml = hasContent && isLikelyHtml(rawContent)
-  const success = data?.success ?? false
 
-  if (isLoading) {
-    return (
-      <PublicLayout>
-        <div className='mx-auto flex max-w-4xl flex-col gap-4 py-12'>
-          <Skeleton className='h-8 w-[45%]' />
-          <Skeleton className='h-4 w-full' />
-          <Skeleton className='h-4 w-[90%]' />
-          <Skeleton className='h-4 w-[80%]' />
-        </div>
-      </PublicLayout>
-    )
-  }
-
-  if (!success || !hasContent) {
+  if (!hasContent) {
     return (
       <PublicLayout>
         <div className='mx-auto max-w-2xl py-12'>
@@ -79,9 +54,7 @@ export function LegalDocument({
               </div>
               <div className='space-y-1'>
                 <CardTitle className='text-lg font-semibold'>{title}</CardTitle>
-                <p className='text-muted-foreground text-sm'>
-                  {data?.message || emptyMessage}
-                </p>
+                <p className='text-muted-foreground text-sm'>{emptyMessage}</p>
               </div>
             </CardHeader>
           </Card>
