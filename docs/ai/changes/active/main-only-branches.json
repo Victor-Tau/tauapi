@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "main-only-branches",
+  "base_revision": "ba80b8df105f42ffb0187c391c570eea4ca68649",
+  "work_status": "in_progress",
+  "docs_impact": "affected",
+  "dispositions": {},
+  "validation": {
+    "objective": "Retain main as the only local and remote branch after preserving the published release work and upstream history.",
+    "acceptance": [
+      "main contains the release task branch commits.",
+      "Delete remote task/github-release-20261107, vendor/upstream-fe and vendor/upstream-be.",
+      "Only main remains as a local branch; all release and upstream tags retain their objects."
+    ],
+    "scope": [
+      "Git refs/heads and refs/remotes/origin",
+      "docs/CHANGELOG.md",
+      "docs/ai/changes/active/main-only-branches.json"
+    ],
+    "required_reads": [
+      "AGENTS.md",
+      "docs/ai/INDEX.md",
+      "docs/ai/workflows/docs-maintenance.md",
+      "docs/ai/templates/change.md"
+    ],
+    "no_contract_impact_reason": "This task changes Git branch references and governance records only. Application sources, release artifacts, runtime contracts and deployment behavior are unchanged relative to the previously verified release branch.",
+    "preserved_commits": {
+      "release_task": "ba80b8df105f42ffb0187c391c570eea4ca68649",
+      "upstream_frontend": "df6ba0ddfb562fe7d2f1a5a875d12ae8c5ed722f",
+      "upstream_backend": "9eeef9aaff008df1cc7abd337d827202cea1317a",
+      "release_tag_commit": "6c720bfde8ab97f591e11b388277a7ab96787c91"
+    },
+    "checks": {
+      "passed": [
+        "Initial worktree clean; remote has exactly the four expected branches.",
+        "main and both upstream vendor tips are ancestors of the release task branch; main can fast-forward without discarding history.",
+        "Snapshot of all local tag objects saved to /tmp/tauapi-main-only-tags-before.txt."
+      ],
+      "failed": [],
+      "skipped": [],
+      "blocked": [],
+      "not_run": [
+        "Application rebuilds and application suites: no application source changes relative to the already verified release candidate.",
+        "Production deployment and database changes: outside this Git branch cleanup."
+      ]
+    },
+    "evidence_logs": [
+      "/tmp/tauapi-main-only-tags-before.txt"
+    ]
+  },
+  "next_action": "Validate documentation, fast-forward main, atomically push main and delete the three specified remote branches, then verify refs and remove the local task branch."
+}
