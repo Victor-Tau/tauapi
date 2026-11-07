@@ -269,3 +269,12 @@ Follow the component engineering obligations for UI reuse, accessibility and loc
 
 Selected checks: frontend-typecheck, frontend-tests, frontend-lint. See registry for literal runners and prerequisites.
 Inspect shared Dialog/ConfirmDialog/CopyButton/data-table before replacing behavior. Verify language switching, zhCN/zhTW conversion, precision, focus and accessible names; lint does not replace manual capability-gap review.
+
+
+### Component version display
+
+`rsbuild.config.ts` embeds `VITE_REACT_APP_VERSION` or the local `VERSION` file into
+this bundle. `src/lib/component-versions.ts` reads that frontend version and resolves
+`backend_version` with a legacy `version` fallback from the shared status query.
+`src/components/component-versions.tsx` supplies localized labels for the header and
+sidebar; update details show both versions. Only administrators run release checks.

@@ -73,6 +73,7 @@ function respondWithRelease(tag = release.tag_name): void {
 }
 
 beforeEach(() => {
+  vi.stubEnv('VITE_REACT_APP_VERSION', 'v1.2.0+fe.abc123')
   localStorage.clear()
   useSystemUpdateStore.setState({ snapshot: null })
   useSystemUpdatePreferencesStore.setState({ ignoredVersionsByUserId: {} })
@@ -102,6 +103,7 @@ afterEach(() => {
   onlineManager.setOnline(true)
   vi.useRealTimers()
   vi.unstubAllGlobals()
+  vi.unstubAllEnvs()
   vi.restoreAllMocks()
 })
 
@@ -120,6 +122,9 @@ describe('administrator update entry', () => {
         { wrapper: Wrapper }
       )
       expect(screen.queryByRole('button')).not.toBeInTheDocument()
+      expect(screen.getByText('Frontend version:')).toBeInTheDocument()
+      expect(screen.getByText('Backend version:')).toBeInTheDocument()
+      expect(screen.getByText('v1.2.0+fe.abc123')).toBeInTheDocument()
       expect(fetchMock).not.toHaveBeenCalled()
     }
   )
@@ -251,7 +256,7 @@ describe('administrator update entry', () => {
         wrapper: Wrapper,
       })
       const trigger = screen.getByRole('button', {
-        name: 'System updates, current version: Unknown version',
+        name: 'System updates, frontend version: v1.2.0+fe.abc123, backend version: Unknown version',
       })
       await user.click(trigger)
       const dialog = screen.getByRole('dialog')
@@ -371,6 +376,49 @@ describe('administrator update entry', () => {
 })
 
 describe('version label presentation', () => {
+  test('shows bundle and explicit backend versions independently and retains the bundle version after a server upgrade', async () => {
+    const user = userEvent.setup()
+    client.setQueryData(STATUS_QUERY_KEY, {
+      version: 'v0.9.0',
+      backend_version: 'v1.1.0+be.def456',
+    })
+    render(<SystemUpdateAction presentation='version' />, { wrapper: Wrapper })
+    const trigger = screen.getByRole('button', {
+      name: 'System updates, frontend version: v1.2.0+fe.abc123, backend version: v1.1.0+be.def456',
+    })
+    expect(within(trigger).getByText('Frontend version:')).toBeInTheDocument()
+    expect(within(trigger).getByText('Backend version:')).toBeInTheDocument()
+    expect(within(trigger).getByText('v1.2.0+fe.abc123')).toBeInTheDocument()
+    expect(within(trigger).getByText('v1.1.0+be.def456')).toBeInTheDocument()
+    act(() =>
+      client.setQueryData(STATUS_QUERY_KEY, {
+        version: 'v1.3.0+be.789abc',
+        backend_version: 'v1.3.0+be.789abc',
+      })
+    )
+    expect(within(trigger).getByText('v1.2.0+fe.abc123')).toBeInTheDocument()
+    expect(
+      await within(trigger).findByText('v1.3.0+be.789abc')
+    ).toBeInTheDocument()
+    await user.click(trigger)
+    const dialog = screen.getByRole('dialog')
+    expect(within(dialog).getByText('Frontend version')).toBeInTheDocument()
+    expect(within(dialog).getByText('Backend version')).toBeInTheDocument()
+    expect(within(dialog).getByText('v1.2.0+fe.abc123')).toBeInTheDocument()
+    expect(within(dialog).getByText('v1.3.0+be.789abc')).toBeInTheDocument()
+  })
+
+  test('does not substitute a backend version for missing frontend metadata', async () => {
+    vi.stubEnv('VITE_REACT_APP_VERSION', '')
+    render(<SystemUpdateAction presentation='version' />, { wrapper: Wrapper })
+    const trigger = screen.getByRole('button', {
+      name: 'System updates, frontend version: Unknown version, backend version: v1.0.0-rc.35',
+    })
+    expect(within(trigger).getByText('Unknown version')).toBeInTheDocument()
+    expect(within(trigger).getByText('v1.0.0-rc.35')).toBeInTheDocument()
+    await waitFor(() => expect(trigger).toHaveAttribute('aria-busy', 'false'))
+  })
+
   test('keeps the current version visible while checking and after finding no newer version', async () => {
     let finishRequest: ((response: Response) => void) | undefined
     fetchMock.mockImplementation(
@@ -382,7 +430,7 @@ describe('version label presentation', () => {
     client.setQueryData(STATUS_QUERY_KEY, { version: release.tag_name })
     render(<SystemUpdateAction presentation='version' />, { wrapper: Wrapper })
     const trigger = screen.getByRole('button', {
-      name: 'System updates, current version: v1.0.0-rc.36',
+      name: 'System updates, frontend version: v1.2.0+fe.abc123, backend version: v1.0.0-rc.36',
     })
     expect(trigger).toHaveAttribute('aria-busy', 'true')
     expect(within(trigger).getByText(release.tag_name)).toBeInTheDocument()
@@ -403,7 +451,7 @@ describe('version label presentation', () => {
     client.setQueryData(STATUS_QUERY_KEY, { version: '' })
     render(<SystemUpdateAction presentation='version' />, { wrapper: Wrapper })
     const trigger = screen.getByRole('button', {
-      name: 'System updates, current version: Unknown version',
+      name: 'System updates, frontend version: v1.2.0+fe.abc123, backend version: Unknown version',
     })
     expect(within(trigger).getByText('Unknown version')).toBeInTheDocument()
     await waitFor(() => expect(trigger).toHaveAttribute('aria-busy', 'false'))
@@ -417,7 +465,7 @@ describe('version label presentation', () => {
     fetchMock.mockResolvedValue(new Response('', { status: 429 }))
     render(<SystemUpdateAction presentation='version' />, { wrapper: Wrapper })
     const trigger = await screen.findByRole('button', {
-      name: /System updates, current version: v1\.0\.0-rc\.35.*Failed to check for updates/s,
+      name: /System updates, frontend version: v1\.2\.0\+fe\.abc123, backend version: v1\.0\.0-rc\.35.*Failed to check for updates/s,
     })
     expect(within(trigger).getByText('v1.0.0-rc.35')).toBeInTheDocument()
     expect(trigger).toHaveAttribute(
@@ -435,14 +483,13 @@ describe('version label presentation', () => {
     client.setQueryData(STATUS_QUERY_KEY, { version })
     render(<SystemUpdateAction presentation='version' />, { wrapper: Wrapper })
     const trigger = screen.getByRole('button', {
-      name: `System updates, current version: ${version}`,
+      name: `System updates, frontend version: v1.2.0+fe.abc123, backend version: ${version}`,
     })
     expect(trigger).toHaveAttribute('title', expect.stringContaining(version))
     expect(within(trigger).getByText(version)).toHaveClass(
       'truncate',
       'max-w-32',
-      'hidden',
-      '@min-[22rem]/system-brand:inline'
+      'font-mono'
     )
     await waitFor(() => expect(trigger).toHaveAttribute('aria-busy', 'false'))
   })

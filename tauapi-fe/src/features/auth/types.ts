@@ -92,6 +92,7 @@ export interface SystemStatus {
   message?: string
   data?: {
     version?: string
+    backend_version?: string
     system_name?: string
     logo?: string
     github_oauth?: boolean
@@ -139,6 +140,7 @@ export interface SystemStatus {
   }
   // Allow direct access to common properties
   version?: string
+  backend_version?: string
   system_name?: string
   logo?: string
   github_oauth?: boolean

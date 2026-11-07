@@ -1,3 +1,4 @@
+import { readFileSync } from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -16,6 +17,10 @@ export default defineConfig(({ envMode }) => {
     'http://localhost:3000'
 
   const isProd = envMode === 'production'
+  const frontendVersion =
+    process.env.VITE_REACT_APP_VERSION?.trim() ||
+    env.rawPublicVars.VITE_REACT_APP_VERSION?.trim() ||
+    readFileSync(path.resolve(__dirname, 'VERSION'), 'utf8').trim()
   // Versioned, immutable asset URLs for independent frontend releases.
   // TAUAPI_RELEASE_ID is set by the release build (ops/scripts/build-frontend.sh);
   // without it the build keeps the default root prefix for local previews.
@@ -65,6 +70,8 @@ export default defineConfig(({ envMode }) => {
         index: './src/main.tsx',
       },
       define: {
+        'import.meta.env.VITE_REACT_APP_VERSION':
+          JSON.stringify(frontendVersion),
         // Lets the running bundle compare itself with /_meta/ui-version.json.
         'import.meta.env.TAUAPI_RELEASE_ID': JSON.stringify(
           isProd ? releaseId : ''

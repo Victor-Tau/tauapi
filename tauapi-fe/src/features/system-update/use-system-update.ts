@@ -28,6 +28,7 @@ import { useEffect, useSyncExternalStore } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { useStatus } from '@/hooks/use-status'
+import { getBackendVersion } from '@/lib/component-versions'
 import { handleServerError } from '@/lib/handle-server-error'
 import { ROLE } from '@/lib/roles'
 import { statusQueryOptions } from '@/lib/status-query'
@@ -163,11 +164,7 @@ export function useSystemUpdate() {
     }
   }, [isAdmin, queryClient])
 
-  const version = status?.version?.trim()
-  const currentVersion =
-    version === 'v0.0.0' || version === '0.0.0'
-      ? undefined
-      : version || undefined
+  const currentVersion = getBackendVersion(status)
   const release = query.data?.release ?? null
   const comparison = compareSystemVersions(currentVersion, release?.tag_name)
   const hasUpdate = comparison === -1

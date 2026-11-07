@@ -215,3 +215,10 @@ proxy per process, omitting credentials and suffixes, and leaves the database un
 Saving the channel again requires the strict format. Relay TCP dial timeout and keepalive
 are 30 seconds; TLS handshake timeout is 10 seconds, including requests without a proxy.
 See `service/http_client.go` and its tests.
+
+
+## Public version metadata
+
+`controller.GetStatus` exposes the running `common.Version` as `backend_version`
+and retains the equal `version` alias for older frontend clients. The API does not
+report a frontend version: each frontend bundle owns its independent build metadata.

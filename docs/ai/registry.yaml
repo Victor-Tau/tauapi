@@ -207,7 +207,10 @@
         "tauapi-fe/src/routes",
         "tauapi-ops/scripts/build-frontend.sh",
         "tauapi-ops/scripts/deploy-frontend.sh",
-        "tauapi-ops/scripts/rollback-frontend.sh"
+        "tauapi-ops/scripts/rollback-frontend.sh",
+        "tauapi-be/controller/misc.go",
+        "tauapi-fe/rsbuild.config.ts",
+        "tauapi-fe/src/lib/component-versions.ts"
       ],
       "related_docs": [],
       "checks": [
@@ -1938,6 +1941,25 @@
         "documentation",
         "governance"
       ]
+    },
+    {
+      "id": "be-status",
+      "component": "be",
+      "path_patterns": [
+        "tauapi-be/controller/misc.go",
+        "tauapi-be/controller/theme_compat_test.go"
+      ],
+      "required_reads": [
+        "be-policy",
+        "be-engineering"
+      ],
+      "contracts": [
+        "frontend-release"
+      ],
+      "checks": [
+        "backend-tests"
+      ],
+      "semantic_triggers": []
     }
   ],
   "task_intents": [

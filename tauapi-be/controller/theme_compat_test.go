@@ -45,3 +45,25 @@ func TestGetStatusAdvertisesDefaultDashboard(t *testing.T) {
 	assert.True(t, payload.Success)
 	assert.Equal(t, "default", payload.Data["theme"])
 }
+
+func TestGetStatusIdentifiesBackendVersionForIndependentFrontends(t *testing.T) {
+	previousVersion := common.Version
+	common.Version = "v1.2.3+be.abc123"
+	t.Cleanup(func() { common.Version = previousVersion })
+	response := httptest.NewRecorder()
+	context, _ := gin.CreateTestContext(response)
+	context.Request = httptest.NewRequest(http.MethodGet, "/api/status", nil)
+
+	GetStatus(context)
+
+	var payload struct {
+		Success bool           `json:"success"`
+		Data    map[string]any `json:"data"`
+	}
+	require.Equal(t, http.StatusOK, response.Code)
+	require.NoError(t, common.Unmarshal(response.Body.Bytes(), &payload))
+	require.True(t, payload.Success)
+	assert.Equal(t, "v1.2.3+be.abc123", payload.Data["backend_version"])
+	assert.Equal(t, payload.Data["backend_version"], payload.Data["version"])
+	assert.NotContains(t, payload.Data, "frontend_version")
+}

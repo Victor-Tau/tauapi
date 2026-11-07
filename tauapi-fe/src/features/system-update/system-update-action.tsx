@@ -25,9 +25,12 @@ import { HugeiconsIcon } from '@hugeicons/react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
+import { ComponentVersions } from '@/components/component-versions'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Spinner } from '@/components/ui/spinner'
+import { useStatus } from '@/hooks/use-status'
+import { getBackendVersion, getFrontendVersion } from '@/lib/component-versions'
 import { ROLE } from '@/lib/roles'
 import { cn } from '@/lib/utils'
 import { useAuthStore } from '@/stores/auth-store'
@@ -45,8 +48,19 @@ export function SystemUpdateAction(props: SystemUpdateActionProps) {
   const isAdmin = useAuthStore(
     (state) => (state.auth.user?.role ?? 0) >= ROLE.ADMIN
   )
-  if (!isAdmin) return null
+  if (!isAdmin) {
+    return props.presentation === 'version' ? <PublicComponentVersions /> : null
+  }
   return <AdminSystemUpdateAction {...props} />
+}
+
+function PublicComponentVersions() {
+  const { status } = useStatus()
+  return (
+    <span className='text-muted-foreground min-w-0 px-1.5'>
+      <ComponentVersions backendVersion={getBackendVersion(status)} />
+    </span>
+  )
 }
 
 function AdminSystemUpdateAction(props: SystemUpdateActionProps) {
@@ -70,8 +84,11 @@ function AdminSystemUpdateAction(props: SystemUpdateActionProps) {
   const updateAnnouncement = update.shouldNotify ? description : ''
   if (versionPresentation) {
     const versionDescription = t(
-      'System updates, current version: {{version}}',
-      { version }
+      'System updates, frontend version: {{frontendVersion}}, backend version: {{backendVersion}}',
+      {
+        frontendVersion: getFrontendVersion() || t('Unknown version'),
+        backendVersion: version,
+      }
     )
     description =
       update.shouldNotify || update.snapshot?.error
@@ -104,8 +121,8 @@ function AdminSystemUpdateAction(props: SystemUpdateActionProps) {
           )}
           aria-hidden='true'
         />
-        <span className='hidden max-w-32 truncate font-mono text-xs @min-[22rem]/system-brand:inline'>
-          {version}
+        <span className='hidden min-w-0 @min-[22rem]/system-brand:inline'>
+          <ComponentVersions backendVersion={update.currentVersion} />
         </span>
         {update.shouldNotify && (
           <Badge
@@ -136,7 +153,7 @@ function AdminSystemUpdateAction(props: SystemUpdateActionProps) {
           className={cn(
             'relative',
             versionPresentation &&
-              'text-muted-foreground size-8 px-0 @min-[22rem]/system-brand:h-7 @min-[22rem]/system-brand:w-auto @min-[22rem]/system-brand:gap-1.5 @min-[22rem]/system-brand:px-1.5',
+              'text-muted-foreground size-8 px-0 @min-[22rem]/system-brand:h-9 @min-[22rem]/system-brand:w-auto @min-[22rem]/system-brand:gap-1.5 @min-[22rem]/system-brand:px-1.5',
             !versionPresentation &&
               compact &&
               'size-8 px-0 lg:w-auto lg:gap-1.5 lg:px-2.5',

@@ -25,3 +25,13 @@ old-tab chunk load, version notice, deploy/rollback drills in isolated QA.
 
 
 FER-4: Retain source regression tests in Git and run checks before building. Package only runtime dist assets. The builder rejects test source/config files and tests, __tests__, testdata, e2e, qa or coverage directories in dist.
+
+
+FER-5: Version displays distinguish the frontend bundle from the running backend.
+The frontend version is baked in from `VITE_REACT_APP_VERSION`, with the component's
+`VERSION` file as the local-build fallback. An open tab retains its own frontend version
+when another release goes live. `/api/status.data.backend_version` identifies the running
+backend; `data.version` remains an equal compatibility alias for older frontends. New
+frontends fall back to `data.version` when talking to older backends. Missing versions
+are displayed as unknown, never borrowed from the other release unit. Update comparison
+continues to use the backend semantic version; frontend release notices remain independent.
