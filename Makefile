@@ -1,7 +1,7 @@
 DOCS_PYTHON := $(CURDIR)/.docs-venv/bin/python
 DOCS_BASE ?= HEAD
 DOCS_HEAD ?= HEAD
-DOCS_CHANGE ?= docs/ai/changes/active/docs-system-bootstrap.json
+DOCS_CHANGE ?= $(firstword $(wildcard docs/ai/changes/active/*.json))
 DOCS := $(DOCS_PYTHON) docs/tools/docsctl.py
 .PHONY: docs-setup docs-check docs-generate docs-test docs-audit docs-impact docs-impact-worktree docs-verify
 docs-setup:

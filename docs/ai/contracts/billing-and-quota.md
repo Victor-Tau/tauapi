@@ -1,6 +1,6 @@
 # Billing Rules
 
-Mandatory conventions for quota, pricing, pre-consume, settlement, refund, and usage-quantity code in the Go backend. The backend engineering policy defines the full mandatory-read trigger set; any task that matches MUST read this whole file before planning, coding, or reviewing. Tasks that match none of those triggers may skip it. Rules use the same MUST / Do NOT wording as `AGENTS.md` and carry the same weight.
+Read this contract in full before planning, coding or reviewing billing-impacting changes: quantities, usage extraction, pricing, passthrough/multipart multipliers, quota, reservation, settlement and refunds.
 
 **Billing expression system:** When working on tiered/dynamic billing (expression-based pricing), MUST read [expression semantics](../../../tauapi-be/docs/ai/billing-expression.md) first. It documents the design philosophy, expression language, full architecture, token normalization rules, quota conversion, and expression versioning. All billing expression changes must follow that document.
 
@@ -39,4 +39,4 @@ BIL-FIXTURE: `tauapi-be/pkg/billingexpr/testdata/frontend_simulation.json` is ca
 The frontend keeps a byte-identical local build snapshot in `testdata/contracts`.
 Use `docsctl.py sync-fixture --write`; check equality and run both semantic consumers.
 `UPSTREAM.json` records import provenance; local hash/revision is separate registry data.
-Equality alone does not prove semantics. No evaluator or runtime billing change is made here.
+Run both evaluators against the shared fixture to verify semantics.

@@ -1,8 +1,8 @@
 # TauAPI operations policy
 
-The root policy applies. Read [the operations index](docs/ai/INDEX.md).
+The root policy applies. Read [operations engineering](docs/ai/engineering.md).
 Use repository-relative paths for source and explicit target paths for runtime state.
-Historical STATUS/HANDOFF and deployment JSON describe their recorded observations.
+`DEPLOYMENT_STATE.json` records deployment observations with their collection time.
 
 ## Authority and boundaries
 
@@ -30,5 +30,6 @@ Builders export the supplied revision's single subtree. Never certify a candidat
 by building hardcoded main. Raw vendor imports stay faithful; integration of imported
 AGENTS, CLAUDE, .agents, VERSION and licenses needs deliberate governance review.
 Record environment, timestamp, release and command for every deployment observation.
-Human handoffs are Chinese; technical procedures and logs are English.
+Summarize user effects in root README, docs/map.md or docs/CHANGELOG.md.
+Technical procedures and logs use English.
 Run applicable script syntax checks, docs checks and isolated QA checks within scope.

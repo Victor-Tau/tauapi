@@ -22,6 +22,3 @@ Do not maintain another exhaustive route table.
 - `tauapi-be/router/main.go`
 - `tauapi-be/router/plugin-router.go`
 - `tauapi-fe/src/routes`
-
-Review consumers and contract dispositions together; execute selected checks on the actual candidate.
-Verification basis: source inspection at e2af94c1affa0d760cd6dd5fb4c57117949e9e6f; no live deployment check.

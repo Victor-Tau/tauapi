@@ -7,4 +7,3 @@ Expected result includes nonempty tables, root presence and application-readable
 If a stage fails, retain logs without credentials, keep original backup, inspect isolated state,
 and retry only after fixing the prerequisite. A local backup is not an off-site copy.
 Evidence must identify environment, backup revision/time, engine versions, command, outcome and gaps.
-No backup/restore command was executed by this documentation rollout.

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Collect a redacted, committable evidence summary (no secrets, no env dumps,
 # no cookies/tokens). Raw outputs stay under evidence/raw (git-ignored).
-# Usage: sudo collect-evidence.sh  -> writes evidence/SUMMARY.md and DEPLOYMENT_STATE.json
+# Usage: sudo collect-evidence.sh  -> writes evidence/SUMMARY-<environment>.md and DEPLOYMENT_STATE.json
 source "$(dirname "$0")/lib.sh"
 require_root
 EV=$OPS_ROOT/evidence
@@ -57,31 +57,31 @@ EOF
 jq . "$OPS_ROOT/DEPLOYMENT_STATE.json" >/dev/null || die "DEPLOYMENT_STATE.json invalid" 4
 
 {
-  echo "# 证据摘要（$TAUAPI_ENV） — $(date -u +%FT%TZ)"
+  echo "# Deployment evidence ($TAUAPI_ENV) — $(date -u +%FT%TZ)"
   echo
-  echo "## 运行中的服务"
+  echo "## Running services"
   echo '```'
   for s in backend-master backend-slave postgres redis; do printf '%-15s %s\n' "$s" "$(svc_line $s)"; done
   echo '```'
-  echo "## 监听端口（公网暴露检查）"
+  echo "## Listening ports"
   echo '```'
   ss -Htln | awk '{print $4}' | sort -u
   echo '```'
-  echo "## 版本"
+  echo "## Versions"
   echo "- frontend release: $FE_REL ($(jq -r .frontend_commit "$FE_MAN" | cut -c1-12))"
   echo "- backend: $BACKEND_MASTER_IMAGE / $BACKEND_SLAVE_IMAGE"
   echo "- PostgreSQL $PG_VER, Redis $RD_VER, Nginx $NGX_VER"
   echo "- certificate notAfter: $CERT_END"
-  echo "## 发布日志"
+  echo "## Release log"
   echo '```'
   cat "$STATE_DIR/frontend-releases.log" "$STATE_DIR/backend-releases.log" 2>/dev/null || true
   echo '```'
-  echo "## 备份 / 恢复检查"
+  echo "## Backup and restore checks"
   echo '```'
   ls -1t "$BACKUP_ROOT/db" 2>/dev/null | grep -E '\.dump$' | head -5 || true
   cat "$STATE_DIR/restore-checks.log" 2>/dev/null || true
   echo '```'
-  echo "## 定时器"
+  echo "## Timers"
   echo '```'
   systemctl list-timers --no-pager certbot.timer tauapi-backup.timer | head -4 || true
   echo '```'

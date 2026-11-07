@@ -7,7 +7,7 @@
         "tauapi-fe/**"
       ],
       "policy": "fe-policy",
-      "index": "fe-index",
+      "index": "root-index",
       "fallback_domain": "fe-general"
     },
     {
@@ -16,7 +16,7 @@
         "tauapi-be/**"
       ],
       "policy": "be-policy",
-      "index": "be-index",
+      "index": "root-index",
       "fallback_domain": "be-general"
     },
     {
@@ -25,7 +25,7 @@
         "tauapi-ops/**"
       ],
       "policy": "ops-policy",
-      "index": "ops-index",
+      "index": "root-index",
       "fallback_domain": "ops-general"
     },
     {
@@ -37,9 +37,7 @@
         "AGENTS.md",
         "Makefile",
         "README.md",
-        "map.md",
-        ".gitignore",
-        "文档管理体系构建指导.md"
+        ".gitignore"
       ],
       "policy": "root-policy",
       "index": "root-index",
@@ -59,19 +57,10 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "first_party"
     },
     {
-      "id": "doc-b33563055168",
+      "id": "readme",
       "path": "README.md",
       "audience": "human",
       "type": "human-guide",
@@ -82,430 +71,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "doc-2d788a624518",
-      "path": "docs/_bootstrap/tauapi-docs-design/ACCEPTANCE.md",
-      "audience": "ai",
-      "type": "index",
-      "status": "historical",
-      "owner_area": "governance",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "bootstrap_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "doc-29429f2cb1c1",
-      "path": "docs/_bootstrap/tauapi-docs-design/IMPLEMENTATION.md",
-      "audience": "ai",
-      "type": "index",
-      "status": "historical",
-      "owner_area": "governance",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "bootstrap_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "doc-23ec42b89160",
-      "path": "docs/_bootstrap/tauapi-docs-design/README.zh-CN.md",
-      "audience": "ai",
-      "type": "index",
-      "status": "historical",
-      "owner_area": "governance",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "bootstrap_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "doc-9f98f4e61666",
-      "path": "docs/_bootstrap/tauapi-docs-design/audit/CLAUDE_CODE_MECHANICS.md",
-      "audience": "ai",
-      "type": "index",
-      "status": "historical",
-      "owner_area": "governance",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "bootstrap_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "doc-f7e06f396299",
-      "path": "docs/_bootstrap/tauapi-docs-design/audit/REPOSITORY_AUDIT.md",
-      "audience": "ai",
-      "type": "index",
-      "status": "historical",
-      "owner_area": "governance",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "bootstrap_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "doc-3a5493e3b578",
-      "path": "docs/_bootstrap/tauapi-docs-design/audit/TASK_ROUTING.md",
-      "audience": "ai",
-      "type": "index",
-      "status": "historical",
-      "owner_area": "governance",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "bootstrap_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "doc-2f9ecf3e0fa8",
-      "path": "docs/_bootstrap/tauapi-docs-design/examples/billing-rule.md",
-      "audience": "ai",
-      "type": "index",
-      "status": "historical",
-      "owner_area": "governance",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "bootstrap_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "doc-2a69e01e12ab",
-      "path": "docs/_bootstrap/tauapi-docs-design/examples/component-AGENTS.md",
-      "audience": "ai",
-      "type": "policy",
-      "status": "historical",
-      "owner_area": "governance",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "bootstrap_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "doc-da61f54d6ade",
-      "path": "docs/_bootstrap/tauapi-docs-design/examples/docs-INDEX.md",
-      "audience": "ai",
-      "type": "index",
-      "status": "historical",
-      "owner_area": "governance",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "bootstrap_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "doc-92f5ef68ee37",
-      "path": "docs/_bootstrap/tauapi-docs-design/examples/root-AGENTS.md",
-      "audience": "ai",
-      "type": "policy",
-      "status": "historical",
-      "owner_area": "governance",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "bootstrap_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "doc-e25551918677",
-      "path": "docs/_bootstrap/tauapi-docs-design/examples/root-CLAUDE.md",
-      "audience": "ai",
-      "type": "index",
-      "status": "historical",
-      "owner_area": "governance",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "bootstrap_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "doc-fa4069cefe5b",
-      "path": "docs/_bootstrap/tauapi-docs-design/templates/change.md",
-      "audience": "ai",
-      "type": "index",
-      "status": "historical",
-      "owner_area": "governance",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "bootstrap_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "doc-0010dd5b2423",
-      "path": "docs/_bootstrap/tauapi-docs-design/templates/contract.md",
-      "audience": "ai",
-      "type": "index",
-      "status": "historical",
-      "owner_area": "governance",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "bootstrap_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "doc-ea6f053d2aa3",
-      "path": "docs/_bootstrap/tauapi-docs-design/templates/decision.md",
-      "audience": "ai",
-      "type": "index",
-      "status": "historical",
-      "owner_area": "governance",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "bootstrap_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "doc-21b64e1eb931",
-      "path": "docs/_bootstrap/tauapi-docs-design/templates/human-release-note.zh-CN.md",
-      "audience": "human",
-      "type": "human-guide",
-      "status": "historical",
-      "owner_area": "governance",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "bootstrap_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "doc-0732570983c1",
-      "path": "docs/_bootstrap/tauapi-docs-design/templates/module.md",
-      "audience": "ai",
-      "type": "index",
-      "status": "historical",
-      "owner_area": "governance",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "bootstrap_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "doc-f44c736b426b",
-      "path": "docs/_bootstrap/tauapi-docs-design/templates/runbook.md",
-      "audience": "ai",
-      "type": "index",
-      "status": "historical",
-      "owner_area": "governance",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "bootstrap_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "doc-3142b4980c03",
-      "path": "docs/_bootstrap/文档管理体系构建指导.md",
-      "audience": "ai",
-      "type": "index",
-      "status": "historical",
-      "owner_area": "governance",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "bootstrap_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "first_party"
     },
     {
       "id": "root-index",
@@ -519,19 +85,10 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "first_party"
     },
     {
-      "id": "doc-344146057630",
+      "id": "known-gaps",
       "path": "docs/ai/KNOWN_GAPS.md",
       "audience": "ai",
       "type": "index",
@@ -542,85 +99,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "doc-98fe20a9e7a5",
-      "path": "docs/ai/REPOSITORY_MAP.md",
-      "audience": "ai",
-      "type": "index",
-      "status": "active",
-      "owner_area": "governance",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "task-index",
-      "path": "docs/ai/TASK_INDEX.md",
-      "audience": "ai",
-      "type": "index",
-      "status": "active",
-      "owner_area": "governance",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "doc-ce2c9c245de2",
-      "path": "docs/ai/changes/active/docs-system-bootstrap.md",
-      "audience": "ai",
-      "type": "change",
-      "status": "historical",
-      "owner_area": "governance",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "first_party"
     },
     {
       "id": "authentication",
@@ -648,16 +127,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "first_party"
     },
     {
       "id": "backend-release-and-schema",
@@ -680,16 +150,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "first_party"
     },
     {
       "id": "billing-and-quota",
@@ -731,16 +192,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "first_party"
     },
     {
       "id": "frontend-release",
@@ -761,16 +213,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "first_party"
     },
     {
       "id": "routing-and-origin",
@@ -803,16 +246,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "first_party"
     },
     {
       "id": "task-plugins",
@@ -837,111 +271,10 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "first_party"
     },
     {
-      "id": "doc-b70db4e60460",
-      "path": "docs/ai/decisions/001-release-boundaries.md",
-      "audience": "ai",
-      "type": "decision",
-      "status": "active",
-      "owner_area": "governance",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "doc-b927fdd2aae9",
-      "path": "docs/ai/decisions/002-runtime-isolation.md",
-      "audience": "ai",
-      "type": "decision",
-      "status": "active",
-      "owner_area": "governance",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "doc-f47a98da38f0",
-      "path": "docs/ai/decisions/003-release-channel.md",
-      "audience": "ai",
-      "type": "decision",
-      "status": "active",
-      "owner_area": "governance",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "doc-3bb8f5913a71",
-      "path": "docs/ai/decisions/004-document-authority.md",
-      "audience": "ai",
-      "type": "decision",
-      "status": "active",
-      "owner_area": "governance",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "doc-1f3d94b7dcc1",
+      "id": "change-template",
       "path": "docs/ai/templates/change.md",
       "audience": "ai",
       "type": "index",
@@ -952,157 +285,10 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "first_party"
     },
     {
-      "id": "doc-ac2376e25f37",
-      "path": "docs/ai/templates/contract.md",
-      "audience": "ai",
-      "type": "index",
-      "status": "active",
-      "owner_area": "governance",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "doc-10bdbb145619",
-      "path": "docs/ai/templates/decision.md",
-      "audience": "ai",
-      "type": "index",
-      "status": "active",
-      "owner_area": "governance",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "doc-de6dbeed8a89",
-      "path": "docs/ai/templates/human-release-note.zh-CN.md",
-      "audience": "human",
-      "type": "human-guide",
-      "status": "active",
-      "owner_area": "governance",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "doc-12d4f5a7ee5b",
-      "path": "docs/ai/templates/module.md",
-      "audience": "ai",
-      "type": "index",
-      "status": "active",
-      "owner_area": "governance",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "doc-763dc28a4dce",
-      "path": "docs/ai/templates/runbook.md",
-      "audience": "ai",
-      "type": "index",
-      "status": "active",
-      "owner_area": "governance",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "doc-a94cba8d990a",
-      "path": "docs/ai/workflows/bugfix.md",
-      "audience": "ai",
-      "type": "workflow",
-      "status": "active",
-      "owner_area": "governance",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "doc-4ec8704ca332",
+      "id": "docs-maintenance",
       "path": "docs/ai/workflows/docs-maintenance.md",
       "audience": "ai",
       "type": "workflow",
@@ -1113,200 +299,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "doc-6044b4f00229",
-      "path": "docs/ai/workflows/feature.md",
-      "audience": "ai",
-      "type": "workflow",
-      "status": "active",
-      "owner_area": "governance",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "doc-02c512548be7",
-      "path": "docs/ai/workflows/recovery.md",
-      "audience": "ai",
-      "type": "workflow",
-      "status": "active",
-      "owner_area": "governance",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "doc-535950975c5e",
-      "path": "docs/ai/workflows/tooling.md",
-      "audience": "ai",
-      "type": "workflow",
-      "status": "active",
-      "owner_area": "governance",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "doc-19cf6222c7a5",
-      "path": "docs/ai/workflows/upstream-sync.md",
-      "audience": "ai",
-      "type": "workflow",
-      "status": "active",
-      "owner_area": "governance",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "doc-5355bcfe48a8",
-      "path": "docs/zh-CN/README.md",
-      "audience": "human",
-      "type": "human-guide",
-      "status": "active",
-      "owner_area": "governance",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "doc-8310fd231678",
-      "path": "docs/zh-CN/authentication.md",
-      "audience": "human",
-      "type": "human-guide",
-      "status": "active",
-      "owner_area": "governance",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "doc-744a125ad4f0",
-      "path": "docs/zh-CN/documentation-system-handoff.md",
-      "audience": "human",
-      "type": "human-guide",
-      "status": "active",
-      "owner_area": "governance",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "doc-c94b8a5b8fe8",
-      "path": "map.md",
-      "audience": "human",
-      "type": "human-guide",
-      "status": "active",
-      "owner_area": "governance",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "first_party"
     },
     {
       "id": "doc-f10cc585b30a",
@@ -1320,16 +313,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "retained_reference"
     },
     {
       "id": "doc-3c999094ddff",
@@ -1343,16 +327,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "retained_reference"
     },
     {
       "id": "doc-84298c5d1eba",
@@ -1366,16 +341,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "retained_reference"
     },
     {
       "id": "doc-a60c9a0c626b",
@@ -1389,16 +355,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "retained_reference"
     },
     {
       "id": "doc-e8c912244885",
@@ -1412,16 +369,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "retained_reference"
     },
     {
       "id": "doc-527d4a871e13",
@@ -1435,16 +383,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "retained_reference"
     },
     {
       "id": "doc-6078e9c728cd",
@@ -1458,16 +397,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "retained_reference"
     },
     {
       "id": "doc-c05f6433732d",
@@ -1481,16 +411,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "retained_reference"
     },
     {
       "id": "doc-20a753eaab38",
@@ -1504,16 +425,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "retained_reference"
     },
     {
       "id": "doc-d1a9b4b14234",
@@ -1527,16 +439,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "retained_reference"
     },
     {
       "id": "doc-53a16bbea604",
@@ -1550,16 +453,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "retained_reference"
     },
     {
       "id": "doc-5e20b26695f3",
@@ -1573,16 +467,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "retained_reference"
     },
     {
       "id": "doc-255150705820",
@@ -1596,16 +481,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "retained_reference"
     },
     {
       "id": "doc-530f08c02da2",
@@ -1619,16 +495,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "retained_reference"
     },
     {
       "id": "doc-6af174382ebe",
@@ -1642,16 +509,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "retained_reference"
     },
     {
       "id": "doc-c7f8fce1e87a",
@@ -1665,16 +523,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "retained_reference"
     },
     {
       "id": "doc-6a95573717d0",
@@ -1688,16 +537,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "retained_reference"
     },
     {
       "id": "doc-8c9397504a83",
@@ -1711,16 +551,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "retained_reference"
     },
     {
       "id": "doc-0ee13a1f5c1d",
@@ -1734,16 +565,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "retained_reference"
     },
     {
       "id": "doc-65bad391ee88",
@@ -1757,16 +579,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "retained_reference"
     },
     {
       "id": "be-policy",
@@ -1780,16 +593,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "first_party"
     },
     {
       "id": "doc-372302bec648",
@@ -1803,16 +607,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "retained_reference"
     },
     {
       "id": "doc-aea428b2aa53",
@@ -1826,16 +621,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "retained_reference"
     },
     {
       "id": "doc-f6331ad5eeb8",
@@ -1849,16 +635,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "retained_reference"
     },
     {
       "id": "doc-894bac507491",
@@ -1872,16 +649,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "retained_reference"
     },
     {
       "id": "doc-7e3e83291cb5",
@@ -1895,16 +663,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "retained_reference"
     },
     {
       "id": "doc-a34c273eb99d",
@@ -1918,39 +677,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "doc-ba1860177c5d",
-      "path": "tauapi-be/REPOSITORY_SPLIT.md",
-      "audience": "ai",
-      "type": "index",
-      "status": "historical",
-      "owner_area": "be",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "retained_reference"
     },
     {
       "id": "doc-5a600d1c8ef4",
@@ -1964,16 +691,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "retained_reference"
     },
     {
       "id": "doc-3b5b0908b9ad",
@@ -1987,42 +705,10 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "retained_reference"
     },
     {
-      "id": "be-index",
-      "path": "tauapi-be/docs/ai/INDEX.md",
-      "audience": "ai",
-      "type": "index",
-      "status": "active",
-      "owner_area": "be",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "doc-475a14362125",
+      "id": "billing-expression",
       "path": "tauapi-be/docs/ai/billing-expression.md",
       "audience": "ai",
       "type": "index",
@@ -2033,315 +719,48 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "first_party"
     },
     {
-      "id": "doc-2c0b5ea0f523",
+      "id": "be-engineering",
       "path": "tauapi-be/docs/ai/engineering.md",
       "audience": "ai",
       "type": "policy",
       "status": "active",
       "owner_area": "be",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "be-auth",
-      "path": "tauapi-be/docs/ai/modules/be-auth.md",
-      "audience": "ai",
-      "type": "module",
-      "status": "active",
-      "owner_area": "be",
       "source_paths": [
-        "tauapi-be/middleware/auth.go",
-        "tauapi-be/service/auth_session.go",
-        "tauapi-be/service/auth_token.go",
-        "tauapi-be/model/user_session.go"
-      ],
-      "related_docs": [
-        "authentication"
-      ],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "be-billing",
-      "path": "tauapi-be/docs/ai/modules/be-billing.md",
-      "audience": "ai",
-      "type": "module",
-      "status": "active",
-      "owner_area": "be",
-      "source_paths": [
-        "tauapi-be/relay/request_billing.go",
+        "tauapi-be/common/database.go",
         "tauapi-be/common/quota_math.go",
-        "tauapi-be/service/billing_session.go",
-        "tauapi-be/service/task_billing.go",
-        "tauapi-be/pkg/billingexpr"
-      ],
-      "related_docs": [
-        "billing-and-quota"
-      ],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "be-libraries",
-      "path": "tauapi-be/docs/ai/modules/be-libraries.md",
-      "audience": "ai",
-      "type": "module",
-      "status": "active",
-      "owner_area": "be",
-      "source_paths": [
-        "tauapi-be/relaykit/go.mod",
-        "tauapi-be/tokenkit/go.mod",
-        "tauapi-be/relaykit/relayconvert",
-        "tauapi-be/tokenkit"
-      ],
-      "related_docs": [
-        "billing-and-quota"
-      ],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "be-persistence",
-      "path": "tauapi-be/docs/ai/modules/be-persistence.md",
-      "audience": "ai",
-      "type": "module",
-      "status": "active",
-      "owner_area": "be",
-      "source_paths": [
-        "tauapi-be/model/main.go",
+        "tauapi-be/controller/relay.go",
+        "tauapi-be/middleware/auth.go",
+        "tauapi-be/middleware/distributor.go",
         "tauapi-be/model/locking.go",
-        "tauapi-be/common/database.go"
-      ],
-      "related_docs": [
-        "backend-release-and-schema",
-        "authentication",
-        "billing-and-quota"
-      ],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "be-plugins",
-      "path": "tauapi-be/docs/ai/modules/be-plugins.md",
-      "audience": "ai",
-      "type": "module",
-      "status": "active",
-      "owner_area": "be",
-      "source_paths": [
+        "tauapi-be/model/main.go",
+        "tauapi-be/model/user_session.go",
+        "tauapi-be/pkg/billingexpr",
         "tauapi-be/pkg/jsplugin",
         "tauapi-be/plugins/tasks",
-        "tauapi-be/service/task_polling.go"
-      ],
-      "related_docs": [
-        "task-plugins",
-        "billing-and-quota",
-        "routing-and-origin"
-      ],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "be-relay",
-      "path": "tauapi-be/docs/ai/modules/be-relay.md",
-      "audience": "ai",
-      "type": "module",
-      "status": "active",
-      "owner_area": "be",
-      "source_paths": [
+        "tauapi-be/relay",
+        "tauapi-be/relay/request_billing.go",
+        "tauapi-be/relaykit/go.mod",
+        "tauapi-be/relaykit/relayconvert",
         "tauapi-be/router/relay-router.go",
-        "tauapi-be/middleware/distributor.go",
-        "tauapi-be/controller/relay.go",
-        "tauapi-be/relay"
+        "tauapi-be/service/auth_session.go",
+        "tauapi-be/service/auth_token.go",
+        "tauapi-be/service/billing_session.go",
+        "tauapi-be/service/task_billing.go",
+        "tauapi-be/service/task_polling.go",
+        "tauapi-be/tokenkit",
+        "tauapi-be/tokenkit/go.mod",
+        "tauapi-be/common/proxy_url.go",
+        "tauapi-be/service/http_client.go",
+        "tauapi-be/relaykit/dto/channel_settings.go"
       ],
-      "related_docs": [
-        "routing-and-origin",
-        "billing-and-quota"
-      ],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "doc-51ebadf131e3",
-      "path": "tauapi-be/docs/authentication.md",
-      "audience": "human",
-      "type": "human-guide",
-      "status": "historical",
-      "owner_area": "be",
-      "source_paths": [],
       "related_docs": [],
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "doc-23a2a3346a33",
-      "path": "tauapi-be/docs/channel/other_setting.md",
-      "audience": "ai",
-      "type": "index",
-      "status": "historical",
-      "owner_area": "be",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "doc-d45f2ca15d35",
-      "path": "tauapi-be/docs/installation/BT.md",
-      "audience": "ai",
-      "type": "index",
-      "status": "historical",
-      "owner_area": "be",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "doc-0196c5e74be6",
-      "path": "tauapi-be/docs/ionet-client.md",
-      "audience": "ai",
-      "type": "index",
-      "status": "historical",
-      "owner_area": "be",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "first_party"
     },
     {
       "id": "doc-e6cf683ba482",
@@ -2355,19 +774,10 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "retained_reference"
     },
     {
-      "id": "doc-3ad8ce3244c3",
+      "id": "plugin-api-v1",
       "path": "tauapi-be/docs/plugin-api/v1.md",
       "audience": "ai",
       "type": "contract",
@@ -2378,16 +788,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "first_party"
     },
     {
       "id": "doc-819083949b1a",
@@ -2401,16 +802,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "retained_reference"
     },
     {
       "id": "doc-2ab44ece4d69",
@@ -2424,16 +816,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "retained_reference"
     },
     {
       "id": "doc-6e82ca9ac564",
@@ -2447,39 +830,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "doc-5fd94474203d",
-      "path": "tauapi-be/pkg/billingexpr/expr.md",
-      "audience": "ai",
-      "type": "index",
-      "status": "historical",
-      "owner_area": "be",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "retained_reference"
     },
     {
       "id": "doc-8060a4b56102",
@@ -2493,16 +844,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "retained_reference"
     },
     {
       "id": "doc-f594ba929fac",
@@ -2516,16 +858,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "retained_reference"
     },
     {
       "id": "doc-93d38f380cf4",
@@ -2539,16 +872,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "retained_reference"
     },
     {
       "id": "doc-03f8c7550b06",
@@ -2562,16 +886,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "retained_reference"
     },
     {
       "id": "doc-09e34156c213",
@@ -2585,16 +900,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "retained_reference"
     },
     {
       "id": "doc-dc22ed741604",
@@ -2608,16 +914,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "retained_reference"
     },
     {
       "id": "doc-a44d96abad15",
@@ -2631,16 +928,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "retained_reference"
     },
     {
       "id": "doc-2d136767c2ed",
@@ -2654,16 +942,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "retained_reference"
     },
     {
       "id": "doc-d65658ee9c91",
@@ -2677,16 +956,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "retained_reference"
     },
     {
       "id": "doc-bf18ad51f5fd",
@@ -2700,16 +970,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "retained_reference"
     },
     {
       "id": "doc-b8a77723e711",
@@ -2723,16 +984,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "retained_reference"
     },
     {
       "id": "doc-73095c94adeb",
@@ -2746,16 +998,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "retained_reference"
     },
     {
       "id": "doc-0bdeb3211192",
@@ -2769,16 +1012,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "retained_reference"
     },
     {
       "id": "doc-a73d0724ef9e",
@@ -2792,16 +1026,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "retained_reference"
     },
     {
       "id": "doc-7154e3100f77",
@@ -2815,16 +1040,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "retained_reference"
     },
     {
       "id": "doc-fb5dbca443bb",
@@ -2838,16 +1054,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "retained_reference"
     },
     {
       "id": "doc-e9c57e9b317c",
@@ -2861,16 +1068,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "retained_reference"
     },
     {
       "id": "doc-21b680f6b2c9",
@@ -2884,16 +1082,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "retained_reference"
     },
     {
       "id": "fe-policy",
@@ -2907,16 +1096,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "first_party"
     },
     {
       "id": "doc-1b1646b1e5ca",
@@ -2930,16 +1110,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "retained_reference"
     },
     {
       "id": "doc-cbcce6d4cc73",
@@ -2953,213 +1124,41 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "retained_reference"
     },
     {
-      "id": "fe-index",
-      "path": "tauapi-fe/docs/ai/INDEX.md",
-      "audience": "ai",
-      "type": "index",
-      "status": "active",
-      "owner_area": "fe",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "doc-197bdd53daf5",
+      "id": "fe-engineering",
       "path": "tauapi-fe/docs/ai/engineering.md",
       "audience": "ai",
       "type": "policy",
       "status": "active",
       "owner_area": "fe",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "fe-auth",
-      "path": "tauapi-fe/docs/ai/modules/fe-auth.md",
-      "audience": "ai",
-      "type": "module",
-      "status": "active",
-      "owner_area": "fe",
-      "source_paths": [
-        "tauapi-fe/src/lib/auth-session.ts",
-        "tauapi-fe/src/lib/auth-session-sync.ts",
-        "tauapi-fe/src/lib/http-client.ts",
-        "tauapi-fe/src/stores"
-      ],
-      "related_docs": [
-        "authentication"
-      ],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "fe-billing",
-      "path": "tauapi-fe/docs/ai/modules/fe-billing.md",
-      "audience": "ai",
-      "type": "module",
-      "status": "active",
-      "owner_area": "fe",
-      "source_paths": [
-        "tauapi-fe/src/features/pricing",
-        "tauapi-fe/src/features/model-pricing",
-        "tauapi-fe/src/features/usage-logs",
-        "tauapi-fe/testdata/contracts/frontend_simulation.json"
-      ],
-      "related_docs": [
-        "billing-and-quota",
-        "task-plugins"
-      ],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "fe-data",
-      "path": "tauapi-fe/docs/ai/modules/fe-data.md",
-      "audience": "ai",
-      "type": "module",
-      "status": "active",
-      "owner_area": "fe",
-      "source_paths": [
-        "tauapi-fe/src/lib/http-client.ts",
-        "tauapi-fe/src/lib/query-client.ts",
-        "tauapi-fe/src/lib/handle-server-error.ts"
-      ],
-      "related_docs": [
-        "authentication",
-        "routing-and-origin"
-      ],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "fe-shell",
-      "path": "tauapi-fe/docs/ai/modules/fe-shell.md",
-      "audience": "ai",
-      "type": "module",
-      "status": "active",
-      "owner_area": "fe",
-      "source_paths": [
-        "tauapi-fe/src/routes",
-        "tauapi-fe/src/routeTree.gen.ts",
-        "tauapi-fe/src/lib/legacy-route.ts"
-      ],
-      "related_docs": [
-        "routing-and-origin",
-        "frontend-release"
-      ],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "fe-ui",
-      "path": "tauapi-fe/docs/ai/modules/fe-ui.md",
-      "audience": "ai",
-      "type": "module",
-      "status": "active",
-      "owner_area": "fe",
       "source_paths": [
         "tauapi-fe/src/components",
+        "tauapi-fe/src/features/model-pricing",
+        "tauapi-fe/src/features/pricing",
+        "tauapi-fe/src/features/usage-logs",
+        "tauapi-fe/src/i18n",
+        "tauapi-fe/src/lib/auth-session-sync.ts",
+        "tauapi-fe/src/lib/auth-session.ts",
+        "tauapi-fe/src/lib/handle-server-error.ts",
+        "tauapi-fe/src/lib/http-client.ts",
+        "tauapi-fe/src/lib/legacy-route.ts",
+        "tauapi-fe/src/lib/query-client.ts",
+        "tauapi-fe/src/routeTree.gen.ts",
+        "tauapi-fe/src/routes",
+        "tauapi-fe/src/stores",
         "tauapi-fe/src/styles",
-        "tauapi-fe/src/i18n"
+        "tauapi-fe/testdata/contracts/frontend_simulation.json"
       ],
       "related_docs": [],
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "first_party"
     },
     {
-      "id": "doc-e3a56710a6dc",
+      "id": "data-table",
       "path": "tauapi-fe/src/components/data-table/README.md",
       "audience": "ai",
       "type": "module",
@@ -3170,16 +1169,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "first_party"
     },
     {
       "id": "doc-7097c1049228",
@@ -3193,16 +1183,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "retained_reference"
     },
     {
       "id": "ops-policy",
@@ -3216,325 +1197,10 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "first_party"
     },
     {
-      "id": "doc-2da49ca266d5",
-      "path": "tauapi-ops/DECISIONS.md",
-      "audience": "ai",
-      "type": "index",
-      "status": "historical",
-      "owner_area": "ops",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "doc-d1dd84cff284",
-      "path": "tauapi-ops/HANDOFF.md",
-      "audience": "human",
-      "type": "human-guide",
-      "status": "historical",
-      "owner_area": "ops",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "doc-00ee2a871abc",
-      "path": "tauapi-ops/PLAN.md",
-      "audience": "ai",
-      "type": "index",
-      "status": "historical",
-      "owner_area": "ops",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "doc-6465f43a1ab2",
-      "path": "tauapi-ops/STATUS.md",
-      "audience": "ai",
-      "type": "index",
-      "status": "historical",
-      "owner_area": "ops",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "doc-b966c853f3ba",
-      "path": "tauapi-ops/docs/DEPLOYMENT.md",
-      "audience": "ai",
-      "type": "index",
-      "status": "historical",
-      "owner_area": "ops",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "doc-640ec65dd908",
-      "path": "tauapi-ops/docs/MINIMALIST_FLAT.md",
-      "audience": "ai",
-      "type": "index",
-      "status": "historical",
-      "owner_area": "ops",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "ops-index",
-      "path": "tauapi-ops/docs/ai/INDEX.md",
-      "audience": "ai",
-      "type": "index",
-      "status": "active",
-      "owner_area": "ops",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "ops-backend",
-      "path": "tauapi-ops/docs/ai/modules/ops-backend.md",
-      "audience": "ai",
-      "type": "module",
-      "status": "active",
-      "owner_area": "ops",
-      "source_paths": [
-        "tauapi-ops/scripts/deploy-backend.sh",
-        "tauapi-ops/scripts/rollback-backend.sh",
-        "tauapi-ops/scripts/bootstrap-stack.sh"
-      ],
-      "related_docs": [
-        "backend-release-and-schema"
-      ],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "ops-backup",
-      "path": "tauapi-ops/docs/ai/modules/ops-backup.md",
-      "audience": "ai",
-      "type": "module",
-      "status": "active",
-      "owner_area": "ops",
-      "source_paths": [
-        "tauapi-ops/scripts/backup.sh",
-        "tauapi-ops/scripts/restore-check.sh"
-      ],
-      "related_docs": [
-        "backend-release-and-schema"
-      ],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "ops-frontend",
-      "path": "tauapi-ops/docs/ai/modules/ops-frontend.md",
-      "audience": "ai",
-      "type": "module",
-      "status": "active",
-      "owner_area": "ops",
-      "source_paths": [
-        "tauapi-ops/scripts/build-frontend.sh",
-        "tauapi-ops/scripts/deploy-frontend.sh",
-        "tauapi-ops/scripts/rollback-frontend.sh"
-      ],
-      "related_docs": [
-        "frontend-release"
-      ],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "ops-routing",
-      "path": "tauapi-ops/docs/ai/modules/ops-routing.md",
-      "audience": "ai",
-      "type": "module",
-      "status": "active",
-      "owner_area": "ops",
-      "source_paths": [
-        "tauapi-ops/ROUTE_CONTRACT.json",
-        "tauapi-ops/scripts/generate-nginx.py"
-      ],
-      "related_docs": [
-        "routing-and-origin"
-      ],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "ops-upstream",
-      "path": "tauapi-ops/docs/ai/modules/ops-upstream.md",
-      "audience": "ai",
-      "type": "module",
-      "status": "active",
-      "owner_area": "ops",
-      "source_paths": [
-        "tauapi-ops/scripts/import-upstream.py",
-        "tauapi-ops/scripts/sync-upstream.sh",
-        "tauapi-ops/UPSTREAM_LOCK.json"
-      ],
-      "related_docs": [
-        "routing-and-origin",
-        "billing-and-quota",
-        "task-plugins"
-      ],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "doc-7cea7143cbe0",
+      "id": "backup-and-recovery",
       "path": "tauapi-ops/docs/ai/runbooks/backup-and-recovery.md",
       "audience": "ai",
       "type": "runbook",
@@ -3545,19 +1211,10 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "first_party"
     },
     {
-      "id": "doc-9726f37876fe",
+      "id": "fresh-host",
       "path": "tauapi-ops/docs/ai/runbooks/fresh-host.md",
       "audience": "ai",
       "type": "runbook",
@@ -3568,85 +1225,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "doc-5466b98bc556",
-      "path": "tauapi-ops/evidence/ACCEPTANCE.md",
-      "audience": "ai",
-      "type": "index",
-      "status": "historical",
-      "owner_area": "ops",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "doc-73d382c75a36",
-      "path": "tauapi-ops/evidence/P0-preflight.md",
-      "audience": "ai",
-      "type": "index",
-      "status": "historical",
-      "owner_area": "ops",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "doc-3bfe2c06cd06",
-      "path": "tauapi-ops/evidence/RELEASE_DRILLS.md",
-      "audience": "ai",
-      "type": "index",
-      "status": "historical",
-      "owner_area": "ops",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "first_party"
     },
     {
       "id": "doc-b39330574414",
@@ -3660,62 +1239,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "doc-166248221dc1",
-      "path": "tauapi-ops/evidence/UI_REVIEW.md",
-      "audience": "ai",
-      "type": "index",
-      "status": "historical",
-      "owner_area": "ops",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
-    },
-    {
-      "id": "doc-baafde856ceb",
-      "path": "tauapi-ops/evidence/ui/CONTRAST.md",
-      "audience": "ai",
-      "type": "index",
-      "status": "historical",
-      "owner_area": "ops",
-      "source_paths": [],
-      "related_docs": [],
-      "checks": [
-        "docs-integrity"
-      ],
-      "provenance": "retained_reference",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "retained_original",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "retained_reference"
     },
     {
       "id": "billing-reminder",
@@ -3731,16 +1255,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "first_party"
     },
     {
       "id": "fe-billing-semantics",
@@ -3756,16 +1271,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "first_party"
     },
     {
       "id": "be-library-guide",
@@ -3782,16 +1288,7 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "first_party"
     },
     {
       "id": "fe-design",
@@ -3808,37 +1305,116 @@
       "checks": [
         "docs-integrity"
       ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "e2af94c1affa0d760cd6dd5fb4c57117949e9e6f",
-        "timestamp": "2026-11-06",
-        "method": "source_review",
-        "scope": "Navigation and source inspection; runtime behavior not certified",
-        "gaps": [
-          "No new production observation"
-        ]
-      }
+      "provenance": "first_party"
     },
     {
-      "id": "change-remove-github-actions",
-      "path": "docs/ai/changes/archive/2026-11-06-remove-github-actions.md",
+      "id": "shared-engineering",
+      "path": "docs/ai/engineering.md",
       "audience": "ai",
-      "type": "change",
-      "status": "historical",
+      "type": "workflow",
+      "status": "active",
       "owner_area": "governance",
       "source_paths": [],
       "related_docs": [],
       "checks": [
+        "docs-integrity",
+        "docs-tests"
+      ],
+      "provenance": "first_party"
+    },
+    {
+      "id": "ops-engineering",
+      "path": "tauapi-ops/docs/ai/engineering.md",
+      "audience": "ai",
+      "type": "workflow",
+      "status": "active",
+      "owner_area": "ops",
+      "source_paths": [
+        "tauapi-ops/ROUTE_CONTRACT.json",
+        "tauapi-ops/UPSTREAM_LOCK.json",
+        "tauapi-ops/scripts/backup.sh",
+        "tauapi-ops/scripts/bootstrap-stack.sh",
+        "tauapi-ops/scripts/build-frontend.sh",
+        "tauapi-ops/scripts/deploy-backend.sh",
+        "tauapi-ops/scripts/deploy-frontend.sh",
+        "tauapi-ops/scripts/generate-nginx.py",
+        "tauapi-ops/scripts/import-upstream.py",
+        "tauapi-ops/scripts/restore-check.sh",
+        "tauapi-ops/scripts/rollback-backend.sh",
+        "tauapi-ops/scripts/rollback-frontend.sh",
+        "tauapi-ops/scripts/sync-upstream.sh",
+        "tauapi-ops/scripts/collect-evidence.sh",
+        "tauapi-be/common/system_update.go",
+        "tauapi-fe/src/features/system-update/releases.ts"
+      ],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity",
+        "docs-tests"
+      ],
+      "provenance": "first_party"
+    },
+    {
+      "id": "system-map",
+      "path": "docs/map.md",
+      "audience": "human",
+      "type": "human-guide",
+      "status": "active",
+      "owner_area": "governance",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity",
+        "docs-tests"
+      ],
+      "provenance": "first_party"
+    },
+    {
+      "id": "changelog",
+      "path": "docs/CHANGELOG.md",
+      "audience": "human",
+      "type": "human-guide",
+      "status": "active",
+      "owner_area": "governance",
+      "source_paths": [],
+      "related_docs": [],
+      "checks": [
+        "docs-integrity",
+        "docs-tests"
+      ],
+      "provenance": "first_party"
+    },
+    {
+      "id": "upstream-auth-link",
+      "path": "tauapi-be/docs/authentication.md",
+      "audience": "ai",
+      "type": "human-guide",
+      "status": "active",
+      "owner_area": "be",
+      "source_paths": [],
+      "related_docs": [
+        "authentication"
+      ],
+      "checks": [
         "docs-integrity"
       ],
-      "provenance": "first_party",
-      "verification": {
-        "revision": "9e2bad24188883fcd90dbdedea57cbdbea4160d3",
-        "timestamp": "2026-11-06",
-        "method": "source_and_remote_api_review",
-        "scope": "Workflow removal and repository Actions configuration; no application behavior change",
-        "gaps": []
-      }
+      "provenance": "first_party"
+    },
+    {
+      "id": "upstream-split-link",
+      "path": "tauapi-be/REPOSITORY_SPLIT.md",
+      "audience": "ai",
+      "type": "index",
+      "status": "active",
+      "owner_area": "be",
+      "source_paths": [],
+      "related_docs": [
+        "system-map"
+      ],
+      "checks": [
+        "docs-integrity"
+      ],
+      "provenance": "first_party"
     }
   ],
   "domains": [
@@ -3854,7 +1430,7 @@
       ],
       "required_reads": [
         "be-policy",
-        "be-auth"
+        "be-engineering"
       ],
       "contracts": [
         "authentication"
@@ -3881,7 +1457,7 @@
       ],
       "required_reads": [
         "be-policy",
-        "be-relay"
+        "be-engineering"
       ],
       "contracts": [
         "routing-and-origin",
@@ -3914,7 +1490,7 @@
       ],
       "required_reads": [
         "be-policy",
-        "be-billing"
+        "be-engineering"
       ],
       "contracts": [
         "billing-and-quota"
@@ -3948,7 +1524,7 @@
       ],
       "required_reads": [
         "be-policy",
-        "be-plugins"
+        "be-engineering"
       ],
       "contracts": [
         "task-plugins",
@@ -3979,7 +1555,7 @@
       ],
       "required_reads": [
         "be-policy",
-        "be-persistence"
+        "be-engineering"
       ],
       "contracts": [
         "backend-release-and-schema",
@@ -4006,9 +1582,9 @@
         "tauapi-be/tokenkit/**"
       ],
       "required_reads": [
+        "be-library-guide",
         "be-policy",
-        "be-libraries",
-        "be-library-guide"
+        "be-engineering"
       ],
       "contracts": [
         "billing-and-quota"
@@ -4034,8 +1610,8 @@
         "tauapi-fe/rsbuild.config.ts"
       ],
       "required_reads": [
-        "fe-policy",
-        "fe-shell"
+        "fe-engineering",
+        "fe-policy"
       ],
       "contracts": [
         "routing-and-origin",
@@ -4066,8 +1642,8 @@
         "tauapi-fe/src/features/security/**"
       ],
       "required_reads": [
-        "fe-policy",
-        "fe-auth"
+        "fe-engineering",
+        "fe-policy"
       ],
       "contracts": [
         "authentication"
@@ -4092,8 +1668,8 @@
         "tauapi-fe/src/features/**"
       ],
       "required_reads": [
-        "fe-policy",
-        "fe-data"
+        "fe-engineering",
+        "fe-policy"
       ],
       "contracts": [
         "authentication",
@@ -4120,9 +1696,9 @@
         "tauapi-fe/src/i18n/**"
       ],
       "required_reads": [
-        "fe-policy",
-        "fe-ui",
-        "fe-design"
+        "fe-engineering",
+        "fe-design",
+        "fe-policy"
       ],
       "contracts": [],
       "checks": [
@@ -4150,9 +1726,9 @@
         "tauapi-fe/testdata/**"
       ],
       "required_reads": [
-        "fe-policy",
-        "fe-billing",
-        "fe-billing-semantics"
+        "fe-engineering",
+        "fe-billing-semantics",
+        "fe-policy"
       ],
       "contracts": [
         "billing-and-quota",
@@ -4179,8 +1755,8 @@
         "tauapi-ops/scripts/*nginx*"
       ],
       "required_reads": [
-        "ops-policy",
-        "ops-routing"
+        "ops-engineering",
+        "ops-policy"
       ],
       "contracts": [
         "routing-and-origin"
@@ -4201,8 +1777,8 @@
         "tauapi-ops/scripts/verify-independent-builds.sh"
       ],
       "required_reads": [
-        "ops-policy",
-        "ops-frontend"
+        "ops-engineering",
+        "ops-policy"
       ],
       "contracts": [
         "frontend-release"
@@ -4226,8 +1802,8 @@
         "tauapi-ops/scripts/verify-independent-builds.sh"
       ],
       "required_reads": [
-        "ops-policy",
-        "ops-backend"
+        "ops-engineering",
+        "ops-policy"
       ],
       "contracts": [
         "backend-release-and-schema"
@@ -4247,11 +1823,12 @@
       "path_patterns": [
         "tauapi-ops/scripts/*backup*",
         "tauapi-ops/scripts/*restore*",
-        "tauapi-ops/config/**"
+        "tauapi-ops/config/**",
+        "tauapi-ops/scripts/collect-evidence.sh"
       ],
       "required_reads": [
-        "ops-policy",
-        "ops-backup"
+        "ops-engineering",
+        "ops-policy"
       ],
       "contracts": [
         "backend-release-and-schema"
@@ -4275,8 +1852,8 @@
         "tauapi-be/UPSTREAM*"
       ],
       "required_reads": [
-        "ops-policy",
-        "ops-upstream"
+        "ops-engineering",
+        "ops-policy"
       ],
       "contracts": [
         "routing-and-origin",
@@ -4300,8 +1877,8 @@
         "tauapi-fe/**"
       ],
       "required_reads": [
-        "fe-policy",
-        "fe-index"
+        "fe-engineering",
+        "fe-policy"
       ],
       "contracts": [],
       "checks": [],
@@ -4315,7 +1892,7 @@
       ],
       "required_reads": [
         "be-policy",
-        "be-index"
+        "be-engineering"
       ],
       "contracts": [],
       "checks": [],
@@ -4328,8 +1905,8 @@
         "tauapi-ops/**"
       ],
       "required_reads": [
-        "ops-policy",
-        "ops-index"
+        "ops-engineering",
+        "ops-policy"
       ],
       "contracts": [],
       "checks": [],
@@ -4340,19 +1917,16 @@
       "component": "governance",
       "path_patterns": [
         "docs/**",
-        "docs/tools/**",
         ".claude/**",
         ".github/**",
         "AGENTS.md",
         "Makefile",
         "README.md",
-        "map.md",
-        ".gitignore",
-        "文档管理体系构建指导.md"
+        ".gitignore"
       ],
       "required_reads": [
-        "root-policy",
-        "root-index"
+        "root-index",
+        "root-policy"
       ],
       "contracts": [],
       "checks": [
@@ -4576,7 +2150,7 @@
   ],
   "generated": [
     {
-      "path": "docs/ai/TASK_INDEX.md",
+      "path": "docs/ai/INDEX.md",
       "generator": "docs/tools/docsctl.py"
     }
   ]

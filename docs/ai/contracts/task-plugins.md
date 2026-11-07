@@ -28,6 +28,3 @@ Compatibility applies to persisted tasks as well as new submissions.
 - `tauapi-be/pkg/jsplugin`
 - `tauapi-be/service/task_polling.go`
 - `tauapi-be/service/task_billing.go`
-
-Review consumers and contract dispositions together; execute selected checks on the actual candidate.
-Verification basis: source inspection at e2af94c1affa0d760cd6dd5fb4c57117949e9e6f; no live deployment check.

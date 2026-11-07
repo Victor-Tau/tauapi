@@ -108,37 +108,6 @@
               "bootstrap_reference"
             ]
           },
-          "verification": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-              "revision": {
-                "type": "string"
-              },
-              "timestamp": {
-                "type": "string"
-              },
-              "method": {
-                "type": "string"
-              },
-              "scope": {
-                "type": "string"
-              },
-              "gaps": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              }
-            },
-            "required": [
-              "revision",
-              "timestamp",
-              "method",
-              "scope",
-              "gaps"
-            ]
-          },
           "supersedes": {
             "type": "array",
             "items": {
@@ -168,8 +137,7 @@
           "source_paths",
           "related_docs",
           "checks",
-          "provenance",
-          "verification"
+          "provenance"
         ]
       }
     },

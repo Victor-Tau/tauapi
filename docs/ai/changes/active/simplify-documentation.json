@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "id": "simplify-documentation",
+  "base_revision": "cc57ebd0600e2c87c994b5ee4ea6d74ad2bb52c5",
+  "work_status": "completed",
+  "docs_impact": "affected",
+  "dispositions": {
+    "authentication": {
+      "status": "updated",
+      "reason": "Removed rollout commentary and duplicate navigation; retained behavior requirements. Component source maps and required reads now point to consolidated engineering documents.",
+      "evidence": [
+        "docs/ai/contracts/authentication.md",
+        "docs/ai/registry.yaml",
+        "docs/tools/tests/test_docsctl.py"
+      ]
+    },
+    "backend-release-and-schema": {
+      "status": "updated",
+      "reason": "Removed rollout commentary and duplicate navigation; retained behavior requirements. Component source maps and required reads now point to consolidated engineering documents.",
+      "evidence": [
+        "docs/ai/contracts/backend-release-and-schema.md",
+        "docs/ai/registry.yaml",
+        "docs/tools/tests/test_docsctl.py"
+      ]
+    },
+    "billing-and-quota": {
+      "status": "updated",
+      "reason": "Removed rollout commentary and duplicate navigation; retained behavior requirements. Component source maps and required reads now point to consolidated engineering documents.",
+      "evidence": [
+        "docs/ai/contracts/billing-and-quota.md",
+        "docs/ai/registry.yaml",
+        "docs/tools/tests/test_docsctl.py"
+      ]
+    },
+    "frontend-release": {
+      "status": "updated",
+      "reason": "Removed rollout commentary and duplicate navigation; retained behavior requirements. Component source maps and required reads now point to consolidated engineering documents.",
+      "evidence": [
+        "docs/ai/contracts/frontend-release.md",
+        "docs/ai/registry.yaml",
+        "docs/tools/tests/test_docsctl.py"
+      ]
+    },
+    "routing-and-origin": {
+      "status": "updated",
+      "reason": "Removed rollout commentary and duplicate navigation; retained behavior requirements. Component source maps and required reads now point to consolidated engineering documents.",
+      "evidence": [
+        "docs/ai/contracts/routing-and-origin.md",
+        "docs/ai/registry.yaml",
+        "docs/tools/tests/test_docsctl.py"
+      ]
+    },
+    "task-plugins": {
+      "status": "updated",
+      "reason": "Removed rollout commentary and duplicate navigation; retained behavior requirements. Component source maps and required reads now point to consolidated engineering documents.",
+      "evidence": [
+        "docs/ai/contracts/task-plugins.md",
+        "docs/ai/registry.yaml",
+        "docs/tools/tests/test_docsctl.py"
+      ]
+    }
+  },
+  "validation": {
+    "objective": "Remove redundant documentation, correct root/component ownership and keep only README, map and CHANGELOG as project Chinese guides.",
+    "acceptance": [
+      "Root Markdown is AGENTS.md and README.md.",
+      "Project Chinese guides are README.md, docs/map.md and docs/CHANGELOG.md.",
+      "Shared rules live at root; component engineering stays local; six cross-component contracts remain canonical.",
+      "No new broken links from retained upstream README files.",
+      "Documentation and selected candidate checks pass."
+    ],
+    "scope": [
+      "Root/component documentation",
+      "Documentation registry and checker",
+      "English evidence headings in collect-evidence.sh"
+    ],
+    "required_reads": [
+      "AGENTS.md",
+      "docs/ai/INDEX.md",
+      "docs/ai/workflows/docs-maintenance.md",
+      "Component AGENTS.md and engineering guidance",
+      "All six root contracts",
+      "Operations runbooks and build/bootstrap scripts"
+    ],
+    "findings_fixed": [
+      "Duplicate root/component indexes, module boilerplate, workflow templates and completed task records.",
+      "Frontend guidance incorrectly owned by backend; obsolete web/ command, locale codes, token-storage ambiguity and commit-language rule.",
+      "Fresh-host TLS activation before certificates; hardcoded main builds; setup routed to an unstarted slave.",
+      "Contract-file edits omitted consumers from routing; baseline fallback classification persisted after a source was classified.",
+      "Repeated per-document verification metadata and bootstrap inventories retained obsolete task state.",
+      "Removed obsolete combined-app BT deployment instructions and a detached io.net response sample; consolidated channel transport semantics into backend engineering."
+    ],
+    "consolidation": {
+      "registered_markdown_before": 156,
+      "registered_markdown_after": 86,
+      "active_first_party_before": 65,
+      "active_first_party_after": 32,
+      "upstream_reference_documents_byte_identical": 53,
+      "history_revision": "cc57ebd0600e2c87c994b5ee4ea6d74ad2bb52c5",
+      "compatibility_links": [
+        "tauapi-be/REPOSITORY_SPLIT.md",
+        "tauapi-be/docs/authentication.md"
+      ]
+    },
+    "checks": {
+      "make docs-check docs-test": "passed; 38 regression tests",
+      "docsctl.py fixture-check": "passed",
+      "bash -n tauapi-ops/scripts/collect-evidence.sh": "passed",
+      "bash -n tauapi-ops/scripts/verify-independent-builds.sh": "passed",
+      "make docs-impact-worktree DOCS_BASE=HEAD": "passed; docs-integrity, docs-tests, fixture-equality and shell-syntax selected",
+      "git diff --check": "passed",
+      "upstream and lint baseline comparison": "passed; 53 retained upstream references and relocated lint baseline retain identical bytes",
+      "application build/test and live deployment": "not_run; application source and deployment behavior unchanged; clean-host drill remains GAP-1"
+    },
+    "history": "Completed records, bootstrap copies and old operations reports are available through Git at the base revision. English deployment snapshot retains its original date and values.",
+    "outcome": "Documentation is consolidated; navigation, cross-component contract routing and layout rules are checked locally."
+  },
+  "next_action": "No remaining implementation work."
+}

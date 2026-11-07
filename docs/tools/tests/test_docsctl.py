@@ -30,13 +30,43 @@ class DocumentationChecks(unittest.TestCase):
                 p.parent.mkdir(parents=True,exist_ok=True)
                 if (ROOT/source).is_dir():p.mkdir(exist_ok=True)
                 else:p.write_bytes((ROOT/source).read_bytes())
-        for path in ['docs/ai/registry.yaml','docs/ai/registry.schema.json','docs/ai/schemas/change-v1.schema.json','docs/tools/docsctl.py','tauapi-ops/ROUTE_CONTRACT.json','tauapi-be/pkg/billingexpr/testdata/frontend_simulation.json','tauapi-fe/testdata/contracts/frontend_simulation.json','docs/ai/changes/active/docs-system-bootstrap.json','docs/ai/schemas/migration-v1.schema.json','docs/ai/schemas/check-result-v1.schema.json','docs/ai/migrations/obligation-map.yaml','docs/ai/contracts/billing-fixture.json']:
+        for path in ['docs/ai/registry.yaml','docs/ai/registry.schema.json','docs/ai/schemas/change-v1.schema.json','docs/tools/docsctl.py','tauapi-ops/ROUTE_CONTRACT.json','tauapi-be/pkg/billingexpr/testdata/frontend_simulation.json','tauapi-fe/testdata/contracts/frontend_simulation.json','docs/ai/schemas/check-result-v1.schema.json','docs/ai/contracts/billing-fixture.json']:
             p=self.root/path;p.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(ROOT/path,p)
-        p=self.root/'docs/ai/migrations/bootstrap-inventory.json';p.parent.mkdir(parents=True,exist_ok=True);p.write_text('{"schema_version":1,"revision":"fixture","items":[]}')
+        record=self.root/'docs/ai/changes/active/test-change.json'
+        record.parent.mkdir(parents=True,exist_ok=True)
+        record.write_text(json.dumps({'schema_version':1,'id':'test-change','base_revision':'fixture',
+            'work_status':'in_progress','docs_impact':'affected','dispositions':{},
+            'validation':{},'next_action':'Run regression checks.'}))
         subprocess.run(['git','init','-q',str(self.root)],check=True)
 
     def test_clean_fixture_passes(self):
         self.assertEqual(d.check(self.root,self.r),[])
+
+    def test_extra_root_document_is_rejected(self):
+        (self.root/'NOTES.md').write_text('# Extra root notes\n')
+        self.assertIn('unexpected root document: NOTES.md',d.check(self.root,self.r))
+
+    def test_extra_chinese_guide_is_rejected_but_upstream_originals_are_retained(self):
+        doc=copy.deepcopy(next(x for x in self.r['documents'] if x['path']=='README.md'))
+        doc.update(id='extra-guide',path='docs/guide.md')
+        (self.root/doc['path']).write_text('# 使用说明\n\n重复的项目使用说明。\n')
+        self.r['documents'].append(doc)
+        self.assertIn('unexpected Chinese guide: docs/guide.md',d.check(self.root,self.r))
+        doc.update(provenance='retained_reference',status='historical')
+        self.assertEqual(d.check(self.root,self.r),[])
+
+    def test_source_classification_resolves_old_fallback_without_losing_contracts(self):
+        path=self.root/'docs/ai/registry.yaml'
+        source=self.root/'tauapi-be/new-source.go';source.write_text('// baseline')
+        d.git(self.root,'add','-A');d.git(self.root,'-c','user.name=Test','-c','user.email=test@example.invalid','commit','-qm','baseline')
+        candidate=copy.deepcopy(self.r)
+        domain=next(x for x in candidate['domains'] if x['id']=='be-auth')
+        domain['path_patterns'].append('tauapi-be/new-source.go')
+        path.write_text(json.dumps(candidate));source.write_text('// candidate')
+        result=d.impact(self.root,candidate,'HEAD',None,True)
+        self.assertEqual(result['findings'],[])
+        self.assertIn('authentication',result['contracts'])
+        self.assertIn('backend-tests',result['required_checks'])
 
     def test_broken_relative_link_is_rejected(self):
         p=self.root/'docs/ai/INDEX.md';p.write_text(p.read_text()+'\n[missing](missing.md)\n')
@@ -88,8 +118,21 @@ class DocumentationChecks(unittest.TestCase):
         result=d.route(self.r,[],'诊断登录刷新循环')
         self.assertTrue({'fe-auth','be-auth'} <= set(result['domains']))
 
+    def test_direct_contract_edit_routes_its_consumers(self):
+        result=d.route(self.r,['docs/ai/contracts/authentication.md'])
+        self.assertTrue({'fe-auth','be-auth'} <= set(result['domains']))
+        self.assertIn('authentication',result['contracts'])
+
+    def test_protected_readme_links_keep_local_destinations(self):
+        # Preserved upstream READMEs still describe their original web/electron trees.
+        upstream_only={'./web/AGENTS.md','./electron/README.md'}
+        for path in (ROOT/'tauapi-be').glob('README*.md'):
+            for link in d.links(path.read_text()):
+                if link.startswith('./') and link not in upstream_only:
+                    self.assertTrue((path.parent/link.split('#')[0]).exists(),link)
+
     def test_stale_generated_index_fails_without_repair(self):
-        p=self.root/'docs/ai/TASK_INDEX.md';p.write_text('stale\n')
+        p=self.root/'docs/ai/INDEX.md';p.write_text('stale\n')
         self.assertTrue(any('stale generated' in x for x in d.check(self.root,self.r)))
         self.assertEqual(p.read_text(),'stale\n')
 
@@ -126,7 +169,7 @@ class DocumentationChecks(unittest.TestCase):
         with self.assertRaises(d.Blocked):d.diff_paths(self.root,'absent',worktree=True)
 
     def test_reasoned_unchanged_disposition_is_valid(self):
-        p=self.root/'docs/ai/changes/active/docs-system-bootstrap.json';r=json.loads(p.read_text())
+        p=self.root/'docs/ai/changes/active/test-change.json';r=json.loads(p.read_text())
         r['dispositions']['authentication']={'status':'reviewed_unchanged','reason':'Only navigation changes; credentials and flows retain behavior.','evidence':['tauapi-be/service/auth_session.go']};p.write_text(json.dumps(r))
         self.assertEqual(d.dispositions(self.root,str(p.relative_to(self.root)),{'contracts':['authentication']}),[])
 

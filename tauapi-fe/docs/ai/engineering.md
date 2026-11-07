@@ -22,40 +22,17 @@ This document defines the development guidelines and best practices for the fron
 | UI and styling      | Base UI, Hugeicons, Tailwind CSS, clsx / class-variance-authority |
 | Forms               | React Hook Form, Zod                                              |
 | Charts              | @visactor/vchart, @visactor/react-vchart                          |
-| Tools               | qrcode.react, oxfmt, oxlint, vitest (optional)                    |
+| Tools               | qrcode.react, oxfmt, oxlint, vitest                    |
 
 Reuse existing project components and capabilities first (see [3.3 Components](#33-components)). If the project has no suitable implementation, evaluate installed dependencies and mature, well-maintained open-source libraries. Implement your own only when reuse, composition, or reasonable extension still cannot meet the requirement, and state the specific capability gap.
-
----
-
-## II. Table of Contents
-
-- [I. Project Overview](#i-project-overview)
-- [II. Table of Contents](#ii-table-of-contents)
-- [III. Development Guidelines](#iii-development-guidelines)
-  - [3.1 Internationalization](#31-internationalization)
-  - [3.2 Code Style and Types](#32-code-style-and-types)
-  - [3.3 Components](#33-components)
-  - [3.4 Performance](#34-performance)
-  - [3.5 State Management](#35-state-management)
-  - [3.6 API Requests](#36-api-requests)
-  - [3.7 Forms](#37-forms)
-  - [3.8 Routing](#38-routing)
-  - [3.9 Error Handling](#39-error-handling)
-  - [3.10 Styling](#310-styling)
-  - [3.11 File Organization](#311-file-organization)
-  - [3.12 Accessibility](#312-accessibility)
-  - [3.13 Security](#313-security)
-  - [3.14 Testing](#314-testing)
-  - [3.15 Dependency Management](#315-dependency-management)
-  - [3.16 Build and Deployment](#316-build-and-deployment)
-- [IV. Collaboration and Commits](#iv-collaboration-and-commits)
 
 ---
 
 ## III. Development Guidelines
 
 ### 3.1 Internationalization
+
+Interface codes are `en`, `zhCN`, `zhTW`, `fr`, `ru`, `ja`, and `vi`; see `src/i18n/languages.ts`. Run `bun run i18n:sync` from `tauapi-fe/`.
 
 - **Page text**: All user-facing copy MUST support i18n; translate it with `t()` from `useTranslation()`.
 - **Usage scenarios**
@@ -124,13 +101,13 @@ The following are common search entry points; do not treat this table as a compl
 
 - Define stores with Zustand's `create`, and give state and actions clear types.
 - In components, prefer subscribing with selectors to avoid whole-store subscriptions that cause extra renders, e.g. `const user = useAuthStore((s) => s.auth.user)`.
-- For state that needs persistence, read/write localStorage inside the store and restore it at initialization.
+- Persist UI preferences through the owning store. Keep access tokens in memory and refresh tokens in HttpOnly cookies.
 - Place stores by feature in `src/stores/`; keep each file's responsibility clear and names descriptive.
 
 ### 3.6 API Requests
 
 - **React Query**: Use `useQuery` for data fetching and `useMutation` for changes; configure a unique `queryKey` for every query (array form with a consistent hierarchy is recommended); call `invalidateQueries` for related queries in `onSuccess`, optionally combined with optimistic updates. Handle server errors uniformly through `handleServerError` (see [3.9 Error Handling](#39-error-handling)).
-- **Axios**: Use the project's shared `api` instance (including `baseURL`, `headers`, `withCredentials: true`); GET requests are deduplicated by default and special requests can disable this via configuration; authentication refresh and request retry are handled in interceptors; ordinary error notifications are the responsibility of the final failure callback of the Query/Mutation or of the direct caller.
+- **Axios**: Use the project's shared `api` instance (including `baseURL`, `headers`, `withCredentials: true`); GET requests are deduplicated by default and special requests can disable this via configuration; authentication refresh and authorized retries use the shared HTTP client; ordinary error notifications are the responsibility of the final failure callback of the Query/Mutation or of the direct caller.
 
 ### 3.7 Forms
 
@@ -205,16 +182,90 @@ The following are common search entry points; do not treat this table as a compl
 ### 3.16 Build and Deployment
 
 - Use Rsbuild; see `rsbuild.config.ts` for configuration; scripts are as defined in `package.json` (e.g. `bun run dev`, `bun run build`, `bun check -b`, `bun run lint`, `bun run format`); for package management see [3.15 Dependency Management](#315-dependency-management).
-- For code splitting and lazy loading strategy see [3.4 Performance](#34-performance); use appropriate formats and compression for assets; use `.env` for environment variables with the `VITE_` prefix, and do not hard-code them in code.
+- For code splitting and lazy loading strategy see [3.4 Performance](#34-performance); use appropriate formats and compression for assets; use the environment names declared in `rsbuild.config.ts`.
 - **Before release**: run typecheck, lint, and format checks, complete the production build, and check the artifact size and environment variable configuration.
 
 ---
 
 ## IV. Collaboration and Commits
 
-- Commit messages must be clear and follow project conventions, describing what changed and why; keep the language (Chinese or English) consistent.
+- Commit messages must be clear and follow project conventions, describing what changed and why; write them in English.
 - Changes must pass code review, comply with this document, and be checked for quality, performance, and security.
 - Before completing a UI change, you MUST check whether newly added components, base component imports, and hand-written interactions bypass existing business wrappers; if a duplicate implementation is found, convert it to reuse within the scope of this change. A new implementation that is retained must have its capability gap explained in the change description; passing typecheck, lint, and tests does not replace this check.
 - When making major feature or guideline changes, update the relevant documentation and `AGENTS.md`.
 
 ---
+
+## Source map
+
+Paths in this section are relative to the Git root.
+
+### Authentication
+
+- `tauapi-fe/src/lib/auth-session.ts`
+- `tauapi-fe/src/lib/auth-session-sync.ts`
+- `tauapi-fe/src/lib/http-client.ts`
+- `tauapi-fe/src/stores`
+
+Cold-start hint -> auth-session discovery -> shared HTTP refresh -> in-memory access token -> auth store -> route guard; Web Locks and SID-only cross-tab events coordinate refresh.
+
+- [authentication](../../../docs/ai/contracts/authentication.md)
+
+Selected checks: frontend-typecheck, frontend-tests. See registry for literal runners and prerequisites.
+Refresh loops require tracing both frontend identity and backend Cookie/Origin/SID handling. Never persist tokens or replay proof actions; distinguish transient failure from server-confirmed anonymity.
+
+### Billing presentation
+
+- `tauapi-fe/src/features/pricing`
+- `tauapi-fe/src/features/model-pricing`
+- `tauapi-fe/src/features/usage-logs`
+- `tauapi-fe/testdata/contracts/frontend_simulation.json`
+
+Price option/log data -> expression parser/simulator -> visual/raw editor or billing display -> request-rule traces and normalized currency.
+
+- [billing-and-quota](../../../docs/ai/contracts/billing-and-quota.md)
+- [task-plugins](../../../docs/ai/contracts/task-plugins.md)
+
+Selected checks: fixture-equality, billing-fe, frontend-typecheck. See registry for literal runners and prerequisites.
+Compare frontend local fixture to backend canonical sample, then run both evaluators. Preserve token vs task USD scales, explicit zero prices, cache subdivisions and authoritative request_rules from logs.
+
+### Data access
+
+- `tauapi-fe/src/lib/http-client.ts`
+- `tauapi-fe/src/lib/query-client.ts`
+- `tauapi-fe/src/lib/handle-server-error.ts`
+
+Feature Query/Mutation -> shared API/http client -> dedup/cache/refresh -> requireServerSuccess -> query invalidation or final error handling.
+
+- [authentication](../../../docs/ai/contracts/authentication.md)
+- [routing-and-origin](../../../docs/ai/contracts/routing-and-origin.md)
+
+Selected checks: frontend-typecheck, frontend-tests. See registry for literal runners and prerequisites.
+Inspect query keys, stale cache and retry ownership. Final failures notify once; custom mutation errors own their notification. Preserve AuthOperationError safe mapping and never log Axios credentials.
+
+### Shell and routing
+
+- `tauapi-fe/src/routes`
+- `tauapi-fe/src/routeTree.gen.ts`
+- `tauapi-fe/src/lib/legacy-route.ts`
+
+TanStack file route -> generated routeTree -> layout/beforeLoad -> feature section -> same-origin query. Nginx must serve the page before the browser router can run.
+
+- [routing-and-origin](../../../docs/ai/contracts/routing-and-origin.md)
+- [frontend-release](../../../docs/ai/contracts/frontend-release.md)
+
+Selected checks: frontend-typecheck, frontend-tests, frontend-build, route-analysis. See registry for literal runners and prerequisites.
+Direct-load/reload failure usually indicates route split drift; in-app-only success does not prove server routing. Keep legacy redirects, search validation and generated route-tree provenance coherent.
+
+### Shared UI, theme, i18n and accessibility
+
+- `tauapi-fe/src/components`
+- `tauapi-fe/src/styles`
+- `tauapi-fe/src/i18n`
+
+Feature -> existing business wrapper -> UI primitive -> semantic theme tokens -> i18next -> Intl locale conversion and keyboard/accessibility state.
+
+Follow the component engineering obligations for UI reuse, accessibility and localization.
+
+Selected checks: frontend-typecheck, frontend-tests, frontend-lint. See registry for literal runners and prerequisites.
+Inspect shared Dialog/ConfirmDialog/CopyButton/data-table before replacing behavior. Verify language switching, zhCN/zhTW conversion, precision, focus and accessible names; lint does not replace manual capability-gap review.

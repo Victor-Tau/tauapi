@@ -168,4 +168,4 @@ Retain TestAccessTokenRouteRulesCoverEveryDashboardRoute and session/token failu
 replay and revocation tests. Apply latest stable OWASP ASVS and relevant Authentication,
 Session, Password Storage, Recovery, MFA, OAuth and CSRF cheat sheets before security changes;
 identify controls, enforce server-side, omit credentials from audit, record references/version/IDs
-and regression evidence. This migration is source review, not a new security certification.
+and regression evidence.
