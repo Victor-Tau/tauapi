@@ -1,9 +1,9 @@
 {
   "translation": {
-    "No about content is available.": "Информация о проекте отсутствует.",
     "360": "360",
     "1000": "1000",
     "10000": "10000",
+    "No about content is available.": "Информация о проекте отсутствует.",
     "Frontend version": "Версия фронтенда",
     "Backend version": "Версия бэкенда",
     "System updates, frontend version: {{frontendVersion}}, backend version: {{backendVersion}}": "Обновления системы, версия фронтенда: {{frontendVersion}}, версия бэкенда: {{backendVersion}}",
@@ -421,7 +421,6 @@
     "aggregates 50+ AI providers behind one unified API. Manage access, track costs, and scale effortlessly.": "объединяет 50+ ИИ-провайдеров за единым API. Управляйте доступом, отслеживайте затраты и масштабируйтесь без усилий.",
     "Aggregation bucket": "Интервал агрегации",
     "AGPL v3.0 License": "Лицензия AGPL v3.0",
-    "AI Application Infrastructure Foundation": "Инфраструктурная основа для ИИ-приложений",
     "AI model testing environment": "Среда тестирования ИИ моделей",
     "AI models": "Модели ИИ",
     "AI models supported": "Поддерживаемые модели ИИ",
@@ -6732,7 +6731,6 @@
     "Understand image inputs alongside text": "Понимать изображения наряду с текстом",
     "Undo": "Отменить",
     "Unexpected release payload": "Неожиданный формат данных релиза",
-    "Unified API Gateway for": "Единый API-шлюз для",
     "Unique identifier for this group.": "Уникальный идентификатор для этой группы.",
     "unit": "ед.",
     "Unit": "Единица",
@@ -7047,7 +7045,6 @@
     "Vary": "Вариация",
     "Vary (Strong)": "Вариация (сильная)",
     "Vary (Subtle)": "Вариация (лёгкая)",
-    "Vast Range of AI Models": "Огромный выбор моделей ИИ",
     "vendor": "поставщик",
     "Vendor": "Поставщик",
     "Vendor created successfully": "Поставщик создан",
@@ -7382,6 +7379,13 @@
     "Release source": "Источник релизов",
     "Update source repository": "Репозиторий обновлений",
     "Public GitHub repository whose Releases are checked for updates (owner/repo or GitHub URL). Leave empty to use {{repository}}.": "Публичный репозиторий GitHub, Releases которого проверяются на обновления (owner/repo или URL GitHub). Оставьте пустым, чтобы использовать {{repository}}.",
-    "Enter a GitHub repository as owner/repo or https://github.com/owner/repo": "Укажите репозиторий GitHub в формате owner/repo или https://github.com/owner/repo"
+    "Enter a GitHub repository as owner/repo or https://github.com/owner/repo": "Укажите репозиторий GitHub в формате owner/repo или https://github.com/owner/repo",
+    "Auntie Key is open for business today!": "Тётушка Key сегодня открыла лавку!",
+    "Drop by Auntie Key's stall,": "Загляните к тётушке Key",
+    "and grab a steaming bowl of": "за горячей порцией",
+    "API Relay for Everyone": "API Relay for Everyone",
+    "Buy a key from Auntie Key": "Купить ключ у тётушки Key",
+    "Pure relay · Usage-based billing": "Чистый ретранслятор · Оплата по факту",
+    "Auntie Key street stall illustration": "Иллюстрация уличной лавки тётушки Key"
   }
 }

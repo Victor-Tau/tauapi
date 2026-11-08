@@ -191,7 +191,7 @@ export function Features(_props: FeaturesProps) {
         </AnimateInView>
 
         {/* Bento grid */}
-        <div className='bg-border grid gap-px overflow-hidden rounded-lg border md:grid-cols-3'>
+        <div className='bg-outline/20 border-outline shadow-sticker grid gap-0.5 overflow-hidden rounded-2xl border-2 md:grid-cols-3'>
           {features.map((f, i) => (
             <AnimateInView
               key={f.id}

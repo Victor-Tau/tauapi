@@ -85,20 +85,32 @@ For commercial licensing, please contact support@quantumnous.com
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
-  /* Minimalist Flat scale: larger steps are capped at the card radius so
-   * legacy rounded-2xl/3xl/4xl call sites stay flat instead of pill-shaped. */
+  --color-outline: var(--outline);
+  /* Key Yi: the primary token stays the brand fill (#FF9E4A); text-primary
+   * resolves to an AA-contrast ink so links and labels remain readable. */
+  --text-color-primary: var(--primary-ink);
+
+  --font-brand: var(--font-brand-stack);
+  --shadow-sticker: 4px 4px 0 var(--sticker-shadow);
+  --shadow-sticker-sm: 2px 2px 0 var(--sticker-shadow);
+  --shadow-sticker-lg: 6px 6px 0 var(--sticker-shadow);
+  --ease-bounce: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  /* Key Yi radius scale: controls 8-12px, cards 16px, dialogs/panels 24px.
+   * Buttons, inputs and badges use rounded-full in their primitives. */
   --radius-sm: calc(var(--radius) * 0.667);
   --radius-md: calc(var(--radius) * 0.833);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) * 1.333);
-  --radius-2xl: calc(var(--radius) * 1.333);
-  --radius-3xl: calc(var(--radius) * 1.333);
-  --radius-4xl: calc(var(--radius) * 1.333);
+  --radius-2xl: calc(var(--radius) * 2);
+  --radius-3xl: calc(var(--radius) * 2.333);
+  --radius-4xl: calc(var(--radius) * 2.667);
 }
 
 :root {
-  /* Minimalist Flat: 6px base radius (controls 4–6px, cards/overlays 8px). */
-  --radius: 0.375rem;
+  /* Key Yi (Auntie Key): warm street-stall palette with chestnut outlines.
+   * 12px base radius; cards 16px, dialogs 24px, controls pill-shaped. */
+  --radius: 0.75rem;
   --app-header-height: 3rem;
   /* Static build-channel fallback consumed when JS hasn't booted yet. */
   --app-rev: '2k6e8r7p';
@@ -106,57 +118,68 @@ For commercial licensing, please contact support@quantumnous.com
    * saved preference. Explicit Sans selects Public Sans in theme-presets.css. */
   --font-ui-sans: sans-serif;
   --font-body: var(--font-ui-sans);
-  --background: #fafafa;
-  --foreground: #171717;
+  --font-brand-stack:
+    'KeyYi Rounded', 'Zen Maru Gothic', 'Varela Round', 'Arial Rounded MT Bold',
+    'STYuanti-SC-Regular', 'YouYuan', var(--font-ui-sans);
+  --background: #faf6f0;
+  --foreground: #433534;
   --card: #ffffff;
-  --card-foreground: #171717;
+  --card-foreground: #433534;
   --popover: #ffffff;
-  --popover-foreground: #171717;
-  --primary: #1d4ed8;
-  --primary-foreground: #ffffff;
-  --secondary: #f5f5f5;
-  --secondary-foreground: #171717;
-  --muted: #f5f5f5;
-  --muted-foreground: #525252;
-  --accent: #f5f5f5;
-  --accent-foreground: #171717;
-  --destructive: #b91c1c;
-  --destructive-foreground: oklch(0.985 0 0);
-  --success: #15803d;
-  --success-foreground: oklch(0.985 0 0);
-  --warning: #b45309;
+  --popover-foreground: #433534;
+  --primary: #ff9e4a;
+  --primary-foreground: #433534;
+  --primary-ink: #a3500c;
+  --secondary: #f3ece2;
+  --secondary-foreground: #433534;
+  --muted: #f3ece2;
+  --muted-foreground: #735f5a;
+  --accent: #ffebd9;
+  --accent-foreground: #433534;
+  --destructive: #c93c3c;
+  --destructive-foreground: #ffffff;
+  --success: #2e7a58;
+  --success-foreground: #ffffff;
+  --warning: #a35a00;
   --warning-foreground: #ffffff;
-  --info: #1d4ed8;
+  --info: #3b6ea5;
   --info-foreground: #ffffff;
-  --neutral: #737373;
+  --neutral: #8a7671;
   --neutral-foreground: #ffffff;
-  --border: #e5e5e5;
-  --input: #737373;
-  --ring: #2563eb;
-  --chart-1: oklch(0.72 0.18 250);
-  --chart-2: oklch(0.65 0.15 200);
-  --chart-3: oklch(0.7 0.12 280);
-  --chart-4: oklch(0.68 0.19 325);
-  --chart-5: oklch(0.68 0.16 155);
-  --overview-accent-1: oklch(0.72 0.18 250);
-  --overview-accent-2: oklch(0.65 0.15 200);
-  --overview-accent-3: oklch(0.7 0.12 280);
-  --sidebar: #ffffff;
-  --sidebar-foreground: #171717;
-  --sidebar-primary: #1d4ed8;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #f5f5f5;
-  --sidebar-accent-foreground: #171717;
-  --sidebar-border: #e5e5e5;
-  --sidebar-ring: #2563eb;
-  --skeleton-base: #f5f5f5;
-  --skeleton-highlight: #fafafa;
-  --table-row: var(--background);
-  --table-header: #f5f5f5;
+  --border: #e6dacb;
+  --input: #433534;
+  --outline: #433534;
+  --sticker-shadow: #433534;
+  --ring: #ff9e4a;
+  --brand-mint: #76ba99;
+  --brand-mint-soft: #eaf5ef;
+  --brand-mint-ink: #2d5b43;
+  --brand-strawberry: #ff7b7b;
+  --brand-butter: #e8c396;
+  --chart-1: #ff9e4a;
+  --chart-2: #76ba99;
+  --chart-3: #ff7b7b;
+  --chart-4: #8f6f5e;
+  --chart-5: #e8c396;
+  --overview-accent-1: #ff9e4a;
+  --overview-accent-2: #76ba99;
+  --overview-accent-3: #ff7b7b;
+  --sidebar: #f3ece2;
+  --sidebar-foreground: #433534;
+  --sidebar-primary: #ff9e4a;
+  --sidebar-primary-foreground: #433534;
+  --sidebar-accent: #ffebd9;
+  --sidebar-accent-foreground: #433534;
+  --sidebar-border: #e6dacb;
+  --sidebar-ring: #ff9e4a;
+  --skeleton-base: #f3ece2;
+  --skeleton-highlight: #faf6f0;
+  --table-row: var(--card);
+  --table-header: #f6efe5;
   --table-header-hover: color-mix(
     in oklch,
-    var(--foreground) 3%,
-    var(--background)
+    var(--foreground) 4%,
+    var(--table-header)
   );
   /* Disabled rows: kept subtle so they read as "quiet", not as a colored
      alert state. */
@@ -181,55 +204,66 @@ For commercial licensing, please contact support@quantumnous.com
   /* Native controls follow the theme; Dark Reader also reads this to detect
      the built-in dark theme. */
   color-scheme: dark;
-  /* OpenAI-like dark mode with a crisp charcoal canvas. */
-  --background: #111111;
-  --foreground: #f5f5f5;
-  --card: #1b1b1b;
-  --card-foreground: #f5f5f5;
-  --popover: #1b1b1b;
-  --popover-foreground: #f5f5f5;
-  --primary: #93c5fd;
-  --primary-foreground: #111827;
-  --secondary: #262626;
-  --secondary-foreground: #f5f5f5;
-  --muted: #262626;
-  --muted-foreground: #a3a3a3;
-  --accent: #262626;
-  --accent-foreground: #f5f5f5;
-  --destructive: #f87171;
-  --destructive-foreground: #111111;
-  --success: #4ade80;
-  --success-foreground: #111111;
-  --warning: #fbbf24;
-  --warning-foreground: oklch(0.145 0 0);
-  --info: #93c5fd;
-  --info-foreground: oklch(0.145 0 0);
-  --neutral: #a3a3a3;
-  --neutral-foreground: oklch(0.155 0 0);
-  --border: #333333;
-  --input: #737373;
-  --ring: #93c5fd;
-  --chart-1: oklch(0.76 0.14 250);
-  --chart-2: oklch(0.76 0.13 200);
-  --chart-3: oklch(0.76 0.13 285);
-  --chart-4: oklch(0.75 0.16 325);
-  --chart-5: oklch(0.76 0.14 155);
-  --sidebar: #111111;
-  --sidebar-foreground: #f5f5f5;
-  --sidebar-primary: #93c5fd;
-  --sidebar-primary-foreground: #111827;
-  --sidebar-accent: #262626;
-  --sidebar-accent-foreground: #f5f5f5;
-  --sidebar-border: #333333;
-  --sidebar-ring: #93c5fd;
-  --skeleton-base: #262626;
-  --skeleton-highlight: #333333;
-  --table-row: var(--background);
-  --table-header: color-mix(in oklch, var(--foreground) 6%, var(--background));
+  /* Key Yi night stall: roasted-chestnut canvas with lantern-orange accents. */
+  --background: #221a19;
+  --foreground: #faf6f0;
+  --card: #2d2423;
+  --card-foreground: #faf6f0;
+  --popover: #2d2423;
+  --popover-foreground: #faf6f0;
+  --primary: #ffa65a;
+  --primary-foreground: #2a1f1e;
+  --primary-ink: #ffa65a;
+  --secondary: #3a2f2d;
+  --secondary-foreground: #faf6f0;
+  --muted: #3a2f2d;
+  --muted-foreground: #bfaea6;
+  --accent: #4a3628;
+  --accent-foreground: #faf6f0;
+  --destructive: #ff8a8a;
+  --destructive-foreground: #2a1f1e;
+  --success: #8fd0af;
+  --success-foreground: #1d2a23;
+  --warning: #f5c26b;
+  --warning-foreground: #2a1f1e;
+  --info: #9cc3eb;
+  --info-foreground: #1b2430;
+  --neutral: #bfaea6;
+  --neutral-foreground: #2a1f1e;
+  --border: #4a3d3a;
+  --input: #8c7a75;
+  --outline: #7d6763;
+  --sticker-shadow: #0f0b0a;
+  --ring: #ffa65a;
+  --brand-mint: #8fd0af;
+  --brand-mint-soft: #26382f;
+  --brand-mint-ink: #b9e6cf;
+  --brand-strawberry: #ff8a8a;
+  --brand-butter: #c9a272;
+  --chart-1: #ffa65a;
+  --chart-2: #8fd0af;
+  --chart-3: #ff8a8a;
+  --chart-4: #c9a99a;
+  --chart-5: #e8c396;
+  --overview-accent-1: #ffa65a;
+  --overview-accent-2: #8fd0af;
+  --overview-accent-3: #ff8a8a;
+  --sidebar: #1b1413;
+  --sidebar-foreground: #faf6f0;
+  --sidebar-primary: #ffa65a;
+  --sidebar-primary-foreground: #2a1f1e;
+  --sidebar-accent: #4a3628;
+  --sidebar-accent-foreground: #faf6f0;
+  --sidebar-border: #4a3d3a;
+  --sidebar-ring: #ffa65a;
+  --skeleton-base: #3a2f2d;
+  --skeleton-highlight: #4a3d3a;
+  --table-row: var(--card);
+  --table-header: color-mix(in oklch, var(--foreground) 6%, var(--card));
   --table-header-hover: color-mix(
     in oklch,
     var(--foreground) 9%,
-    var(--background)
+    var(--card)
   );
   --table-disabled: color-mix(
     in oklch,

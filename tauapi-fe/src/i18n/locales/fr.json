@@ -1,9 +1,9 @@
 {
   "translation": {
-    "No about content is available.": "Aucun contenu de présentation disponible.",
     "360": "360",
     "1000": "1000",
     "10000": "10000",
+    "No about content is available.": "Aucun contenu de présentation disponible.",
     "Frontend version": "Version du frontend",
     "Backend version": "Version du backend",
     "System updates, frontend version: {{frontendVersion}}, backend version: {{backendVersion}}": "Mises à jour système, version du frontend : {{frontendVersion}}, version du backend : {{backendVersion}}",
@@ -421,7 +421,6 @@
     "aggregates 50+ AI providers behind one unified API. Manage access, track costs, and scale effortlessly.": "agrège plus de 50 fournisseurs IA derrière une API unifiée. Gérez l'accès, suivez les coûts et évoluez sans effort.",
     "Aggregation bucket": "Fenêtre d’agrégation",
     "AGPL v3.0 License": "Licence AGPL v3.0",
-    "AI Application Infrastructure Foundation": "Socle d'infrastructure pour applications d'IA",
     "AI model testing environment": "Environnement de test de modèle IA",
     "AI models": "Modèles d'IA",
     "AI models supported": "Modèles d'IA pris en charge",
@@ -6732,7 +6731,6 @@
     "Understand image inputs alongside text": "Comprendre des entrées image en complément du texte",
     "Undo": "Annuler",
     "Unexpected release payload": "Format de version inattendu",
-    "Unified API Gateway for": "Passerelle API unifiée pour",
     "Unique identifier for this group.": "Identifiant unique pour ce groupe.",
     "unit": "unité",
     "Unit": "Unité",
@@ -7047,7 +7045,6 @@
     "Vary": "Varier",
     "Vary (Strong)": "Varier (fort)",
     "Vary (Subtle)": "Varier (subtil)",
-    "Vast Range of AI Models": "Vaste gamme de modèles d'IA",
     "vendor": "fournisseur",
     "Vendor": "Fournisseur",
     "Vendor created successfully": "Fournisseur créé",
@@ -7382,6 +7379,13 @@
     "Release source": "Source des versions",
     "Update source repository": "Dépôt source des mises à jour",
     "Public GitHub repository whose Releases are checked for updates (owner/repo or GitHub URL). Leave empty to use {{repository}}.": "Dépôt GitHub public dont les Releases sont consultées pour les mises à jour (owner/repo ou URL GitHub). Laisser vide pour utiliser {{repository}}.",
-    "Enter a GitHub repository as owner/repo or https://github.com/owner/repo": "Saisissez un dépôt GitHub au format owner/repo ou https://github.com/owner/repo"
+    "Enter a GitHub repository as owner/repo or https://github.com/owner/repo": "Saisissez un dépôt GitHub au format owner/repo ou https://github.com/owner/repo",
+    "Auntie Key is open for business today!": "Tata Key a ouvert son stand aujourd'hui !",
+    "Drop by Auntie Key's stall,": "Passez au stand de Tata Key,",
+    "and grab a steaming bowl of": "et prenez un bol fumant d'",
+    "API Relay for Everyone": "API Relay for Everyone",
+    "Buy a key from Auntie Key": "Acheter une clé chez Tata Key",
+    "Pure relay · Usage-based billing": "Relais pur · Facturation à l'usage",
+    "Auntie Key street stall illustration": "Illustration du stand de rue de Tata Key"
   }
 }

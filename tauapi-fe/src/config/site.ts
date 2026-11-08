@@ -25,7 +25,7 @@ import type {
 
 /** Presentation is bundled with the frontend and never read from API status. */
 export const siteConfig = {
-  name: 'New API',
+  name: 'Key姨',
   logo: '/logo.png',
   favicon: '/favicon.ico',
   footerHtml: '',

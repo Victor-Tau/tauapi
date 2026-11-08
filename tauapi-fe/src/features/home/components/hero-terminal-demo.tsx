@@ -174,7 +174,7 @@ export function HeroTerminalDemo(props: HeroTerminalDemoProps) {
 
   return (
     <div className={cn('mx-auto w-full max-w-2xl', props.className)}>
-      <div className='bg-card overflow-hidden rounded-lg border'>
+      <div className='bg-card border-outline shadow-sticker overflow-hidden rounded-2xl border-2'>
         {/* Tab strip */}
         <div className='flex items-center gap-1 border-b px-2 sm:gap-1.5 sm:px-3'>
           {API_DEMOS.map((item, index) => {

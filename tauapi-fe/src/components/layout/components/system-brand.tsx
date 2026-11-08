@@ -66,14 +66,14 @@ export function SystemBrand(props: SystemBrandProps) {
           'hover:bg-accent focus-visible:ring-ring/40 focus-visible:ring-2'
         )}
       >
-        <div className='flex size-5 shrink-0 items-center justify-center overflow-hidden rounded-md'>
+        <div className='ring-outline flex size-5 shrink-0 items-center justify-center overflow-hidden rounded-full ring-[1.5px]'>
           <img
             src={logo}
             alt={t('Logo')}
-            className='size-full rounded-md object-cover'
+            className='size-full rounded-full object-cover'
           />
         </div>
-        <span className='max-w-[12rem] truncate'>{name}</span>
+        <span className='font-brand max-w-[12rem] truncate'>{name}</span>
       </Link>
     )
   }
@@ -86,15 +86,15 @@ export function SystemBrand(props: SystemBrandProps) {
           className='hover:text-sidebar-foreground active:text-sidebar-foreground cursor-default hover:bg-transparent active:bg-transparent'
           render={<div />}
         >
-          <div className='flex aspect-square size-8 items-center justify-center overflow-hidden rounded-lg'>
+          <div className='ring-outline flex aspect-square size-8 items-center justify-center overflow-hidden rounded-full ring-2'>
             <img
               src={logo}
               alt={t('Logo')}
-              className='size-full rounded-lg object-cover'
+              className='size-full rounded-full object-cover'
             />
           </div>
           <div className='grid flex-1 text-start text-sm leading-tight group-data-[collapsible=icon]:hidden'>
-            <span className='truncate font-semibold'>{name}</span>
+            <span className='font-brand truncate text-base'>{name}</span>
             <ComponentVersions backendVersion={version} />
           </div>
         </SidebarMenuButton>

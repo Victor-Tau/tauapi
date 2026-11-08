@@ -1616,7 +1616,8 @@
         "tauapi-fe/src/features/**/section-registry.tsx",
         "tauapi-fe/rsbuild.config.ts",
         "tauapi-fe/src/config/**",
-        "tauapi-fe/src/main.tsx"
+        "tauapi-fe/src/main.tsx",
+        "tauapi-fe/index.html"
       ],
       "required_reads": [
         "fe-engineering",
@@ -1702,7 +1703,9 @@
         "tauapi-fe/src/components/**",
         "tauapi-fe/src/hooks/**",
         "tauapi-fe/src/styles/**",
-        "tauapi-fe/src/i18n/**"
+        "tauapi-fe/src/i18n/**",
+        "tauapi-fe/src/assets/**",
+        "tauapi-fe/public/**"
       ],
       "required_reads": [
         "fe-engineering",

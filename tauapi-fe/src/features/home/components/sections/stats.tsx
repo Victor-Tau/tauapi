@@ -105,7 +105,7 @@ export function Stats(_props: StatsProps) {
   ]
 
   return (
-    <div className='bg-card relative z-10 border-y'>
+    <div className='bg-card border-outline relative z-10 border-y-2'>
       <div className='mx-auto max-w-6xl px-6 py-10 md:py-12'>
         <div className='grid grid-cols-2 gap-8 md:grid-cols-4 md:gap-12'>
           {stats.map((s) => (

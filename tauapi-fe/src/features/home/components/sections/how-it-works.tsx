@@ -70,10 +70,10 @@ export function HowItWorks() {
               className='relative flex flex-col items-center text-center'
             >
               <div className='relative mb-6'>
-                <div className='text-muted-foreground bg-muted flex size-16 items-center justify-center rounded-lg border'>
+                <div className='text-foreground border-outline shadow-sticker-sm flex size-16 items-center justify-center rounded-2xl border-2 bg-(--brand-butter)/40'>
                   {step.icon}
                 </div>
-                <div className='bg-foreground text-background absolute -top-2 -right-2 flex size-6 items-center justify-center rounded-full text-xs font-semibold'>
+                <div className='bg-primary text-primary-foreground border-outline absolute -top-2 -right-2 flex size-6 items-center justify-center rounded-full border-2 text-xs font-semibold'>
                   {step.num}
                 </div>
               </div>

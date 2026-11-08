@@ -23,8 +23,8 @@ For commercial licensing, please contact support@quantumnous.com
  *   <body data-theme-preset="rose-garden" data-theme-radius="lg" data-theme-scale="sm" />
  *
  * - `data-theme-preset` overrides the accent palette defined in ./theme.css.
- *   Minimalist Flat: presets no longer ship their own `--radius`; every
- *   preset shares the flat 6px structure from theme.css.
+ *   Presets do not ship their own `--radius`; every preset shares the Key Yi
+ *   structure (radius scale, outlines, sticker shadows) from theme.css.
  * - Each preset declares both light and dark color values; dark values use
  *   the `.dark` ancestor selector so they apply when html has the `.dark` class.
  * - `data-theme-radius` and `data-theme-scale` adjust visual density
@@ -399,19 +399,22 @@ For commercial licensing, please contact support@quantumnous.com
  * Named presets map those slots to their own chart palette so the overview
  * stays coherent with the user's selected theme. */
 [data-theme-preset]:not([data-theme-preset='default']) {
+  /* Preset accents are authored as readable text colours, so text-primary
+   * follows the preset instead of the Key Yi orange ink. */
+  --primary-ink: var(--primary);
   --overview-accent-1: var(--chart-1);
   --overview-accent-2: var(--chart-2);
   --overview-accent-3: var(--chart-3);
 }
 
-/* ── Minimalist Flat surface bridge ───────────────────────────────────── */
-/* Every colour preset shares one flat structure: neutral page, card, muted,
- * border and input tokens from theme.css, so presets only change the accent
+/* ── Shared surface bridge ─────────────────────────────────────────────── */
+/* Every colour preset shares one structure: page, card, muted, border and
+ * input tokens from theme.css, so presets only change the accent
  * (primary/ring/chart/sidebar-primary). Surfaces are never tinted with the
  * accent, which kept presets readable but layered and decorative.
  *
  * Opt-outs:
- *   - `default`: already uses the flat neutral tokens.
+ *   - `default`: already uses the Key Yi tokens.
  *   - `anthropic`, `simple-large`: bespoke neutral palettes kept as-is. */
 [data-theme-preset]:not([data-theme-preset='default']):not(
   [data-theme-preset='anthropic']

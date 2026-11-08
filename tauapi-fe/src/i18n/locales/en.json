@@ -1,9 +1,9 @@
 {
   "translation": {
-    "No about content is available.": "No about content is available.",
     "360": "360",
     "1000": "1000",
     "10000": "10000",
+    "No about content is available.": "No about content is available.",
     "Frontend version": "Frontend version",
     "Backend version": "Backend version",
     "System updates, frontend version: {{frontendVersion}}, backend version: {{backendVersion}}": "System updates, frontend version: {{frontendVersion}}, backend version: {{backendVersion}}",
@@ -421,7 +421,6 @@
     "aggregates 50+ AI providers behind one unified API. Manage access, track costs, and scale effortlessly.": "aggregates 50+ AI providers behind one unified API. Manage access, track costs, and scale effortlessly.",
     "Aggregation bucket": "Aggregation bucket",
     "AGPL v3.0 License": "AGPL v3.0 License",
-    "AI Application Infrastructure Foundation": "AI Application Infrastructure Foundation",
     "AI model testing environment": "AI model testing environment",
     "AI models": "AI models",
     "AI models supported": "AI models supported",
@@ -6732,7 +6731,6 @@
     "Understand image inputs alongside text": "Understand image inputs alongside text",
     "Undo": "Undo",
     "Unexpected release payload": "Unexpected release payload",
-    "Unified API Gateway for": "Unified API Gateway for",
     "Unique identifier for this group.": "Unique identifier for this group.",
     "unit": "unit",
     "Unit": "Unit",
@@ -7047,7 +7045,6 @@
     "Vary": "Vary",
     "Vary (Strong)": "Vary (Strong)",
     "Vary (Subtle)": "Vary (Subtle)",
-    "Vast Range of AI Models": "Vast Range of AI Models",
     "vendor": "vendor",
     "Vendor": "Vendor",
     "Vendor created successfully": "Vendor created successfully",
@@ -7382,6 +7379,13 @@
     "Release source": "Release source",
     "Update source repository": "Update source repository",
     "Public GitHub repository whose Releases are checked for updates (owner/repo or GitHub URL). Leave empty to use {{repository}}.": "Public GitHub repository whose Releases are checked for updates (owner/repo or GitHub URL). Leave empty to use {{repository}}.",
-    "Enter a GitHub repository as owner/repo or https://github.com/owner/repo": "Enter a GitHub repository as owner/repo or https://github.com/owner/repo"
+    "Enter a GitHub repository as owner/repo or https://github.com/owner/repo": "Enter a GitHub repository as owner/repo or https://github.com/owner/repo",
+    "Auntie Key is open for business today!": "Auntie Key is open for business today!",
+    "Drop by Auntie Key's stall,": "Drop by Auntie Key's stall,",
+    "and grab a steaming bowl of": "and grab a steaming bowl of",
+    "API Relay for Everyone": "API Relay for Everyone",
+    "Buy a key from Auntie Key": "Buy a key from Auntie Key",
+    "Pure relay · Usage-based billing": "Pure relay · Usage-based billing",
+    "Auntie Key street stall illustration": "Auntie Key street stall illustration"
   }
 }

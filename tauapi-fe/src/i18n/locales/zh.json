@@ -1,9 +1,9 @@
 {
   "translation": {
-    "No about content is available.": "暂无关于页面内容。",
     "360": "360",
     "1000": "1000",
     "10000": "10000",
+    "No about content is available.": "暂无关于页面内容。",
     "Frontend version": "前端版本",
     "Backend version": "后端版本",
     "System updates, frontend version: {{frontendVersion}}, backend version: {{backendVersion}}": "系统更新，前端版本：{{frontendVersion}}，后端版本：{{backendVersion}}",
@@ -421,7 +421,6 @@
     "aggregates 50+ AI providers behind one unified API. Manage access, track costs, and scale effortlessly.": "聚合 50+ AI 提供商于统一 API 之后。轻松管理访问、追踪成本、弹性扩展。",
     "Aggregation bucket": "聚合时间桶",
     "AGPL v3.0 License": "AGPL v3.0 协议",
-    "AI Application Infrastructure Foundation": "人工智能应用基座",
     "AI model testing environment": "AI模型测试环境",
     "AI models": "AI 模型",
     "AI models supported": "支持的 AI 模型",
@@ -6732,7 +6731,6 @@
     "Understand image inputs alongside text": "在文本之外理解图像输入",
     "Undo": "撤销",
     "Unexpected release payload": "意外的版本数据格式",
-    "Unified API Gateway for": "统一 API 网关，服务于",
     "Unique identifier for this group.": "此组的唯一标识符。",
     "unit": "次",
     "Unit": "单位",
@@ -7047,7 +7045,6 @@
     "Vary": "变换",
     "Vary (Strong)": "强变换",
     "Vary (Subtle)": "弱变换",
-    "Vast Range of AI Models": "海量 AI 模型",
     "vendor": "供应商",
     "Vendor": "供应商",
     "Vendor created successfully": "供应商已创建",
@@ -7382,6 +7379,13 @@
     "Release source": "发布源",
     "Update source repository": "更新源仓库",
     "Public GitHub repository whose Releases are checked for updates (owner/repo or GitHub URL). Leave empty to use {{repository}}.": "检查更新时读取该公开 GitHub 仓库的 Releases（填写 owner/repo 或 GitHub 地址）。留空则使用 {{repository}}。",
-    "Enter a GitHub repository as owner/repo or https://github.com/owner/repo": "请输入 GitHub 仓库，格式为 owner/repo 或 https://github.com/owner/repo"
+    "Enter a GitHub repository as owner/repo or https://github.com/owner/repo": "请输入 GitHub 仓库，格式为 owner/repo 或 https://github.com/owner/repo",
+    "Auntie Key is open for business today!": "Key姨今天出摊啦！",
+    "Drop by Auntie Key's stall,": "来 Key姨 这儿，",
+    "and grab a steaming bowl of": "打一碗热腾腾的",
+    "API Relay for Everyone": "API Relay for Everyone",
+    "Buy a key from Auntie Key": "找Key姨买Key",
+    "Pure relay · Usage-based billing": "纯净中转 · 动态计费",
+    "Auntie Key street stall illustration": "Key姨的路边小摊插画"
   }
 }

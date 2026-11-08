@@ -1,9 +1,9 @@
 {
   "translation": {
-    "No about content is available.": "紹介コンテンツはありません。",
     "360": "360",
     "1000": "1000",
     "10000": "10000",
+    "No about content is available.": "紹介コンテンツはありません。",
     "Frontend version": "フロントエンドのバージョン",
     "Backend version": "バックエンドのバージョン",
     "System updates, frontend version: {{frontendVersion}}, backend version: {{backendVersion}}": "システム更新、フロントエンドのバージョン：{{frontendVersion}}、バックエンドのバージョン：{{backendVersion}}",
@@ -421,7 +421,6 @@
     "aggregates 50+ AI providers behind one unified API. Manage access, track costs, and scale effortlessly.": "50以上のAIプロバイダーを統一APIで集約。アクセス管理、コスト追跡、スケーリングを簡単に。",
     "Aggregation bucket": "集計バケット",
     "AGPL v3.0 License": "AGPL v3.0ライセンス",
-    "AI Application Infrastructure Foundation": "AI アプリケーションのインフラ基盤",
     "AI model testing environment": "AIモデルテスト環境",
     "AI models": "AIモデル",
     "AI models supported": "AIモデル対応",
@@ -6732,7 +6731,6 @@
     "Understand image inputs alongside text": "テキストとともに画像入力を理解",
     "Undo": "元に戻す",
     "Unexpected release payload": "予期しないリリースデータ",
-    "Unified API Gateway for": "統合APIゲートウェイ -",
     "Unique identifier for this group.": "このグループの一意の識別子。",
     "unit": "回",
     "Unit": "単位",
@@ -7047,7 +7045,6 @@
     "Vary": "バリエーション",
     "Vary (Strong)": "バリエーション（強）",
     "Vary (Subtle)": "バリエーション（微）",
-    "Vast Range of AI Models": "膨大なAIモデル",
     "vendor": "プロバイダー",
     "Vendor": "ベンダー",
     "Vendor created successfully": "ベンダーを作成しました",
@@ -7382,6 +7379,13 @@
     "Release source": "リリース元",
     "Update source repository": "更新元リポジトリ",
     "Public GitHub repository whose Releases are checked for updates (owner/repo or GitHub URL). Leave empty to use {{repository}}.": "更新確認に使う公開 GitHub リポジトリの Releases（owner/repo または GitHub URL）。空欄の場合は {{repository}} を使用します。",
-    "Enter a GitHub repository as owner/repo or https://github.com/owner/repo": "GitHub リポジトリを owner/repo または https://github.com/owner/repo の形式で入力してください"
+    "Enter a GitHub repository as owner/repo or https://github.com/owner/repo": "GitHub リポジトリを owner/repo または https://github.com/owner/repo の形式で入力してください",
+    "Auntie Key is open for business today!": "Key姨、今日もお店を開けてるよ！",
+    "Drop by Auntie Key's stall,": "Key姨の屋台に寄って、",
+    "and grab a steaming bowl of": "あつあつの一杯をどうぞ",
+    "API Relay for Everyone": "API Relay for Everyone",
+    "Buy a key from Auntie Key": "Key姨からKeyを買う",
+    "Pure relay · Usage-based billing": "ピュアな中継 · 従量課金",
+    "Auntie Key street stall illustration": "Key姨の屋台のイラスト"
   }
 }

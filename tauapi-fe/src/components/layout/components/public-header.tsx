@@ -104,23 +104,23 @@ export function PublicHeader(props: PublicHeaderProps) {
       src={systemLogo}
       loading={loading}
       logoLoaded={logoLoaded}
-      className='size-full rounded-lg object-contain'
+      className='ring-outline size-full rounded-full object-cover ring-2'
     />
   )
   if (customLogo) logoContent = customLogo
-  if (loading) logoContent = <Skeleton className='size-full rounded-lg' />
+  if (loading) logoContent = <Skeleton className='size-full rounded-full' />
 
   let authContent = (
     <Button
       size='sm'
-      className='h-8 rounded-lg px-3.5 text-xs font-medium'
+      className='h-8 px-3.5 text-xs'
       render={<Link to='/sign-in' />}
     >
       {t('Sign in')}
     </Button>
   )
   if (isAuthenticated) authContent = <ProfileDropdown />
-  if (loading) authContent = <Skeleton className='h-8 w-20 rounded-lg' />
+  if (loading) authContent = <Skeleton className='h-8 w-20 rounded-full' />
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -201,6 +201,10 @@ export function PublicHeader(props: PublicHeaderProps) {
     <>
       <header className='pointer-events-none fixed inset-x-0 top-0 z-50'>
         <div
+          aria-hidden='true'
+          className='keyyi-awning border-outline h-1.5 w-full border-b-2'
+        />
+        <div
           className={cn(
             'pointer-events-auto mx-auto transition-colors duration-150',
             'max-w-7xl px-4 pt-0 md:px-6'
@@ -208,7 +212,7 @@ export function PublicHeader(props: PublicHeaderProps) {
         >
           <nav
             className={cn(
-              'flex h-14 items-center justify-between gap-2 border-b px-2 transition-colors duration-150',
+              'flex h-12 items-center justify-between gap-2 border-b px-2 transition-colors duration-150',
               scrolled ? 'border-border bg-background' : 'border-transparent'
             )}
           >
@@ -218,11 +222,11 @@ export function PublicHeader(props: PublicHeaderProps) {
                 to={homeUrl}
                 className='group flex min-w-0 items-center gap-2.5'
               >
-                <div className='flex size-7 shrink-0 items-center justify-center'>
+                <div className='flex size-9 shrink-0 -rotate-6 items-center justify-center transition-transform duration-200 group-hover:rotate-0 motion-reduce:rotate-0'>
                   {logoContent}
                 </div>
                 <span
-                  className='max-w-48 truncate text-sm font-semibold tracking-tight'
+                  className='font-brand max-w-48 truncate text-lg tracking-wide'
                   title={displaySiteName}
                 >
                   {loading ? (
@@ -251,7 +255,7 @@ export function PublicHeader(props: PublicHeaderProps) {
                       tabIndex={link.disabled ? -1 : undefined}
                       onClick={(event) => handleNavLinkClick(event, link)}
                       className={cn(
-                        'text-muted-foreground hover:text-foreground min-w-0 truncate rounded-lg px-3 py-1.5 text-sm font-medium transition-colors duration-200',
+                        'text-muted-foreground hover:text-foreground hover:bg-accent/60 min-w-0 truncate rounded-full px-3 py-1.5 text-sm font-medium transition-colors duration-200',
                         link.disabled && 'pointer-events-none opacity-50'
                       )}
                     >
@@ -267,10 +271,10 @@ export function PublicHeader(props: PublicHeaderProps) {
                     disabled={link.disabled}
                     onClick={(event) => handleNavLinkClick(event, link)}
                     className={cn(
-                      'min-w-0 truncate rounded-lg px-3 py-1.5 text-sm font-medium transition-colors duration-200',
+                      'min-w-0 truncate rounded-full px-3 py-1.5 text-sm font-medium transition-colors duration-200',
                       isActive
-                        ? 'text-foreground'
-                        : 'text-muted-foreground hover:text-foreground',
+                        ? 'bg-accent text-accent-foreground'
+                        : 'text-muted-foreground hover:text-foreground hover:bg-accent/60',
                       link.disabled && 'pointer-events-none opacity-50'
                     )}
                   >

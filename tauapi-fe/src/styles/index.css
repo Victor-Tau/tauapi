@@ -30,6 +30,17 @@ For commercial licensing, please contact support@quantumnous.com
 @import './theme.css';
 @import './theme-presets.css';
 
+/* Key Yi brand display face: renamed OFL subset (see
+ * public/fonts/KeyYi-Rounded-OFL.txt). Used for headings and brand text only;
+ * body copy, tables and code keep the standard UI and monospace fonts. */
+@font-face {
+  font-family: 'KeyYi Rounded';
+  src: url('../assets/fonts/keyyi-rounded.woff2') format('woff2');
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 @layer base {
   :root {
     /* Mobile browser toolbars change dvh; 50% positioning and vh still use
@@ -115,6 +126,28 @@ For commercial licensing, please contact support@quantumnous.com
      * (defined in theme.css, swapped by `[data-theme-font='...']` blocks
      * in theme-presets.css). Defaults to the browser's sans-serif. */
     font-family: var(--font-body);
+  }
+
+  ::selection {
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+  }
+
+  /* Key Yi display typography: headings and title slots use the rounded
+   * brand face unless the user explicitly selected the serif font axis. */
+  body:not([data-theme-font='serif'])
+    :is(
+      h1,
+      h2,
+      h3,
+      [data-slot='card-title'],
+      [data-slot='dialog-title'],
+      [data-slot='alert-dialog-title'],
+      [data-slot='sheet-title'],
+      [data-slot='drawer-title']
+    ) {
+    font-family: var(--font-brand);
+    letter-spacing: 0.01em;
   }
 
   /* Keep sticky headers stable while primitives lock body scrolling. */
@@ -292,14 +325,14 @@ For commercial licensing, please contact support@quantumnous.com
     background-image: radial-gradient(var(--tw-gradient-stops));
   }
 
-  /* Minimalist Flat: former glass-morphism surfaces are solid cards with a
-   * single hairline border (no translucent gradients). */
+  /* Key Yi: former glass-morphism surfaces are solid sticker cards with a
+   * chestnut outline (no translucent gradients or blur). */
   .glass-1,
   .glass-2,
   .glass-3,
   .glass-4,
   .glass-5 {
-    @apply border-border bg-card border;
+    @apply border-outline bg-card border-2;
   }
 
   /* Fade effects - matching Launch UI template */
@@ -380,7 +413,7 @@ For commercial licensing, please contact support@quantumnous.com
     animation-delay: 1000ms;
   }
 
-  /* Minimalist Flat: entrance is a short opacity fade only (no blur/zoom). */
+  /* Entrance is a short opacity fade only (no blur/zoom). */
   @keyframes appear {
     0% {
       opacity: 0;
@@ -460,7 +493,7 @@ For commercial licensing, please contact support@quantumnous.com
   }
 }
 
-/* ── Landing page entrance: Minimalist Flat uses a short opacity fade only ── */
+/* ── Landing page entrance: short opacity fade ── */
 @keyframes landing-fade-up {
   from {
     opacity: 0;
@@ -530,8 +563,8 @@ For commercial licensing, please contact support@quantumnous.com
   }
 }
 
-/* Minimalist Flat interaction feedback: colour/border changes only. No card
- * lift, no hover shadow, no press scaling, no staggered row entrance. */
+/* Table rows change colour only; no staggered row entrance. Key Yi bouncy
+ * lift/press feedback lives on button primitives and respects reduced motion. */
 @media (prefers-reduced-motion: no-preference) {
   [data-slot='table'] tr {
     transition: background-color 120ms ease;
@@ -649,5 +682,78 @@ For commercial licensing, please contact support@quantumnous.com
 @media (prefers-reduced-motion: reduce) {
   .auto-group-flow-border {
     display: none;
+  }
+}
+
+/* ── Key Yi brand decorations ──────────────────────────────────────────── */
+/* Street-stall awning stripe from the brand mockup. */
+.keyyi-awning {
+  background: repeating-linear-gradient(
+    90deg,
+    var(--primary) 0 25px,
+    var(--card) 25px 50px
+  );
+}
+
+@keyframes keyyi-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes keyyi-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(0.92);
+  }
+}
+
+@keyframes keyyi-sparkle {
+  0%,
+  100% {
+    opacity: 0.8;
+    transform: scale(1) translate(0, 0);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(1.3) translate(3px, -3px);
+  }
+}
+
+@keyframes keyyi-key-swing {
+  0%,
+  100% {
+    transform: rotate(4deg);
+  }
+  50% {
+    transform: rotate(-8deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .keyyi-float {
+    animation: keyyi-float 3s ease-in-out infinite;
+  }
+  .keyyi-pulse {
+    animation: keyyi-pulse 2s ease-in-out infinite;
+  }
+  .keyyi-sparkle {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: keyyi-sparkle 2.5s ease-in-out infinite;
+  }
+  .keyyi-key-swing {
+    transform-box: view-box;
+    transform-origin: 102px 78px;
+    animation: keyyi-key-swing 2.5s cubic-bezier(0.42, 0, 0.58, 1) infinite;
   }
 }
