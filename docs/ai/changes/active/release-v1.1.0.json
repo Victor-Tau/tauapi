@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "release-v1.1.0",
   "base_revision": "d0e9ca002b1ceecce5e8b9217070e45e647a2d80",
-  "work_status": "in_progress",
+  "work_status": "completed",
   "docs_impact": "affected",
   "dispositions": {
     "frontend-release": {
@@ -45,8 +45,29 @@
       "docs/ai/contracts/frontend-release.md",
       "docs/ai/contracts/backend-release-and-schema.md"
     ],
-    "checks": {},
-    "notes": "docs-tests not run: docs tooling is unchanged and the policy limits tests to modified modules. Fixture equality is covered by make docs-check. VERSION files are data with no dedicated test module."
+    "checks": {
+      "release-build": {
+        "command": "tauapi-ops/scripts/build-frontend.sh --repo .. --rev 64fa61a51eeaf7cde45149880254e2a218d98ca1 --release-id fe-v1.1.0-64fa61a51eea --compat-backend =1.1.0 --out <empty dir>; build-backend-binaries.sh --rev <candidate> --out <dir> (GOFLAGS=-buildvcs=false); build-backend.sh --rev <candidate> --tag tauapi-be:1.1.0 --out <dir>; docker save | gzip; ops package per release channel procedure",
+        "result": "passed: all builders exit 0; Bun 1.4.4, Node 24.10.0, Go 1.26.10"
+      },
+      "isolated-builds": {
+        "command": "TAUAPI_VERIFY_REV=64fa61a51eeaf7cde45149880254e2a218d98ca1 tauapi-ops/scripts/verify-independent-builds.sh all",
+        "result": "passed: fe build exit=0 cross-repo-refs=0 backend-files-in-dist=0; be build exit=0 html-files=0"
+      },
+      "artifact-review": {
+        "command": "tar -tzf on each archive; manifest and ui-version.json review; new-api --version; docker run tauapi-be:1.1.0 --version; ops package member diff against v1.0.1",
+        "result": "passed: no checksum files, test sources, evidence, DEPLOYMENT_STATE or UPSTREAM_LOCK; manifests name candidate 64fa61a51eea and app_version 1.1.0+fe/be.64fa61a51eea; binary is static ELF x86-64 and image is linux/amd64, both report 1.1.0+be.64fa61a51eea"
+      },
+      "publication": {
+        "command": "git push origin main and annotated tag v1.1.0; gh release create --draft --verify-tag --notes-file <reviewed notes> <5 explicit assets>; gh release edit --draft=false --latest; GET /repos/Victor-Tau/tauapi/releases/latest",
+        "result": "passed: v1.1.0 -> 64fa61a51eea on origin; public latest is v1.1.0 with exactly fe tar.gz, fe manifest, be linux-amd64 tar.gz, be docker linux-amd64 tar.gz and ops tar.gz; body is the reviewed Simplified Chinese change list"
+      },
+      "docs-integrity": {
+        "command": "make docs-check; docsctl.py verify-change --base d0e9ca002b1ceecce5e8b9217070e45e647a2d80 --worktree --record docs/ai/changes/active/release-v1.1.0.json",
+        "result": "passed: check passed; verify-change passed with no findings"
+      }
+    },
+    "notes": "docs-tests not run: docs tooling is unchanged and the policy limits tests to modified modules. Fixture equality is covered by make docs-check. VERSION files are data with no dedicated test module. GOFLAGS=-buildvcs=false was set for Go builds because an unrelated empty /tmp/.git directory made VCS stamping fail; the exported subtree has no VCS metadata either way. The Docker builder JSON (64fa61a51eea.json) stays local with the image per procedure. The docker save archive uses the OCI layout, whose blob paths are content digests of the image format; no checksum file or metadata was added. Production was not deployed."
   },
-  "next_action": "Commit the version bump, push main, then build release assets."
+  "next_action": "Release published; production deployment requires separate authorization."
 }
