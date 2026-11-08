@@ -30,7 +30,11 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Spinner } from '@/components/ui/spinner'
 import { useStatus } from '@/hooks/use-status'
-import { getBackendVersion, getFrontendVersion } from '@/lib/component-versions'
+import {
+  formatComponentVersion,
+  getBackendVersion,
+  getFrontendVersion,
+} from '@/lib/component-versions'
 import { ROLE } from '@/lib/roles'
 import { cn } from '@/lib/utils'
 import { useAuthStore } from '@/stores/auth-store'
@@ -69,7 +73,8 @@ function AdminSystemUpdateAction(props: SystemUpdateActionProps) {
   const [open, setOpen] = useState(false)
   const compact = props.compact ?? true
   const versionPresentation = props.presentation === 'version'
-  const version = update.currentVersion?.trim() || t('Unknown version')
+  const version =
+    formatComponentVersion('be', update.currentVersion) || t('Unknown version')
   const label = update.shouldNotify
     ? t('Update available')
     : t('Check for updates')
@@ -86,7 +91,9 @@ function AdminSystemUpdateAction(props: SystemUpdateActionProps) {
     const versionDescription = t(
       'System updates, frontend version: {{frontendVersion}}, backend version: {{backendVersion}}',
       {
-        frontendVersion: getFrontendVersion() || t('Unknown version'),
+        frontendVersion:
+          formatComponentVersion('fe', getFrontendVersion()) ||
+          t('Unknown version'),
         backendVersion: version,
       }
     )

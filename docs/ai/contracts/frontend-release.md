@@ -33,8 +33,11 @@ The frontend version is baked in from `VITE_REACT_APP_VERSION`, with the compone
 when another release goes live. `/api/status.data.backend_version` identifies the running
 backend; `data.version` remains an equal compatibility alias for older frontends. New
 frontends fall back to `data.version` when talking to older backends. Missing versions
-are displayed as unknown, never borrowed from the other release unit. Update comparison
-continues to use the backend semantic version; frontend release notices remain independent.
+are displayed as unknown, never borrowed from the other release unit. Version labels read
+`fe-<version>` and `be-<version>`: they drop a leading `v` and `+build` metadata such as
+commit suffixes, and keep pre-release tags. Status payloads, manifests and update comparison
+keep the raw version. Update comparison continues to use the backend semantic version;
+frontend release notices remain independent.
 
 FER-6: Follow the [root release requirements](../../../AGENTS.md#release-requirements).
 Frontend archives contain runtime assets and manifests without SHA256 checksum files

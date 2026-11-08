@@ -276,8 +276,11 @@ Inspect shared Dialog/ConfirmDialog/CopyButton/data-table before replacing behav
 `rsbuild.config.ts` embeds `VITE_REACT_APP_VERSION` or the local `VERSION` file into
 this bundle. `src/lib/component-versions.ts` reads that frontend version and resolves
 `backend_version` with a legacy `version` fallback from the shared status query.
+`formatComponentVersion` renders every displayed label as `fe-<version>` or `be-<version>`
+without the `v` prefix or `+build` commit metadata; comparison uses the raw value.
 `src/components/component-versions.tsx` supplies localized labels for the header and
-sidebar; update details show both versions. Only administrators run release checks.
+sidebar; update details and the maintenance card show the same labels. Only administrators
+run release checks.
 
 ## Frontend-owned presentation
 

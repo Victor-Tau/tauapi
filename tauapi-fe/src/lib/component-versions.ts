@@ -31,3 +31,20 @@ export function getBackendVersion(
   if (version === 'v0.0.0' || version === '0.0.0') return undefined
   return version || undefined
 }
+
+export type ReleaseComponent = 'fe' | 'be'
+
+/**
+ * Display label such as `fe-1.0.1`: drops the `v` prefix and `+build` metadata
+ * (commit suffixes such as `+be.53c0e999057f`) while keeping pre-release tags.
+ */
+export function formatComponentVersion(
+  component: ReleaseComponent,
+  version: string | undefined
+): string | undefined {
+  const core = version
+    ?.trim()
+    .replace(/\+.*$/, '')
+    .replace(/^v(?=\d)/i, '')
+  return core ? `${component}-${core}` : undefined
+}

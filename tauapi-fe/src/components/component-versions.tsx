@@ -18,7 +18,10 @@ For commercial licensing, please contact support@quantumnous.com
 */
 import { useTranslation } from 'react-i18next'
 
-import { getFrontendVersion } from '@/lib/component-versions'
+import {
+  formatComponentVersion,
+  getFrontendVersion,
+} from '@/lib/component-versions'
 
 type ComponentVersionsProps = {
   backendVersion?: string
@@ -26,8 +29,10 @@ type ComponentVersionsProps = {
 
 export function ComponentVersions(props: ComponentVersionsProps) {
   const { t } = useTranslation()
-  const frontendVersion = getFrontendVersion() || t('Unknown version')
-  const backendVersion = props.backendVersion || t('Unknown version')
+  const frontendVersion =
+    formatComponentVersion('fe', getFrontendVersion()) || t('Unknown version')
+  const backendVersion =
+    formatComponentVersion('be', props.backendVersion) || t('Unknown version')
   return (
     <span className='grid min-w-0 gap-0.5 text-start text-xs leading-tight'>
       <span className='flex min-w-0 gap-1'>

@@ -24,7 +24,10 @@ import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
-import { getFrontendVersion } from '@/lib/component-versions'
+import {
+  formatComponentVersion,
+  getFrontendVersion,
+} from '@/lib/component-versions'
 import { formatTimestampToDate } from '@/lib/format'
 
 import { getSystemReleaseUrl, parseSystemVersion } from './releases'
@@ -134,13 +137,15 @@ export function SystemUpdateDialog(props: SystemUpdateDialogProps) {
         <div className='min-w-0'>
           <dt className='text-muted-foreground'>{t('Frontend version')}</dt>
           <dd className='font-medium break-all'>
-            {getFrontendVersion() || t('Unknown version')}
+            {formatComponentVersion('fe', getFrontendVersion()) ||
+              t('Unknown version')}
           </dd>
         </div>
         <div className='min-w-0'>
           <dt className='text-muted-foreground'>{t('Backend version')}</dt>
           <dd className='font-medium break-all'>
-            {update.currentVersion || t('Unknown version')}
+            {formatComponentVersion('be', update.currentVersion) ||
+              t('Unknown version')}
           </dd>
         </div>
         <div className='min-w-0'>
