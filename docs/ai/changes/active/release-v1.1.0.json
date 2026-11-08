@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "release-v1.1.0",
+  "base_revision": "d0e9ca002b1ceecce5e8b9217070e45e647a2d80",
+  "work_status": "in_progress",
+  "docs_impact": "affected",
+  "dispositions": {
+    "frontend-release": {
+      "status": "reviewed_unchanged",
+      "reason": "Only tauapi-fe/VERSION changes; FER-5 already defines VERSION as the local-build fallback and build-frontend.sh reads it at the candidate. Asset prefix, manifest, deploy/rollback and FER-6 no-checksum archive rules are unchanged.",
+      "evidence": [
+        "tauapi-fe/VERSION",
+        "tauapi-ops/scripts/build-frontend.sh",
+        "tauapi-fe/rsbuild.config.ts"
+      ]
+    },
+    "backend-release-and-schema": {
+      "status": "reviewed_unchanged",
+      "reason": "Only tauapi-be/VERSION changes; no migration, model or deploy script changes in this task. BER-5 build targets (linux-amd64, linux/amd64) and no-SHA256 packaging are followed by the release builders. BER-6 option retirement since v1.0.1 was delivered by 216d3bd under its own record; packaging does not establish schema compatibility (BER-2).",
+      "evidence": [
+        "tauapi-be/VERSION",
+        "tauapi-ops/scripts/build-backend-binaries.sh",
+        "tauapi-ops/scripts/build-backend.sh",
+        "git diff v1.0.1..HEAD -- tauapi-be/model"
+      ]
+    }
+  },
+  "validation": {
+    "objective": "Publish TauAPI v1.1.0 on GitHub Releases from main: bump tauapi-fe/VERSION and tauapi-be/VERSION to 1.1.0, build the frontend archive, the linux-amd64 backend archive, the linux/amd64 Docker image archive and the operations package from the committed candidate, and publish a Simplified Chinese change-only release without SHA256 content.",
+    "acceptance": [
+      "Both VERSION files are 1.1.0 at the tagged candidate; the annotated v1.1.0 tag points at it on origin.",
+      "Assets are built from the candidate subtree only, for linux-amd64 / linux/amd64, and contain no SHA256 files or metadata or test sources.",
+      "The release body is Simplified Chinese and lists only changes.",
+      "The public release feed exposes v1.1.0 as latest with exactly the allowlisted assets."
+    ],
+    "scope": [
+      "tauapi-fe/VERSION",
+      "tauapi-be/VERSION",
+      "docs/CHANGELOG.md"
+    ],
+    "required_reads": [
+      "AGENTS.md",
+      "tauapi-ops/AGENTS.md",
+      "tauapi-ops/docs/ai/engineering.md",
+      "docs/ai/contracts/frontend-release.md",
+      "docs/ai/contracts/backend-release-and-schema.md"
+    ],
+    "checks": {},
+    "notes": "docs-tests not run: docs tooling is unchanged and the policy limits tests to modified modules. Fixture equality is covered by make docs-check. VERSION files are data with no dedicated test module."
+  },
+  "next_action": "Commit the version bump, push main, then build release assets."
+}
