@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "release-v1.1.1",
   "base_revision": "11ff61611d02fd7a57a34ccd8a7e1b2622ed6561",
-  "work_status": "in_progress",
+  "work_status": "completed",
   "docs_impact": "affected",
   "dispositions": {
     "frontend-release": {
@@ -25,7 +25,8 @@
     ],
     "scope": [
       "tauapi-fe/VERSION",
-      "docs/CHANGELOG.md"
+      "docs/CHANGELOG.md",
+      "docs/ai/changes/active/release-v1.1.1.json"
     ],
     "required_reads": [
       "AGENTS.md",
@@ -33,8 +34,25 @@
       "tauapi-ops/docs/ai/engineering.md",
       "docs/ai/contracts/frontend-release.md"
     ],
-    "checks": {},
+    "checks": {
+      "release-build": {
+        "command": "tauapi-ops/scripts/build-frontend.sh --repo .. --rev c644689f0429edfaadc39dfc32959c1f9410e249 --release-id fe-v1.1.1-c644689f0429 --compat-backend =1.1.0 --out <empty dir>",
+        "result": "passed: exit 0 (includes bun typecheck, no tests); Bun 1.4.4, Node 24.10.0"
+      },
+      "artifact-review": {
+        "command": "tar -tzf on the frontend archive; manifest and ui-version.json review; bundle grep for the new home footer",
+        "result": "passed: 1856 members, no checksum files or test sources, LICENSE/NOTICE/THIRD-PARTY-LICENSES.md present; manifest and ui-version.json name candidate c644689f0429, app_version 1.1.1+fe.c644689f0429 and asset prefix /_ui/fe-v1.1.1-c644689f0429/"
+      },
+      "publication": {
+        "command": "git push origin main; annotated tag v1.1.1 pushed; gh release create v1.1.1 --draft --verify-tag --notes-file <reviewed notes> <2 explicit assets>; gh release edit --draft=false --latest; GET /repos/Victor-Tau/tauapi/releases/latest",
+        "result": "passed: v1.1.1 -> c644689f0429 on origin; public latest is TauAPI v1.1.1 with exactly fe-v1.1.1-c644689f0429.tar.gz and fe-v1.1.1-c644689f0429.manifest.json; body is the reviewed Simplified Chinese change list"
+      },
+      "docs-integrity": {
+        "command": "make docs-check; docsctl.py verify-change --base 11ff61611d02fd7a57a34ccd8a7e1b2622ed6561 --worktree --record docs/ai/changes/active/release-v1.1.1.json",
+        "result": "passed: check passed; verify-change passed with no findings"
+      }
+    },
     "notes": "Frontend-only release by user decision: the admin update notice compares the backend version (1.1.0) with the latest tag, so it will report v1.1.1 as available until a backend 1.1.1 is released. Production deployment is out of scope."
   },
-  "next_action": "Commit the version bump, build the frontend from the candidate, push main and tag v1.1.1, publish the release."
+  "next_action": "Release published; production deployment requires separate authorization."
 }
