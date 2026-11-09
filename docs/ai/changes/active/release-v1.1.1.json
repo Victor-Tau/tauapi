@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "id": "release-v1.1.1",
+  "base_revision": "11ff61611d02fd7a57a34ccd8a7e1b2622ed6561",
+  "work_status": "in_progress",
+  "docs_impact": "affected",
+  "dispositions": {
+    "frontend-release": {
+      "status": "reviewed_unchanged",
+      "reason": "Only tauapi-fe/VERSION changes; FER-5 defines VERSION as the local-build fallback and build-frontend.sh reads it at the candidate. Asset prefix, manifest, deploy/rollback and FER-6 no-checksum archive rules are unchanged.",
+      "evidence": [
+        "tauapi-fe/VERSION",
+        "tauapi-ops/scripts/build-frontend.sh",
+        "tauapi-fe/rsbuild.config.ts"
+      ]
+    }
+  },
+  "validation": {
+    "objective": "Publish frontend-only TauAPI v1.1.1 on GitHub Releases from main: bump tauapi-fe/VERSION to 1.1.1 (tauapi-be/VERSION stays 1.1.0 by user decision), build the frontend archive and manifest from the committed candidate, and publish a Simplified Chinese change-only release without SHA256 content.",
+    "acceptance": [
+      "tauapi-fe/VERSION is 1.1.1 and tauapi-be/VERSION is 1.1.0 at the tagged candidate; the annotated v1.1.1 tag points at it on origin.",
+      "The frontend archive is built from the candidate subtree only and contains no SHA256 files or metadata or test sources.",
+      "The release body is Simplified Chinese and lists only changes.",
+      "The public release feed exposes v1.1.1 as latest with exactly the frontend archive and manifest."
+    ],
+    "scope": [
+      "tauapi-fe/VERSION",
+      "docs/CHANGELOG.md"
+    ],
+    "required_reads": [
+      "AGENTS.md",
+      "tauapi-ops/AGENTS.md",
+      "tauapi-ops/docs/ai/engineering.md",
+      "docs/ai/contracts/frontend-release.md"
+    ],
+    "checks": {},
+    "notes": "Frontend-only release by user decision: the admin update notice compares the backend version (1.1.0) with the latest tag, so it will report v1.1.1 as available until a backend 1.1.1 is released. Production deployment is out of scope."
+  },
+  "next_action": "Commit the version bump, build the frontend from the candidate, push main and tag v1.1.1, publish the release."
+}
