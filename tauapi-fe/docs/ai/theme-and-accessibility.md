@@ -32,6 +32,11 @@ Source paths below are relative to tauapi-fe. Review actual tokens before changi
   scrims stay solid without blur. Controls stay h-9 (+ pointer-coarse 44px).
 - Layout: the public header shows the awning stripe (8px) above a 48px bar so the total
   header height remains 56px; the logo is round with an outline ring.
+- Home (`src/features/home/`): the default page is the public header, `sections/hero.tsx`
+  (status pill, stall illustration, headline, subtitle, one call to action to `/sign-up`
+  for visitors or `/wallet` when signed in, tagline) and `components/home-footer.tsx`
+  (mockup copyright plus New API attribution and legal links; configured `footerHtml`
+  falls back to the shared footer). Configured custom home content replaces this page.
 
 Per-feature rules:
 1. Use semantic tokens and the sticker utilities. Do not add glass/backdrop-blur, glow

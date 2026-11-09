@@ -40,33 +40,24 @@ function renderHero(isAuthenticated: boolean) {
   return render(<RouterProvider router={router} />)
 }
 
-test('anonymous visitor sees the Key Yi sign-up call to action', async () => {
+test('anonymous visitor is sent to sign-up by the single call to action', async () => {
   renderHero(false)
 
   const cta = await screen.findByRole('button', {
     name: 'Buy a key from Auntie Key',
   })
   expect(cta).toHaveAttribute('href', '/sign-up')
-  expect(screen.getByRole('button', { name: 'View Pricing' })).toHaveAttribute(
-    'href',
-    '/pricing'
-  )
-  expect(
-    screen.queryByRole('button', { name: 'Go to Dashboard' })
-  ).not.toBeInTheDocument()
+  expect(screen.getAllByRole('button')).toHaveLength(1)
 })
 
-test('signed-in user is sent to the dashboard instead of sign-up', async () => {
+test('signed-in user buys a key from the wallet page', async () => {
   renderHero(true)
 
-  const cta = await screen.findByRole('button', { name: 'Go to Dashboard' })
-  expect(cta).toHaveAttribute('href', '/dashboard')
-  expect(
-    screen.queryByRole('button', { name: 'Buy a key from Auntie Key' })
-  ).not.toBeInTheDocument()
-  expect(
-    screen.queryByRole('button', { name: 'View Pricing' })
-  ).not.toBeInTheDocument()
+  const cta = await screen.findByRole('button', {
+    name: 'Buy a key from Auntie Key',
+  })
+  expect(cta).toHaveAttribute('href', '/wallet')
+  expect(screen.getAllByRole('button')).toHaveLength(1)
 })
 
 test('stall illustration and open status are exposed to assistive technology', async () => {

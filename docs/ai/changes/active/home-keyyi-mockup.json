@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "id": "home-keyyi-mockup",
+  "base_revision": "105d22371a58ccb17d50df77ea6e926d4ab48aa1",
+  "work_status": "completed",
+  "docs_impact": "affected",
+  "dispositions": {
+    "authentication": {
+      "status": "reviewed_unchanged",
+      "reason": "The home page reads only auth.user presence to choose the call-to-action target; no credential, session, token storage or authorization path changes. /wallet stays under the _authenticated guard.",
+      "evidence": [
+        "tauapi-fe/src/features/home/index.tsx",
+        "tauapi-fe/src/features/home/components/sections/hero.tsx",
+        "tauapi-fe/src/routes/_authenticated/wallet/index.tsx"
+      ]
+    },
+    "routing-and-origin": {
+      "status": "reviewed_unchanged",
+      "reason": "No route is added, removed or renamed; the hero links to the existing typed SPA routes /sign-up and /wallet, so ROUTE_CONTRACT.json and backend fallback are unaffected.",
+      "evidence": [
+        "tauapi-fe/src/routes/(auth)/sign-up.tsx",
+        "tauapi-fe/src/routes/_authenticated/wallet/index.tsx",
+        "tauapi-fe/src/features/home/components/__tests__/hero.test.tsx"
+      ]
+    },
+    "frontend-release": {
+      "status": "reviewed_unchanged",
+      "reason": "FER-7 presentation ownership is unchanged: the home footer still reads footerHtml, legal content and branding from src/config/site.ts through useSystemConfig; no build, asset or version metadata changes.",
+      "evidence": [
+        "tauapi-fe/src/features/home/components/home-footer.tsx",
+        "tauapi-fe/src/config/site.ts"
+      ]
+    }
+  },
+  "validation": {
+    "objective": "Replace the default frontend home page body with the Key Yi mockup (keyyi-素材/index_v1.0.html): open-status pill, stall illustration, wavy-underlined headline, subtitle, a single 'Buy a key from Auntie Key' call to action, tagline and a dashed-border copyright footer. Keep the existing public header (awning, navigation, auth, theme and language controls) per user decision. Remove the stats, features, how-it-works, CTA, supported-apps and terminal-demo sections. Keep the configured custom home content paths, legal links and the New API attribution.",
+    "acceptance": [
+      "The default home renders only the public header, the mockup hero and the mockup footer.",
+      "The call to action links to /sign-up for visitors and /wallet for signed-in users with the same label.",
+      "The home footer shows the Auntie Key Studio copyright, configured legal links and the New API attribution; a configured footerHtml falls back to the shared footer.",
+      "Removed home components have no remaining imports and their lint baseline entries are deleted."
+    ],
+    "scope": [
+      "tauapi-fe/src/features/home/",
+      "tauapi-fe/src/components/layout/components/footer.tsx",
+      "tauapi-fe/src/i18n/locales/",
+      "docs/tools/frontend-lint-baseline.json",
+      "docs/CHANGELOG.md"
+    ],
+    "required_reads": [
+      "AGENTS.md",
+      "docs/ai/engineering.md",
+      "tauapi-fe/AGENTS.md",
+      "tauapi-fe/docs/ai/engineering.md",
+      "tauapi-fe/docs/ai/theme-and-accessibility.md",
+      "docs/ai/contracts/frontend-release.md",
+      "docs/ai/contracts/routing-and-origin.md",
+      "docs/ai/contracts/authentication.md"
+    ],
+    "checks": {
+      "frontend-typecheck": {
+        "command": "bun run typecheck (bun 1.4.4 from /tmp/tauapi-release-tools)",
+        "cwd": "tauapi-fe",
+        "status": "passed",
+        "result": "No type errors in 1,391 files across 2 projects"
+      },
+      "frontend-tests": {
+        "command": "node_modules/.bin/vitest run src/features/home/components/__tests__/hero.test.tsx src/features/home/components/__tests__/hero-copy.test.ts src/features/home/components/__tests__/home-footer.test.tsx",
+        "cwd": "tauapi-fe",
+        "status": "passed",
+        "result": "3 files, 13 tests passed"
+      },
+      "frontend-lint": {
+        "command": ".docs-venv/bin/python docs/tools/docsctl.py lint-check",
+        "cwd": ".",
+        "status": "passed",
+        "result": "lint-check: passed after deleting 24 fixed baseline entries (deleted home files and entries already stale at base) and moving the existing footer.tsx react(no-danger) entry from line 237 to 239"
+      },
+      "docs-integrity": {
+        "command": "make docs-check",
+        "cwd": ".",
+        "status": "passed",
+        "result": "check: passed"
+      }
+    }
+  },
+  "next_action": "Hand off; consolidate into CHANGELOG and delete this record on the next task."
+}

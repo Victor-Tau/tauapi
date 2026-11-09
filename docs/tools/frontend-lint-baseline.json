@@ -538,25 +538,9 @@
       "rule": "react(no-danger)",
       "file": "src/components/layout/components/footer.tsx",
       "severity": "warning",
-      "line": 237,
+      "line": 239,
       "column": 15,
       "message_sha512": "02693c6371f7854a3396ccbd52a8cd692e7b768800b73a3460eb05756b87dcd82a52c7082079cbdf3d2832ebcb4f8545c6c0d9b339feeafa6d3f5ba42fd4e8f7"
-    },
-    {
-      "rule": "react(no-array-index-key)",
-      "file": "src/components/layout/components/footer.tsx",
-      "severity": "error",
-      "line": 276,
-      "column": 22,
-      "message_sha512": "7559d09abe8facfc2ea0884b5eeb3b9c01ef34f95357114e3fba528f660b7eb6423361c5f17653661e098ded6f0618bc8af44b945dde5164af7a85a4aa713125"
-    },
-    {
-      "rule": "react(no-array-index-key)",
-      "file": "src/components/layout/components/footer.tsx",
-      "severity": "error",
-      "line": 282,
-      "column": 27,
-      "message_sha512": "7559d09abe8facfc2ea0884b5eeb3b9c01ef34f95357114e3fba528f660b7eb6423361c5f17653661e098ded6f0618bc8af44b945dde5164af7a85a4aa713125"
     },
     {
       "rule": "react(no-array-index-key)",
@@ -903,134 +887,6 @@
       "message_sha512": "7983070c992a95a54409836e061332feade4c3776443d5cea602ceaf2e1aa7c3dc4f4c3a6252c3f058be71a249b8af6373beda4b6fe38b2c520d6711c905e00c"
     },
     {
-      "rule": "react(no-array-index-key)",
-      "file": "src/features/home/components/gateway-card.tsx",
-      "severity": "error",
-      "line": 54,
-      "column": 15,
-      "message_sha512": "7559d09abe8facfc2ea0884b5eeb3b9c01ef34f95357114e3fba528f660b7eb6423361c5f17653661e098ded6f0618bc8af44b945dde5164af7a85a4aa713125"
-    },
-    {
-      "rule": "react(button-has-type)",
-      "file": "src/features/home/components/hero-terminal-demo.tsx",
-      "severity": "error",
-      "line": 184,
-      "column": 16,
-      "message_sha512": "db3894ef68e23d1ff084c9775d917067cde6ed93c023eaae72f390254e48c8f067078f9c73294768321d50268d6ef2b43019ab9f11f1b1f257079fe59468a124"
-    },
-    {
-      "rule": "react(no-array-index-key)",
-      "file": "src/features/home/components/hero-terminal-demo.tsx",
-      "severity": "error",
-      "line": 291,
-      "column": 21,
-      "message_sha512": "7559d09abe8facfc2ea0884b5eeb3b9c01ef34f95357114e3fba528f660b7eb6423361c5f17653661e098ded6f0618bc8af44b945dde5164af7a85a4aa713125"
-    },
-    {
-      "rule": "react(no-array-index-key)",
-      "file": "src/features/home/components/hero-terminal-demo.tsx",
-      "severity": "error",
-      "line": 316,
-      "column": 21,
-      "message_sha512": "7559d09abe8facfc2ea0884b5eeb3b9c01ef34f95357114e3fba528f660b7eb6423361c5f17653661e098ded6f0618bc8af44b945dde5164af7a85a4aa713125"
-    },
-    {
-      "rule": "react(no-array-index-key)",
-      "file": "src/features/home/components/hero-terminal-demo.tsx",
-      "severity": "error",
-      "line": 352,
-      "column": 15,
-      "message_sha512": "7559d09abe8facfc2ea0884b5eeb3b9c01ef34f95357114e3fba528f660b7eb6423361c5f17653661e098ded6f0618bc8af44b945dde5164af7a85a4aa713125"
-    },
-    {
-      "rule": "react(no-array-index-key)",
-      "file": "src/features/home/components/hero-terminal-demo.tsx",
-      "severity": "error",
-      "line": 358,
-      "column": 17,
-      "message_sha512": "7559d09abe8facfc2ea0884b5eeb3b9c01ef34f95357114e3fba528f660b7eb6423361c5f17653661e098ded6f0618bc8af44b945dde5164af7a85a4aa713125"
-    },
-    {
-      "rule": "react(no-array-index-key)",
-      "file": "src/features/home/components/hero-terminal-demo.tsx",
-      "severity": "error",
-      "line": 361,
-      "column": 33,
-      "message_sha512": "7559d09abe8facfc2ea0884b5eeb3b9c01ef34f95357114e3fba528f660b7eb6423361c5f17653661e098ded6f0618bc8af44b945dde5164af7a85a4aa713125"
-    },
-    {
-      "rule": "react(no-array-index-key)",
-      "file": "src/features/home/components/hero-terminal-demo.tsx",
-      "severity": "error",
-      "line": 364,
-      "column": 21,
-      "message_sha512": "7559d09abe8facfc2ea0884b5eeb3b9c01ef34f95357114e3fba528f660b7eb6423361c5f17653661e098ded6f0618bc8af44b945dde5164af7a85a4aa713125"
-    },
-    {
-      "rule": "react(no-array-index-key)",
-      "file": "src/features/home/components/hero-terminal-demo.tsx",
-      "severity": "error",
-      "line": 370,
-      "column": 21,
-      "message_sha512": "7559d09abe8facfc2ea0884b5eeb3b9c01ef34f95357114e3fba528f660b7eb6423361c5f17653661e098ded6f0618bc8af44b945dde5164af7a85a4aa713125"
-    },
-    {
-      "rule": "react(no-array-index-key)",
-      "file": "src/features/home/components/hero-terminal-demo.tsx",
-      "severity": "error",
-      "line": 375,
-      "column": 28,
-      "message_sha512": "7559d09abe8facfc2ea0884b5eeb3b9c01ef34f95357114e3fba528f660b7eb6423361c5f17653661e098ded6f0618bc8af44b945dde5164af7a85a4aa713125"
-    },
-    {
-      "rule": "react(no-array-index-key)",
-      "file": "src/features/home/components/hero-terminal-demo.tsx",
-      "severity": "error",
-      "line": 407,
-      "column": 16,
-      "message_sha512": "7559d09abe8facfc2ea0884b5eeb3b9c01ef34f95357114e3fba528f660b7eb6423361c5f17653661e098ded6f0618bc8af44b945dde5164af7a85a4aa713125"
-    },
-    {
-      "rule": "react(no-array-index-key)",
-      "file": "src/features/home/components/hero-terminal-demo.tsx",
-      "severity": "error",
-      "line": 414,
-      "column": 26,
-      "message_sha512": "7559d09abe8facfc2ea0884b5eeb3b9c01ef34f95357114e3fba528f660b7eb6423361c5f17653661e098ded6f0618bc8af44b945dde5164af7a85a4aa713125"
-    },
-    {
-      "rule": "react(no-array-index-key)",
-      "file": "src/features/home/components/hero-terminal-demo.tsx",
-      "severity": "error",
-      "line": 416,
-      "column": 33,
-      "message_sha512": "7559d09abe8facfc2ea0884b5eeb3b9c01ef34f95357114e3fba528f660b7eb6423361c5f17653661e098ded6f0618bc8af44b945dde5164af7a85a4aa713125"
-    },
-    {
-      "rule": "react(no-array-index-key)",
-      "file": "src/features/home/components/scrolling-icons.tsx",
-      "severity": "error",
-      "line": 50,
-      "column": 21,
-      "message_sha512": "7559d09abe8facfc2ea0884b5eeb3b9c01ef34f95357114e3fba528f660b7eb6423361c5f17653661e098ded6f0618bc8af44b945dde5164af7a85a4aa713125"
-    },
-    {
-      "rule": "react(no-array-index-key)",
-      "file": "src/features/home/components/scrolling-icons.tsx",
-      "severity": "error",
-      "line": 55,
-      "column": 13,
-      "message_sha512": "7559d09abe8facfc2ea0884b5eeb3b9c01ef34f95357114e3fba528f660b7eb6423361c5f17653661e098ded6f0618bc8af44b945dde5164af7a85a4aa713125"
-    },
-    {
-      "rule": "typescript(no-import-type-side-effects)",
-      "file": "src/features/home/constants.ts",
-      "severity": "error",
-      "line": 23,
-      "column": 1,
-      "message_sha512": "2a9fc27c6c4d59c3700938f7d0fb97cfa7bdaa0f7e44126f0418efd07779428cabb81539668c26779f621ccc553c725a06df08ae7a71780428775c135b27bb5f"
-    },
-    {
       "rule": "typescript(no-import-type-side-effects)",
       "file": "src/features/keys/components/data-table-bulk-actions.tsx",
       "severity": "error",
@@ -1317,14 +1173,6 @@
       "line": 19,
       "column": 1,
       "message_sha512": "2a9fc27c6c4d59c3700938f7d0fb97cfa7bdaa0f7e44126f0418efd07779428cabb81539668c26779f621ccc553c725a06df08ae7a71780428775c135b27bb5f"
-    },
-    {
-      "rule": "unicorn(no-useless-spread)",
-      "file": "src/features/system-settings/content/dashboard-section.tsx",
-      "severity": "error",
-      "line": 158,
-      "column": 23,
-      "message_sha512": "5b5d935afe6e1b6e49abb445761780a0639ed09b7048f74b9f0cad9df732d0d2c505f6ff9080d31783e0e543b6364efd5357bfc9949e378665ee2293df0e6a26"
     },
     {
       "rule": "unicorn(prefer-structured-clone)",
@@ -1631,38 +1479,6 @@
       "message_sha512": "7559d09abe8facfc2ea0884b5eeb3b9c01ef34f95357114e3fba528f660b7eb6423361c5f17653661e098ded6f0618bc8af44b945dde5164af7a85a4aa713125"
     },
     {
-      "rule": "unicorn(prefer-add-event-listener)",
-      "file": "src/hooks/use-system-config.ts",
-      "severity": "warning",
-      "line": 39,
-      "column": 7,
-      "message_sha512": "11d7c2b1eab63da5bda02bb446b8c199ef2f41bab2e2c9507fb87f690d94e54f935a129c5e27d8745b4cc800f16d6ff958dcca54146b4f3cb47dd41a77cfeb78"
-    },
-    {
-      "rule": "unicorn(prefer-add-event-listener)",
-      "file": "src/hooks/use-system-config.ts",
-      "severity": "warning",
-      "line": 40,
-      "column": 7,
-      "message_sha512": "11d7c2b1eab63da5bda02bb446b8c199ef2f41bab2e2c9507fb87f690d94e54f935a129c5e27d8745b4cc800f16d6ff958dcca54146b4f3cb47dd41a77cfeb78"
-    },
-    {
-      "rule": "unicorn(prefer-add-event-listener)",
-      "file": "src/hooks/use-system-config.ts",
-      "severity": "warning",
-      "line": 44,
-      "column": 9,
-      "message_sha512": "11d7c2b1eab63da5bda02bb446b8c199ef2f41bab2e2c9507fb87f690d94e54f935a129c5e27d8745b4cc800f16d6ff958dcca54146b4f3cb47dd41a77cfeb78"
-    },
-    {
-      "rule": "unicorn(prefer-add-event-listener)",
-      "file": "src/hooks/use-system-config.ts",
-      "severity": "warning",
-      "line": 45,
-      "column": 9,
-      "message_sha512": "11d7c2b1eab63da5bda02bb446b8c199ef2f41bab2e2c9507fb87f690d94e54f935a129c5e27d8745b4cc800f16d6ff958dcca54146b4f3cb47dd41a77cfeb78"
-    },
-    {
       "rule": "unicorn(prefer-number-properties)",
       "file": "src/hooks/use-table-url-state.ts",
       "severity": "warning",
@@ -1733,14 +1549,6 @@
       "line": 157,
       "column": 6,
       "message_sha512": "8d6ae6ee6b31124797f4874f2bea59df02a434fc64981790a6f9d19ff57c835771d4d9b7249449f4d9770f7dcc17d2acb9f28d16e704e00b9b2dc68849c189db"
-    },
-    {
-      "rule": "unicorn(no-useless-fallback-in-spread)",
-      "file": "src/stores/system-config-store.ts",
-      "severity": "warning",
-      "line": 89,
-      "column": 15,
-      "message_sha512": "052f9547423abbb8be6d37ce11b3c294e3fe4a75e44450dbfd1d1ca4f2715cf97d57bbba759dccce2fc005d4598c09084bc28737fab42103e384cdf9ec0a6853"
     }
   ]
 }
